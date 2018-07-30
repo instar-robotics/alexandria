@@ -17,8 +17,8 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef _ARITHMETIC_H_
 #define _ARITHMETIC_H_
 
-#include "kernel/function.h"
-#include "kernel/kernel.h"
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
 
 /********************************************************************************************************/
 /**********************************************   SUM   *************************************************/

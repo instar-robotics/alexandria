@@ -17,8 +17,8 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef _BOOLEAN_H_
 #define _BOOLEAN_H_
 
-#include "kernel/function.h"
-#include "kernel/kernel.h"
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
 
 /********************************************************************************************************/
 /**************************************************  AND  ***********************************************/

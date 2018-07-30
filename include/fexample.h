@@ -17,8 +17,8 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef __FEXAMPLE_HPP__
 #define __FEXAMPLE_HPP__
 
-#include "kernel/function.h"
-#include "kernel/kernel.h"
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
 #include <iostream>
 
 class Example : public FScalar
