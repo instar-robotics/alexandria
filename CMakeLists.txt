@@ -38,14 +38,11 @@ include_directories(
  ${catkin_INCLUDE_DIRS}
 )
 
-#FOREACH(src ${sourcefiles})
-#    GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
-#    ADD_LIBRARY(${basename} MODULE ${src} )
-#    target_link_libraries(${basename} Eigen3::Eigen)
-#ENDFOREACH()  
-
-add_library(alexandria MODULE  ${sourcefiles})
-target_link_libraries(alexandria Eigen3::Eigen)
+FOREACH(src ${sourcefiles})
+    GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
+    ADD_LIBRARY(${basename} MODULE ${src} )
+    target_link_libraries(${basename} Eigen3::Eigen)
+ENDFOREACH()  
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
