@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <name>IN</name>	
+    <rt_token uuid="100"  unit="ms">500</rt_token> 
+    <functions>
+	<function uuid="1">
+		<name>MSum</name>   
+		<publish topic="out">true</publish>
+                <output>
+			<rows>2</rows>
+                        <cols>2</cols>
+		</output>
+		<inputs>	
+			<input uuid="2" multiple="true">
+				<name>inMatrix</name>
+				<links>
+					<link uuid="3" constant="true">
+						<weight>1</weight>
+					</link>
+					<link uuid="4">
+						<weight>1</weight>
+						<from>1</from>
+					</link>
+				</links>	
+			</input>
+		</inputs>	
+	</function>
+    </functions>
+</script>

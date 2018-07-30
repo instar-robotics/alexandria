@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <name>Out</name>	
+    <rt_token uuid="100"  unit="ms">10</rt_token> 
+    <functions>
+	<function uuid="1">
+		<name>MRosInput</name>   
+                <output>
+			<rows>2</rows>
+                        <cols>2</cols>
+		</output>
+		<inputs>	
+			<input uuid="2" multiple="false">
+				<name>topic_name</name>
+				<links>
+					<link uuid="3" constant="true">
+						<value>/kheops_IN/function_out</value>
+					</link>
+				</links>	
+			</input>
+		</inputs>	
+	</function>
+	<function uuid="10">
+		<name>MMul</name>   
+                <output>
+			<rows>2</rows>
+                        <cols>2</cols>
+		</output>
+		<inputs>	
+			<input uuid="20" multiple="true">
+				<name>inMatrix</name>
+				<links>
+					<link uuid="30" constant="true">
+						<weight>10</weight>
+					</link>
+					<link uuid="40" >
+                                                <from>1</from>
+                                                <weight>10</weight>
+                                        </link>
+
+				</links>	
+			</input>
+		</inputs>	
+	</function>
+    </functions>
+</script>

@@ -38,13 +38,14 @@ include_directories(
  ${catkin_INCLUDE_DIRS}
 )
 
-FOREACH(src ${sourcefiles})
-    # Extract FEI4Single from FEI4Single.cc
-    GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
+#FOREACH(src ${sourcefiles})
+#    GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
+#    ADD_LIBRARY(${basename} MODULE ${src} )
+#    target_link_libraries(${basename} Eigen3::Eigen)
+#ENDFOREACH()  
 
-    ADD_LIBRARY( ${basename} MODULE ${src} )
-    target_link_libraries(${basename} Eigen3::Eigen)
-ENDFOREACH()  
+add_library(alexandria MODULE  ${sourcefiles})
+target_link_libraries(alexandria Eigen3::Eigen)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -70,6 +71,8 @@ ENDFOREACH()
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+
+# INSTALL_SHARED_LIBRARY( ${basename} DESTINATION lib )
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
