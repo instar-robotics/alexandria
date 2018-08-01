@@ -6,10 +6,10 @@
 		<output type="MATRIX"> 
 		</output> 
 		<inputs>
-			<input multiple type="SCALAR_SCALAR"> 
+			<input multiple="false" type="SCALAR_SCALAR"> 
 				<name>learning_rate</name>
 			</input>
-			<input multiple type="SCALAR_SCALAR"> 
+			<input multiple="false" type="SCALAR_SCALAR"> 
 				<name>vigilence</name>
 			</input>
 			<input multiple="true" type="MATRIX_MATRIX">
