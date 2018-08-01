@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<libname>demofct</libname>
+<functions>
+        <function>
+                <name>DemoFct</name>
+                <output type="MATRIX"></output>
+                <inputs>
+                        <input multiple="false" type="SCALAR_SCALAR" >
+                                <name>iscal</name>
+                        </input>
+                </inputs>
+        </function>
+</functions>
+
