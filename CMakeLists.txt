@@ -31,18 +31,27 @@ catkin_package(
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
 add_definitions(-Wextra -Wall)
-file(GLOB_RECURSE sourcefiles src/*.cpp)
+file(GLOB_RECURSE sourcefiles lib/*.cpp)
 
 include_directories(
- include
+	#include
  ${catkin_INCLUDE_DIRS}
 )
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${PROJECT_NAME}")
+set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
 
 FOREACH(src ${sourcefiles})
     GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
     ADD_LIBRARY(${basename} MODULE ${src} )
     target_link_libraries(${basename} Eigen3::Eigen)
 ENDFOREACH()  
+
+#add_custom_command(
+#TARGET ${basename} POST_BUILD
+#        COMMAND ${CMAKE_COMMAND} -E copy_directory
+#	${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/description
+#	${SHARE_DESC}/description)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
