@@ -28,6 +28,8 @@ class LMS : public FMatrix
 		ISInput learning_rate;
 		ISMInput unconditionnal;
 		IMMInput conditionnals;
+
+		MatrixXd grad;
 	
         public :
 		

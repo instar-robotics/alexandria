@@ -22,14 +22,14 @@ void LMS::compute()
 {	
 	static auto mout = getMapRow(output);
 
-	mout = conditionnals[0].w() * conditionnals[0].irow() ;
+	mout = conditionnals[0].irow()  * conditionnals[0].w();
 	for(unsigned int i=1; i < conditionnals.size(); i++)
         {
 		mout +=  conditionnals[i].irow() * conditionnals[i].w();
         }
 
 	// Update weight
-	MatrixXd grad = learning_rate()() * (unconditionnal()(grad) - output);
+        grad = learning_rate()() * (unconditionnal()(grad) - output);
 	auto vgrad = getMapRow(grad); 
 
 	for(unsigned int i=0; i < conditionnals.size(); i++)
@@ -49,5 +49,7 @@ void  LMS::setparameters()
         Kernel::instance().bind(learning_rate,"learning_rate", getUuid());
         Kernel::instance().bind(unconditionnal,"unconditionnal", getUuid());
         Kernel::instance().bind(conditionnals,"conditionnals", getUuid());
+	
+	grad = MatrixXd::Constant(output.rows(),output.cols(),0);
 }
 

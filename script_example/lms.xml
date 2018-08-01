@@ -32,6 +32,7 @@
                 <name>LMS</name>
 		<libname>lms</libname>
 		<publish topic="lms_out">true</publish>      <!-- default : false -->
+		<save>false</save>
                 <output type="MATRIX">
 			<rows>2</rows>
 			<cols>2</cols>
