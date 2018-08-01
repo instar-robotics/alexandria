@@ -21,7 +21,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 catkin_package(
 #  INCLUDE_DIRS include
   CATKIN_DEPENDS ${CATKIN_DEP}
-#  DEPENDS Boost 
+#  DEPENDS kheops
 #  LIBRARIES kheops
 )
 
@@ -34,7 +34,6 @@ add_definitions(-Wextra -Wall)
 file(GLOB_RECURSE sourcefiles lib/*.cpp)
 
 include_directories(
-	#include
  ${catkin_INCLUDE_DIRS}
 )
 
@@ -46,8 +45,8 @@ FOREACH(src ${sourcefiles})
     file(RELATIVE_PATH relp ${CMAKE_CURRENT_SOURCE_DIR}/lib ${src})
     GET_FILENAME_COMPONENT(basedir ${relp} DIRECTORY)
 
-    ADD_LIBRARY(${basename} MODULE ${src} )
-    target_link_libraries(${basename} Eigen3::Eigen)
+    ADD_LIBRARY(${basename} SHARED ${src} )
+    target_link_libraries(${basename} Eigen3::Eigen ${catkin_LIBRARIES})
 
     set(xml "${CMAKE_CURRENT_SOURCE_DIR}/lib/${basedir}/${basename}.xml")
     	    

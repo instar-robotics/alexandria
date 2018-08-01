@@ -13,17 +13,22 @@
 
 cmake_minimum_required(VERSION 3.5.1)
 
+find_package(catkin REQUIRED COMPONENTS kheops)
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 project (demofct)
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_FLAGS "-std=c++17")
-set(EIGEN3_INCLUDE_DIR  "/usr/include/eigen3" )
-#set(CMAKE_INSTALL_LIBDIR "../lib")
-set(CMAKE_INSTALL_PREFIX "../..")
 
 add_definitions(-Wextra -Wall)
 
-include_directories(../../include ${EIGEN3_INCLUDE_DIR})
-add_library(demofct SHARED demofct.cpp)
+include_directories(
+ ${catkin_INCLUDE_DIRS}
+)
 
-install(TARGETS demofct DESTINATION "lib")
+add_library(demofct SHARED demofct.cpp)
+target_link_libraries(demofct Eigen3::Eigen)
+
+
+#install(TARGETS demofct DESTINATION "lib"  Eigen3::Eigen )
 #PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})

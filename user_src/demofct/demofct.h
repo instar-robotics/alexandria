@@ -18,11 +18,11 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef __DEMO_FCT_HPP__
 #define __DEMO_FCT_HPP__
 
-#include "function.h"
-#include "kernel.h"
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
 #include <iostream>
 
-class DemoFct : public FScalar
+class DemoFct : public FMatrix
 {
 	private : 
 
@@ -30,7 +30,7 @@ class DemoFct : public FScalar
 
         public :
 		
-		DemoFct() : FScalar() {}
+		DemoFct() : FMatrix() {}
 
 		virtual void compute()
 		{
@@ -41,8 +41,6 @@ class DemoFct : public FScalar
 		{
 			Kernel::instance().bind(iscal,"iscal", getUuid());
 		}
-
-
 };
 
 #endif // __DEMO_FCT_HPP__
