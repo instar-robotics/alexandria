@@ -5,7 +5,9 @@
     <functions>
 	<function uuid="1">
 		<name>MRosInput</name>   
-                <output>
+		<libname>rosinput</libname>   
+		<save>false</save>
+                <output type="MATRIX">
 			<rows>2</rows>
                         <cols>2</cols>
 		</output>
@@ -13,8 +15,9 @@
 			<input uuid="2" multiple="false">
 				<name>topic_name</name>
 				<links>
-					<link uuid="3" constant="true">
-						<value>/kheops_IN/function_out</value>
+					<link uuid="3" constant="true" secondary="false">
+						<value>/kheops_IN/function_in</value>
+                                                <from>0</from>
 					</link>
 				</links>	
 			</input>
@@ -22,7 +25,10 @@
 	</function>
 	<function uuid="10">
 		<name>MMul</name>   
-                <output>
+		<libname>arithmetic</libname>
+		<publish topic="out">true</publish>
+		<save>false</save>
+                <output type="MATRIX">
 			<rows>2</rows>
                         <cols>2</cols>
 		</output>
@@ -30,10 +36,11 @@
 			<input uuid="20" multiple="true">
 				<name>inMatrix</name>
 				<links>
-					<link uuid="30" constant="true">
+					<link uuid="30" constant="true" secondary="false">
 						<weight>10</weight>
+                                                <from>0</from>
 					</link>
-					<link uuid="40" >
+					<link uuid="40" secondary="false">
                                                 <from>1</from>
                                                 <weight>10</weight>
                                         </link>
