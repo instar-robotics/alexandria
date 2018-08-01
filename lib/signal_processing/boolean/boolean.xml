@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<libname>boolean</libname>
 <functions>
 	<function>
 		<name>MAND</name>

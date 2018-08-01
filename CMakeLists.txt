@@ -39,13 +39,38 @@ include_directories(
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${PROJECT_NAME}")
-set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
+set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/description")
 
 FOREACH(src ${sourcefiles})
     GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
+    file(RELATIVE_PATH relp ${CMAKE_CURRENT_SOURCE_DIR}/lib ${src})
+    GET_FILENAME_COMPONENT(basedir ${relp} DIRECTORY)
+
     ADD_LIBRARY(${basename} MODULE ${src} )
     target_link_libraries(${basename} Eigen3::Eigen)
+
+    set(xml "${CMAKE_CURRENT_SOURCE_DIR}/lib/${basedir}/${basename}.xml")
+    	    
+    if(EXISTS "${xml}")
+	    message(STATUS "Find XML File description for library ${basename}")
+	    file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
+	    file(COPY ${xml} DESTINATION ${SHARE_DESC}/${basedir})
+    else()
+	    message(FATAL_ERROR "Missing XML File description for library ${basename}")
+    endif()
+
 ENDFOREACH()  
+
+#file(GLOB_RECURSE desc lib/*.xml)
+
+#FOREACH(xml ${desc})
+#	file(RELATIVE_PATH dd ${CMAKE_CURRENT_SOURCE_DIR}/lib  ${xml})
+#	GET_FILENAME_COMPONENT(basedir ${dd} DIRECTORY)
+#	message(STATUS "PUTES  ${basedir}")
+#	#file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
+#	file(COPY ${xml} DESTINATION ${SHARE_DESC}/${basedir})
+#ENDFOREACH()
+
 
 #add_custom_command(
 #TARGET ${basename} POST_BUILD
