@@ -282,15 +282,17 @@ void HelloFunct::setparameters()
 
 * And in the XML File : 
 
+
 ```javascript
-     <input type="SCALAR_MATRIX"  multiple="true" >
+     <input type="SCALAR_MATRIX"  multiple="true">
         <name>inMat</name>
      </input> 
-     <input type="STRING"  multiple="false" >
+     <input type="STRING"  multiple="false">
        <name>myString</name>
      </input> 
 ```
-* Note 
+
+* Note : you have to specify the attribute **multiple** in every case ! Even if input is false
 
 
 ###  MATRIX_MATRIX iLink ###
