@@ -158,7 +158,31 @@ void HelloFunct::compute()
 
 ### Write XML Description file ###
 
+* Now we have to write the hellofunc.xml file.
 
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<libname>lms</libname>
+<functions>
+        <function>
+                <name>LMS</name>
+                <output type="MATRIX">
+                </output>
+                <inputs>
+                        <input multiple="false" type="SCALAR_SCALAR">
+                                <name>learning_rate</name>
+                        </input>
+                        <input multiple="false" type="SCALAR_MATRIX">
+                                <name>unconditionnal</name>
+                        </input>
+                        </input>
+                        <input multiple="true" type="MATRIX_MATRIX">
+                                <name>conditionnals</name>
+                        </input>
+                </inputs>
+        </function>
+</functions>
+```
 
 ### Add Inputs to the Function ###
 
