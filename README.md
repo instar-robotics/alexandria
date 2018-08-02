@@ -175,11 +175,11 @@ void HelloFunct::compute()
 
 * File explanations : 
  1. \<libname\>    : define the name of the library. the value should be egal to the .cpp file name. **hellofunct.cpp** gives **libhellofunct.so** and kheops kernel uses **hellofunct** to find the library.
- 2. <functions>  : define the Function container. A lib could contain more than one Function. So you could list all the Function inside the <functions> balise.
- 3. <function>   : start the Function's definition.
- 4. <name>       : the C++ class name.
- 5. <output>     : define the output type. The attribute **type** is mandatory and could be egal to **MATRIX** or **SCALAR**
- 6. <icon>       : icon's filename (without extension). The icon have to be a SVG file and should be put in **icons** directory.
+ 2. \<functions\>  : define the Function container. A lib could contain more than one Function. So you could list all the Function inside the <functions> balise.
+ 3. \<function\>   : start the Function's definition.
+ 4. \<name\>       : the C++ class name.
+ 5. \<output\>     : define the output type. The attribute **type** is mandatory and could be egal to **MATRIX** or **SCALAR**
+ 6. \<icon\>       : icon's filename (without extension). The icon have to be a SVG file and should be put in **icons** directory.
 
 ### Add Inputs to the Function ###
 
