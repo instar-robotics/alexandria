@@ -57,7 +57,7 @@
   3. .xml file : contains the description of the Function (For papyrus)
   4. icons directory : contains the SVG file for Function icon in payrus
 
-* First you have to create a directory and the 3 empties files.
+* First you have to create a directory and the 3 empties files in the lib directory of Alexandria
 * For a Function, "HelloFunct" you have to create the hellofunct directory then inside hellofunct.cpp , hellofunct.h and hellofunct.xml
 
 ### First class HelloFunct ##
@@ -67,16 +67,16 @@
 * For the firt example, we chose a MATRIX output for the function : 
 
 ```
-**_class HelloFunct : public FMatrix_**
+class HelloFunct : public FMatrix
 ```
 
 * For SCALAR Function you just have to inherit from FScalar class.
 * FScalar and FMatrix provide an interface for kheops kernel and you have at least 2 functions to defines : 
 
 ```
-**_virtual void compute();_**
+virtual void compute();
 
-**_virtual void setparameters();_**
+virtual void setparameters();
 ```
 
 * compute function is called by kheops at each kernel iteration : this is the payload of your Function.
@@ -85,21 +85,21 @@
 * There are third function which are optional : 
 
 ```
-**_virtual void prerun();_**
+virtual void prerun();
 ```
 
 * This function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
 ```
-**_HelloFunct();_**
+HelloFunct();
 
-**_virtual ~HelloFunct();_**
+virtual ~HelloFunct();
 ```
 
 * So at this time your hellofunct.h should be like that : 
 
-```
+```C++
 #ifndef __HELLOFUNCT_HPP__
 #define __HELLOFUNCT_HPP__
 
