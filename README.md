@@ -185,35 +185,72 @@ void HelloFunct::compute()
 
 ### Add Inputs to the Function ###
 
-* Kheops defines some Inputs which could be add to Functions.
-* In papyrus, developpers can 
+* Kheops defines some **Inputs** which could be add to **Functions**.
+* In papyrus, Neural developpers can link the output of a Function with an input of another Function by adding an **iLink** between them.
+* Each iLink have a *type* (**SCALAR** or **MATRIX**) and an associated **weight** also with a type (**SCALAR** or **MATRIX**).
+* Becareful, **iLink type** (call **itype**) and **weight type** (call **wtype**) could be different !
+* List of the iLink's type : **[WTYPE_ITYPE]** 
+  1. **SCALAR_SCALAR** : iLink from **SCALAR type** with a **SCALAR weight**.
+  2. **SCALAR_MATRIX** : iLink from **SCALAR type** with a **SCALAR weight** and the weight is global for every neurons of the Matrix.
+  3. **MATRIX_MATRIX** : iLink from **SCALAR type** with a **SCALAR weight** (each neuron have it own weight)
 
-* Object : link, input an Function
+* Kheops is **strongly typed**, so you can only link an output on an input with the same type.
+* So, Input could be : 
+  1. **IString** : Input receive a string.
+  2. **ISInput** : Input receive **SCALAR_SCALAR** iLink.
+  2. **ISMInput** : Input receive **SCALAR_MATRIX** iLink.   
+  3. **IMMInput** : Input receive **MATRIX_MATRIX** iLink.  
 
-* Functions have a number of defines inputs
-* Each input have a define name and a type, and could have weights 
-  1. String : 
-  2. Scalar_Scalar : Input from Scalar output function. Weight is a scalar
-  3. Scalar_Matrix : Input from Matrix output function. Weight is a scalar and is apply globaly on every neurons of the Matrix
-  4. Matrix_Matrix : Input from Matrix output function. Weights are a Matrix.
+* So, to add an Input to the HelloFunct class, we just have to declare the Input in the class definition.
+* Let add a **ISMInput** called **inMat** and a **IString** calles **myString** : 
+
+```javascript
+class HelloFunct : public FMatrix
+{
+        private :     // Always declare the input as private members !
+        
+                ISMInput inMat;
+                IString myString;
+        
+        public :
+
+                HelloFunct();
+                virtual ~HelloFunct();
+
+                virtual void compute();
+                virtual void setparameters();
+};
+```
+
+* After that, we have to bind this Inputs in Kernel structure to let him manage iLink association.
+* This operation is done in the **setparameters** function :
+
+```javascript
+void HelloFunct::setparameters() 
+{
+        Kernel::iBind(inMat,"inMat", getUuid());
+        Kernel::iBind(myString,"myString", getUuid());
+}
+```
+
+* For each input, you have to call the kernel **iBind** function :
+ 1. First parameter : reference to the input instance
+ 2. Second parameter : the name used by the kernel to find the input. This string has to be egal to the Input <name> in XML File (see below)
+
+### Update XML Description file ###
+
+
+###  MATRIX_MATRIX iLink ###
 
 * Matrix_Matrix details : We have 3 types of connections
   1. One to All connections (ONE_TO_ALL) : Dense connections between input and output 
   2. One to One connections (ONE_TO_ONE) : Sparse conenction between input and output 
   3. One to Neighborhood connections (ONE_TO_NEI) : Sparse conenction between input and output 
-  4. 
-  
-
-* Using Input and iLink 
-
-* Sparse Matrix : Connections is define is a Sparse Matrix Filter and we can generate every topology
-
-
-### Update XML Description file ###
-
 
 ### Local variable and load kernel ###
 
+
+### Input and iLink operator ###
 
 ## Create its own repository ##
 
