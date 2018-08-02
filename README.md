@@ -418,9 +418,103 @@ typedef Input<iScalar> ISInput;
 
 #### iLink's operator ####
 
+* iLink defines some common operators shared by iLink class (iScalar, iSMatrix and iMMatrix)
+* Type of the iLink : 
+  1. i_type() : return a hashcode defining the type of the iLink (SCALAR or MATRIX)
+  2. i_type_name() : return the name of the type of the iLink (SCALAR or MATRIX)
+  3. w_type() : return a hashcode defining the type of the iLink's weight (SCALAR or MATRIX)
+  4. w_type_name() : return the name of the type of the iLink's weight (SCALAR or MATRIX)
+
+* Output the iLink : [Becareful when using this functions ! Kernel can active or stop the topic when receiving externals orders !]
+  1. active_publish(bool) : start to publish the iLink weight 
+  2. is_publish_active() : return True or False if the topic is active.
+  3. publish_message() : publish the output
+
+* Access to the iLink's predecessor output data : [data are Read Only ! A function can't modify the outpu of a predecessor]
+  1. i() : return a pointer to the data.
+
+* Access to the iLink's weight :
+  1. w() : return a reference to the weight
+  2. w(W &w) : set the weight [Note : W is a template type, SCALAR or MATRIX]
+
+* iScalar operators : 
+  1. operator() :  return input * weight
+  2. operator+=(double, iScalar) : return double + input * weight     
+  3. operator-=(double, iScalar) : return double - input * weight 
+  4. operator/=(double, iScalar) : return double / input * weight 
+  5. operator*=(double, iScalar) : return double * input * weight 
+
+* iSMatrix operators : 
+  1. operator() : return input * weight  [Becareful : return a temporary MatrixXd ! So avoid this operator if possible]
+  2. operator(MatrixXd & res) : copy in res =  input * weight  [Better than 1.]
+  2. operator+=(double, iSMatrix) : copy  double + input * weight     
+  3. operator-=(double, iSMatrix) : copy  double - input * weight 
+  4. operator/=(double, iSMatrix) : copy  double / input * weight 
+  5. operator*=(double, iSMatrix) : copy  double * input * weight 
+
+* **HOW TO USE THIS OPERATORS** :
+
+* Example : Weighted sum of N iScalar 
+```javascript 
+    ISInput in;   // Input containing some iScalar 
+  
+    // Here get the first iScalar and apply operator() to compute input * weight, then call basic opertor=(double,double)      
+    double output = in(0)();   // equivalent to inScalar()()
+    
+
+    for(unsigned int n=1; i < in.size(); i++)
+    {
+        // Best practice 
+        // call operator(int n) of Input class to get the N iScalar
+        // then call operator+= for iScalar class [ double + input * weight ]
+        output += in(n) ;    
+        
+        // Alternative :  
+        // call operator(int n) of Input class to get the N iScalar
+        // then call operator() for iScalar class [return input * weight]
+        // then call basic operator+=(double,double) 
+        output += in(n)()   
+        
+        // Alternative :  
+        output += in(n).i() * in(n).w();  // or in.i(n).i() * in.i(n).w(); 
+     }
+```
+
+* Example : Weighted sum of N iSMatrix 
+
+```javascript 
+    ISMInput in;   // Input containing some iScalar 
+  
+    MatrixXd output; //Declare an Eigne Matrix
+    
+    // Good solution : 
+    // Here get the first iMarix and apply operator(MatrixXd) to compute input * weight and copy the result in output. 
+    in(0)(output);   
+
+    // Wrong solution !! 
+    output = in(0)();  // Here you use a temporary MatrixXd before copying into output !
+
+    for(unsigned int n=1; i < in.size(); i++)
+    {
+        // Best practice 
+        // use operator(int n) of Input class to get the N iSMatrix
+        // then call operator+= for iSMatrix class [ double + input * weight ]
+        output += in(n) ;    
+        
+       // Wrong solution !! 
+        output += in(n)()   // Here you use a temporary MatrixXd before copying into output !
+        
+        // Alternative :  
+        output += in(n).i() * in(n).w();   // or in.i(n).i() * in.i(n).w(); 
+         
+     }
+```
+
+* iMMatrix operators : 
 
 ## Create its own repository ##
 
-* demofct example 
+* TODO 
+* See demofct example in user_src
   1. CMakeList.txt 
 
