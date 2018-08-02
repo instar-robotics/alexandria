@@ -265,7 +265,33 @@ void HelloFunct::setparameters()
 
 ### Input with multiple iLink ###
 
-* By default, an Input could receive only one link
+* By default, an Input could receive only one iLink
+* If you want to add more than one iLink on an Input you have to specify **multiple true**
+
+* In **setparameters** function :
+
+```javascript
+void HelloFunct::setparameters() 
+{
+        inMat.setMultiple(true);   // inMat can now receive many iLink
+
+        Kernel::iBind(inMat,"inMat", getUuid());
+        Kernel::iBind(myString,"myString", getUuid());
+}
+```
+
+* And in the XML File : 
+
+```javascript
+     <input type="SCALAR_MATRIX"  multiple="true" >
+        <name>inMat</name>
+     </input> 
+     <input type="STRING"  multiple="false" >
+       <name>myString</name>
+     </input> 
+```
+* Note 
+
 
 ###  MATRIX_MATRIX iLink ###
 
