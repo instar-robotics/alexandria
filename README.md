@@ -3,8 +3,8 @@
 ## I Description ##
 
 * What is Alexandria : Alexandria is a collection of functions for the Neural Networks Simulator Kheops.
-* Alexandria contains the code of functions for kheops
-* Alexandria contains XML description files for papyrus
+  1. Alexandria contains the code of functions for kheops
+  2. Alexandria contains XML description files for papyrus
 
 ## II Installation ##
 
@@ -26,22 +26,95 @@
 
 * And run **_catkin_make_ install**
 
-* Alexandria builds a collection of libraries (.so) 
-* By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
-* CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
-* You can set CMAKE_INSTALL_PREFIX to every install dir before running **_catkin_make_ install**
-* The path $CMAKE_INSTALL_PREFIX/lib/alexandria should be communicate to kheops
+* For Users : 
+  1. Alexandria builds a collection of libraries (.so) 
+  2. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
+  3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
+  4. You can set CMAKE_INSTALL_PREFIX to every install dir before running **_catkin_make_ install**
+  5. The path $CMAKE_INSTALL_PREFIX/lib/alexandria should be communicate to kheops
 
-* Alexandria also copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
-* The path $CMAKE_INSTALL_PREFIX/share/alexandria/description should be communicate to papyrus
+  1. Alexandria also copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
+  2. The path $CMAKE_INSTALL_PREFIX/share/alexandria/description should be communicate to papyrus
 
 * For developpers : 
+  1. If you code ant test some news functions you probably doesn't want to install Alexandrai at each build time.
+  2. So, you could only run : 
+  
+**_catkin_make_**
 
-* TODO : describe XML structure
+  1. Libraries are copied in $CATKIN_DEVEL_PREFIX/lib/alexandria
+  2. XML desription files are copied in $CATKIN_DEVEL_PREFIX/share/alexandria/description
+  3. You have to communicate both path to kheops and papyrus
+
+
+## Develop it first Function ##
+
+### General description ###
+
+* Functions are defined by some objects : 
+  1. .h file : contains the C++ header of the Function
+  2. .cpp file : contains the C++ code of the Function
+  3. .xml file : contains the description of the Function (For papyrus)
+  4. icons directory : contains the SVG file for Function icon in payrus
+
+* First you have to create a directory and the 3 empties files.
+* For a Function, "HelloFunct" you have to create the hellofunct directory then inside hellofunct.cpp , hellofunct.h and hellofunct.xml
+
+### First class HelloFunct ##
+
+* In kheops, Functions are strongly typed. Output can be SCALAR (double) or MATRIX (double unit)
+* When you built your first Function you have first to decide which type of output you want.
+* For the firt example, we chose a MATRIX output for the function : 
+
+**_class HelloFunct : public FMatrix_**
+
+
+* For SCALAR Function you just have to inherit from FScalar class.
+* FScalar and FMatrix provide an interface for kheops kernel and you have at least 2 functions to defines : 
+
+**_virtual void compute();_**
+**_virtual void setparameters();_**
+
+* compute function is called by kheops at each kernel iteration : this is the payload of your Function.
+* setparameters is called by kheops when it load the function before creating the graph. We will describe in details this function later.
+
+* There are third function which are optional : 
+
+**_virtual void prerun();_**
+
+* This function is called by kheops after creating the graph.  We will describe in details this function later.
+* The last functions you have to define is the class constructor and destructor : 
+
+**_HelloFunct();_**
+**_virtual ~HelloFunct();_**
+
+* So at this time your hellofunct.h should be like that : 
+
+**_
+#ifndef __HELLOFUNCT_HPP__
+#define __HELLOFUNCT_HPP__
+
+#include "kheops/kernel/function.h"   // Mandatory header file 
+#include "kheops/kernel/kernel.h"     // Mandatory header file 
+
+class HelloFunct : public FMatrix
+{
+        public :
+
+                HelloFunct();
+                virtual ~HelloFunct();
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+#endif // __HELLOFUNCT_HPP__
+**_
+
 
 * Object : link, input an Function
 
-* Function : Strongly typed, output can be Scalar (double) or Matrix (double unit)
+
 * Functions have a number of defines inputs
 * Each input have a define name and a type, and could have weights 
   1. String : 
