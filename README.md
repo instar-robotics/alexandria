@@ -237,8 +237,35 @@ void HelloFunct::setparameters()
  1. First parameter : reference to the input instance
  2. Second parameter : the name used by the kernel to find the input. This string has to be egal to the Input <name> in XML File (see below)
 
+
 ### Update XML Description file ###
 
+* So, now we have to add, for Papyrus, the Input description in the XML file .
+
+```xml
+        <function>
+                <name>HelloFunct</name>
+                <output type="MATRIX">
+                </output>
+                <icon>filename</icon>
+                <inputs>
+                    <input type="SCALAR_MATRIX">
+                        <name>inMat</name>
+                    </input> 
+                    <input type="STRING">
+                        <name>myString</name>
+                    </input> 
+                </inputs>
+        </function>
+```
+
+* For each input we had a <input> section inside the <inputs> section
+* An Input has to define the attribute **type* (**STRING**, **SCALAR_SCALAR**, **SCALAR_MATRIX**, **MATRIX_MATRIX**)
+* And it **name**. The **name value** is the **same** that the **second attribute** given to the **iBind** function !  
+
+### Input with multiple iLink ###
+
+* By default, an Input could receive only one link
 
 ###  MATRIX_MATRIX iLink ###
 
