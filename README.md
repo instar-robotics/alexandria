@@ -47,7 +47,7 @@
   3. You have to communicate both path to kheops and papyrus
 
 
-## Function developper's guide ##
+## Functions developper's guide ##
 
 ### Develop it first Function : General description ###
 
@@ -58,20 +58,20 @@
   4. icons directory : contains the SVG file for Function icon in payrus
 
 * First you have to create a directory and the 3 empties files in the lib directory of Alexandria
-* For a Function, "HelloFunct" you have to create the hellofunct directory then inside hellofunct.cpp , hellofunct.h and hellofunct.xml
+* For a Function **HelloFunct** you have to create the hellofunct directory then inside the files hellofunct.cpp , hellofunct.h and hellofunct.xml
 
 ### First class HelloFunct ###
 
-* In kheops, Functions are strongly typed. Output can be SCALAR (double) or MATRIX (double unit)
-* When you built your first Function you have first to decide which type of output you want.
-* For the firt example, we chose a MATRIX output for the function : 
+* In kheops, Functions are strongly typed. Output can be **SCALAR** (double) or **MATRIX** (double unit)
+* When you built your Function you have first to decide which type of output you want.
+* For the firt example, we chose a **MATRIX** output's Function : 
 
 ```javascript
 class HelloFunct : public FMatrix
 ```
 
-* For SCALAR Function you just have to inherit from FScalar class.
-* FScalar and FMatrix provide an interface for kheops kernel and you have at least 2 functions to defines : 
+* For SCALAR Function you just have to inherit from **FScalar** class instead.
+* **FScalar** and **FMatrix** both provide an interface for kheops kernel and you have at least 2 functions to defines : 
 
 ```javascript
 virtual void compute();
@@ -79,16 +79,16 @@ virtual void compute();
 virtual void setparameters();
 ```
 
-* compute function is called by kheops at each kernel iteration : this is the payload of your Function.
-* setparameters is called by kheops when it load the function before creating the graph. We will describe in details this function later.
+* **compute** function is called by kheops at each kernel iteration : this is the payload of your Function.
+* **setparameters** is called by kheops when it load the function before creating the graph. We will describe in details this function later.
 
-* There are third function which are optional : 
+* There are a third function which are optional : 
 
 ```javascript
 virtual void prerun();
 ```
 
-* This function is called by kheops after creating the graph.  We will describe in details this function later.
+* **prerun** function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
 ```javascript
@@ -212,7 +212,7 @@ void HelloFunct::compute()
 ### Update XML Description file ###
 
 
-
+### Local variable and load kernel ###
 
 
 ## Create its own repository ##
