@@ -72,25 +72,32 @@
 * For SCALAR Function you just have to inherit from FScalar class.
 * FScalar and FMatrix provide an interface for kheops kernel and you have at least 2 functions to defines : 
 
+{
 **_virtual void compute();_**
+
 **_virtual void setparameters();_**
+}
 
 * compute function is called by kheops at each kernel iteration : this is the payload of your Function.
 * setparameters is called by kheops when it load the function before creating the graph. We will describe in details this function later.
 
 * There are third function which are optional : 
 
+{
 **_virtual void prerun();_**
+}
 
 * This function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
+{
 **_HelloFunct();_**
 **_virtual ~HelloFunct();_**
+}
 
 * So at this time your hellofunct.h should be like that : 
 
-**_
+
 #ifndef __HELLOFUNCT_HPP__
 #define __HELLOFUNCT_HPP__
 
