@@ -49,6 +49,9 @@
 
 ## Functions developper's guide ##
 
+* Note : kheops uses Eigen library to manage Linear Algebra. 
+* We hardly recommand to read Eigen's doc and try the library beafor writing kheops's Function ! 
+
 ### Develop it first Function : General description ###
 
 * Functions are defined by some objects : 
@@ -416,7 +419,7 @@ typedef Input<iScalar> ISInput;
 
 ```
 
-#### iLink's operator ####
+#### iLink's operators ####
 
 * iLink defines some common operators shared by iLink class (iScalar, iSMatrix and iMMatrix)
 * Type of the iLink : 
@@ -510,7 +513,51 @@ typedef Input<iScalar> ISInput;
      }
 ```
 
-* iMMatrix operators : 
+#### iMMatrix operators ####
+
+* We hardly recommand to read and try Eigen Library before using iMMatrix !
+
+* iMMatrix is a more complicate iLink, this class define a lot of operator to manipulate the Weighted Matrix. 
+
+
+* Representation : 
+* Matrix IN [From the Function predecessor]  --> Matrix OUT [output of the current Function]  
+
+* Input Matrix have IRows and ICols dimensions
+* Output Matrix have ORows and OCols dimensions
+* Weight Matrix have IRows * ICols  and ORows * OCols
+* Filter Matrix have IRows * ICols  and ORows * OCols
+
+* Input API : you can use i() operator to acces the Matrix from predecessor Function
+* But iMMatrix defines some useful operator : 
+  1. irow() : return an Eigen Map in row form [one line Matrix]
+  2. icol() : return an Eigen Map in col form [one col Matrix]
+  3. ivect() : return an Eigne Map in vector form [a col Vector]
+
+* Weight API : [you can use w() and w(MatrixXd&) operator, but iMMatrix defines some BETTER operators]
+  1. wref(const Ref<const MatrixXd>& weight) : gives more generalization abilities and better performance than w(MatrixXd)
+  2. wm() : 
+  3.           // Get Weight matrix for the output neuron (oRows,oCols)
+                // The Matrix have (iRows,iCols) dimension
+                // Becareful : the returned Map is writable !
+                Map<MatrixXd> wj(unsigned int oRows,unsigned int oCols);
+
+                // Get Weight colons for the output neuron (wCols)
+                // The Matrix have (wRows,1) dimension
+                // Becareful : the returned Map is writable !
+                Map<MatrixXd> wj(unsigned int wCols);
+
+                // Get Weight colons for the output neuron (wCols)
+                // Becareful : the returned Map is writable !
+                Map<VectorXd> wj_vect(unsigned int wCols);
+
+                double wij(unsigned int wRows,unsigned int wCols);
+
+                //Set Weight Value
+                void wij(double weight, unsigned int wRow, unsigned int wCol);
+                void wj(const Ref<VectorXd> &weight,unsigned int wCol);
+
+
 
 ## Create its own repository ##
 
