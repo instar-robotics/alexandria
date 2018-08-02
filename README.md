@@ -66,14 +66,14 @@
 * When you built your first Function you have first to decide which type of output you want.
 * For the firt example, we chose a MATRIX output for the function : 
 
-```
+```javascript
 class HelloFunct : public FMatrix
 ```
 
 * For SCALAR Function you just have to inherit from FScalar class.
 * FScalar and FMatrix provide an interface for kheops kernel and you have at least 2 functions to defines : 
 
-```
+```javascript
 virtual void compute();
 
 virtual void setparameters();
@@ -84,14 +84,14 @@ virtual void setparameters();
 
 * There are third function which are optional : 
 
-```
+```javascript
 virtual void prerun();
 ```
 
 * This function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
-```
+```javascript
 HelloFunct();
 
 virtual ~HelloFunct();
@@ -99,7 +99,7 @@ virtual ~HelloFunct();
 
 * So at this time your hellofunct.h should be like that : 
 
-```C++
+```javascript
 #ifndef __HELLOFUNCT_HPP__
 #define __HELLOFUNCT_HPP__
 
