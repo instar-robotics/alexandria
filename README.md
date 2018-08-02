@@ -174,7 +174,7 @@ void HelloFunct::compute()
 ```
 
 * File explanations : 
- 1. <libname>    : define the name of the library. the value should be egal to the .cpp file name. **hellofunct.cpp** gives **libhellofunct.so** and kheops kernel uses **hellofunct** to find the library.
+ 1. \<libname\>    : define the name of the library. the value should be egal to the .cpp file name. **hellofunct.cpp** gives **libhellofunct.so** and kheops kernel uses **hellofunct** to find the library.
  2. <functions>  : define the Function container. A lib could contain more than one Function. So you could list all the Function inside the <functions> balise.
  3. <function>   : start the Function's definition.
  4. <name>       : the C++ class name.
