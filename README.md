@@ -26,7 +26,7 @@
 
 * And run **_catkin_make_ install**
 
-* For Users : 
+* For **Neural Developpers** : 
   1. Alexandria builds a collection of libraries (.so) 
   2. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
   3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
@@ -36,7 +36,7 @@
   1. Alexandria also copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
   2. The path $CMAKE_INSTALL_PREFIX/share/alexandria/description should be communicate to papyrus
 
-* For developpers : 
+* For **Functions Developpers** : 
   1. If you code ant test some news functions you probably doesn't want to install Alexandrai at each build time.
   2. So, you could only run : 
   
@@ -47,9 +47,9 @@
   3. You have to communicate both path to kheops and papyrus
 
 
-## Develop it first Function ##
+## Function developper's guide ##
 
-### General description ###
+### Develop it first Function : General description ###
 
 * Functions are defined by some objects : 
   1. .h file : contains the C++ header of the Function
@@ -181,10 +181,14 @@ void HelloFunct::compute()
  5. \<output\>     : define the output type. The attribute **type** is mandatory and could be egal to **MATRIX** or **SCALAR**
  6. \<icon\>       : icon's filename (without extension). The icon have to be a SVG file and should be put in **icons** directory.
 
+* At this time, you should be able to compile your lib and to add the function in a script using **papyrus**.
+
 ### Add Inputs to the Function ###
 
-* Object : link, input an Function
+* Kheops defines some Inputs which could be add to Functions.
+* In papyrus, developpers can 
 
+* Object : link, input an Function
 
 * Functions have a number of defines inputs
 * Each input have a define name and a type, and could have weights 
