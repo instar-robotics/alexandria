@@ -388,16 +388,17 @@ typedef Input<iScalar> ISInput;
 ```
 
 * Input defines some operator to acces to the iLinks : 
-1. size() : return the number of iLink contains in the input
-2. type() : return a hashcode defining the iLink type
-3. type_name() : return the name of the iLink type
-4. isMultiple() : return True if the Input accept more than one iLink
-5. i()  : return a reference to the first iLink [use this operaor when Input is not multiple]
-6. operator() : return a reference to the first iLink [use this operaor when Input is not multiple]
-7. i(int n)  : return a reference to the n iLink [use this operaor when Input is multiple]
-8. operator(int n) : return a reference to the n ilink  [use this operaor when Input is multiple]
+  1. size() : return the number of iLink contains in the input
+  2. type() : return a hashcode defining the iLink type
+  3. type_name() : return the name of the iLink type
+  4. isMultiple() : return True if the Input accept more than one iLink
+  5. i()  : return a reference to the first iLink [use this operaor when Input is not multiple]
+  6. operator() : return a reference to the first iLink [use this operaor when Input is not multiple]
+  7. i(int n)  : return a reference to the n iLink [use this operaor when Input is multiple]
+  8. operator(int n) : return a reference to the n ilink  [use this operaor when Input is multiple]
 
 * Example : 
+
 ```javascript 
 
     ISInput in;
