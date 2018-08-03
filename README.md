@@ -517,47 +517,103 @@ typedef Input<iScalar> ISInput;
 
 * We hardly recommand to read and try Eigen Library before using iMMatrix !
 
-* iMMatrix is a more complicate iLink, this class define a lot of operator to manipulate the Weighted Matrix. 
-
-
-* Representation : 
-* Matrix IN [From the Function predecessor]  --> Matrix OUT [output of the current Function]  
-
-* Input Matrix have IRows and ICols dimensions
-* Output Matrix have ORows and OCols dimensions
-* Weight Matrix have IRows * ICols  and ORows * OCols
-* Filter Matrix have IRows * ICols  and ORows * OCols
-
-* Input API : you can use i() operator to acces the Matrix from predecessor Function
+* iMMatrix is a more complicate iLink, this class defines a lot of operator to manipulate the Weighted Matrix. 
+* **Input API** : you can use i() operator to acces the Matrix from predecessor Function
 * But iMMatrix defines some useful operator : 
-  1. irow() : return an Eigen Map in row form [one line Matrix]
-  2. icol() : return an Eigen Map in col form [one col Matrix]
-  3. ivect() : return an Eigne Map in vector form [a col Vector]
+  1. **irow()** : return an Eigen Map in row form [one line Matrix]
+  2. **icol()** : return an Eigen Map in col form [one col Matrix]
+  3. **ivect()** : return an Eigne Map in vector form [a col Vector] 
 
-* Weight API : [you can use w() and w(MatrixXd&) operator, but iMMatrix defines some BETTER operators]
+
+* We assume that Matrix linked by a iMMatrix link could have different dimensions :
+  1. Input Matrix have IRows and ICols dimensions
+  2. Output Matrix have ORows and OCols dimensions
+
+* The dimensions of the weighted matrix are : 
+  1. **WRow =  IRows * ICols**
+  2. **WCol =  ORows * OCols**
+
+* **Weight API** : [you can use w() and w(MatrixXd&) operator, but iMMatrix defines some BETTER operators]
   1. wref(const Ref<const MatrixXd>& weight) : gives more generalization abilities and better performance than w(MatrixXd)
-  2. wm() : 
-  3.           // Get Weight matrix for the output neuron (oRows,oCols)
-                // The Matrix have (iRows,iCols) dimension
-                // Becareful : the returned Map is writable !
-                Map<MatrixXd> wj(unsigned int oRows,unsigned int oCols);
+  2. wm() :  Return a Map of the weight Matrix 
+  3. wj(oRows, oCols) : Return a Map for the neuron oRows,oCols. The returned Matrix have iRows,iCols dimension           
+  4. wj(wCols) :  Return a weight colonn for the output neuron (wCols). The Matrix have (wRows,1) dimension
+  5. wj_vect(unsigned int wCols); Return a weight colonn for the output neuron (wCols). The returned object is a Vector
+  6. wij(wRows,wCols) : return the value of the weighted neuron (wRows,wCols)
+  7. wij(double weight, unsigned int wRow, unsigned int wCol) : set the value of the weigthed neuron wRow,wCol
+  8. wj(const Ref<VectorXd> &weight,unsigned int wCol) : set the value for the weigthed colonn wCol
 
-                // Get Weight colons for the output neuron (wCols)
-                // The Matrix have (wRows,1) dimension
-                // Becareful : the returned Map is writable !
-                Map<MatrixXd> wj(unsigned int wCols);
+* **getMap Functions**: 
+* To help the Matrix manipulation we provide getMap functions.
+* This functions built map of a given Matrix in 3 differents forms : 
+  1. **getMapRow**( Matrix )  : return a Map in row form (1, Row*Col) 
+  2. **getMapCol**( Matrix )  : return a Map in col form (Row*Col, 1)
+  3. **getMapVect**( Matrix )  : return a Map in Vector form 
+* We also provide const Form for each a this function : **getCMapRow**, **getCMapCol**, **getCMapVect**
 
-                // Get Weight colons for the output neuron (wCols)
-                // Becareful : the returned Map is writable !
-                Map<VectorXd> wj_vect(unsigned int wCols);
+* Example :
+```javascript 
 
-                double wij(unsigned int wRows,unsigned int wCols);
+ // A very common operation in Neural Network is computed the Weighed Sum of an Input Matrix and a Weigthed Matrix
+ 
+ IMMInput im;  // The container of all the input Matrix
+ MatrixXd out = MatrixXd::Constant(oRow,oCol,0) ;  // output with oRow and oCol dimension 
 
-                //Set Weight Value
-                void wij(double weight, unsigned int wRow, unsigned int wCol);
-                void wj(const Ref<VectorXd> &weight,unsigned int wCol);
+ auto mout = getMapRow(output);  // We transform the square output Matrix in 1 row Matrix (Vector)
 
+  // Compute output activity
+  mout = im(0).irow()  * im(0).w();    // We use Matricial Product which provide directly the weigthed sum !
+  for(unsigned int i=1; i < im.size(); i++)
+  {
+       mout += im(i).irow() * im(i).w();   // We repeat the operation for each iMMatrix
+  }
 
+  std::cout << out << std::endl;       // We print the result 
+
+```
+
+* NOTE : a Map share the same data that the original Matrix 
+
+* iMMatrix is used to implements all the connectivity type : 
+  1. **ONE_TO_ONE** : point to point connection
+  2. **ONE_TO_ALL** : input neurons are linked with all output neurons
+  3. **ONE_TO_NEI** : inuts neurosn have sparse hybrid connectivity
+
+* To express the connectivity we use a **Filter Matrix**.
+* A **Filter Matrix** is a boolean Matrix with the same dimension that the **Weighted Matrix** :
+  1. The i,j value inside the Filter Matrix is egal to True, if the input neuron j is connected with the output neuron i
+  2. And False otherwise.
+* Filter Matrix is automatically built by the kernel follow the connectivity flag : 
+    1. **ONE_TO_ONE** : The Filter Matrix is the identity matrix
+    2. **ONE_TO_ALL** : The Filter Matrix is a full matrix
+    3. **ONE_TO_NEI** : depend on the neighborhood
+
+* To maintain a corherent **Weigthed Matrix** you have to apply manually the **filter** operator.
+* You can do it : 
+  1. When you access to the weight 
+  2. When you update the weight
+* There are not an absolute good strategy, depends on the different algorithms.
+
+* Example :
+```javascript 
+
+ // A very common operation in Neural Network is computed the Weighed Sum of an Input Matrix and a Weigthed Matrix
+ 
+ IMMInput im;  // The container of all the input Matrix
+ MatrixXd out = MatrixXd::Constant(oRow,oCol,0) ;  // output with oRow and oCol dimension 
+
+ auto mout = getMapRow(output);  // We transform the square output Matrix in 1 row Matrix (Vector)
+
+  // Compute output activity
+  mout = im(0).irow()  * im(0).w();    // We use Matricial Product which provide directly the weigthed sum !
+  for(unsigned int i=1; i < im.size(); i++)
+  {
+       mout += im(i).irow() * im(i).w();   // We repeat the operation for each iMMatrix
+  }
+
+  std::cout << out << std::endl;       // We print the result 
+
+```
 
 ## Create its own repository ##
 
