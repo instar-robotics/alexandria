@@ -22,22 +22,24 @@ void LMS::compute()
 {	
 	static auto mout = getMapRow(output);
 
-	mout = conditionnals[0].irow()  * conditionnals[0].w();
+	// Compute output activity
+	mout = conditionnals(0).irow()  * conditionnals(0).w();
 	for(unsigned int i=1; i < conditionnals.size(); i++)
         {
-		mout +=  conditionnals[i].irow() * conditionnals[i].w();
+		mout +=  conditionnals(i).irow() * conditionnals(i).w();
         }
 
-	// Update weight
+	// Compute gradiant
         grad = learning_rate()() * (unconditionnal()(grad) - output);
 	auto vgrad = getMapRow(grad); 
 
 	for(unsigned int i=0; i < conditionnals.size(); i++)
 	{
-		auto ve = conditionnals[i].icol(); 
-		auto weight = conditionnals[i].wm(); 
-		auto filter = conditionnals[i].fm(); 
+		auto ve = conditionnals(i).icol(); 
+		auto weight = conditionnals(i).wm(); 
+		auto filter = conditionnals(i).fm(); 
 
+		// Update weight
 		weight.noalias() += filter.cwiseProduct( ve * vgrad  );
 	}
 }
@@ -46,9 +48,9 @@ void  LMS::setparameters()
 {
 	conditionnals.setMultiple(true);
 
-        Kernel::instance().bind(learning_rate,"learning_rate", getUuid());
-        Kernel::instance().bind(unconditionnal,"unconditionnal", getUuid());
-        Kernel::instance().bind(conditionnals,"conditionnals", getUuid());
+        Kernel::iBind(learning_rate,"learning_rate", getUuid());
+        Kernel::iBind(unconditionnal,"unconditionnal", getUuid());
+        Kernel::iBind(conditionnals,"conditionnals", getUuid());
 	
 	grad = MatrixXd::Constant(output.rows(),output.cols(),0);
 }

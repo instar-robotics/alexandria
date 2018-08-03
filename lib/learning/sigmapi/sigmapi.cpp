@@ -26,6 +26,6 @@ void SigmaPi::compute()
 
 void  SigmaPi::setparameters()
 {
-        Kernel::instance().bind(vigilence,"vigilence", getUuid());
+        Kernel::iBind(vigilence,"vigilence", getUuid());
 }
 

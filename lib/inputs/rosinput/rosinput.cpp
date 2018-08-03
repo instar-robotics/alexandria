@@ -30,7 +30,7 @@ void SRosInput::compute()
 
 void SRosInput::setparameters()
 {
- 	Kernel::instance().bind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(topic_name,"topic_name", getUuid());
 	RosWrapper::clean_topic_name(topic_name);
 	subscribe();
 }
@@ -51,7 +51,7 @@ void MRosInput::compute()
 
 void MRosInput::setparameters()
 {
-	Kernel::instance().bind(topic_name,"topic_name", getUuid());
+	Kernel::iBind(topic_name,"topic_name", getUuid());
 	RosWrapper::clean_topic_name(topic_name);
 	subscribe();
 }

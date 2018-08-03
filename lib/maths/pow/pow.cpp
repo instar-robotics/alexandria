@@ -33,7 +33,7 @@ void MExp::compute()
 
 void  MExp::setparameters()
 {
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 void SExp::compute()
@@ -43,7 +43,7 @@ void SExp::compute()
 
 void  SExp::setparameters()
 {
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 
@@ -63,7 +63,7 @@ void MLog::compute()
 
 void MLog::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SLog::compute()
@@ -73,7 +73,7 @@ void SLog::compute()
 
 void SLog::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MLog10::compute()
@@ -83,7 +83,7 @@ void MLog10::compute()
 
 void MLog10::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SLog10::compute()
@@ -93,7 +93,7 @@ void SLog10::compute()
 
 void SLog10::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -113,8 +113,8 @@ void MPow::compute()
 
 void MPow::setparameters()
 {
-        Kernel::instance().bind(base,"base", getUuid());
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(base,"base", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 void SPow::compute()
@@ -124,8 +124,8 @@ void SPow::compute()
 
 void SPow::setparameters()
 {
-        Kernel::instance().bind(base,"base", getUuid());
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(base,"base", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 void MSPow::compute()
@@ -135,8 +135,8 @@ void MSPow::compute()
 
 void MSPow::setparameters()
 {
-        Kernel::instance().bind(base,"base", getUuid());
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(base,"base", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 void SMPow::compute()
@@ -146,8 +146,8 @@ void SMPow::compute()
 
 void SMPow::setparameters()
 {
-        Kernel::instance().bind(base,"base", getUuid());
-        Kernel::instance().bind(exponent,"exponent", getUuid());
+        Kernel::iBind(base,"base", getUuid());
+        Kernel::iBind(exponent,"exponent", getUuid());
 }
 
 
@@ -166,7 +166,7 @@ void MSqrt::compute()
 
 void MSqrt::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SSqrt::compute()
@@ -176,7 +176,7 @@ void SSqrt::compute()
 
 void SSqrt::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -194,7 +194,7 @@ void MSquare::compute()
 
 void MSquare::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SSquare::compute()
@@ -204,7 +204,7 @@ void SSquare::compute()
 
 void SSquare::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -223,7 +223,7 @@ void MCube::compute()
 
 void MCube::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SCube::compute()
@@ -233,7 +233,7 @@ void SCube::compute()
 
 void SCube::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -252,7 +252,7 @@ void MInverse::compute()
 
 void MInverse::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SInverse::compute()
@@ -262,6 +262,6 @@ void SInverse::compute()
 
 void SInverse::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 

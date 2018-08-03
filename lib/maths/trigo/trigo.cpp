@@ -36,7 +36,7 @@ void MCos::compute()
 
 void MCos::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SCos::compute()
@@ -46,7 +46,7 @@ void SCos::compute()
 
 void SCos::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MSin::compute()
@@ -56,7 +56,7 @@ void MSin::compute()
 
 void MSin::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SSin::compute()
@@ -66,7 +66,7 @@ void SSin::compute()
 
 void SSin::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MTan::compute()
@@ -76,7 +76,7 @@ void MTan::compute()
 
 void MTan::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void STan::compute()
@@ -86,7 +86,7 @@ void STan::compute()
 
 void STan::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -107,7 +107,7 @@ void MAcos::compute()
 
 void MAcos::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SAcos::compute()
@@ -117,7 +117,7 @@ void SAcos::compute()
 
 void SAcos::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MAsin::compute()
@@ -127,7 +127,7 @@ void MAsin::compute()
 
 void MAsin::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SAsin::compute()
@@ -137,7 +137,7 @@ void SAsin::compute()
 
 void SAsin::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MAtan::compute()
@@ -147,7 +147,7 @@ void MAtan::compute()
 
 void MAtan::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SAtan::compute()
@@ -157,7 +157,7 @@ void SAtan::compute()
 
 void SAtan::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -178,7 +178,7 @@ void MCosh::compute()
 
 void MCosh::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SCosh::compute()
@@ -188,7 +188,7 @@ void SCosh::compute()
 
 void SCosh::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MSinh::compute()
@@ -198,7 +198,7 @@ void MSinh::compute()
 
 void MSinh::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SSinh::compute()
@@ -208,7 +208,7 @@ void SSinh::compute()
 
 void SSinh::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MTanh::compute()
@@ -218,7 +218,7 @@ void MTanh::compute()
 
 void MTanh::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void STanh::compute()
@@ -228,5 +228,5 @@ void STanh::compute()
 
 void STanh::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }

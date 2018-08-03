@@ -25,7 +25,7 @@ class Example : public FScalar
 {
 	private :
 
-		std::string str;
+		IString str;
 		
 		ISInput u_is;
 		ISInput m_is;

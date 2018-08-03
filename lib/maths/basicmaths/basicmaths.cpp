@@ -43,7 +43,7 @@ void ArgMax1D::compute()
 
 void ArgMax1D::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 REGISTER_FUNCTION(ArgMax2D);
@@ -68,7 +68,7 @@ void ArgMax2D::compute()
 
 void ArgMax2D::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 	
 	if( output.size() != 2 ) 
 	{
@@ -102,7 +102,7 @@ void ArgMin1D::compute()
 
 void ArgMin1D::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 REGISTER_FUNCTION(ArgMin2D);
@@ -127,7 +127,7 @@ void ArgMin2D::compute()
 
 void ArgMin2D::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
         
 	if( output.size() != 2 )
         {
@@ -148,7 +148,7 @@ void Max::compute()
 
 void Max::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 /********************************************************************************************************/
@@ -164,7 +164,7 @@ void Min::compute()
 
 void Min::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 /********************************************************************************************************/
@@ -181,7 +181,7 @@ void MAbs::compute()
 
 void MAbs::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SAbs::compute()
@@ -191,7 +191,7 @@ void SAbs::compute()
 
 void SAbs::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 /********************************************************************************************************/
@@ -209,8 +209,8 @@ void MModulo::compute()
 
 void MModulo::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(modulo,"modulo", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(modulo,"modulo", getUuid());
 }
 
 void MSModulo::compute()
@@ -221,8 +221,8 @@ void MSModulo::compute()
 
 void MSModulo::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(modulo,"modulo", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(modulo,"modulo", getUuid());
 }
 
 void SModulo::compute()
@@ -232,8 +232,8 @@ void SModulo::compute()
 
 void SModulo::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
-        Kernel::instance().bind(modulo,"modulo", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(modulo,"modulo", getUuid());
 }
 
 /********************************************************************************************************/
@@ -253,7 +253,7 @@ void MDerivative::compute()
 
 void MDerivative::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
         z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
 }
 
@@ -265,7 +265,7 @@ void SDerivative::compute()
 
 void SDerivative::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 	z_1 = 0;
 }
 
@@ -277,7 +277,7 @@ void MZ_1::compute()
 
 void MZ_1::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
         z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
 }
 
@@ -289,7 +289,7 @@ void SZ_1::compute()
 
 void SZ_1::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 	z_1 = 0;
 }
 

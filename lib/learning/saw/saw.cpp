@@ -28,8 +28,8 @@ void Saw::setparameters()
 {
 	inputs.setMultiple(true);
 
-        Kernel::instance().bind(vigilence,"vigilence", getUuid());
-        Kernel::instance().bind(inputs,"inputs", getUuid());
-        Kernel::instance().bind(learning_rate,"learning_rate", getUuid());
+        Kernel::iBind(vigilence,"vigilence", getUuid());
+        Kernel::iBind(inputs,"inputs", getUuid());
+        Kernel::iBind(learning_rate,"learning_rate", getUuid());
 }
 

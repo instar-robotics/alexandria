@@ -60,23 +60,6 @@ FOREACH(src ${sourcefiles})
 
 ENDFOREACH()  
 
-#file(GLOB_RECURSE desc lib/*.xml)
-
-#FOREACH(xml ${desc})
-#	file(RELATIVE_PATH dd ${CMAKE_CURRENT_SOURCE_DIR}/lib  ${xml})
-#	GET_FILENAME_COMPONENT(basedir ${dd} DIRECTORY)
-#	message(STATUS "PUTES  ${basedir}")
-#	#file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
-#	file(COPY ${xml} DESTINATION ${SHARE_DESC}/${basedir})
-#ENDFOREACH()
-
-
-#add_custom_command(
-#TARGET ${basename} POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_directory
-#	${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/description
-#	${SHARE_DESC}/description)
-
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure

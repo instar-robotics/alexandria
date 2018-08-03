@@ -26,52 +26,52 @@ REGISTER_FUNCTION(MSSum);
 
 void MSum::compute()
 {
-	inMatrix[0](output);	
+	inMatrix(0)(output);	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix[i] ;	
+		output += inMatrix(i) ;	
 	}
 }
 
 void  MSum::setparameters()
 {
 	inMatrix.setMultiple(true);
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SSum::compute()
 {
-	output = inScalar[0]();
+	output = inScalar(0)();
 
 	for(unsigned int i=1; i < inScalar.size(); i++)
 	{
-		output += inScalar[i] ; 
+		output += inScalar(i) ; 
 	}
 }
 
 void  SSum::setparameters()
 {
 	inScalar.setMultiple(true);
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 void MSSum::compute()
 {
 	double sSum=0;
 
-	inMatrix[0](output);	
+	inMatrix(0)(output);	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix[i];	
+		output += inMatrix(i);	
 	}
 
-	sSum = inScalar[0]();	
+	sSum = inScalar(0)();	
 
 	for(unsigned int i=1; i < inScalar.size(); i++)
 	{
-		sSum += inScalar[i];	
+		sSum += inScalar(i);	
 	}
 
 	output.array()+=sSum;
@@ -81,8 +81,8 @@ void  MSSum::setparameters()
 {
 	inScalar.setMultiple(true);
 	inMatrix.setMultiple(true);
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 
@@ -102,8 +102,8 @@ void MMSub::compute()
 
 void MMSub::setparameters()
 {
-        Kernel::instance().bind(diminuende,"diminuende", getUuid());
-        Kernel::instance().bind(subtrahend,"subtrahend", getUuid());
+        Kernel::iBind(diminuende,"diminuende", getUuid());
+        Kernel::iBind(subtrahend,"subtrahend", getUuid());
 }
 
 void MSSub::compute()
@@ -114,8 +114,8 @@ void MSSub::compute()
 
 void MSSub::setparameters()
 {
-        Kernel::instance().bind(diminuende,"diminuende", getUuid());
-        Kernel::instance().bind(subtrahend,"subtrahend", getUuid());
+        Kernel::iBind(diminuende,"diminuende", getUuid());
+        Kernel::iBind(subtrahend,"subtrahend", getUuid());
 }
 
 void SSSub::compute()
@@ -125,8 +125,8 @@ void SSSub::compute()
 
 void SSSub::setparameters()
 {
-        Kernel::instance().bind(diminuende,"diminuende", getUuid());
-        Kernel::instance().bind(subtrahend,"subtrahend", getUuid());
+        Kernel::iBind(diminuende,"diminuende", getUuid());
+        Kernel::iBind(subtrahend,"subtrahend", getUuid());
 }
 
 /********************************************************************************************************/
@@ -139,33 +139,33 @@ REGISTER_FUNCTION(MSMul);
 
 void MMul::compute()
 {
-        inMatrix[0](output);
+        inMatrix(0)(output);
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
-		output *= inMatrix[i];
+		output *= inMatrix(i);
         }
 }
 
 void  MMul::setparameters()
 {
         inMatrix.setMultiple(true);
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void SMul::compute()
 {
-        output =  inScalar[0]();
+        output =  inScalar(0)();
         for(unsigned int i=1; i < inScalar.size(); i++)
         {
-                output *= inScalar[i];
+                output *= inScalar(i);
         }
 }
 
 void  SMul::setparameters()
 {
         inScalar.setMultiple(true);
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 
@@ -173,18 +173,18 @@ void MSMul::compute()
 {
         double sMul=0;
 
-        sMul = inScalar[0]();
+        sMul = inScalar(0)();
 
         for(unsigned int i=1; i < inScalar.size(); i++)
         {
-                sMul *= inScalar[i];
+                sMul *= inScalar(i);
         }
 
-        inMatrix[0](output);
+        inMatrix(0)(output);
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
-		output *= inMatrix[i];
+		output *= inMatrix(i);
         }
         output *= sMul;
 }
@@ -193,8 +193,8 @@ void  MSMul::setparameters()
 {
         inScalar.setMultiple(true);
         inMatrix.setMultiple(true);
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 /********************************************************************************************************/
@@ -213,8 +213,8 @@ void MMDiv::compute()
 
 void  MMDiv::setparameters()
 {
-        Kernel::instance().bind(numerator,"numerator", getUuid());
-        Kernel::instance().bind(denumerator,"denumerator", getUuid());
+        Kernel::iBind(numerator,"numerator", getUuid());
+        Kernel::iBind(denumerator,"denumerator", getUuid());
 }
 
 void MSDiv::compute()
@@ -225,8 +225,8 @@ void MSDiv::compute()
 
 void  MSDiv::setparameters()
 {
-        Kernel::instance().bind(numerator,"numerator", getUuid());
-        Kernel::instance().bind(denumerator,"denumerator", getUuid());
+        Kernel::iBind(numerator,"numerator", getUuid());
+        Kernel::iBind(denumerator,"denumerator", getUuid());
 }
 
 void SSDiv::compute()
@@ -236,7 +236,7 @@ void SSDiv::compute()
 
 void  SSDiv::setparameters()
 {
-        Kernel::instance().bind(numerator,"numerator", getUuid());
-        Kernel::instance().bind(denumerator,"denumerator", getUuid());
+        Kernel::iBind(numerator,"numerator", getUuid());
+        Kernel::iBind(denumerator,"denumerator", getUuid());
 }
 
