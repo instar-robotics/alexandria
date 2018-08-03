@@ -569,7 +569,6 @@ typedef Input<iScalar> ISInput;
   }
 
   std::cout << out << std::endl;       // We print the result 
-
 ```
 
 * NOTE : a Map share the same data that the original Matrix 
@@ -597,21 +596,6 @@ typedef Input<iScalar> ISInput;
 * Example :
 ```javascript 
 
- // A very common operation in Neural Network is computed the Weighed Sum of an Input Matrix and a Weigthed Matrix
- 
- IMMInput im;  // The container of all the input Matrix
- MatrixXd out = MatrixXd::Constant(oRow,oCol,0) ;  // output with oRow and oCol dimension 
-
- auto mout = getMapRow(output);  // We transform the square output Matrix in 1 row Matrix (Vector)
-
-  // Compute output activity
-  mout = im(0).irow()  * im(0).w();    // We use Matricial Product which provide directly the weigthed sum !
-  for(unsigned int i=1; i < im.size(); i++)
-  {
-       mout += im(i).irow() * im(i).w();   // We repeat the operation for each iMMatrix
-  }
-
-  std::cout << out << std::endl;       // We print the result 
 
 ```
 
