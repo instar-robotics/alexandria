@@ -597,7 +597,7 @@ typedef Input<iScalar> ISInput;
 * There are not an absolute good strategy, depends on the different algorithms.
 
 
-* The **Filter Matrix** allow devellopers to write algorithims without manage the connectivity problems.
+* The **Filter Matrix** allow devellopers to write algorithms without manage the connectivity problems.
 * Example :
 
 ```javascript 
