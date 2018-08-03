@@ -203,9 +203,9 @@ void HelloFunct::compute()
 * Each iLink have a *type* (**SCALAR** or **MATRIX**) and an associated **weight** also with a type (**SCALAR** or **MATRIX**).
 * Becareful, **iLink type** (call **itype**) and **weight type** (call **wtype**) could be different !
 * List of the iLink's type : **[WTYPE_ITYPE]** 
-  1. **IScalar : **[SCALAR_SCALAR]**  iLink from **SCALAR type** with a **SCALAR weight**.
-  2. **ISMatrix : **[SCALAR_MATRIX]**  iLink from **SCALAR type** with a **SCALAR weight** and the weight is global for every neurons of the Matrix.
-  3. **IMMatrix : **[MATRIX_MATRIX]** iLink from **SCALAR type** with a **SCALAR weight** (each neuron have it own weight)
+  1. **IScalar : [SCALAR_SCALAR]**  iLink from **SCALAR type** with a **SCALAR weight**.
+  2. **ISMatrix : [SCALAR_MATRIX]**  iLink from **SCALAR type** with a **SCALAR weight** and the weight is global for every neurons of the Matrix.
+  3. **IMMatrix : [MATRIX_MATRIX]** iLink from **SCALAR type** with a **SCALAR weight** (each neuron have it own weight)
 
 * Kheops is **strongly typed**, so you can only link an output on an input with the same type.
 * Input could be : 
@@ -552,12 +552,15 @@ typedef Input<iScalar> ISInput;
 * We also provide const Form for each a this function : **getCMapRow**, **getCMapCol**, **getCMapVect**
 
 * Example :
+
 ```javascript 
 
  // A very common operation in Neural Network is computed the Weighed Sum of an Input Matrix and a Weigthed Matrix
  
  IMMInput im;  // The container of all the input Matrix
  MatrixXd out = MatrixXd::Constant(oRow,oCol,0) ;  // output with oRow and oCol dimension 
+ 
+ ...
 
  auto mout = getMapRow(output);  // We transform the square output Matrix in 1 row Matrix (Vector)
 
@@ -593,10 +596,32 @@ typedef Input<iScalar> ISInput;
   2. When you update the weight
 * There are not an absolute good strategy, depends on the different algorithms.
 
+
+* The **Filter Matrix** allow devellopers to write algorithims without manage the connectivity problems.
 * Example :
+
 ```javascript 
 
+    // A very classical algorithm is performing a gradiant descent 
+    // Knowing an input X, an output value and an example Y of a dataset
 
+        double learning_rate
+        MatrixXd out, Y, grad, weight;
+        iMMatrix X;
+        
+        ...
+        
+        // Compute gradiant
+        grad = learning_rate * (Y - out);
+        auto vgrad = getMapRow(grad);
+
+        auto ve = X.icol(); 
+        auto w = X.wm();
+        auto f = X.fm();
+
+        // Update weight 
+        w.noalias() = filter( ve * vgrad , f );  // compute the gradiant descent ve * grad, then apply filter f and copy the result in w.
+    
 ```
 
 ## Create its own repository ##
