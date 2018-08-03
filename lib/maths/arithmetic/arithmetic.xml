@@ -60,7 +60,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input mulitple="true" type="SCALAR_MATRIX">
+				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
@@ -73,10 +73,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input mulitple="false" type="SCALAR_MATRIX">
+				<input multiple="false" type="SCALAR_MATRIX">
 					<name>numerator</name>
 				</input>
-				<input mulitple="false" type="SCALAR_MATRIX">
+				<input multiple="false" type="SCALAR_MATRIX">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -86,10 +86,10 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input mulitple="false" type="SCALAR_SCALAR">
+				<input multiple="false" type="SCALAR_SCALAR">
 					<name>numerator</name>
 				</input>
-				<input mulitple="false" type="SCALAR_SCALAR">
+				<input multiple="false" type="SCALAR_SCALAR">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -99,10 +99,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input mulitple="false" type="SCALAR_MATRIX">
+				<input multiple="false" type="SCALAR_MATRIX">
 					<name>numerator</name>
 				</input>
-				<input mulitple="false"  type="SCALAR_MATRIX">
+				<input multiple="false"  type="SCALAR_MATRIX">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -112,10 +112,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input mulitple="false"  type="SCALAR_MATRIX">
+				<input multiple="false"  type="SCALAR_MATRIX">
 					<name>diminuende</name>
 				</input>
-				<input mulitple="false" type="SCALAR_MATRIX">
+				<input multiple="false" type="SCALAR_MATRIX">
 					<name>subtrahend</name>
 				</input>
 			</inputs>
@@ -125,10 +125,10 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input mulitple="false"  type="SCALAR_SCALAR">
+				<input multiple="false"  type="SCALAR_SCALAR">
 					<name>diminuende</name>
 				</input>
-				<input mulitple="false"  type="SCALAR_SCALAR">
+				<input multiple="false"  type="SCALAR_SCALAR">
 					<name>subtrahend</name>
 				</input>
 			</inputs>
@@ -138,10 +138,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input mulitple="false"  type="SCALAR_SCALAR">
+				<input multiple="false"  type="SCALAR_SCALAR">
 					<name>diminuende</name>
 				</input>
-				<input mulitple="false"  type="SCALAR_SCALAR">
+				<input multiple="false"  type="SCALAR_SCALAR">
 					<name>subtrahend</name>
 				</input>
 			</inputs>

@@ -13,11 +13,10 @@
 				<input multiple="false" type="SCALAR_MATRIX"> 
 					<name>unconditionnal</name>
 				</input>
-			</input>
-			<input multiple="true" type="MATRIX_MATRIX">
-				<name>conditionnals</name>
-			</input>
-		</inputs>
-	</function>	
-</functions>
+				<input multiple="true" type="MATRIX_MATRIX">
+					<name>conditionnals</name>
+				</input>
+			</inputs>
+		</function>	
+	</functions>
 </description>
