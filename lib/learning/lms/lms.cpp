@@ -36,11 +36,11 @@ void LMS::compute()
 	for(unsigned int i=0; i < conditionnals.size(); i++)
 	{
 		auto ve = conditionnals(i).icol(); 
-		auto weight = conditionnals(i).wm(); 
-		auto filter = conditionnals(i).fm(); 
+		auto w = conditionnals(i).wm(); 
+		auto f = conditionnals(i).fm(); 
 
 		// Update weight
-		weight.noalias() += filter.cwiseProduct( ve * vgrad  );
+		w.noalias() += filter( ve * vgrad , f );
 	}
 }
 
