@@ -11,6 +11,7 @@
 					<name>topic_name</name>
 				</input>
 			</inputs>
+			<icon>ros_input_matrix.svg</icon>
 		</function>	
 		<function>
 			<name>SRosInput</name>
@@ -21,6 +22,7 @@
 					<name>topic_name</name>
 				</input>
 			</inputs>
+			<icon>ros_input_scalar.svg</icon>
 		</function>	
 	</functions>
 </description>

@@ -11,6 +11,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>plus_matrix.svg</icon>
 		</function>	
 		<function>
 			<name>SSum</name>
