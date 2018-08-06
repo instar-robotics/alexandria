@@ -58,7 +58,17 @@ FOREACH(src ${sourcefiles})
 	    message(FATAL_ERROR "Missing XML File description for library ${basename}")
     endif()
 
-ENDFOREACH()  
+  ENDFOREACH()
+
+  message(STATUS "Copying icon files...")
+  file(GLOB_RECURSE icons lib/*.svg)
+  FOREACH(icon ${icons})
+	GET_FILENAME_COMPONENT(basename ${icon} NAME_WE)
+	file(RELATIVE_PATH relative_path ${CMAKE_CURRENT_SOURCE_DIR}/lib ${icon})
+	GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
+	file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
+	file(COPY ${icon} DESTINATION ${SHARE_DESC}/${basedir})
+  ENDFOREACH()
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
