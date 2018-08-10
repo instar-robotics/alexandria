@@ -14,6 +14,7 @@
 					<name>nMax</name>
 				</input>
 			</inputs>
+			<icon>keepmax.svg</icon>
 		</function>
 		<function>
 			<name>KeepMin</name>
@@ -27,6 +28,7 @@
 					<name>nMin</name>
 				</input>
 			</inputs>
+			<icon>keepmin.svg</icon>
 		</function>
 	</functions>
 </description>

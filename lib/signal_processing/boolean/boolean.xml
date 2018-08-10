@@ -11,6 +11,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>and-matrix.svg</icon>
 		</function>	
 		<function>
 			<name>MSAND</name>
@@ -24,6 +25,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>and-matrix.svg</icon>
 		</function>	
 		<function>
 			<name>SAND</name>
@@ -34,6 +36,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>and-scalar.svg</icon>
 		</function>
 		<function>
 			<name>MOR</name>
@@ -44,6 +47,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>or-matrix.svg</icon>
 		</function>
 		<function>
 			<name>MSOR</name>
@@ -57,6 +61,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>or-matrix.svg</icon>
 		</function>
 		<function>
 			<name>SOR</name>
@@ -67,6 +72,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>or-scalar.svg</icon>
 		</function>
 		<function>
 			<name>MXOR</name>
@@ -77,6 +83,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>xor-matrix.svg</icon>
 		</function>
 		<function>
 			<name>MSXOR</name>
@@ -90,6 +97,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>xor-matrix.svg</icon>
 		</function>
 		<function>
 			<name>SXOR</name>
@@ -100,6 +108,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>xor-scalar.svg</icon>
 		</function>
 		<function>
 			<name>MNOT</name>
@@ -110,6 +119,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>not-matrix.svg</icon>
 		</function>
 		<function>
 			<name>SNOT</name>
@@ -120,6 +130,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>not-scalar.svg</icon>
 		</function>
 	</functions>
 </description>
