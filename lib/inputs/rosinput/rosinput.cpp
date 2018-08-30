@@ -22,7 +22,6 @@ REGISTER_FUNCTION(JoyAxesInput);
 REGISTER_FUNCTION(JoyAxeInput);
 REGISTER_FUNCTION(JoyButtonsInput);
 REGISTER_FUNCTION(JoyButtonInput);
-REGISTER_FUNCTION(JoyDiagnosticInput);
 
 /********************************************************************************************************/
 /******************                             ScalarInput                           *******************/

@@ -41,7 +41,8 @@ include_directories(
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${PROJECT_NAME}")
 set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descriptions")
 
-FOREACH(src ${sourcefiles})
+  message(STATUS "PUTES.")
+  FOREACH(src ${sourcefiles})
     GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
     file(RELATIVE_PATH relp ${CMAKE_CURRENT_SOURCE_DIR}/lib ${src})
     GET_FILENAME_COMPONENT(basedir ${relp} DIRECTORY)
