@@ -22,33 +22,150 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/ros/rossubscriber.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float64.h"
+#include "sensor_msgs/Joy.h"
 
-
-class SRosInput : public FScalar , public RosSubscriber<std_msgs::Float64>
+/*
+ * ScalarInput : ROS Input for SCALAR data
+ */
+class ScalarInput : public FScalar , public RosSubscriber<std_msgs::Float64>
 {
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
 	public :
 		
-		SRosInput() :  RosSubscriber<std_msgs::Float64>(1)  {}
-		virtual ~SRosInput(){}
+		ScalarInput() :  RosSubscriber<std_msgs::Float64>(){}
+		virtual ~ScalarInput(){}
 
+		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 		
 		virtual void callback(const std_msgs::Float64::ConstPtr &msg);
 };
 
-class MRosInput : public FMatrix , public RosSubscriber<std_msgs::Float64MultiArray>
+/*
+ * MatrixInput : ROS Input for MATRIX data
+ * Float64MultiArray should have the same dimension than the Output Matrix
+ */
+class MatrixInput : public FMatrix , public RosSubscriber<std_msgs::Float64MultiArray>
 {
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
 	public :
 
-		MRosInput() :  RosSubscriber<std_msgs::Float64MultiArray>(1)  {}
-		virtual ~MRosInput(){}
+		MatrixInput() :  RosSubscriber<std_msgs::Float64MultiArray>()  {}
+		virtual ~MatrixInput(){}
 
+		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 
 		virtual void callback( const std_msgs::Float64MultiArray::ConstPtr &msg );
 
+};
+
+/*
+ * JoyAxesInput : ROS Input for Joystick's axes values
+ * Axes array must have the same dimension than the Output Matrix
+ * But Matrix could be in any row/col form
+ */
+class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		JoyAxesInput() : RosSubscriber<sensor_msgs::Joy>() {}
+		virtual ~JoyAxesInput(){}
+		
+		virtual void uprerun();
+		virtual void compute();
+                virtual void setparameters();
+
+		virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
+};
+
+/*
+ * JoyAxeInput : ROS Input for one Joystick's axe value
+ * axe : the ID of the axe in the axes's array
+ */
+class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+                ISInput axe;
+
+        public :
+                JoyAxeInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyAxeInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
+};
+
+/*
+ * JoyButtonsInput : ROS Input for Joystick's buttons values
+ * Buttons array must have the same dimension than the Output Matrix
+ * But Matrix could be in any row/col form
+ */
+class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+                JoyButtonsInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyButtonsInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
+};
+
+/*
+ * JoyAxeInput : ROS Input for one Joystick's axe value
+ * button : the ID of the button in the buttons's array
+ */
+class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+                ISInput button;
+
+        public :
+                JoyButtonInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyButtonInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
 #endif // __ROS_INPUT_HPP__

@@ -3,6 +3,7 @@ project(alexandria)
 
 set(CATKIN_DEP
   kheops
+  joy
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})
@@ -48,6 +49,7 @@ FOREACH(src ${sourcefiles})
     ADD_LIBRARY(${basename} SHARED ${src} )
     target_link_libraries(${basename} Eigen3::Eigen ${catkin_LIBRARIES})
 
+    message(STATUS "Search XML File description for library ${basename}")
     set(xml "${CMAKE_CURRENT_SOURCE_DIR}/lib/${basedir}/${basename}.xml")
     	    
     if(EXISTS "${xml}")

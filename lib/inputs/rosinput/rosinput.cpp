@@ -16,49 +16,207 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "rosinput.h"
 
-REGISTER_FUNCTION(SRosInput);
-REGISTER_FUNCTION(MRosInput);
+REGISTER_FUNCTION(ScalarInput);
+REGISTER_FUNCTION(MatrixInput);
+REGISTER_FUNCTION(JoyAxesInput);
+REGISTER_FUNCTION(JoyAxeInput);
+REGISTER_FUNCTION(JoyButtonsInput);
+REGISTER_FUNCTION(JoyButtonInput);
+REGISTER_FUNCTION(JoyDiagnosticInput);
 
 /********************************************************************************************************/
-/******************                               SRosInput                           *******************/
+/******************                             ScalarInput                           *******************/
 /********************************************************************************************************/
 
-void SRosInput::compute()
+void ScalarInput::compute()
 {
-	my_queue.callOne(ros::WallDuration());
+	my_queue.callOne(ros::WallDuration(sleep()()));
 }
 
-void SRosInput::setparameters()
+void ScalarInput::setparameters()
 {
  	Kernel::iBind(topic_name,"topic_name", getUuid());
-	RosWrapper::clean_topic_name(topic_name);
-	subscribe();
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void SRosInput::callback(const std_msgs::Float64::ConstPtr &msg)
+void ScalarInput::uprerun()
+{
+	subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void ScalarInput::callback(const std_msgs::Float64::ConstPtr &msg)
 {
 	output = msg->data;
 }
 
 /********************************************************************************************************/
-/******************                               MRosInput                           *******************/
+/******************                             MatrixInput                           *******************/
 /********************************************************************************************************/
 
-void MRosInput::compute()
+void MatrixInput::compute()
 {
-	my_queue.callOne(ros::WallDuration());
+	my_queue.callOne(ros::WallDuration(sleep()()));
 }
 
-void MRosInput::setparameters()
+void MatrixInput::setparameters()
 {
 	Kernel::iBind(topic_name,"topic_name", getUuid());
-	RosWrapper::clean_topic_name(topic_name);
-	subscribe();
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void MRosInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
+void MatrixInput::uprerun()
 {
+	subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
+{
+	if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() ) 
+	{
+		throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
+	}
+
  	Map<const MatrixXd> mEnc ( msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
 
        	output = mEnc;
 }
+
+
+/********************************************************************************************************/
+/******************                           JoyAxesInput                            *******************/
+/********************************************************************************************************/
+
+void JoyAxesInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void JoyAxesInput::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void JoyAxesInput::uprerun()
+{
+	subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void JoyAxesInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+{
+	if( msg->axes.size() != output.rows() * output.cols() ) 
+	{
+		throw std::invalid_argument("JoyAxesInput : Output dimension is not egal to the numbers of Joystick axes !");
+	}
+
+        auto mout = getMapVect(output);
+	for(unsigned int i = 0; i < msg->axes.size() ; i++ )
+	{
+		mout[i] = msg->axes[i];	
+	}
+}
+
+/********************************************************************************************************/
+/******************                           JoyAxeInput                            *******************/
+/********************************************************************************************************/
+
+void JoyAxeInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void JoyAxeInput::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+        Kernel::iBind(axe,"axe", getUuid());
+}
+
+void JoyAxeInput::uprerun()
+{
+        subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void JoyAxeInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+{
+        if( axe()() >  msg->axes.size())
+        {
+                throw std::invalid_argument("JoyAxeInput : axe ID is out of range !");
+        }
+
+	output = msg->axes[ (int)(axe()()) - 1];
+}
+
+
+/********************************************************************************************************/
+/******************                         JoyButtonsInput                           *******************/
+/********************************************************************************************************/
+
+void JoyButtonsInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void JoyButtonsInput::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void JoyButtonsInput::uprerun()
+{
+        subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+{
+        if( msg->buttons.size() != output.rows() * output.cols() )
+        {
+                throw std::invalid_argument("JoyButtonsInput : Output dimension is not egal to the numbers of Joystick axes !");
+        }
+
+        auto mout = getMapVect(output);
+        for(unsigned int i = 0; i < msg->buttons.size() ; i++ )
+        {
+                mout[i] = msg->buttons[i];
+        }
+}
+
+
+/********************************************************************************************************/
+/******************                           JoyButtonInput                          *******************/
+/********************************************************************************************************/
+
+void JoyButtonInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void JoyButtonInput::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+        Kernel::iBind(button,"button", getUuid());
+}
+
+void JoyButtonInput::uprerun()
+{
+        subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void JoyButtonInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+{
+        if( button()() >  msg->buttons.size())
+        {
+                throw std::invalid_argument("JoyButtonInput : button ID is out of range !");
+        }
+
+        output = msg->buttons[ (int)(button()()) - 1];
+}
+

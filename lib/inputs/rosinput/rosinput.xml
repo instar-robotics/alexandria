@@ -3,26 +3,112 @@
 	<libname>rosinput</libname>
 	<functions>
 		<function>
-			<name>MRosInput</name>
+			<name>MatrixInput</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
 				<input multiple="false" type="STRING">
 					<name>topic_name</name>
 				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>size_queue</name>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>sleep</name>
+				</input>
 			</inputs>
 			<icon>ros_input_matrix.svg</icon>
 		</function>	
 		<function>
-			<name>SRosInput</name>
+			<name>ScalarInput</name>
 			<output type="SCALAR"> 
 			</output> 
 			<inputs>
 				<input multiple="false" type="STRING">
 					<name>topic_name</name>
 				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>size_queue</name>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>sleep</name>
+				</input>
 			</inputs>
 			<icon>ros_input_scalar.svg</icon>
 		</function>	
+		<function>
+			<name>JoyAxesInput</name>
+			<output type="MATRIX"> 
+			</output> 
+			<inputs>
+				<input multiple="false" type="STRING">
+					<name>topic_name</name>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>size_queue</name>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>sleep</name>
+				</input>
+			</inputs>
+			<icon></icon>
+		</function>	
+		<function>
+                        <name>JoyAxeInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>axe</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>JoyButtonsInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+                <function>
+                        <name>JoyButtonInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>button</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
 	</functions>
 </description>
