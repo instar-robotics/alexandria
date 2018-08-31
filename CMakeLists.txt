@@ -34,6 +34,7 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
 add_definitions(-Wextra -Wall)
 file(GLOB_RECURSE sourcefiles lib/*.cpp)
 
+
 include_directories(
  ${catkin_INCLUDE_DIRS}
 )
@@ -41,37 +42,55 @@ include_directories(
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${PROJECT_NAME}")
 set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descriptions")
 
-  message(STATUS "PUTES.")
   FOREACH(src ${sourcefiles})
     GET_FILENAME_COMPONENT(basename ${src} NAME_WE) 
-    file(RELATIVE_PATH relp ${CMAKE_CURRENT_SOURCE_DIR}/lib ${src})
-    GET_FILENAME_COMPONENT(basedir ${relp} DIRECTORY)
-
-    ADD_LIBRARY(${basename} SHARED ${src} )
+    file(RELATIVE_PATH relative_path ${CMAKE_CURRENT_SOURCE_DIR}/lib ${src})
+    GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
+     
+    ADD_LIBRARY(${basename} SHARED ${src}  )
     target_link_libraries(${basename} Eigen3::Eigen ${catkin_LIBRARIES})
+    
 
-    message(STATUS "Search XML File description for library ${basename}")
     set(xml "${CMAKE_CURRENT_SOURCE_DIR}/lib/${basedir}/${basename}.xml")
+    add_custom_command(TARGET ${basename} PRE_BUILD 
+    		    COMMAND mkdir -p ${SHARE_DESC}/${basedir}
+    		    COMMAND cp ${xml}  ${SHARE_DESC}/${basedir}
+    		    COMMENT "Copying XML File description for library ${basename}"
+    		    )
+	    
+    GET_FILENAME_COMPONENT(icon_base_dir ${src} DIRECTORY)
+    if(NOT EXISTS "${icon_base_dir}/icons")
+    	    message(STATUS "Create empty Icon directory : ${icon_base_dir}/icons ")
+    	    file(MAKE_DIRECTORY "${icon_base_dir}/icons")
+    endif()	     
+		    
+    add_custom_command(TARGET ${basename} PRE_BUILD
+                   COMMAND mkdir -p ${SHARE_DESC}/${basedir}
+                   COMMAND cp -r "${icon_base_dir}/icons"  ${SHARE_DESC}/${basedir}
+                   COMMENT "Copying icon File description for library ${basename}"
+		   )
+    ENDFOREACH()
+
+    file(GLOB_RECURSE xmlfiles lib/*.xml) 
+    FOREACH(xml ${xmlfiles})
+    	  GET_FILENAME_COMPONENT(basename ${xml} NAME_WE) 
+    	  file(RELATIVE_PATH relative_path ${CMAKE_CURRENT_SOURCE_DIR}/lib ${xml})
+    	  GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
+     	  GET_FILENAME_COMPONENT(icon_base_dir ${xml} DIRECTORY)
     	    
-    if(EXISTS "${xml}")
-	    message(STATUS "Find XML File description for library ${basename}")
-	    file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
-	    file(COPY ${xml} DESTINATION ${SHARE_DESC}/${basedir})
-    else()
-	    message(FATAL_ERROR "Missing XML File description for library ${basename}")
-    endif()
+    	  add_custom_command(OUTPUT ${SHARE_DESC}/${basedir}/${xml}
+    		    COMMAND mkdir -p ${SHARE_DESC}/${basedir}
+    		    COMMAND cp ${xml}  ${SHARE_DESC}/${basedir}
+                    COMMAND cp -r "${icon_base_dir}/icons"  ${SHARE_DESC}/${basedir}
+    		    DEPENDS ${xml}
+		    COMMENT "Copying XML and icons File description for library ${basename}"
+    		    )
 
-  ENDFOREACH()
+    	  add_custom_target("${basename}_desc" 
+		  DEPENDS ${SHARE_DESC}/${basedir}/${xml}
+		  )
+    ENDFOREACH()
 
-  message(STATUS "Copying icon files...")
-  file(GLOB_RECURSE icons lib/*.svg)
-  FOREACH(icon ${icons})
-	GET_FILENAME_COMPONENT(basename ${icon} NAME_WE)
-	file(RELATIVE_PATH relative_path ${CMAKE_CURRENT_SOURCE_DIR}/lib ${icon})
-	GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
-	file(MAKE_DIRECTORY ${SHARE_DESC}/${basedir})
-	file(COPY ${icon} DESTINATION ${SHARE_DESC}/${basedir})
-  ENDFOREACH()
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
