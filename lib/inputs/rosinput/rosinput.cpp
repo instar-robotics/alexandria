@@ -15,6 +15,7 @@ The fact that you are presently reading this means that you have had knowledge o
 */
 
 #include "rosinput.h"
+#include <tf/tf.h>
 
 REGISTER_FUNCTION(ScalarInput);
 REGISTER_FUNCTION(MatrixInput);
@@ -259,11 +260,16 @@ void OdoPosInput::setparameters()
 
 void OdoPosInput::uprerun()
 {
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
         subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoPosInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        auto mout = getMapVect(output);
+        mout[0] = msg->pose.pose.position.x;
+        mout[1] = msg->pose.pose.position.y;
+        mout[2] = msg->pose.pose.position.z;
 }
 
 
@@ -291,6 +297,7 @@ void OdoPosXInput::uprerun()
 
 void OdoPosXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	output = msg->pose.pose.position.x;
 }
 
 /*******************************************************************************************************/
@@ -317,6 +324,7 @@ void OdoPosYInput::uprerun()
 
 void OdoPosYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	output = msg->pose.pose.position.y;
 }
 
 /*******************************************************************************************************/
@@ -342,8 +350,8 @@ void OdoPosZInput::uprerun()
 
 void OdoPosZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	output = msg->pose.pose.position.z;
 }
-
 
 /*******************************************************************************************************/
 /*********************                       OdoEulerInput                          ********************/
@@ -363,13 +371,24 @@ void OdoEulerInput::setparameters()
 
 void OdoEulerInput::uprerun()
 {
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
         subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoEulerInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-}
+	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
+	tf::Matrix3x3 m(q);
+	double roll, pitch, yaw;
+	m.getRPY(roll, pitch, yaw);
+
+	auto mout = getMapVect(output);
+        mout[0] = roll;
+        mout[1] = pitch;
+        mout[2] = yaw;
+
+}
 
 /*******************************************************************************************************/
 /*********************                    OdoEulerRollInput                         ********************/
@@ -394,6 +413,13 @@ void OdoEulerRollInput::uprerun()
 
 void OdoEulerRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+
+        tf::Matrix3x3 m(q);
+        double roll, pitch, yaw;
+        m.getRPY(roll, pitch, yaw);
+
+        output = roll;
 }
 
 
@@ -420,6 +446,13 @@ void OdoEulerPitchInput::uprerun()
 
 void OdoEulerPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+
+        tf::Matrix3x3 m(q);
+        double roll, pitch, yaw;
+        m.getRPY(roll, pitch, yaw);
+
+        output = pitch;
 }
 
 
@@ -446,6 +479,13 @@ void OdoEulerYawInput::uprerun()
 
 void OdoEulerYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+
+        tf::Matrix3x3 m(q);
+        double roll, pitch, yaw;
+        m.getRPY(roll, pitch, yaw);
+
+        output = yaw;
 }
 
 /*******************************************************************************************************/
@@ -466,11 +506,17 @@ void OdoQuaterInput::setparameters()
 
 void OdoQuaterInput::uprerun()
 {
+	if( output.rows() * output.cols() != 4 ) throw std::invalid_argument("OdoQuaterInput : Output dimension should be 3 !");
         subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoQuaterInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
+        auto mout = getMapVect(output);
+        mout[0] = msg->pose.pose.orientation.x;
+        mout[1] = msg->pose.pose.orientation.y;
+        mout[2] = msg->pose.pose.orientation.z;
+        mout[3] = msg->pose.pose.orientation.w;
 }
 
 
@@ -497,6 +543,33 @@ void OdoQuaterXInput::uprerun()
 
 void OdoQuaterXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->pose.pose.orientation.x;
+}
+
+/*******************************************************************************************************/
+/*********************                     OdoQuaterZInput                         ********************/
+/*******************************************************************************************************/
+
+void OdoQuaterYInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()() ));
+}
+
+void OdoQuaterYInput::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void OdoQuaterYInput::uprerun()
+{
+        subscribe(topic_name, (int)(size_queue()()) );
+}
+
+void OdoQuaterYInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
+{
+        output = msg->pose.pose.orientation.y;
 }
 
 
@@ -523,6 +596,7 @@ void OdoQuaterZInput::uprerun()
 
 void OdoQuaterZInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->pose.pose.orientation.z;
 }
 
 /*******************************************************************************************************/
@@ -548,6 +622,7 @@ void OdoQuaterWInput::uprerun()
 
 void OdoQuaterWInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->pose.pose.orientation.w;
 }
 
 /*******************************************************************************************************/
@@ -568,11 +643,16 @@ void OdoTwistLinInput::setparameters()
 
 void OdoTwistLinInput::uprerun()
 {
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistLinInput : Output dimension should be 3 !");
         subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoTwistLinInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        auto mout = getMapVect(output);
+        mout[0] = msg->twist.twist.linear.x;
+        mout[1] = msg->twist.twist.linear.y;
+        mout[2] = msg->twist.twist.linear.z;
 }
 
 
@@ -599,6 +679,7 @@ void OdoTwistLinXInput::uprerun()
 
 void OdoTwistLinXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.linear.x;
 }
 
 /*******************************************************************************************************/
@@ -624,6 +705,7 @@ void OdoTwistLinYInput::uprerun()
 
 void OdoTwistLinYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.linear.y;
 }
 
 
@@ -650,6 +732,7 @@ void OdoTwistLinZInput::uprerun()
 
 void OdoTwistLinZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.linear.z;
 }
 
 
@@ -671,11 +754,16 @@ void OdoTwistAngInput::setparameters()
 
 void OdoTwistAngInput::uprerun()
 {
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistAngInput : Output dimension should be 3 !");
         subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoTwistAngInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        auto mout = getMapVect(output);
+        mout[0] = msg->twist.twist.angular.x;
+        mout[1] = msg->twist.twist.angular.y;
+        mout[2] = msg->twist.twist.angular.z;
 }
 
 
@@ -702,6 +790,7 @@ void OdoTwistAngRollInput::uprerun()
 
 void OdoTwistAngRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.angular.x;
 }
 
 /*******************************************************************************************************/
@@ -727,6 +816,7 @@ void OdoTwistAngPitchInput::uprerun()
 
 void OdoTwistAngPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.angular.y;
 }
 
 
@@ -753,5 +843,6 @@ void OdoTwistAngYawInput::uprerun()
 
 void OdoTwistAngYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
+        output = msg->twist.twist.angular.z;
 }
 
