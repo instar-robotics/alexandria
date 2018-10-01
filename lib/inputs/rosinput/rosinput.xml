@@ -110,5 +110,362 @@
                         </inputs>
                         <icon></icon>
                 </function>
+		<function>
+                        <name>OdoPosInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoPosXInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoPosYInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoPosZInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoEulerInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoEulerRollInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoEulerPitchInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoEulerYawInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoQuaterInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoQuaterXInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoQuaterYInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoQuaterZInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoQuaterWInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistLinInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistLinXInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistLinYInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistLinZInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistAngInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistAngRollInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistAngPitchInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>OdoTwistAngYawInput</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
 	</functions>
 </description>

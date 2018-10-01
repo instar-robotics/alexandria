@@ -22,7 +22,8 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/ros/rossubscriber.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float64.h"
-#include "sensor_msgs/Joy.h"
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/Joy.h>
 
 /*
  * ScalarInput : ROS Input for SCALAR data
@@ -166,6 +167,517 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 virtual void setparameters();
 
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
+};
+
+/*
+ * OdoPosInput : ROS Input Odometric Cartesian Position
+ * Vector with X,Y,Z absolute coordinate
+ */
+class OdoPosInput :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+{
+	private : 
+
+		IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+	public : 
+
+		OdoPosInput() : RosSubscriber<nav_msgs::Odometry>() {}
+		virtual ~OdoPosInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoPosXInput : ROS Input Odometric Cartesian Position, X component
+ * Point X
+ */
+class OdoPosXInput :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private : 
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public : 
+
+                OdoPosXInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosXInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+
+};
+
+/*
+ * OdoPosYInput : ROS Input Odometric Cartesian Position, Y component
+ * Point Y
+ */
+class OdoPosYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoPosYInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosYInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+
+};
+
+/*
+ * OdoPosZInput : ROS Input Odometric Cartesian Position, Z component
+ * Point Z
+ */
+class OdoPosZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoPosZInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosZInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoEulerInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll, Pitch, Yaw)
+ * Vector Roll, Pitch, Yaw
+ */
+class OdoEulerInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoEulerInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoEulerRollInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll)
+ * Scalar Roll
+ */
+class OdoEulerRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoEulerRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerRollInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+}; 
+
+/*
+ * OdoEulerPitchInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Pitch)
+ * Scalar Pitch
+ */
+class OdoEulerPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoEulerPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerPitchInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoEulerYawInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Yaw)
+ * Scalar Yaw
+ */
+class OdoEulerYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoEulerYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerYawInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoQuaterInput : ROS Input Odometric Absolute Orientation in Quaternion coordinate (X,Y,Z,W)
+ * Vector X,Y,Z,W
+ */
+class OdoQuaterInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoQuaterInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoQuaterXInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (X)
+ * Scalar X
+ */
+class OdoQuaterXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoQuaterXInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterXInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoQuaterYInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Y)
+ * Scalar Y
+ */
+class OdoQuaterYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoQuaterYInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterYInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+
+/*
+ * OdoQuaterZInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Z)
+ * Scalar Z
+ */
+class OdoQuaterZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoQuaterZInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterZInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+
+/*
+ * OdoQuaterWInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (W)
+ * Scalar W
+ */
+class OdoQuaterWInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoQuaterWInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterWInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+
+/*
+ * OdoTwistLinInput : ROS Input Odometric Twist, Linear movement on (X,Y,Z)
+ * Vector (X,Y,Z)
+ */
+class OdoTwistLinInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoTwistLinInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+
+/*
+ * OdoTwistLinXInput : ROS Input Odometric Twist, Linear movement on X
+ * Scalar X
+ */
+class OdoTwistLinXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistLinXInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinXInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+}; 
+
+/*
+ * OdoTwistLinXInput : ROS Input Odometric Twist, Linear movement on Y
+ * Scalar Y
+ */
+class OdoTwistLinYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistLinYInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinYInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+
+};
+
+/*
+ * OdoTwistLinZInput : ROS Input Odometric Twist, Linear movement on Z
+ * Scalar Z
+ */
+class OdoTwistLinZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+        
+        public :
+
+                OdoTwistLinZInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinZInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoTwistAngInput : ROS Input Odometric Twist, Angular movement on (Roll,Pitch,Yaw)
+ * Vector (Roll, Pitch, Yaw)
+ */
+class OdoTwistAngInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+{
+	private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistAngInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+
+};
+
+/*
+ * OdoTwistAngRollInput : ROS Input Odometric Twist, Angular movement on (Roll)
+ * Scalar (Roll)
+ */
+class OdoTwistAngRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistAngRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngRollInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoTwistAngPitchInput : ROS Input Odometric Twist, Angular movement on (Pitch)
+ * Scalar (Pitch)
+ */
+class OdoTwistAngPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistAngPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngPitchInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*
+ * OdoTwistAngYawInput : ROS Input Odometric Twist, Angular movement on (Yaw)
+ * Scalar (Yaw)
+ */
+class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+        public :
+
+                OdoTwistAngYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngYawInput(){}
+
+                virtual void uprerun();
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
 #endif // __ROS_INPUT_HPP__
