@@ -680,4 +680,5 @@ class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odome
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
+
 #endif // __ROS_INPUT_HPP__
