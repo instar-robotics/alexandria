@@ -18,7 +18,7 @@
 ### Install Alexandria ###
 * Install ROS dependancy : 
 
-**_apt-get install ros-melodic-joy_**  [or lunar for ROS LUNAR version]   
+**_apt-get install ros-melodic-joy_**  [or ros-lunar-joy for ROS LUNAR version]   
 
 * clone the repository in your catkin workspace :
 
