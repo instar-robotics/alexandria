@@ -10,10 +10,16 @@
 
 ### Dependancy ###
 
-* Alexandria requiers kheops and all its dependancies.
+* Alexandria requiers kheops and all its dependancies (included ROS)
 * You need to install kheops first.
+* Alexandria requiers the ROS joy package (on ubuntu/debian : ros-melodic-joy or ros-lunar-joy for ROS Lunar)
+
 
 ### Install Alexandria ###
+* Install ROS dependancy : 
+
+**_apt-get install ros-melodic-joy_**  [or lunar for ROS LUNAR version]   
+
 * clone the repository in your catkin workspace :
 
 **_cd /home/johndoe/catkin_workspace/src_**
