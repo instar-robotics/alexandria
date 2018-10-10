@@ -51,7 +51,7 @@
 					<name>sleep</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>joyaxesinput.svg</icon>
 		</function>	
 		<function>
                         <name>JoyAxeInput</name>
@@ -71,7 +71,7 @@
                                         <name>axe</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>joyaxeinput.svg</icon>
                 </function>
 		<function>
                         <name>JoyButtonsInput</name>
@@ -88,7 +88,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>joybuttonsinput.svg</icon>
                 </function>
                 <function>
                         <name>JoyButtonInput</name>
@@ -108,7 +108,7 @@
                                         <name>button</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>joybuttoninput.svg</icon>
                 </function>
 		<function>
                         <name>OdoPosInput</name>
@@ -125,7 +125,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoPosXInput</name>
@@ -142,7 +142,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoPosYInput</name>
@@ -159,7 +159,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoPosZInput</name>
@@ -176,7 +176,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoEulerInput</name>
@@ -193,7 +193,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoEulerRollInput</name>
@@ -210,7 +210,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoEulerPitchInput</name>
@@ -227,7 +227,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoEulerYawInput</name>
@@ -244,7 +244,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoQuaterInput</name>
@@ -261,7 +261,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoQuaterXInput</name>
@@ -278,7 +278,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoQuaterYInput</name>
@@ -295,7 +295,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoQuaterZInput</name>
@@ -312,7 +312,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoQuaterWInput</name>
@@ -329,7 +329,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistLinInput</name>
@@ -346,7 +346,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistLinXInput</name>
@@ -363,7 +363,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistLinYInput</name>
@@ -380,7 +380,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistLinZInput</name>
@@ -397,7 +397,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistAngInput</name>
@@ -414,7 +414,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistAngRollInput</name>
@@ -431,7 +431,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistAngPitchInput</name>
@@ -448,7 +448,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 		<function>
                         <name>OdoTwistAngYawInput</name>
@@ -465,7 +465,7 @@
                                         <name>sleep</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>odometry.svg</icon>
                 </function>
 	</functions>
 </description>

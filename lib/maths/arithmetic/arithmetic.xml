@@ -11,7 +11,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
-			<icon>plus_matrix.svg</icon>
+			<icon>matrix-sum.svg</icon>
 		</function>	
 		<function>
 			<name>SSum</name>
@@ -22,6 +22,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-sum.svg</icon>
 		</function>	
 		<function>
 			<name>MSSum</name>
@@ -35,6 +36,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar-sum.svg</icon>
 		</function>	
 		<function>
 			<name>MMul</name>
@@ -45,6 +47,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-multiply.svg</icon>
 		</function>
 		<function>
 			<name>SMul</name>
@@ -55,6 +58,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-multiply.svg</icon>
 		</function>
 		<function>
 			<name>MSMul</name>
@@ -68,6 +72,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar-multiply.svg</icon>
 		</function>
 		<function>
 			<name>MMDiv</name>
@@ -81,6 +86,7 @@
 					<name>denumerator</name>
 				</input>
 			</inputs>
+			<icon>matrix-matrix-division.svg</icon>
 		</function>
 		<function>
 			<name>SSDiv</name>
@@ -94,6 +100,7 @@
 					<name>denumerator</name>
 				</input>
 			</inputs>
+			<icon>scalar-scalar-division.svg</icon>
 		</function>
 		<function>
 			<name>MSDiv</name>
@@ -107,6 +114,7 @@
 					<name>denumerator</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar-division.svg</icon>
 		</function>
 		<function>
 			<name>MMSub</name>
@@ -120,6 +128,7 @@
 					<name>subtrahend</name>
 				</input>
 			</inputs>
+			<icon>matrix-matrix-subtract.svg</icon>
 		</function>
 		<function>
 			<name>SSSub</name>
@@ -133,6 +142,7 @@
 					<name>subtrahend</name>
 				</input>
 			</inputs>
+			<icon>scalar-scalar-subtract.svg</icon>
 		</function>
 		<function>
 			<name>MSSub</name>
@@ -146,6 +156,7 @@
 					<name>subtrahend</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar-subtract.svg</icon>
 		</function>
 	</functions>
 </description>

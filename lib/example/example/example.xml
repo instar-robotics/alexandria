@@ -28,6 +28,7 @@
 					<name>u_imm</name>
 				</input>
 			</inputs>
+			<icon>example.svg</icon>
 		</function>	
 	</functions>
 </description>
