@@ -32,7 +32,7 @@
 					<name>rot.z</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>motor_output.svg</icon>
                 </function>
 		<function>
 			<name>CmdVelVectOutput</name>
@@ -52,7 +52,7 @@
 					<name>rot</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>motor_output.svg</icon>
                 </function>
 		<function>
 			<name>CmdVel2DOutput</name>
@@ -72,7 +72,7 @@
 					<name>rot</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>motor_output.svg</icon>
                 </function>
 	</functions>
 </description>

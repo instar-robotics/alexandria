@@ -11,6 +11,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>argmax1d.svg</icon>
 		</function>
 		<function>
 			<name>ArgMin1D</name>
@@ -21,6 +22,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>argmin1d.svg</icon>
 		</function>
 		<function>
 			<name>ArgMax2D</name>
@@ -31,6 +33,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>argmax2d.svg</icon>
 		</function>
 		<function>
 			<name>ArgMin2D</name>
@@ -41,6 +44,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>argmin2d.svg</icon>
 		</function>
 		<function>
 			<name>Max</name>
@@ -51,6 +55,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>max.svg</icon>
 		</function>	
 		<function>
 			<name>Min</name>
@@ -61,6 +66,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>min.svg</icon>
 		</function>
 		<function>
 			<name>MAbs</name>
@@ -71,6 +77,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix_absolute.svg</icon>
 		</function>
 		<function>
 			<name>SAbs</name>
@@ -81,6 +88,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar_absolute.svg</icon>
 		</function>
 		<function>
 			<name>MModulo</name>
@@ -94,6 +102,7 @@
 					<name>modulo</name>
 				</input>
 			</inputs>
+			<icon>matrix-matrix_modulo.svg</icon>
 		</function>
 		<function>
 			<name>MSModulo</name>
@@ -107,6 +116,7 @@
 					<name>modulo</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar_modulo.svg</icon>
 		</function>
 		<function>
 			<name>SModulo</name>
@@ -120,6 +130,7 @@
 					<name>modulo</name>
 				</input>
 			</inputs>
+			<icon>scalar_modulo.svg</icon>
 		</function>
 		<function>
 			<name>MDerivative</name>
@@ -130,6 +141,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix_derivative.svg</icon>
 		</function>
 		<function>
 			<name>SDerivative</name>
@@ -140,6 +152,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar_derivative.svg</icon>
 		</function>
 		<function>
 			<name>MZ_1</name>
@@ -150,6 +163,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix_Z-1.svg</icon>
 		</function>
 		<function>
 			<name>SZ_1</name>
@@ -160,6 +174,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar_Z-1.svg</icon>
 		</function>
 	</functions>
 </description>

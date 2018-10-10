@@ -17,6 +17,7 @@
 					<name>conditionnals</name>
 				</input>
 			</inputs>
+			<icon>lms.svg</icon>
 		</function>	
 	</functions>
 </description>

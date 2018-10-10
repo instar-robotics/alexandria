@@ -11,6 +11,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>matrix-exponential.svg</icon>
 		</function>	
 		<function>
 			<name>SExp</name>
@@ -21,6 +22,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>scalar-exponential.svg</icon>
 		</function>	
 		<function>
 			<name>MLog</name>
@@ -31,6 +33,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-logarithm.svg</icon>
 		</function>
 		<function>
 			<name>SLog</name>
@@ -41,6 +44,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-logarithm.svg</icon>
 		</function>
 		<function>
 			<name>MLog10</name>
@@ -51,6 +55,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-logarithm-10.svg</icon>
 		</function>
 		<function>
 			<name>SLog10</name>
@@ -61,6 +66,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-logarithm-10.svg</icon>
 		</function>
 		<function>
 			<name>MPow</name>
@@ -74,6 +80,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>matrix-pow.svg</icon>
 		</function>
 		<function>
 			<name>SPow</name>
@@ -87,6 +94,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>scalar-pow.svg</icon>
 		</function>
 		<function>
 			<name>MSPow</name>
@@ -100,6 +108,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>matrix-scalar-pow.svg</icon>
 		</function>
 		<function>
 			<name>SMPow</name>
@@ -113,6 +122,7 @@
 					<name>exponent</name>
 				</input>
 			</inputs>
+			<icon>scalar-matrix-pow.svg</icon>
 		</function>
 		<function>
 			<name>MSqrt</name>
@@ -123,6 +133,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-square-root.svg</icon>
 		</function>
 		<function>
 			<name>SSqrt</name>
@@ -133,6 +144,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-square-root.svg</icon>
 		</function>
 		<function>
 			<name>MSquare</name>
@@ -143,6 +155,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-square.svg</icon>
 		</function>
 		<function>
 			<name>SSquare</name>
@@ -153,6 +166,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-square.svg</icon>
 		</function>
 		<function>
 			<name>MCube</name>
@@ -163,6 +177,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-cube.svg</icon>
 		</function>
 		<function>
 			<name>SCube</name>
@@ -173,6 +188,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-cube.svg</icon>
 		</function>
 		<function>
 			<name>MInverse</name>
@@ -183,6 +199,7 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
+			<icon>matrix-inverse.svg</icon>
 		</function>
 		<function>
 			<name>SInverse</name>
@@ -193,6 +210,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
+			<icon>scalar-inverse.svg</icon>
 		</function>
 	</functions>
 </description>

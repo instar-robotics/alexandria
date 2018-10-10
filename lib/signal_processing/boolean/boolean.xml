@@ -25,7 +25,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
-			<icon>and-matrix.svg</icon>
+			<icon>and-matrix-scalar.svg</icon>
 		</function>	
 		<function>
 			<name>SAND</name>
@@ -61,7 +61,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
-			<icon>or-matrix.svg</icon>
+			<icon>or-matrix-scalar.svg</icon>
 		</function>
 		<function>
 			<name>SOR</name>
@@ -97,7 +97,7 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
-			<icon>xor-matrix.svg</icon>
+			<icon>xor-matrix-scalar.svg</icon>
 		</function>
 		<function>
 			<name>SXOR</name>
