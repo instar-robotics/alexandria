@@ -94,6 +94,9 @@ class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 		virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
 		virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
@@ -111,13 +114,16 @@ class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 ISInput axe;
 
         public :
-                JoyAxeInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                JoyAxeInput() : FScalar() ,  RosSubscriber<sensor_msgs::Joy>() {}
                 virtual ~JoyAxeInput(){}
 
                 virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
@@ -135,18 +141,21 @@ class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
                 ISInput sleep;
 
         public :
-                JoyButtonsInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                JoyButtonsInput() : FMatrix(),  RosSubscriber<sensor_msgs::Joy>() {}
                 virtual ~JoyButtonsInput(){}
 
                 virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
 /*
- * JoyAxeInput : ROS Input for one Joystick's axe value
+ * JoyButtonInput : ROS Input for one Joystick's axe value
  * button : the ID of the button in the buttons's array
  */
 class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
@@ -166,6 +175,9 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 

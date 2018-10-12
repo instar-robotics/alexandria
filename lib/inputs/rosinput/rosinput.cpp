@@ -140,14 +140,23 @@ void JoyAxesInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 	}
 }
 
+void JoyAxesInput::onQuit()
+{
+	disable();
+}
+
+void JoyAxesInput::onPause()
+{
+	disable();
+}
+
+void JoyAxesInput::onRun()
+{
+	enable();
+}
 /*******************************************************************************************************/
 /******************                           JoyAxeInput                            *******************/
 /*******************************************************************************************************/
-
-void JoyAxeInput::compute()
-{
-        my_queue.callOne(ros::WallDuration( sleep()()  ));
-}
 
 void JoyAxeInput::setparameters()
 {
@@ -159,8 +168,9 @@ void JoyAxeInput::setparameters()
 
 void JoyAxeInput::uprerun()
 {
-        subscribe(topic_name, (int)(size_queue()()) );
+    subscribe(topic_name, (int)(size_queue()()) );
 }
+
 
 void JoyAxeInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
@@ -172,6 +182,30 @@ void JoyAxeInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 	output = msg->axes[ (int)(axe()()) - 1];
 }
 
+void JoyAxeInput::compute()
+{
+	std::cout <<"Joy Axe Compute deb" << std::endl;
+       my_queue.callOne(ros::WallDuration( sleep()()  ));
+	std::cout <<"Joy Axe Compute end" << std::endl;
+}
+
+void JoyAxeInput::onQuit()
+{
+	std::cout << "\t\tJAXE DISABLE QUIT" << std::endl;
+	disable();
+}
+
+void JoyAxeInput::onPause()
+{
+	std::cout << "\t\tJAXE DISABLE PAUSE" << std::endl;
+	disable();
+}
+
+void JoyAxeInput::onRun()
+{
+	std::cout << "\t\tJAXE ENABLE RUN" << std::endl;
+	enable();
+}
 
 /*******************************************************************************************************/
 /*****************                         JoyButtonsInput                           *******************/
@@ -208,6 +242,20 @@ void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
         }
 }
 
+void JoyButtonsInput::onQuit()
+{
+	disable();
+}
+
+void JoyButtonsInput::onPause()
+{
+	disable();
+}
+
+void JoyButtonsInput::onRun()
+{
+	enable();
+}
 
 /*******************************************************************************************************/
 /*****************                           JoyButtonInput                          *******************/
@@ -215,7 +263,9 @@ void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 
 void JoyButtonInput::compute()
 {
+	std::cout << "JBUTTON Compute DEB" << std::endl;
         my_queue.callOne(ros::WallDuration( sleep()()  ));
+	std::cout << "JBUTTON Compute  END" << std::endl;
 }
 
 void JoyButtonInput::setparameters()
@@ -240,6 +290,26 @@ void JoyButtonInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 
         output = msg->buttons[ (int)(button()()) - 1];
 }
+
+void JoyButtonInput::onQuit()
+{
+	std::cout << "\t\tJBUTTON DISABLE QUIT" << std::endl;
+	disable();
+}
+
+void JoyButtonInput::onPause()
+{
+	std::cout << "\t\tJBUTTON DISABLE PAUSE" << std::endl;
+	disable();
+}
+
+void JoyButtonInput::onRun()
+{
+	std::cout << "\t\tJBUTTON ENABLE" << std::endl;
+	enable();
+
+}
+
 
 /*******************************************************************************************************/
 /*********************                         OdoPosInput                          ********************/
