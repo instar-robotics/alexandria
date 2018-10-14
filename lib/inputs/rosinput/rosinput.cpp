@@ -61,14 +61,24 @@ void ScalarInput::setparameters()
  	Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void ScalarInput::uprerun()
-{
-	subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void ScalarInput::callback(const std_msgs::Float64::ConstPtr &msg)
 {
 	output = msg->data;
+}
+
+void ScalarInput::onQuit()
+{
+        disable();
+}
+
+void ScalarInput::onPause()
+{
+        disable();
+}
+
+void ScalarInput::onRun()
+{
+        enable(topic_name, (int)(size_queue()()) );
 }
 
 /*******************************************************************************************************/
@@ -87,11 +97,6 @@ void MatrixInput::setparameters()
  	Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void MatrixInput::uprerun()
-{
-	subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
 	if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() ) 
@@ -102,6 +107,20 @@ void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
  	Map<const MatrixXd> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
 
        	output = mEnc;
+}
+void MatrixInput::onQuit()
+{
+        disable();
+}
+
+void MatrixInput::onPause()
+{
+        disable();
+}
+
+void MatrixInput::onRun()
+{
+        enable(topic_name, (int)(size_queue()()) );
 }
 
 
@@ -119,11 +138,6 @@ void JoyAxesInput::setparameters()
         Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(sleep,"sleep", getUuid());
-}
-
-void JoyAxesInput::uprerun()
-{
-	subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void JoyAxesInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
@@ -152,7 +166,7 @@ void JoyAxesInput::onPause()
 
 void JoyAxesInput::onRun()
 {
-	enable();
+	enable(topic_name, (int)(size_queue()()) );
 }
 /*******************************************************************************************************/
 /******************                           JoyAxeInput                            *******************/
@@ -165,12 +179,6 @@ void JoyAxeInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
         Kernel::iBind(axe,"axe", getUuid());
 }
-
-void JoyAxeInput::uprerun()
-{
-    subscribe(topic_name, (int)(size_queue()()) );
-}
-
 
 void JoyAxeInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
@@ -199,7 +207,7 @@ void JoyAxeInput::onPause()
 
 void JoyAxeInput::onRun()
 {
-	enable();
+	enable(topic_name, (int)(size_queue()()) );
 }
 
 /*******************************************************************************************************/
@@ -216,11 +224,6 @@ void JoyButtonsInput::setparameters()
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
-}
-
-void JoyButtonsInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
@@ -249,7 +252,7 @@ void JoyButtonsInput::onPause()
 
 void JoyButtonsInput::onRun()
 {
-	enable();
+	enable(topic_name, (int)(size_queue()()) );
 }
 
 /*******************************************************************************************************/
@@ -267,11 +270,6 @@ void JoyButtonInput::setparameters()
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
         Kernel::iBind(button,"button", getUuid());
-}
-
-void JoyButtonInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void JoyButtonInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
@@ -296,8 +294,7 @@ void JoyButtonInput::onPause()
 
 void JoyButtonInput::onRun()
 {
-	enable();
-
+	enable( topic_name, (int)(size_queue()())   );
 }
 
 
@@ -321,7 +318,6 @@ void OdoPosInput::setparameters()
 void OdoPosInput::uprerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoPosInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
@@ -332,6 +328,20 @@ void OdoPosInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->pose.pose.position.z;
 }
 
+void OdoPosInput::onQuit()
+{
+	disable();
+}
+
+void OdoPosInput::onPause()
+{
+	disable();
+}
+
+void OdoPosInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                        OdoPosXInput                          ********************/
@@ -350,16 +360,25 @@ void OdoPosXInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosXInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoPosXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.x;
 }
 
+void OdoPosXInput::onQuit()
+{
+	disable();
+}
+
+void OdoPosXInput::onPause()
+{
+	disable();
+}
+
+void OdoPosXInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                        OdoPosYInput                          ********************/
 /*******************************************************************************************************/
@@ -377,14 +396,24 @@ void OdoPosYInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosYInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoPosYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.y;
+}
+
+void OdoPosYInput::onQuit()
+{
+	disable();
+}
+
+void OdoPosYInput::onPause()
+{
+	disable();
+}
+
+void OdoPosYInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
@@ -403,14 +432,24 @@ void OdoPosZInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosZInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoPosZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.z;
+}
+
+void OdoPosZInput::onQuit()
+{
+	disable();
+}
+
+void OdoPosZInput::onPause()
+{
+	disable();
+}
+
+void OdoPosZInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
@@ -432,7 +471,6 @@ void OdoEulerInput::setparameters()
 void OdoEulerInput::uprerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoEulerInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
@@ -448,6 +486,21 @@ void OdoEulerInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[1] = pitch;
         mout[2] = yaw;
 
+}
+
+void OdoEulerInput::onQuit()
+{
+	disable();
+}
+
+void OdoEulerInput::onPause()
+{
+	disable();
+}
+
+void OdoEulerInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
@@ -466,11 +519,6 @@ void OdoEulerRollInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerRollInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoEulerRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
@@ -482,6 +530,20 @@ void OdoEulerRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         output = roll;
 }
 
+void OdoEulerRollInput::onQuit()
+{
+	disable();
+}
+
+void OdoEulerRollInput::onPause()
+{
+	disable();
+}
+
+void OdoEulerRollInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                   OdoEulerPitchInput                         ********************/
@@ -499,11 +561,6 @@ void OdoEulerPitchInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerPitchInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoEulerPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
@@ -515,6 +572,20 @@ void OdoEulerPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         output = pitch;
 }
 
+void OdoEulerPitchInput::onQuit()
+{
+	disable();
+}
+
+void OdoEulerPitchInput::onPause()
+{
+	disable();
+}
+
+void OdoEulerPitchInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                     OdoEulerYawInput                         ********************/
@@ -532,11 +603,6 @@ void OdoEulerYawInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerYawInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoEulerYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
@@ -546,6 +612,21 @@ void OdoEulerYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         m.getRPY(roll, pitch, yaw);
 
         output = yaw;
+}
+
+void OdoEulerYawInput::onQuit()
+{
+	disable();
+}
+
+void OdoEulerYawInput::onPause()
+{
+	disable();
+}
+
+void OdoEulerYawInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
@@ -567,7 +648,6 @@ void OdoQuaterInput::setparameters()
 void OdoQuaterInput::uprerun()
 {
 	if( output.rows() * output.cols() != 4 ) throw std::invalid_argument("OdoQuaterInput : Output dimension should be 3 !");
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoQuaterInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
@@ -579,6 +659,20 @@ void OdoQuaterInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
         mout[3] = msg->pose.pose.orientation.w;
 }
 
+void OdoQuaterInput::onQuit()
+{
+	disable();
+}
+
+void OdoQuaterInput::onPause()
+{
+	disable();
+}
+
+void OdoQuaterInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                     OdoQuaterXInput                         ********************/
@@ -596,18 +690,27 @@ void OdoQuaterXInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterXInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoQuaterXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.x;
 }
 
+void OdoQuaterXInput::onQuit()
+{
+	disable();
+}
+
+void OdoQuaterXInput::onPause()
+{
+	disable();
+}
+
+void OdoQuaterXInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
-/*********************                     OdoQuaterZInput                         ********************/
+/*********************                     OdoQuaterYInput                         ********************/
 /*******************************************************************************************************/
 
 void OdoQuaterYInput::compute()
@@ -622,16 +725,25 @@ void OdoQuaterYInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterYInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoQuaterYInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.y;
 }
 
+void OdoQuaterYInput::onQuit()
+{
+	disable();
+}
+
+void OdoQuaterYInput::onPause()
+{
+	disable();
+}
+
+void OdoQuaterYInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                     OdoQuaterZInput                         ********************/
@@ -649,16 +761,25 @@ void OdoQuaterZInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterZInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoQuaterZInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.z;
 }
 
+void OdoQuaterZInput::onQuit()
+{
+	disable();
+}
+
+void OdoQuaterZInput::onPause()
+{
+	disable();
+}
+
+void OdoQuaterZInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                     OdoQuaterWInput                         ********************/
 /*******************************************************************************************************/
@@ -675,16 +796,25 @@ void OdoQuaterWInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterWInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoQuaterWInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.w;
 }
 
+void OdoQuaterWInput::onQuit()
+{
+	disable();
+}
+
+void OdoQuaterWInput::onPause()
+{
+	disable();
+}
+
+void OdoQuaterWInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                     OdoTwistLinInput                         ********************/
 /*******************************************************************************************************/
@@ -704,7 +834,6 @@ void OdoTwistLinInput::setparameters()
 void OdoTwistLinInput::uprerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistLinInput : Output dimension should be 3 !");
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoTwistLinInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
@@ -715,7 +844,20 @@ void OdoTwistLinInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->twist.twist.linear.z;
 }
 
+void OdoTwistLinInput::onQuit()
+{
+	disable();
+}
 
+void OdoTwistLinInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistLinInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                    OdoTwistLinXInput                         ********************/
 /*******************************************************************************************************/
@@ -732,16 +874,25 @@ void OdoTwistLinXInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinXInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistLinXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.x;
 }
 
+void OdoTwistLinXInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistLinXInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistLinXInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                    OdoTwistLinYInput                         ********************/
 /*******************************************************************************************************/
@@ -758,17 +909,26 @@ void OdoTwistLinYInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinYInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistLinYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.y;
 }
 
 
+void OdoTwistLinYInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistLinYInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistLinYInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                    OdoTwistLinZInput                         ********************/
 /*******************************************************************************************************/
@@ -785,16 +945,25 @@ void OdoTwistLinZInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinZInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistLinZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.z;
 }
 
+void OdoTwistLinZInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistLinZInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistLinZInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                    OdoTwistAngInput                         ********************/
@@ -815,7 +984,6 @@ void OdoTwistAngInput::setparameters()
 void OdoTwistAngInput::uprerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistAngInput : Output dimension should be 3 !");
-        subscribe(topic_name, (int)(size_queue()()) );
 }
 
 void OdoTwistAngInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
@@ -826,6 +994,20 @@ void OdoTwistAngInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->twist.twist.angular.z;
 }
 
+void OdoTwistAngInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistAngInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistAngInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                  OdoTwistAngRollInput                        ********************/
@@ -843,16 +1025,25 @@ void OdoTwistAngRollInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngRollInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistAngRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.x;
 }
 
+void OdoTwistAngRollInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistAngRollInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistAngRollInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 /*******************************************************************************************************/
 /*********************                  OdoTwistAngPitchInput                       ********************/
 /*******************************************************************************************************/
@@ -869,16 +1060,25 @@ void OdoTwistAngPitchInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngPitchInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistAngPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.y;
 }
 
+void OdoTwistAngPitchInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistAngPitchInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistAngPitchInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
 
 /*******************************************************************************************************/
 /*********************                    OdoTwistAngYawInput                       ********************/
@@ -896,14 +1096,23 @@ void OdoTwistAngYawInput::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngYawInput::uprerun()
-{
-        subscribe(topic_name, (int)(size_queue()()) );
-}
-
 void OdoTwistAngYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.z;
 }
 
 
+void OdoTwistAngYawInput::onQuit()
+{
+	disable();
+}
+
+void OdoTwistAngYawInput::onPause()
+{
+	disable();
+}
+
+void OdoTwistAngYawInput::onRun()
+{
+	enable( topic_name, (int)(size_queue()())   );
+}
