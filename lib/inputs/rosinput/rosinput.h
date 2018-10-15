@@ -41,7 +41,6 @@ class ScalarInput : public FScalar , public RosSubscriber<std_msgs::Float64>
 		ScalarInput() :  RosSubscriber<std_msgs::Float64>(){}
 		virtual ~ScalarInput(){}
 
-		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 		
