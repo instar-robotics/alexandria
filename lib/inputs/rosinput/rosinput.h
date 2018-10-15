@@ -41,10 +41,12 @@ class ScalarInput : public FScalar , public RosSubscriber<std_msgs::Float64>
 		ScalarInput() :  RosSubscriber<std_msgs::Float64>(){}
 		virtual ~ScalarInput(){}
 
-		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 		
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
 		virtual void callback(const std_msgs::Float64::ConstPtr &msg);
 };
 
@@ -65,12 +67,13 @@ class MatrixInput : public FMatrix , public RosSubscriber<std_msgs::Float64Multi
 		MatrixInput() :  RosSubscriber<std_msgs::Float64MultiArray>()  {}
 		virtual ~MatrixInput(){}
 
-		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+                virtual void onRun();
+                virtual void onPause();
 		virtual void callback( const std_msgs::Float64MultiArray::ConstPtr &msg );
-
 };
 
 /*
@@ -90,10 +93,12 @@ class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 		JoyAxesInput() : RosSubscriber<sensor_msgs::Joy>() {}
 		virtual ~JoyAxesInput(){}
 		
-		virtual void uprerun();
 		virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
 		virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
@@ -111,13 +116,15 @@ class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 ISInput axe;
 
         public :
-                JoyAxeInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                JoyAxeInput() : FScalar() ,  RosSubscriber<sensor_msgs::Joy>() {}
                 virtual ~JoyAxeInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
@@ -135,18 +142,20 @@ class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
                 ISInput sleep;
 
         public :
-                JoyButtonsInput() : RosSubscriber<sensor_msgs::Joy>() {}
+                JoyButtonsInput() : FMatrix(),  RosSubscriber<sensor_msgs::Joy>() {}
                 virtual ~JoyButtonsInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
 /*
- * JoyAxeInput : ROS Input for one Joystick's axe value
+ * JoyButtonInput : ROS Input for one Joystick's axe value
  * button : the ID of the button in the buttons's array
  */
 class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
@@ -162,10 +171,12 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 JoyButtonInput() : RosSubscriber<sensor_msgs::Joy>() {}
                 virtual ~JoyButtonInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
 
@@ -186,10 +197,13 @@ class OdoPosInput :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 		OdoPosInput() : RosSubscriber<nav_msgs::Odometry>() {}
 		virtual ~OdoPosInput(){}
 
-                virtual void uprerun();
+		virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -210,12 +224,13 @@ class OdoPosXInput :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoPosXInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoPosXInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
-
 };
 
 /*
@@ -235,12 +250,13 @@ class OdoPosYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoPosYInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoPosYInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
-
 };
 
 /*
@@ -260,10 +276,12 @@ class OdoPosZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoPosZInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoPosZInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -284,10 +302,13 @@ class OdoEulerInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoEulerInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerInput(){}
 
-                virtual void uprerun();
+		virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -308,10 +329,12 @@ class OdoEulerRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
                 OdoEulerRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerRollInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 }; 
 
@@ -332,10 +355,12 @@ class OdoEulerPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odomet
                 OdoEulerPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerPitchInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -356,10 +381,12 @@ class OdoEulerYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry
                 OdoEulerYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerYawInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -379,10 +406,13 @@ class OdoQuaterInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuaterInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterInput(){}
 
-                virtual void uprerun();
+		virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -403,10 +433,12 @@ class OdoQuaterXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuaterXInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterXInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -427,10 +459,12 @@ class OdoQuaterYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuaterYInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterYInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -452,10 +486,12 @@ class OdoQuaterZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuaterZInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterZInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -477,10 +513,12 @@ class OdoQuaterWInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuaterWInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterWInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -502,10 +540,13 @@ class OdoTwistLinInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
                 OdoTwistLinInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinInput(){}
 
-                virtual void uprerun();
+		virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -527,10 +568,12 @@ class OdoTwistLinXInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
                 OdoTwistLinXInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinXInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 }; 
 
@@ -551,10 +594,12 @@ class OdoTwistLinYInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
                 OdoTwistLinYInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinYInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 
 };
@@ -576,10 +621,12 @@ class OdoTwistLinZInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
                 OdoTwistLinZInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinZInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -600,10 +647,13 @@ class OdoTwistAngInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
                 OdoTwistAngInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngInput(){}
 
-                virtual void uprerun();
+		virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 
 };
@@ -625,10 +675,12 @@ class OdoTwistAngRollInput : public FScalar, public RosSubscriber<nav_msgs::Odom
                 OdoTwistAngRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngRollInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -649,10 +701,12 @@ class OdoTwistAngPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odo
                 OdoTwistAngPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngPitchInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -673,12 +727,13 @@ class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odome
                 OdoTwistAngYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngYawInput(){}
 
-                virtual void uprerun();
                 virtual void compute();
                 virtual void setparameters();
 
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
-
 
 #endif // __ROS_INPUT_HPP__
