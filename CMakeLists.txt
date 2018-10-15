@@ -4,6 +4,8 @@ project(alexandria)
 set(CATKIN_DEP
   kheops
   joy
+  tf
+  nav_msgs
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})
