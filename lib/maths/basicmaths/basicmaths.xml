@@ -47,7 +47,7 @@
 			<icon>argmin2d.svg</icon>
 		</function>
 		<function>
-			<name>Max</name>
+			<name>ValueMax</name>
 			<output type="SCALAR">	
 			</output>	
 			<inputs>
@@ -58,7 +58,7 @@
 			<icon>max.svg</icon>
 		</function>	
 		<function>
-			<name>Min</name>
+			<name>ValueMin</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
