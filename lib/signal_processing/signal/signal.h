@@ -97,12 +97,12 @@ class MMFrontDetection : public FMatrix
 };
 
 
-/********************************************************************************************************/
-/*********************************************  Threshold   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/******************************************  PiecewiseLin   ********************************************/
+/*******************************************************************************************************/
 
 // bounded [0,1]
-class MThreshold : public FMatrix
+class MPiecewiseLin : public FMatrix
 {
         private :
 
@@ -110,13 +110,13 @@ class MThreshold : public FMatrix
 
         public :
 
-                virtual ~MThreshold(){}
+                virtual ~MPiecewiseLin(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class SThreshold : public FScalar
+class SPiecewiseLin : public FScalar
 {
         private :
 
@@ -124,14 +124,14 @@ class SThreshold : public FScalar
 
         public :
 
-                virtual ~SThreshold(){}
+                virtual ~SPiecewiseLin(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
 // bounded [min,max]
-class MThreshold_Custom : public FMatrix
+class MPiecewiseLinCustom : public FMatrix
 {
         private :
 
@@ -142,13 +142,13 @@ class MThreshold_Custom : public FMatrix
 
         public :
 
-                virtual ~MThreshold_Custom(){}
+                virtual ~MPiecewiseLinCustom(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class SThreshold_Custom : public FScalar
+class SPiecewiseLinCustom : public FScalar
 {
         private :
 
@@ -159,13 +159,13 @@ class SThreshold_Custom : public FScalar
 
         public :
 
-                virtual ~SThreshold_Custom(){}
+                virtual ~SPiecewiseLinCustom(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class MSSThreshold_Custom : public FMatrix
+class MSSPiecewiseLinCustom : public FMatrix
 {
         private :
 
@@ -176,14 +176,14 @@ class MSSThreshold_Custom : public FMatrix
 
         public :
 
-                virtual ~MSSThreshold_Custom(){}
+                virtual ~MSSPiecewiseLinCustom(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
 
-class MMSThreshold_Custom : public FMatrix
+class MMSPiecewiseLinCustom : public FMatrix
 {
         private :
                 ISMInput inMatrix;
@@ -193,13 +193,13 @@ class MMSThreshold_Custom : public FMatrix
 
         public :
 
-                virtual ~MMSThreshold_Custom(){}
+                virtual ~MMSPiecewiseLinCustom(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class MSMThreshold_Custom : public FMatrix
+class MSMPiecewiseLinCustom : public FMatrix
 {
         private :
 
@@ -210,7 +210,7 @@ class MSMThreshold_Custom : public FMatrix
 
         public :
 
-                virtual ~MSMThreshold_Custom(){}
+                virtual ~MSMPiecewiseLinCustom(){}
 
                 virtual void compute();
                 virtual void setparameters();
