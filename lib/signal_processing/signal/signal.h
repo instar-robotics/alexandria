@@ -216,5 +216,92 @@ class MSMPiecewiseLinCustom : public FMatrix
                 virtual void setparameters();
 };
 
+/*******************************************************************************************************/
+/*******************************************  Heaviside   **********************************************/
+/*******************************************************************************************************/
+
+template<typename Scalar>
+struct HeaviFunc {
+  HeaviFunc(const Scalar& thres) : thres(thres) {}
+  const Scalar operator()(const Scalar& x) const { return  x < thres ? 0.0 : 1.0;   }
+  Scalar thres;
+};
+
+
+// bounded [0,1]
+class MHeaviside : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+
+        public :
+
+                virtual ~MHeaviside(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class SHeaviside : public FScalar
+{
+        private :
+
+                ISInput inScalar;
+
+        public :
+
+                virtual ~SHeaviside(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+
+class SHeavisideCustom : public FScalar
+{
+        private :
+
+                ISInput inScalar;
+		ISInput thres;
+
+        public :
+
+                virtual ~SHeavisideCustom(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MSHeavisideCustom : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+		ISInput thres;
+
+        public :
+
+                virtual ~MSHeavisideCustom(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MMHeavisideCustom : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+                ISMInput thres;
+
+        public :
+
+                virtual ~MMHeavisideCustom(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
 
 #endif // _SIGNAL_H_

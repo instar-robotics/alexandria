@@ -75,9 +75,9 @@ void SFrontDetection::compute()
 
 void SFrontDetection::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
-        Kernel::instance().bind(threshold,"threshold", getUuid());
-        Kernel::instance().bind(mode,"mode", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(threshold,"threshold", getUuid());
+        Kernel::iBind(mode,"mode", getUuid());
 	z_1 = 0;
 }
 
@@ -112,9 +112,9 @@ void MFrontDetection::compute()
 
 void MFrontDetection::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(threshold,"threshold", getUuid());
-        Kernel::instance().bind(mode,"mode", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(threshold,"threshold", getUuid());
+        Kernel::iBind(mode,"mode", getUuid());
 	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
 }
 
@@ -155,16 +155,16 @@ void MMFrontDetection::compute()
 
 void MMFrontDetection::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(threshold,"threshold", getUuid());
-        Kernel::instance().bind(mode,"mode", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(threshold,"threshold", getUuid());
+        Kernel::iBind(mode,"mode", getUuid());
 	
 	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
 }
 
-/********************************************************************************************************/
-/********************************************   THRESOLD   **********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/***************************************   PIECEWISE Linear   ******************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MPiecewiseLin);
 REGISTER_FUNCTION(SPiecewiseLin);
@@ -181,7 +181,7 @@ void MPiecewiseLin::compute()
 
 void MPiecewiseLin::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 
@@ -194,7 +194,7 @@ void SPiecewiseLin::compute()
 
 void SPiecewiseLin::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
 
@@ -205,9 +205,9 @@ void MPiecewiseLinCustom::compute()
 
 void MPiecewiseLinCustom::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(thresMin,"thresMin", getUuid());
-        Kernel::instance().bind(thresMax,"thresMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thresMin,"thresMin", getUuid());
+        Kernel::iBind(thresMax,"thresMax", getUuid());
 }
 
 void SPiecewiseLinCustom::compute()
@@ -219,9 +219,9 @@ void SPiecewiseLinCustom::compute()
 
 void SPiecewiseLinCustom::setparameters()
 {
-        Kernel::instance().bind(inScalar,"inScalar", getUuid());
-        Kernel::instance().bind(thresMin,"thresMin", getUuid());
-        Kernel::instance().bind(thresMax,"thresMax", getUuid());
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(thresMin,"thresMin", getUuid());
+        Kernel::iBind(thresMax,"thresMax", getUuid());
 }
 
 void MSSPiecewiseLinCustom::compute()
@@ -231,9 +231,9 @@ void MSSPiecewiseLinCustom::compute()
 
 void MSSPiecewiseLinCustom::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(thresMin,"thresMin", getUuid());
-        Kernel::instance().bind(thresMax,"thresMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thresMin,"thresMin", getUuid());
+        Kernel::iBind(thresMax,"thresMax", getUuid());
 }
 
 void MMSPiecewiseLinCustom::compute()
@@ -243,9 +243,9 @@ void MMSPiecewiseLinCustom::compute()
 
 void MMSPiecewiseLinCustom::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(thresMin,"thresMin", getUuid());
-        Kernel::instance().bind(thresMax,"thresMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thresMin,"thresMin", getUuid());
+        Kernel::iBind(thresMax,"thresMax", getUuid());
 }
 
 void MSMPiecewiseLinCustom::compute()
@@ -255,8 +255,80 @@ void MSMPiecewiseLinCustom::compute()
 
 void MSMPiecewiseLinCustom::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(thresMin,"thresMin", getUuid());
-        Kernel::instance().bind(thresMax,"thresMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thresMin,"thresMin", getUuid());
+        Kernel::iBind(thresMax,"thresMax", getUuid());
 }
 
+/*******************************************************************************************************/
+/******************************************   HEAVISIDE   **********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(MHeaviside);
+REGISTER_FUNCTION(SHeaviside);
+REGISTER_FUNCTION(MMHeavisideCustom);
+REGISTER_FUNCTION(MSHeavisideCustom);
+REGISTER_FUNCTION(SHeavisideCustom);
+
+void MHeaviside::compute()
+{
+ 	output = inMatrix()(output).unaryExpr([](double elem)
+    	{
+		return elem < 0.0 ? 0.0 : 1.0; 
+    	});
+}
+
+void MHeaviside::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+
+void SHeaviside::compute()
+{
+        if( inScalar()() < 0 ) output = 0;
+        else output = 1;
+}
+
+void SHeaviside::setparameters()
+{
+        Kernel::instance().bind(inScalar,"inScalar", getUuid());
+}
+
+
+void SHeavisideCustom::compute()
+{
+        if( inScalar()() < thres()() ) output = 0;
+        else output = 1;
+}
+
+void SHeavisideCustom::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(thres,"thres", getUuid());
+}
+
+void MSHeavisideCustom::compute()
+{
+        output = inMatrix()(output).unaryExpr(HeaviFunc<double>(thres()()));
+}
+
+void MSHeavisideCustom::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thres,"thres", getUuid());
+}
+
+void MMHeavisideCustom::compute()
+{
+        output = inMatrix()(output).binaryExpr(thres()(), [](double e1, double e2)
+        {
+                return e1 < e2 ? 0.0 : 1.0;
+        });
+}
+
+void MMHeavisideCustom::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(thres,"thres", getUuid());
+}
