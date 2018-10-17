@@ -54,7 +54,7 @@
 			<icon>Matrix-Matrix-Front_Detection.svg</icon>
 		</function>
 		<function>
-			<name>MThreshold</name>
+			<name>MPiecewiseLin</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -62,10 +62,10 @@
 					<name>inMatrix</name>
 				</input>
 			</inputs>
-			<icon>Matrix-Threshold.svg</icon>
+			<icon>Matrix-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>SThreshold</name>
+			<name>SPiecewiseLin</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -73,10 +73,10 @@
 					<name>inScalar</name>
 				</input>
 			</inputs>
-			<icon>Scalar-Threshold.svg</icon>
+			<icon>Scalar-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>MThreshold_Custom</name>
+			<name>MPiecewiseLinCustom</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -90,10 +90,10 @@
 					<name>thresMax</name>
 				</input>
 			</inputs>
-			<icon>Matrix-Threshold.svg</icon>
+			<icon>Matrix-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>SThreshold_Custom</name>
+			<name>SPiecewiseLinCustom</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -107,10 +107,10 @@
 					<name>thresMax</name>
 				</input>
 			</inputs>
-			<icon>Scalar-Threshold.svg</icon>
+			<icon>Scalar-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>MSSThreshold_Custom</name>
+			<name>MSSPiecewiseLinCustom</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -124,10 +124,10 @@
 					<name>thresMax</name>
 				</input>
 			</inputs>
-			<icon>Scalar-Threshold.svg</icon>
+			<icon>Scalar-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>MMSThreshold_Custom</name>
+			<name>MMSPiecewiseLinCustom</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -141,10 +141,10 @@
 					<name>thresMax</name>
 				</input>
 			</inputs>
-			<icon>Matrix-Threshold.svg</icon>
+			<icon>Matrix-PiecewiseLin.svg</icon>
 		</function>
 		<function>
-			<name>MSMThreshold_Custom</name>
+			<name>MSMPiecewiseLinCustom</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -158,7 +158,7 @@
 					<name>thresMax</name>
 				</input>
 			</inputs>
-			<icon>Matrix-Threshold.svg</icon>
+			<icon>Matrix-PiecewiseLin.svg</icon>
 		</function>
 	</functions>
 </description>

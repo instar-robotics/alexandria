@@ -166,94 +166,94 @@ void MMFrontDetection::setparameters()
 /********************************************   THRESOLD   **********************************************/
 /********************************************************************************************************/
 
-REGISTER_FUNCTION(MThreshold);
-REGISTER_FUNCTION(SThreshold);
-REGISTER_FUNCTION(MThreshold_Custom);
-REGISTER_FUNCTION(SThreshold_Custom);
-REGISTER_FUNCTION(MSSThreshold_Custom);
-REGISTER_FUNCTION(MMSThreshold_Custom);
-REGISTER_FUNCTION(MSMThreshold_Custom);
+REGISTER_FUNCTION(MPiecewiseLin);
+REGISTER_FUNCTION(SPiecewiseLin);
+REGISTER_FUNCTION(MPiecewiseLinCustom);
+REGISTER_FUNCTION(SPiecewiseLinCustom);
+REGISTER_FUNCTION(MSSPiecewiseLinCustom);
+REGISTER_FUNCTION(MMSPiecewiseLinCustom);
+REGISTER_FUNCTION(MSMPiecewiseLinCustom);
 
-void MThreshold::compute()
+void MPiecewiseLin::compute()
 {
         output = (inMatrix()(output).array().max(0)).min(1)  ;
 }
 
-void MThreshold::setparameters()
+void MPiecewiseLin::setparameters()
 {
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 
 
-void SThreshold::compute()
+void SPiecewiseLin::compute()
 {
         if( inScalar()() < 0 ) output = 0;
         else if( inScalar()() > 1 ) output = 1;
         else output = inScalar()();
 }
 
-void SThreshold::setparameters()
+void SPiecewiseLin::setparameters()
 {
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
 
-void MThreshold_Custom::compute()
+void MPiecewiseLinCustom::compute()
 {
         output = (inMatrix()(output).array().max( thresMin()().array() )).min( thresMax()().array() );
 }
 
-void MThreshold_Custom::setparameters()
+void MPiecewiseLinCustom::setparameters()
 {
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
         Kernel::instance().bind(thresMin,"thresMin", getUuid());
         Kernel::instance().bind(thresMax,"thresMax", getUuid());
 }
 
-void SThreshold_Custom::compute()
+void SPiecewiseLinCustom::compute()
 {
         if( inScalar()() < thresMin()() ) output = thresMin()();
         else if( inScalar()() > thresMax()() ) output = thresMax()() ;
         else output = inScalar()();
 }
 
-void SThreshold_Custom::setparameters()
+void SPiecewiseLinCustom::setparameters()
 {
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
         Kernel::instance().bind(thresMin,"thresMin", getUuid());
         Kernel::instance().bind(thresMax,"thresMax", getUuid());
 }
 
-void MSSThreshold_Custom::compute()
+void MSSPiecewiseLinCustom::compute()
 {
         output = (inMatrix()(output).array().max( thresMin()()  )).min( thresMax()() )  ;
 }
 
-void MSSThreshold_Custom::setparameters()
+void MSSPiecewiseLinCustom::setparameters()
 {
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
         Kernel::instance().bind(thresMin,"thresMin", getUuid());
         Kernel::instance().bind(thresMax,"thresMax", getUuid());
 }
 
-void MMSThreshold_Custom::compute()
+void MMSPiecewiseLinCustom::compute()
 {
         output = (inMatrix()(output).array().max( thresMin()().array() )).min( thresMax()() );
 }
 
-void MMSThreshold_Custom::setparameters()
+void MMSPiecewiseLinCustom::setparameters()
 {
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
         Kernel::instance().bind(thresMin,"thresMin", getUuid());
         Kernel::instance().bind(thresMax,"thresMax", getUuid());
 }
 
-void MSMThreshold_Custom::compute()
+void MSMPiecewiseLinCustom::compute()
 {
         output = (inMatrix()(output).array().max( thresMin()() )).min( thresMax()().array() );
 }
 
-void MSMThreshold_Custom::setparameters()
+void MSMPiecewiseLinCustom::setparameters()
 {
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
         Kernel::instance().bind(thresMin,"thresMin", getUuid());

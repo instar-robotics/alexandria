@@ -17,5 +17,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>kheops</depend>
   <depend>joy</depend>
+  <depend>tf</depend>
+  <depend>nav_msgs</depend>
 
 </package>
