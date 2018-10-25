@@ -485,7 +485,7 @@
                                         <name>range_max</name>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>1d_lidar.svg</icon>
                 </function>
 	</functions>
 </description>
