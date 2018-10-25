@@ -6,6 +6,7 @@ set(CATKIN_DEP
   joy
   tf
   nav_msgs
+  sensor_msgs
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})

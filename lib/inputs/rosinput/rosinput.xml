@@ -467,5 +467,25 @@
                         </inputs>
                         <icon>odometry.svg</icon>
                 </function>
+		<function>
+                        <name>LaserScanInput</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>range_max</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
 	</functions>
 </description>

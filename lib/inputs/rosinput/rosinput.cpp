@@ -16,6 +16,8 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "rosinput.h"
 #include <tf/tf.h>
+#include <algorithm>
+#include <cmath>
 
 REGISTER_FUNCTION(ScalarInput);
 REGISTER_FUNCTION(MatrixInput);
@@ -44,6 +46,7 @@ REGISTER_FUNCTION(OdoTwistAngInput);
 REGISTER_FUNCTION(OdoTwistAngRollInput);
 REGISTER_FUNCTION(OdoTwistAngPitchInput);
 REGISTER_FUNCTION(OdoTwistAngYawInput);
+REGISTER_FUNCTION(LaserScanInput);
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/
@@ -1116,3 +1119,69 @@ void OdoTwistAngYawInput::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
+
+
+/*******************************************************************************************************/
+/*********************                       LaserScanInput                         ********************/
+/*******************************************************************************************************/
+
+void LaserScanInput::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()() ));
+}
+
+void LaserScanInput::setparameters()
+{
+	if( output.rows() > 1 )  throw std::invalid_argument("LaserScanInput : Output must be a Vector [ROW = 1 and Cols = N]");
+
+	moy.assign(output.cols(), 0);
+
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+        Kernel::iBind(range_max,"range_max", getUuid());
+}
+
+void LaserScanInput::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
+{
+	double RM = std::min(range_max()(),  (double)(msg->range_max) ); 
+	double offset =  M_PI - fabs(msg->angle_min);
+
+	for( unsigned int i = 0 ; i < msg->ranges.size() ; i++)
+	{
+		unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( output.cols() / (2* M_PI)) ;
+
+		double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
+		if( value < 0 ) value = 0;
+
+		if( moy[j] == 0 ) output(0,j) = value;
+		else output(0,j) += value;
+
+		moy[j]++;
+	}
+
+	for(unsigned int i = 0 ; i < output.cols() ; i++)
+	{
+
+		if( moy[i] > 0 ) output(0,i) = output(0,i) / moy[i];
+		else output(0,i) = 0;
+
+		moy[i] = 0;
+	}
+}
+
+void LaserScanInput::onQuit()
+{
+        disable();
+}
+
+void LaserScanInput::onPause()
+{
+        disable();
+}
+
+void LaserScanInput::onRun()
+{
+        enable( topic_name, (int)(size_queue()())   );
+}
+

@@ -20,6 +20,10 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
 
+// Note : 
+//  Input lower than 0.5 -> 0 logic
+//  Input greater than 0.5 -> 1 logic
+
 /********************************************************************************************************/
 /**************************************************  AND  ***********************************************/
 /********************************************************************************************************/
