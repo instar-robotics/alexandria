@@ -1168,59 +1168,6 @@ void LaserScanInput::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 
 		moy[i] = 0;
 	}
-/*
-
-	if( msg->ranges.size() == output.cols() ) 
-	{
-		std::cout << "egal" << std::endl;
-		for( unsigned int i = 0 ; i < msg->ranges.size() ; i++)
-		{
-			output(0,i) = 1- (msg->ranges[i] - msg->range_min) / (rm - msg->range_min) ;
-			if( output(0,i) < 0) output(0,i) = 0;
-		}	
-	}
-	else if( msg->ranges.size() > output.cols() )
-	{
-		int window =  msg->ranges.size()  / ( output.cols()); 
-
-		for( unsigned int i = 0 ; i < output.cols() ; i++)
-                {
-			double vmoy = 0 ;
-			unsigned int nbv = 0;
-			for( unsigned int j = 0;  j < window ; j++)
-			{
-				unsigned int in = window * i - (window-j)/2 ;
-
-				if( in < msg->ranges.size() ) 
-				{
-					double value = 
-
-                        		vmoy += 1 - (msg->ranges[in] - msg->range_min) / (rm - msg->range_min) ;
-					nbv++;
-				}
-			}
-                        output(0,i) =  vmoy / nbv ; 
-			if( output(0,i) < 0) output(0,i) = 0;
-                } 	
-	
-	}
-	else if(  msg->ranges.size() < output.cols())
-	{
-		unsigned int range = output.cols() / msg->ranges.size() ; 
-		for( unsigned int i =0; i < msg->ranges.size() ; i++)
-		{
-			unsigned int in = range * i ;
-
-			if( in < output.cols() ) 
-			{
-				//output(0,in) = 1- (msg->ranges[i] - msg->range_min) / (msg->range_max - msg->range_min) ;
-				output(0,in) = 1- (msg->ranges[i] - msg->range_min) / (rm - msg->range_min) ;
-				if( output(0,in) < 0) output(0,in) = 0;
-
-			}	
-		}	
-	}
-	*/
 }
 
 void LaserScanInput::onQuit()
