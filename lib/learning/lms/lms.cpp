@@ -23,10 +23,10 @@ void LMS::compute()
 	static auto mout = getMapRow(output);
 
 	// Compute output activity
-	mout = conditionnals(0).irow()  * conditionnals(0).w();
+	mout.noalias() = conditionnals(0).irow()  * conditionnals(0).w();
 	for(unsigned int i=1; i < conditionnals.size(); i++)
         {
-		mout +=  conditionnals(i).irow() * conditionnals(i).w();
+		mout.noalias() +=  conditionnals(i).irow() * conditionnals(i).w();
         }
 
 	// Compute gradiant
@@ -40,6 +40,7 @@ void LMS::compute()
 		auto f = conditionnals(i).fm(); 
 
 		// Update weight
+		// noalias is used to avoid temporary 
 		w.noalias() += filter( ve * vgrad , f );
 	}
 }

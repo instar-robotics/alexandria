@@ -17,6 +17,7 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef __ROS_INPUT_HPP__
 #define __ROS_INPUT_HPP__
 
+#include <vector>
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
 #include "kheops/ros/rossubscriber.h"
@@ -24,6 +25,12 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "std_msgs/Float64.h"
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/Joy.h>
+#include <sensor_msgs/LaserScan.h>
+
+
+/*******************************************************************************************************/
+/*****************             Kheops Basic Type Input (Scalar and Matrix)           *******************/
+/*******************************************************************************************************/
 
 /*
  * ScalarInput : ROS Input for SCALAR data
@@ -35,6 +42,7 @@ class ScalarInput : public FScalar , public RosSubscriber<std_msgs::Float64>
 		IString topic_name;
 		ISInput size_queue;
 		ISInput sleep;
+
 
 	public :
 		
@@ -75,6 +83,10 @@ class MatrixInput : public FMatrix , public RosSubscriber<std_msgs::Float64Multi
                 virtual void onPause();
 		virtual void callback( const std_msgs::Float64MultiArray::ConstPtr &msg );
 };
+
+/*******************************************************************************************************/
+/*****************                            Joystick Inputs                        *******************/
+/*******************************************************************************************************/
 
 /*
  * JoyAxesInput : ROS Input for Joystick's axes values
@@ -179,6 +191,10 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
 		virtual void onPause();
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
 };
+
+/*******************************************************************************************************/
+/*****************                          Odometry Inputs                          *******************/
+/*******************************************************************************************************/
 
 /*
  * OdoPosInput : ROS Input Odometric Cartesian Position
@@ -734,6 +750,36 @@ class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odome
 		virtual void onRun();
 		virtual void onPause();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
+};
+
+/*******************************************************************************************************/
+/*****************                         LaserScan Inputs                          *******************/
+/*******************************************************************************************************/
+
+class LaserScanInput : public FMatrix, public RosSubscriber<sensor_msgs::LaserScan>
+{
+	private : 
+
+		IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+                ISInput range_max;
+
+		std::vector<unsigned int> moy; 
+
+	public : 
+
+                LaserScanInput() : RosSubscriber<sensor_msgs::LaserScan>(){}
+                virtual ~LaserScanInput(){}
+
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void onQuit();
+                virtual void onRun();
+                virtual void onPause();
+                virtual void callback( const sensor_msgs::LaserScan::ConstPtr &msg );
 };
 
 #endif // __ROS_INPUT_HPP__
