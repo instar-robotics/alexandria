@@ -51,6 +51,16 @@ void MSAND::setparameters()
 //TODO
 void SAND::compute()
 {
+	output = inScalar(0)();
+
+	for(unsigned int i=1; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() > 0.5)	output += 1 / inScalar.size() ; 
+	}
+		
+	if(output < 1)	output = 0;
+	else output = 1;
+	
 }
 
 void SAND::setparameters()
