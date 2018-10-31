@@ -122,20 +122,15 @@ void MFrontDetection::setparameters()
 
 void MMFrontDetection::uprerun()
 {
-	if( !checkMode(mode, imode)) throw std::invalid_argument("SFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
+	if( !checkMode(mode, imode)) throw std::invalid_argument("MMFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
 }
 
 void MMFrontDetection::compute()
 {
 	static double eps = std::numeric_limits<double>::epsilon();
 	
- 	MatrixXd grad_1; 
-	threshold()(grad_1);
-	grad_1.array() = z_1;
-
-	MatrixXd grad;
-        inMatrix()(grad);
-        grad -= threshold() ;
+ 	auto grad_1 = threshold()() - z_1;
+	auto grad = inMatrix()() - threshold()() ;
 
         output =((grad.array()+eps)/abs(grad.array()+eps) + (grad_1.array()+eps)/abs(grad_1.array()+eps))/2 ;
 
@@ -176,7 +171,7 @@ REGISTER_FUNCTION(MSMPiecewiseLinCustom);
 
 void MPiecewiseLin::compute()
 {
-        output = (inMatrix()(output).array().max(0)).min(1)  ;
+        output = (inMatrix()().array().max(0)).min(1)  ;
 }
 
 void MPiecewiseLin::setparameters()
@@ -200,7 +195,7 @@ void SPiecewiseLin::setparameters()
 
 void MPiecewiseLinCustom::compute()
 {
-        output = (inMatrix()(output).array().max( thresMin()().array() )).min( thresMax()().array() );
+        output = (inMatrix()().array().max( thresMin()().array() )).min( thresMax()().array() );
 }
 
 void MPiecewiseLinCustom::setparameters()
@@ -226,7 +221,7 @@ void SPiecewiseLinCustom::setparameters()
 
 void MSSPiecewiseLinCustom::compute()
 {
-        output = (inMatrix()(output).array().max( thresMin()()  )).min( thresMax()() )  ;
+        output = (inMatrix()().array().max( thresMin()()  )).min( thresMax()() )  ;
 }
 
 void MSSPiecewiseLinCustom::setparameters()
@@ -238,7 +233,7 @@ void MSSPiecewiseLinCustom::setparameters()
 
 void MMSPiecewiseLinCustom::compute()
 {
-        output = (inMatrix()(output).array().max( thresMin()().array() )).min( thresMax()() );
+        output = (inMatrix()().array().max( thresMin()().array() )).min( thresMax()() );
 }
 
 void MMSPiecewiseLinCustom::setparameters()
@@ -250,7 +245,7 @@ void MMSPiecewiseLinCustom::setparameters()
 
 void MSMPiecewiseLinCustom::compute()
 {
-        output = (inMatrix()(output).array().max( thresMin()() )).min( thresMax()().array() );
+        output = (inMatrix()().array().max( thresMin()() )).min( thresMax()().array() );
 }
 
 void MSMPiecewiseLinCustom::setparameters()
@@ -272,7 +267,7 @@ REGISTER_FUNCTION(SHeavisideCustom);
 
 void MHeaviside::compute()
 {
- 	output = inMatrix()(output).unaryExpr([](double elem)
+ 	output = inMatrix()().unaryExpr([](double elem)
     	{
 		return elem < 0.0 ? 0.0 : 1.0; 
     	});
@@ -310,7 +305,7 @@ void SHeavisideCustom::setparameters()
 
 void MSHeavisideCustom::compute()
 {
-        output = inMatrix()(output).unaryExpr(HeaviFunc<double>(thres()()));
+        output = inMatrix()().unaryExpr(HeaviFunc<double>(thres()()));
 }
 
 void MSHeavisideCustom::setparameters()
@@ -321,10 +316,11 @@ void MSHeavisideCustom::setparameters()
 
 void MMHeavisideCustom::compute()
 {
-        output = inMatrix()(output).binaryExpr(thres()(), [](double e1, double e2)
+        output = inMatrix()().binaryExpr(thres()(), [](double e1, double e2)
         {
                 return e1 < e2 ? 0.0 : 1.0;
         });
+
 }
 
 void MMHeavisideCustom::setparameters()

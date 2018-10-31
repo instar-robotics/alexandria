@@ -176,7 +176,7 @@ REGISTER_FUNCTION(SAbs);
 
 void MAbs::compute()
 {
-	output = inMatrix()(output).array().abs() ;
+	output = inMatrix()().array().abs() ;
 }
 
 void MAbs::setparameters()
@@ -247,8 +247,8 @@ REGISTER_FUNCTION(SZ_1);
 
 void MDerivative::compute()
 {
-	output =  inMatrix()(output) - z_1;
-	inMatrix()(z_1); 
+	output =  inMatrix()() - z_1;
+  	z_1 = inMatrix()(); 
 }
 
 void MDerivative::setparameters()
@@ -272,7 +272,7 @@ void SDerivative::setparameters()
 void MZ_1::compute()
 {
 	output = z_1 ; 
-	inMatrix()(z_1);
+	z_1 = inMatrix()();
 }
 
 void MZ_1::setparameters()

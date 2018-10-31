@@ -26,7 +26,7 @@ REGISTER_FUNCTION(MSSum);
 
 void MSum::compute()
 {
-	inMatrix(0)(output);	
+	output = inMatrix(0)();	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
@@ -60,7 +60,7 @@ void MSSum::compute()
 {
 	double sSum=0;
 
-	inMatrix(0)(output);	
+	output = inMatrix(0)();	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
@@ -96,8 +96,7 @@ REGISTER_FUNCTION(SSSub);
 
 void MMSub::compute()
 {
-	diminuende()(output);
-	output -= subtrahend();
+	output = diminuende()() - subtrahend()();
 }
 
 void MMSub::setparameters()
@@ -108,8 +107,7 @@ void MMSub::setparameters()
 
 void MSSub::compute()
 {
-	diminuende()(output);
-	output.array() -= subtrahend()();
+	output = diminuende()().array() -subtrahend()();
 }
 
 void MSSub::setparameters()
@@ -139,7 +137,7 @@ REGISTER_FUNCTION(MSMul);
 
 void MMul::compute()
 {
-        inMatrix(0)(output);
+        output = inMatrix(0)();
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
@@ -180,7 +178,7 @@ void MSMul::compute()
                 sMul *= inScalar(i);
         }
 
-        inMatrix(0)(output);
+        output = inMatrix(0)();
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
@@ -207,8 +205,7 @@ REGISTER_FUNCTION(SSDiv);
 
 void MMDiv::compute()
 {
-	numerator()(output);
-	output /= denumerator();
+	output = numerator()().array() / denumerator()().array();
 }
 
 void  MMDiv::setparameters()
@@ -219,8 +216,7 @@ void  MMDiv::setparameters()
 
 void MSDiv::compute()
 {
-        numerator()(output);
-        output /= denumerator()();
+        output = numerator()().array() / denumerator()();
 }
 
 void  MSDiv::setparameters()

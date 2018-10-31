@@ -37,7 +37,7 @@
 			<icon>ros_input_scalar.svg</icon>
 		</function>	
 		<function>
-			<name>JoyAxesInput</name>
+			<name>JoyAxes</name>
 			<output type="MATRIX"> 
 			</output> 
 			<inputs>
@@ -54,7 +54,7 @@
 			<icon>joyaxesinput.svg</icon>
 		</function>	
 		<function>
-                        <name>JoyAxeInput</name>
+                        <name>JoyAxe</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -74,7 +74,7 @@
                         <icon>joyaxeinput.svg</icon>
                 </function>
 		<function>
-                        <name>JoyButtonsInput</name>
+                        <name>JoyButtons</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -91,7 +91,7 @@
                         <icon>joybuttonsinput.svg</icon>
                 </function>
                 <function>
-                        <name>JoyButtonInput</name>
+                        <name>JoyButton</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -111,7 +111,7 @@
                         <icon>joybuttoninput.svg</icon>
                 </function>
 		<function>
-                        <name>OdoPosInput</name>
+                        <name>OdoPos</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -128,7 +128,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoPosXInput</name>
+                        <name>OdoPosX</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -145,7 +145,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoPosYInput</name>
+                        <name>OdoPosY</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -162,7 +162,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoPosZInput</name>
+                        <name>OdoPosZ</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -179,7 +179,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoEulerInput</name>
+                        <name>OdoEuler</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -196,7 +196,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoEulerRollInput</name>
+                        <name>OdoEulerRoll</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -213,7 +213,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoEulerPitchInput</name>
+                        <name>OdoEulerPitch</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -230,7 +230,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoEulerYawInput</name>
+                        <name>OdoEulerYaw</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -247,7 +247,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoQuaterInput</name>
+                        <name>OdoQuater</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -264,7 +264,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoQuaterXInput</name>
+                        <name>OdoQuaterX</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -281,7 +281,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoQuaterYInput</name>
+                        <name>OdoQuaterY</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -298,7 +298,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoQuaterZInput</name>
+                        <name>OdoQuaterZ</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -315,7 +315,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoQuaterWInput</name>
+                        <name>OdoQuaterW</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -332,7 +332,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistLinInput</name>
+                        <name>OdoTwistLin</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -349,7 +349,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistLinXInput</name>
+                        <name>OdoTwistLinX</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -366,7 +366,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistLinYInput</name>
+                        <name>OdoTwistLinY</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -383,7 +383,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistLinZInput</name>
+                        <name>OdoTwistLinZ</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -400,7 +400,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistAngInput</name>
+                        <name>OdoTwistAng</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -417,7 +417,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistAngRollInput</name>
+                        <name>OdoTwistAngRoll</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -434,7 +434,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistAngPitchInput</name>
+                        <name>OdoTwistAngPitch</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -451,7 +451,7 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>OdoTwistAngYawInput</name>
+                        <name>OdoTwistAngYaw</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -468,7 +468,27 @@
                         <icon>odometry.svg</icon>
                 </function>
 		<function>
-                        <name>LaserScanInput</name>
+                        <name>Lidar1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input multiple="false" type="STRING">
+                                        <name>topic_name</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                </input>
+                                <input multiple="false" type="SCALAR_SCALAR">
+                                        <name>range_max</name>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                </function>
+		<function>
+                        <name>Lidar2D</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
