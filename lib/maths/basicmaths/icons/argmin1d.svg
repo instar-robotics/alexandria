@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="argmin.svg">
+   sodipodi:docname="argmin1d.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.919596"
-     inkscape:cx="-4.5786952"
+     inkscape:cx="-42.143743"
      inkscape:cy="43.964563"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -35,10 +35,10 @@
      fit-margin-left="2"
      fit-margin-right="2"
      fit-margin-bottom="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="992"
+     inkscape:window-width="3200"
+     inkscape:window-height="1645"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="41"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -63,7 +63,7 @@
        width="2.3211415"
        height="7.3456526"
        x="55.065598"
-       y="80.568718"
+       y="81.627052"
        ry="0.24698722" />
     <rect
        style="fill:#ff0000;fill-opacity:0.48235294;stroke:#1a1a1a;stroke-width:0.60280597;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
@@ -71,7 +71,7 @@
        width="2.4253588"
        height="2.332087"
        x="58.150841"
-       y="85.582268"
+       y="86.640602"
        ry="0.24698722" />
     <rect
        style="fill:#cccccc;fill-opacity:0.48809521;stroke:#1a1a1a;stroke-width:0.60280597;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
@@ -79,7 +79,7 @@
        width="2.2910151"
        height="6.2817931"
        x="61.474651"
-       y="81.632576"
+       y="82.69091"
        ry="0.24698722" />
     <rect
        style="fill:#cccccc;fill-opacity:0.48627451;stroke:#1a1a1a;stroke-width:0.60280597;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
@@ -87,7 +87,7 @@
        width="2.3178802"
        height="9.6135025"
        x="64.63726"
-       y="78.300842"
+       y="79.359177"
        ry="0.24698722" />
     <rect
        style="fill:#cccccc;fill-opacity:0.48627451;stroke:#1a1a1a;stroke-width:0.60280597;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
@@ -95,14 +95,14 @@
        width="2.4253604"
        height="4.4278526"
        x="67.719246"
-       y="83.486504"
+       y="84.544838"
        ry="0.24698722" />
     <rect
        style="fill:#ff0000;fill-opacity:0.48235294;stroke:none;stroke-width:1.13736975;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.48235294"
        id="rect7088"
        width="2.0518916"
        height="0.96895009"
-       x="-90.830215"
+       x="-91.88855"
        y="-59.958046"
        ry="0.48447505"
        transform="matrix(0,-1,-1,0,0,0)" />
@@ -111,8 +111,8 @@
        id="rect7088-5"
        width="2.0518916"
        height="0.96895009"
-       x="-109.20697"
-       y="-11.550738"
+       x="-110.13663"
+       y="-11.044955"
        ry="0.48447505"
        transform="matrix(-0.4779051,-0.87841147,-0.87841147,0.4779051,0,0)" />
     <rect
@@ -120,20 +120,20 @@
        id="rect7088-5-9"
        width="2.0518916"
        height="0.96895009"
-       x="-52.361553"
-       y="92.933823"
+       x="-53.291203"
+       y="93.439606"
        ry="0.48447505"
        transform="rotate(-61.45133)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:4.85172462px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12129311"
-       x="57.464256"
-       y="80.278709"
+       style="font-style:normal;font-weight:normal;font-size:5.83647585px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1459119"
+       x="57.481777"
+       y="81.623772"
        id="text822"><tspan
          sodipodi:role="line"
          id="tspan820"
-         x="57.464256"
-         y="80.278709"
-         style="stroke-width:0.12129311">id</tspan></text>
+         x="57.481777"
+         y="81.623772"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.1459119">id</tspan></text>
   </g>
 </svg>
