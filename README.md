@@ -456,7 +456,7 @@ typedef Input<iScalar> ISInput;
   5. operator*=(double, iScalar) : return double * input * weight 
 
 * iSMatrix operators : 
-  1. operator() : return input * weight  [Becareful : return a temporary MatrixXd ! So avoid this operator if possible]
+  1. operator() : return input * weight  
   2. operator(MatrixXd & res) : copy in res =  input * weight  [Better than 1.]
   2. operator+=(double, iSMatrix) : copy  double + input * weight     
   3. operator-=(double, iSMatrix) : copy  double - input * weight 
@@ -499,22 +499,22 @@ typedef Input<iScalar> ISInput;
   
     MatrixXd output; //Declare an Eigen Matrix
     
-    // Good solution : 
-    // Here get the first iMarix and apply operator(MatrixXd) to compute input * weight and copy the result in output. 
-    in(0)(output);   
+    output = in(0)();  // Return I * W and init output
 
-    // Bad solution !! 
-    output = in(0)();  // Here you use a temporary MatrixXd before copying into output !
+    // Another solution : Here get the first iMarix and apply operator(MatrixXd) to compute input * weight and copy the result in output. 
+    // in(0)(output);   
 
+    
     for(unsigned int n=1; i < in.size(); i++)
     {
-        // Best practice 
+        //This 3 syntax are equivalent in performance
+        
         // use operator(int n) of Input class to get the N iSMatrix
         // then call operator+= for iSMatrix class [ double + input * weight ]
         output += in(n) ;    
         
-       // Bad solution !! 
-        output += in(n)()   // Here you use a temporary MatrixXd before copying into output !
+       // You can use :  
+        output += in(n)()   
         
         // Alternative :  
         output += in(n).i() * in(n).w();   // or in.i(n).i() * in.i(n).w(); 
