@@ -97,10 +97,10 @@ virtual void setparameters();
 * There are a third function which are optional : 
 
 ```javascript
-virtual void uuprerun();
+virtual void uprerun();
 ```
 
-* **uuprerun** function is called by kheops after creating the graph.  We will describe in details this function later.
+* **uprerun** function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
 ```javascript
@@ -352,7 +352,7 @@ void HelloFunct::setparameters()
 
 ### kernel loading parameters ###
 
-* We describe **setparameters** and **uuprerun** functions.
+* We describe **setparameters** and **uprerun** functions.
 * Each function is called by the kernel at a specific moment.
 
 * **setparameters** :
@@ -362,7 +362,7 @@ void HelloFunct::setparameters()
   4. In case of **FMatrix**, the output dimension is set an the MatrixXd is initialize 
   5. Output is set to zero (SCALAR and MATRIX)
 
-* **uuprerun** :
+* **uprerun** :
   1. is called after the kernel load the graph
   2. At this moment, the graph is complete and each input can acces to the Output data from the predecessor Function (from iLink)
 
