@@ -97,10 +97,10 @@ virtual void setparameters();
 * There are a third function which are optional : 
 
 ```javascript
-virtual void prerun();
+virtual void uuprerun();
 ```
 
-* **prerun** function is called by kheops after creating the graph.  We will describe in details this function later.
+* **uuprerun** function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
 ```javascript
@@ -352,7 +352,7 @@ void HelloFunct::setparameters()
 
 ### kernel loading parameters ###
 
-* We describe **setparameters** and **prerun** functions.
+* We describe **setparameters** and **uuprerun** functions.
 * Each function is called by the kernel at a specific moment.
 
 * **setparameters** :
@@ -362,7 +362,7 @@ void HelloFunct::setparameters()
   4. In case of **FMatrix**, the output dimension is set an the MatrixXd is initialize 
   5. Output is set to zero (SCALAR and MATRIX)
 
-* **prerun** :
+* **uuprerun** :
   1. is called after the kernel load the graph
   2. At this moment, the graph is complete and each input can acces to the Output data from the predecessor Function (from iLink)
 
@@ -386,10 +386,10 @@ class HelloFunct : public FMatrix
 };
 ```
 
-* But if you need to initialize attribute member with Input/Output parameters, you have to do in **setparameters** or **prerun** function.
+* But if you need to initialize attribute member with Input/Output parameters, you have to do in **setparameters** or **uprerun** function.
 * Depend on what you need :
  1. if you need only output information : you can initialize your attribute in **setparameters**
- 2. if you need some input informaton : you have to initailize your attribute in **prerun**
+ 2. if you need some input informaton : you have to initailize your attribute in **uprerun**
 
 * For example, you add a MatrixXd **tempMat** with the same size that **output Matrix**.
 * To initialize **tempMat** you ony need to add : 
@@ -408,7 +408,7 @@ void HelloFunct::setparameters()
 * Now, you need to create a tempMat with the same dimension than Input dimension.
 
 ```javascript
-void HelloFunct::prerun() 
+void HelloFunct::uprerun() 
 {
     tempMat = MatrixXd::Constant(inMat().i().rows(),inMat().i().cols(),0);  // create a tempMat with the same dimension that Input 
 }
