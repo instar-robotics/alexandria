@@ -298,7 +298,7 @@ void HelloFunct::setparameters()
 ### Input with multiple iLink ###
 
 * By default, an Input could receive only one iLink
-* If you want to add more than one iLink on an Input you have to specify that the Inpu is multiple.
+* If you want to add more than one iLink on an Input you have to specify that the Input is multiple.
 * In **setparameters** function :
 
 ```javascript
@@ -317,12 +317,38 @@ void HelloFunct::setparameters()
      <input type="SCALAR_MATRIX"  multiple="true">
         <name>inMat</name>
      </input> 
-     <input type="STRING"  multiple="false">
+     <input type="STRING">
        <name>myString</name>
      </input> 
 ```
 
-* Note : you have to specify the attribute **multiple** in every case ! Even if input is not multiple.
+### Check Size for Input ###
+
+* By default when you add an input to a function, kheops check that the dimension of object from iLink is egal to the dimension of the function output.
+* By default : **checkSize** is **true**
+* For Scalar input, check size is ignore (because it is a non-sense to check 1-D object)
+* You could inhibate this behaviour by calling **setCheckSize** in **setparameters** function : 
+
+```javascript
+void HelloFunct::setparameters() 
+{
+        inMat.setCheckSize(false);   // kheops will not check size for inMat
+
+        Kernel::iBind(inMat,"inMat", getUuid());
+        Kernel::iBind(myString,"myString", getUuid());
+}
+```
+
+* And in the XML File : 
+
+```xml
+     <input type="SCALAR_MATRIX"  checkSize="false">
+        <name>inMat</name>
+     </input> 
+     <input type="STRING">
+       <name>myString</name>
+     </input> 
+```
 
 ### kernel loading parameters ###
 
