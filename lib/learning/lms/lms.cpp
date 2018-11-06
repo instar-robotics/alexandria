@@ -48,6 +48,7 @@ void LMS::compute()
 void  LMS::setparameters()
 {
 	conditionnals.setMultiple(true);
+	conditionnals.setCheckSize(false);
 
         Kernel::iBind(learning_rate,"learning_rate", getUuid());
         Kernel::iBind(unconditionnal,"unconditionnal", getUuid());

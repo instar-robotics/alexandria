@@ -79,10 +79,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>numerator</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -93,10 +93,10 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>numerator</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -107,10 +107,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>numerator</name>
 				</input>
-				<input multiple="false"  type="SCALAR_MATRIX">
+				<input   type="SCALAR_MATRIX">
 					<name>denumerator</name>
 				</input>
 			</inputs>
@@ -121,10 +121,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false"  type="SCALAR_MATRIX">
+				<input   type="SCALAR_MATRIX">
 					<name>diminuende</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>subtrahend</name>
 				</input>
 			</inputs>
@@ -135,10 +135,10 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false"  type="SCALAR_SCALAR">
+				<input   type="SCALAR_SCALAR">
 					<name>diminuende</name>
 				</input>
-				<input multiple="false"  type="SCALAR_SCALAR">
+				<input   type="SCALAR_SCALAR">
 					<name>subtrahend</name>
 				</input>
 			</inputs>
@@ -149,10 +149,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false"  type="SCALAR_SCALAR">
+				<input   type="SCALAR_SCALAR">
 					<name>diminuende</name>
 				</input>
-				<input multiple="false"  type="SCALAR_SCALAR">
+				<input   type="SCALAR_SCALAR">
 					<name>subtrahend</name>
 				</input>
 			</inputs>

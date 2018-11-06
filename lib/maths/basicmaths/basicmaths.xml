@@ -7,7 +7,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -18,7 +18,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -29,7 +29,7 @@
 			<output type="Matrix">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -40,7 +40,7 @@
 			<output type="Matrix">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -51,7 +51,7 @@
 			<output type="SCALAR">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -62,7 +62,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -73,7 +73,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -84,7 +84,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
 			</inputs>
@@ -95,10 +95,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>modulo</name>
 				</input>
 			</inputs>
@@ -109,10 +109,10 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>modulo</name>
 				</input>
 			</inputs>
@@ -123,10 +123,10 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>modulo</name>
 				</input>
 			</inputs>
@@ -137,7 +137,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -148,7 +148,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
 			</inputs>
@@ -159,7 +159,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -170,7 +170,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
 			</inputs>

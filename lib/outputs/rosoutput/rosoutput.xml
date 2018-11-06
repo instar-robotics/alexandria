@@ -7,28 +7,28 @@
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.x</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.y</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.z</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.x</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.y</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.z</name>
 				</input>
 			</inputs>
@@ -39,16 +39,16 @@
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>lin</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>rot</name>
 				</input>
 			</inputs>
@@ -59,16 +59,16 @@
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot</name>
 				</input>
 			</inputs>

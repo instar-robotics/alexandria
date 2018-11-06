@@ -7,13 +7,13 @@
 			<output type="MATRIX"> 
 			</output> 
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR"> 
+				<input type="SCALAR_SCALAR"> 
 					<name>learning_rate</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX"> 
+				<input type="SCALAR_MATRIX"> 
 					<name>unconditionnal</name>
 				</input>
-				<input multiple="true" type="MATRIX_MATRIX">
+				<input multiple="true" checkSize="false"  type="MATRIX_MATRIX">
 					<name>conditionnals</name>
 				</input>
 			</inputs>

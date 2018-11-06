@@ -7,13 +7,13 @@
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>sleep</name>
 				</input>
 			</inputs>
@@ -24,13 +24,13 @@
 			<output type="SCALAR"> 
 			</output> 
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>sleep</name>
 				</input>
 			</inputs>
@@ -41,13 +41,13 @@
 			<output type="MATRIX"> 
 			</output> 
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>sleep</name>
 				</input>
 			</inputs>
@@ -58,16 +58,16 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>axe</name>
                                 </input>
                         </inputs>
@@ -78,13 +78,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -95,16 +95,16 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>button</name>
                                 </input>
                         </inputs>
@@ -115,13 +115,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -132,13 +132,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -149,13 +149,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -166,13 +166,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -183,13 +183,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -200,13 +200,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -217,13 +217,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -234,13 +234,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -251,13 +251,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -268,13 +268,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -285,13 +285,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -302,13 +302,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -319,13 +319,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -336,13 +336,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -353,13 +353,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -370,13 +370,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -387,13 +387,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -404,13 +404,13 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -421,13 +421,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -438,13 +438,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -455,13 +455,13 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
                         </inputs>
@@ -472,16 +472,16 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>range_max</name>
                                 </input>
                         </inputs>
@@ -492,16 +492,16 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="STRING">
+                                <input  type="STRING">
                                         <name>topic_name</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>sleep</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>range_max</name>
                                 </input>
                         </inputs>

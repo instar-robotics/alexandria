@@ -7,13 +7,13 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>threshold</name>
 				</input>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>mode</name>
 				</input>
 			</inputs>
@@ -24,13 +24,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>threshold</name>
 				</input>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>mode</name>
 				</input>
 			</inputs>
@@ -41,13 +41,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>threshold</name>
 				</input>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>mode</name>
 				</input>
 			</inputs>
@@ -58,7 +58,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -69,7 +69,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
 			</inputs>
@@ -80,13 +80,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>thresMin</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>thresMax</name>
 				</input>
 			</inputs>
@@ -97,13 +97,13 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
 				</input>
 			</inputs>
@@ -114,13 +114,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
 				</input>
 			</inputs>
@@ -131,13 +131,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>thresMin</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
 				</input>
 			</inputs>
@@ -148,13 +148,13 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>thresMax</name>
 				</input>
 			</inputs>
@@ -165,7 +165,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
 			</inputs>
@@ -176,7 +176,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
 				</input>
 			</inputs>
@@ -187,10 +187,10 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX">
                                         <name>inMatrix</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>thres</name>
                                 </input>
                         </inputs>
@@ -201,10 +201,10 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input multiple="false" type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX">
                                         <name>inMatrix</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX">
                                         <name>thres</name>
                                 </input>
                         </inputs>
@@ -215,10 +215,10 @@
                         <output type="SCALAR">
                         </output>
                         <inputs>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>inScalar</name>
                                 </input>
-                                <input multiple="false" type="SCALAR_SCALAR">
+                                <input  type="SCALAR_SCALAR">
                                         <name>thres</name>
                                 </input>
                         </inputs>
