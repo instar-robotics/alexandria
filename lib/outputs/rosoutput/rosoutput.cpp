@@ -73,15 +73,14 @@ void CmdVelVectOutput::compute()
 {
 	auto mout = getMapVect(output);
 	
-	MatrixXd tmpO;
-       	lin()(tmpO); 
+	MatrixXd tmpO = lin()(); 
 
 	auto mtmp = getMapVect(tmpO);
 	mout[0] = mtmp[0];
 	mout[1] = mtmp[1];
 	mout[2] = mtmp[2];
 
-	rot()(tmpO);
+	tmpO = rot()();
 	mtmp = getMapVect(tmpO);
 	mout[3] = mtmp[0];
 	mout[4] = mtmp[1];

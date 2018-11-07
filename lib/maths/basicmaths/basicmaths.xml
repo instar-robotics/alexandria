@@ -9,9 +9,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
 				</input>
 			</inputs>
 			<icon>argmax1d.svg</icon>
+			<desc>Get the argmax of the input matrix</desc>
 		</function>
 		<function>
 			<name>ArgMin1D</name>
@@ -20,9 +22,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
 				</input>
 			</inputs>
 			<icon>argmin1d.svg</icon>
+			<desc>Get the argmin of the matrix input</desc>
 		</function>
 		<function>
 			<name>ArgMax2D</name>
@@ -31,9 +35,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix. Must be dimension 2 [(2,1) or (1,2)]</desc>
 				</input>
 			</inputs>
 			<icon>argmax2d.svg</icon>
+			<desc>Get the argmax of the matrix input</desc>
 		</function>
 		<function>
 			<name>ArgMin2D</name>
@@ -42,9 +48,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix. Must be dimension 2 [(2,1) or (1,2)]</desc>
 				</input>
 			</inputs>
 			<icon>argmin2d.svg</icon>
+			<desc>Get the argmin of the matrix input</desc>
 		</function>
 		<function>
 			<name>ValueMax</name>
@@ -53,9 +61,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>max.svg</icon>
+			<desc>Get the max value of the matrix input</desc>
 		</function>	
 		<function>
 			<name>ValueMin</name>
@@ -64,9 +74,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>min.svg</icon>
+			<desc>Get the min value of the matrix input</desc>
 		</function>
 		<function>
 			<name>MAbs</name>
@@ -75,9 +87,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix_absolute.svg</icon>
+			<desc>Get the term-term absolute value</desc>
 		</function>
 		<function>
 			<name>SAbs</name>
@@ -86,9 +100,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar_absolute.svg</icon>
+			<desc>Get the absolute value</desc>
 		</function>
 		<function>
 			<name>MModulo</name>
@@ -97,12 +113,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>modulo</name>
+					<desc>Modulo</desc>
 				</input>
 			</inputs>
 			<icon>matrix-matrix_modulo.svg</icon>
+			<desc>Get the term-term modulo values of the matrix input by the matrix modulo</desc>
 		</function>
 		<function>
 			<name>MSModulo</name>
@@ -111,12 +130,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>modulo</name>
+					<desc>Modulo</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar_modulo.svg</icon>
+			<desc>Get the term-term modulo values of the matrix input by the scalar modulo</desc>
 		</function>
 		<function>
 			<name>SModulo</name>
@@ -125,12 +147,15 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>modulo</name>
+					<desc>Modulo</desc>
 				</input>
 			</inputs>
 			<icon>scalar_modulo.svg</icon>
+			<desc>Get the modulo value of the scalar input by the scalar modulo</desc>
 		</function>
 		<function>
 			<name>MDerivative</name>
@@ -139,9 +164,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix_derivative.svg</icon>
+			<desc>Get the term-term derivative of the matrix [X(t) - X(t-1)] </desc>
 		</function>
 		<function>
 			<name>SDerivative</name>
@@ -150,9 +177,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar_derivative.svg</icon>
+			<desc>Get the derivative of the scalar [X(t) - X(t-1)] </desc>
 		</function>
 		<function>
 			<name>MZ_1</name>
@@ -161,9 +190,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix_Z-1.svg</icon>
+			<desc>Get the matrix value with a delay iteration</desc>
 		</function>
 		<function>
 			<name>SZ_1</name>
@@ -172,9 +203,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar_Z-1.svg</icon>
+			<desc>Get the scalar value with a delay iteration</desc>
 		</function>
 	</functions>
 </description>

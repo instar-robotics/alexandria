@@ -9,9 +9,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>exponent</name>
+					<desc>Exponent</desc>
 				</input>
 			</inputs>
 			<icon>matrix-exponential.svg</icon>
+			<desc>Term-term exponential</desc>
 		</function>	
 		<function>
 			<name>SExp</name>
@@ -20,9 +22,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>exponent</name>
+					<desc>Exponent</desc>
 				</input>
 			</inputs>
 			<icon>scalar-exponential.svg</icon>
+			<desc>Exponential</desc>
 		</function>	
 		<function>
 			<name>MLog</name>
@@ -31,9 +35,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-logarithm.svg</icon>
+			<desc>Term-term logarithm</desc>
 		</function>
 		<function>
 			<name>SLog</name>
@@ -42,9 +48,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-logarithm.svg</icon>
+			<desc>Logarithm</desc>
 		</function>
 		<function>
 			<name>MLog10</name>
@@ -53,9 +61,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-logarithm-10.svg</icon>
+			<desc>Term-term base 10 logarithm</desc>
 		</function>
 		<function>
 			<name>SLog10</name>
@@ -64,9 +74,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-logarithm-10.svg</icon>
+			<desc>Base 10 logarithm</desc>
 		</function>
 		<function>
 			<name>MPow</name>
@@ -75,12 +87,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>base</name>
+					<desc>Base of the power function</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>exponent</name>
+					<desc>The degree to which we raise the base</desc>
 				</input>
 			</inputs>
 			<icon>matrix-pow.svg</icon>
+			<desc>Takes a base and an exponent and return term-term base^exp.</desc>
 		</function>
 		<function>
 			<name>SPow</name>
@@ -89,12 +104,15 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>base</name>
+					<desc>Base of the power function</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>exponent</name>
+					<desc>The degree to which we raise the base</desc>
 				</input>
 			</inputs>
 			<icon>scalar-pow.svg</icon>
+			<desc>Takes a base and an exponent and return base^exp.</desc>
 		</function>
 		<function>
 			<name>MSPow</name>
@@ -103,12 +121,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>base</name>
+					<desc>Base of the power function</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>exponent</name>
+					<desc>The degree to which we raise the base</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar-pow.svg</icon>
+			<desc>Takes a base and an exponent and return term-term base^exp. Exponent is a scalar and is applied on every term of the matrix base</desc>
 		</function>
 		<function>
 			<name>SMPow</name>
@@ -117,12 +138,15 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>base</name>
+					<desc>Base of the power function</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>exponent</name>
+					<desc>The degree to which we raise the base</desc>
 				</input>
 			</inputs>
 			<icon>scalar-matrix-pow.svg</icon>
+			<desc>Takes a base and an exponent and return term-term base^exp. Exponent is a matrix and base is a scalar. The output is a matrix with the dimension of the matrix exponent.</desc>
 		</function>
 		<function>
 			<name>MSqrt</name>
@@ -131,9 +155,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-square-root.svg</icon>
+			<desc>Compute the term-term root square of the input matrix</desc>
 		</function>
 		<function>
 			<name>SSqrt</name>
@@ -142,9 +168,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-square-root.svg</icon>
+			<desc>Compute the term-term root square of the input scalar</desc>
 		</function>
 		<function>
 			<name>MSquare</name>
@@ -153,9 +181,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-square.svg</icon>
+			<desc>Compute the term-term square of the input matrix</desc>
 		</function>
 		<function>
 			<name>SSquare</name>
@@ -164,9 +194,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-square.svg</icon>
+			<desc>Compute the square of the input scalar</desc>
 		</function>
 		<function>
 			<name>MCube</name>
@@ -175,9 +207,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-cube.svg</icon>
+			<desc>Compute the cube of the input matrix</desc>
 		</function>
 		<function>
 			<name>SCube</name>
@@ -186,9 +220,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-cube.svg</icon>
+			<desc>Compute the cube of the input scalar</desc>
 		</function>
 		<function>
 			<name>MInverse</name>
@@ -197,9 +233,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-inverse.svg</icon>
+			<desc>Compute the inverse of the input matrix</desc>
 		</function>
 		<function>
 			<name>SInverse</name>
@@ -208,9 +246,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-inverse.svg</icon>
+			<desc>Compute the inverse of the input scalar</desc>
 		</function>
 	</functions>
 </description>

@@ -9,15 +9,19 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>threshold</name>
+					<desc>Threshold value</desc>
 				</input>
 				<input  type="STRING">
 					<name>mode</name>
+					<desc>Mode : drive the funtion behavior ["up" : trigger only on rising edge; "down" : trigger only on falling edge; "both" : trigger on rising and falling edge] </desc>
 				</input>
 			</inputs>
 			<icon>Scalar-Front_Detection.svg</icon>
+			<desc>Output is set to 1 only when the input crossed the threshold (falling, rising or both)</desc>
 		</function>
 		<function>
 			<name>MFrontDetection</name>
@@ -26,15 +30,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>threshold</name>
+					<desc>Threshold value</desc>
 				</input>
 				<input  type="STRING">
 					<name>mode</name>
+					<desc>Mode : drive the funtion behavior ["up" : trigger only on rising edge; "down" : trigger only on falling edge; "both" : trigger on rising and falling edge] </desc>
 				</input>
 			</inputs>
 			<icon>Matrix-Front_Detection.svg</icon>
+			<desc>Output is set to 1 only when an input crossed the threshold (falling, rising or both). The output is computed separately for each term of the input matrix</desc>
 		</function>
 		<function>
 			<name>MMFrontDetection</name>
@@ -43,15 +51,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>threshold</name>
+					<desc>Threshold value</desc>
 				</input>
 				<input  type="STRING">
 					<name>mode</name>
+					<desc>Mode : drive the funtion behavior ["up" : trigger only on rising edge; "down" : trigger only on falling edge; "both" : trigger on rising and falling edge] </desc>
 				</input>
 			</inputs>
 			<icon>Matrix-Matrix-Front_Detection.svg</icon>
+			<desc>Output is set to 1 only when an input crossed the threshold (falling, rising or both). The output is computed separately for each term of the input matrix with a thresold for each term.</desc>
 		</function>
 		<function>
 			<name>MPiecewiseLin</name>
@@ -60,9 +72,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>Matrix-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [0,1] and set to 1 when value greater than 1 and set to 0 when lower than 0</desc>
 		</function>
 		<function>
 			<name>SPiecewiseLin</name>
@@ -71,9 +85,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>Scalar-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [0,1] and set to 1 when value greater than 1 and set to 0 when lower than 0</desc>
 		</function>
 		<function>
 			<name>MPiecewiseLinCustom</name>
@@ -82,15 +98,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>thresMin</name>
+					<desc>Lower bound</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>thresMax</name>
+					<desc>Upper bound</desc>
 				</input>
 			</inputs>
 			<icon>Matrix-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [thresMin,thresMax] and set to tresMax when value greater than thresMax and set to thresMin when lower than thresMin</desc>
 		</function>
 		<function>
 			<name>SPiecewiseLinCustom</name>
@@ -99,15 +119,19 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
+					<desc>Lower bound</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
+					<desc>Upper bound</desc>
 				</input>
 			</inputs>
 			<icon>Scalar-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [thresMin,thresMax] and set to tresMax when value greater than thresMax and set to thresMin when lower than thresMin</desc>
 		</function>
 		<function>
 			<name>MSSPiecewiseLinCustom</name>
@@ -116,15 +140,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
+					<desc>Lower bound</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
+					<desc>Upper bound</desc>
 				</input>
 			</inputs>
 			<icon>Scalar-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [thresMin,thresMax] and set to tresMax when value greater than thresMax and set to thresMin when lower than thresMin</desc>
 		</function>
 		<function>
 			<name>MMSPiecewiseLinCustom</name>
@@ -133,15 +161,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>thresMin</name>
+					<desc>Lower bound</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMax</name>
+					<desc>Upper bound</desc>
 				</input>
 			</inputs>
 			<icon>Matrix-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [thresMin,thresMax] and set to tresMax when value greater than thresMax and set to thresMin when lower than thresMin</desc>
 		</function>
 		<function>
 			<name>MSMPiecewiseLinCustom</name>
@@ -150,15 +182,19 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>thresMin</name>
+					<desc>Lower bound</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>thresMax</name>
+					<desc>Upper bound</desc>
 				</input>
 			</inputs>
 			<icon>Matrix-PiecewiseLin.svg</icon>
+			<desc>Output is linear on interval [thresMin,thresMax] and set to tresMax when value greater than thresMax and set to thresMin when lower than thresMin</desc>
 		</function>
 		<function>
 			<name>MHeaviside</name>
@@ -167,9 +203,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>Matrix-Heaviside.svg</icon>
+			<desc>Output are egals to 1 if inputs are greater than 0, 0 otherwise</desc>
 		</function>
 		<function>
 			<name>SHeaviside</name>
@@ -178,9 +216,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>Scalar-Heaviside.svg</icon>
+			<desc>Output is egal to 1 if input is greater than 0, 0 otherwise</desc>
 		</function>
 		<function>
                         <name>MSHeavisideCustom</name>
@@ -189,12 +229,15 @@
                         <inputs>
                                 <input  type="SCALAR_MATRIX">
                                         <name>inMatrix</name>
+					<desc>Input matrix</desc>
                                 </input>
                                 <input  type="SCALAR_SCALAR">
                                         <name>thres</name>
+					<desc>Thresold</desc>
                                 </input>
                         </inputs>
                         <icon>Matrix-Scalar-Heaviside.svg</icon>
+			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
                 </function>
 		<function>
                         <name>MMHeavisideCustom</name>
@@ -203,12 +246,15 @@
                         <inputs>
                                 <input  type="SCALAR_MATRIX">
                                         <name>inMatrix</name>
+					<desc>Input matrix</desc>
                                 </input>
                                 <input  type="SCALAR_MATRIX">
                                         <name>thres</name>
+					<desc>Thresold. This input is a matrix, and threshold are applied term-term</desc>
                                 </input>
                         </inputs>
                         <icon>Matrix-Matrix-Heaviside.svg</icon>
+			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
                 </function>
                 <function>
                         <name>SHeavisideCustom</name>
@@ -217,12 +263,15 @@
                         <inputs>
                                 <input  type="SCALAR_SCALAR">
                                         <name>inScalar</name>
+					<desc>Input scalar</desc>
                                 </input>
                                 <input  type="SCALAR_SCALAR">
                                         <name>thres</name>
+					<desc>Thresold</desc>
                                 </input>
                         </inputs>
                         <icon>Scalar-Heaviside-custom.svg</icon>
+			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
                 </function>
 	</functions>
 </description>

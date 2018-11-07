@@ -9,15 +9,19 @@
 			<inputs>
 				<input type="SCALAR_SCALAR"> 
 					<name>learning_rate</name>
+					<desc>Learning rate</desc>
 				</input>
 				<input type="SCALAR_MATRIX"> 
 					<name>unconditionnal</name>
+					<desc>Signal to predict</desc>
 				</input>
 				<input multiple="true" checkSize="false"  type="MATRIX_MATRIX">
-					<name>conditionnals</name>
+					<name>Input signals</name>
+					<desc></desc>
 				</input>
 			</inputs>
 			<icon>lms.svg</icon>
+			<desc>Least Mean Square algorithm : gradiant descent with Widrow and Hoff learning rules</desc>
 		</function>	
 	</functions>
 </description>

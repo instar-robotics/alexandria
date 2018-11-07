@@ -9,9 +9,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-cosinus.svg</icon>
+			<desc>Compute term-term cosine of the input matrix</desc>
 		</function>
 		<function>
 			<name>SCos</name>
@@ -20,9 +22,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-cosinus.svg</icon>
+			<desc>Compute cosine of the input scalar</desc>
 		</function>
 		<function>
 			<name>MSin</name>
@@ -31,9 +35,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-sinus.svg</icon>
+			<desc>Compute term-term sinus of the input matrix</desc>
 		</function>
 		<function>
 			<name>SSin</name>
@@ -42,9 +48,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-sinus.svg</icon>
+			<desc>Compute sinus of the input scalar</desc>
 		</function>
 		<function>
 			<name>MTan</name>
@@ -53,9 +61,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-tangent.svg</icon>
+			<desc>Compute term-term tangent of the input matrix</desc>
 		</function>
 		<function>
 			<name>STan</name>
@@ -64,9 +74,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-tangent.svg</icon>
+			<desc>Compute tangent of the input scalar</desc>
 		</function>
 		<function>
 			<name>MAcos</name>
@@ -75,9 +87,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-arc-cosinus.svg</icon>
+			<desc>Compute term-term arc cosine of the input matrix</desc>
 		</function>
 		<function>
 			<name>SAcos</name>
@@ -86,9 +100,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-arc-cosinus.svg</icon>
+			<desc>Compute arc cosine of the input scalar</desc>
 		</function>
 		<function>
 			<name>MAsin</name>
@@ -97,9 +113,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-arc-sinus.svg</icon>
+			<desc>Compute term-term arc sinus of the input matrix</desc>
 		</function>
 		<function>
 			<name>SAsin</name>
@@ -108,9 +126,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-arc-sinus.svg</icon>
+			<desc>Compute arc sinus of the input scalar</desc>
 		</function>
 		<function>
 			<name>MAtan</name>
@@ -119,9 +139,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-arc-tangent.svg</icon>
+			<desc>Compute term-term arc tangent of the input matrix</desc>
 		</function>
 		<function>
 			<name>SAtan</name>
@@ -130,9 +152,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-arc-tangent.svg</icon>
+			<desc>Compute arc tangent of the input scalar</desc>
 		</function>
 		<function>
 			<name>MCosh</name>
@@ -141,9 +165,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-cosinus-hyperbolic.svg</icon>
+			<desc>Compute term-term hyperbolic cosine of the input matrix</desc>
 		</function>
 		<function>
 			<name>SCosh</name>
@@ -152,9 +178,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-cosinus-hyperbolic.svg</icon>
+			<desc>Compute hyperbolic cosine of the input scalar</desc>
 		</function>
 		<function>
 			<name>MSinh</name>
@@ -163,9 +191,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-sinus-hyperbolic.svg</icon>
+			<desc>Compute term-term hyperbolic sinus of the input matrix</desc>
 		</function>
 		<function>
 			<name>SSinh</name>
@@ -174,9 +204,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-sinus-hyperbolic.svg</icon>
+			<desc>Compute hyperbolic sinus of the input scalar</desc>
 		</function>
 		<function>
 			<name>MTanh</name>
@@ -185,9 +217,11 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>matrix-tangent-hyperbolic.svg</icon>
+			<desc>Compute term-term hyperbolic tangent of the input matrix</desc>
 		</function>
 		<function>
 			<name>STanh</name>
@@ -196,9 +230,11 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>scalar-tangent-hyperbolic.svg</icon>
+			<desc>Compute hyperbolic tangent of the input scalar</desc>
 		</function>
 	</functions>
 </description>

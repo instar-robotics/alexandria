@@ -9,9 +9,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Matrix's inputs</desc>
 				</input>
 			</inputs>
 			<icon>matrix-sum.svg</icon>
+			<desc>Sum of Matrices</desc>
 		</function>	
 		<function>
 			<name>SSum</name>
@@ -20,9 +22,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Scalar's inputs</desc>
 				</input>
 			</inputs>
 			<icon>scalar-sum.svg</icon>
+			<desc>Sum of Scalars</desc>
 		</function>	
 		<function>
 			<name>MSSum</name>
@@ -31,12 +35,15 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Matrix's inputs</desc>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Scalar's inputs</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar-sum.svg</icon>
+			<desc>Term-term sum of matrices added to the sum of the scalars</desc>
 		</function>	
 		<function>
 			<name>MMul</name>
@@ -45,9 +52,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX" >
 					<name>inMatrix</name>
+					<desc>Matrix's inputs</desc>
 				</input>
 			</inputs>
 			<icon>matrix-multiply.svg</icon>
+			<desc>Term-term matrix product</desc>
 		</function>
 		<function>
 			<name>SMul</name>
@@ -56,9 +65,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Matrix's inputs</desc>
 				</input>
 			</inputs>
 			<icon>scalar-multiply.svg</icon>
+			<desc>Multiplications of scalars</desc>
 		</function>
 		<function>
 			<name>MSMul</name>
@@ -67,12 +78,16 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Matrix's inputs</desc>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Scalar's inputs</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar-multiply.svg</icon>
+			<desc>Term-term product of matrices multiplied by the product of scalars</desc>
+		</function>
 		</function>
 		<function>
 			<name>MMDiv</name>
@@ -81,12 +96,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>numerator</name>
+					<desc>Numerator</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>denumerator</name>
+					<desc>Denumerator</desc>
 				</input>
 			</inputs>
 			<icon>matrix-matrix-division.svg</icon>
+			<desc>Term-term division of matrices</desc>
 		</function>
 		<function>
 			<name>SSDiv</name>
@@ -95,12 +113,15 @@
 			<inputs>
 				<input  type="SCALAR_SCALAR">
 					<name>numerator</name>
+					<desc>Numerator</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>denumerator</name>
+					<desc>Denumerator</desc>
 				</input>
 			</inputs>
 			<icon>scalar-scalar-division.svg</icon>
+			<desc>Division of scalars</desc>
 		</function>
 		<function>
 			<name>MSDiv</name>
@@ -109,12 +130,15 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>numerator</name>
+					<desc>Numerator</desc>
 				</input>
-				<input   type="SCALAR_MATRIX">
+				<input   type="SCALAR_SCALAR">
 					<name>denumerator</name>
+					<desc>Denumerator</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar-division.svg</icon>
+			<desc>Term-term division of a matrix by a scalar</desc>
 		</function>
 		<function>
 			<name>MMSub</name>
@@ -123,12 +147,15 @@
 			<inputs>
 				<input   type="SCALAR_MATRIX">
 					<name>diminuende</name>
+					<desc>Diminuende</desc>
 				</input>
 				<input  type="SCALAR_MATRIX">
 					<name>subtrahend</name>
+					<desc>Subtrahend</desc>
 				</input>
 			</inputs>
 			<icon>matrix-matrix-subtract.svg</icon>
+			<desc>Term-term substraction of matrix by a matrix</desc>
 		</function>
 		<function>
 			<name>SSSub</name>
@@ -137,12 +164,15 @@
 			<inputs>
 				<input   type="SCALAR_SCALAR">
 					<name>diminuende</name>
+					<desc>Diminuende</desc>
 				</input>
 				<input   type="SCALAR_SCALAR">
 					<name>subtrahend</name>
+					<desc>Subtrahend</desc>
 				</input>
 			</inputs>
 			<icon>scalar-scalar-subtract.svg</icon>
+			<desc>Scalar substraction</desc>
 		</function>
 		<function>
 			<name>MSSub</name>
@@ -151,12 +181,15 @@
 			<inputs>
 				<input   type="SCALAR_SCALAR">
 					<name>diminuende</name>
+					<desc>Diminuende</desc>
 				</input>
 				<input   type="SCALAR_SCALAR">
 					<name>subtrahend</name>
+					<desc>Subtrahend</desc>
 				</input>
 			</inputs>
 			<icon>matrix-scalar-subtract.svg</icon>
+			<desc>Term-term substraction of matrix by a scalar</desc>
 		</function>
 	</functions>
 </description>
