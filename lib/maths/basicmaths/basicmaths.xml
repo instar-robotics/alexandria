@@ -209,44 +209,5 @@
 			<icon>scalar_Z-1.svg</icon>
 			<desc>Get the scalar value with a delay iteration</desc>
 		</function>
-		<function>
-			<name>Norm</name>
-			<output type="SCALAR">
-			</output>
-			<inputs>
-				<input  type="SCALAR_MATRIX">
-					<name>inMatrix</name>
-					<desc>Input matrix</desc>
-				</input>
-			</inputs>
-			<icon></icon>
-			<desc>Compute the norm of the input matrix</desc>
-		</function>
-		<function>
-			<name>SquaredNorm</name>
-			<output type="SCALAR">
-			</output>
-			<inputs>
-				<input  type="SCALAR_MATRIX">
-					<name>inMatrix</name>
-					<desc>Input matrix</desc>
-				</input>
-			</inputs>
-			<icon></icon>
-			<desc>Compute the squared norm of the input matrix</desc>
-		</function>
-		<function>
-			<name>Normalize</name>
-			<output type="MATRIX">
-			</output>
-			<inputs>
-				<input  type="SCALAR_MATRIX">
-					<name>inMatrix</name>
-					<desc>Input matrix</desc>
-				</input>
-			</inputs>
-			<icon></icon>
-			<desc>Normalize the input matrix</desc>
-		</function>
 	</functions>
 </description>

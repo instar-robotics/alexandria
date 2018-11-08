@@ -288,46 +288,4 @@ class SZ_1 : public FScalar
                 virtual void setparameters();
 };
 
-/*******************************************************************************************************/
-/********************************************  Normalization   *****************************************/
-/*******************************************************************************************************/
-
-class Norm : public FScalar
-{
-	private :
-                
-		ISMInput inMatrix;
-
-	public : 
-		virtual ~Norm(){}
-
-		virtual void compute();
-		virtual void setparameters();
-};
-
-class SquaredNorm : public FScalar
-{
-	private :
-                
-		ISMInput inMatrix;
-
-	public : 
-		virtual ~SquaredNorm(){}
-
-		virtual void compute();
-		virtual void setparameters();
-};
-
-class Normalize : public FMatrix
-{
-	private : 
-		ISMInput inMatrix;
-
-	public : 
-		virtual ~Normalize(){}
-
-		virtual void compute();
-		virtual void setparameters();
-};
-
 #endif // _BASIC_MATH_H_
