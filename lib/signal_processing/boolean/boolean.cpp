@@ -16,6 +16,12 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "boolean.h"
 
+
+// Note : 
+//  Input lower than 0.5 -> 0 logic
+//  Input greater than 0.5 -> 1 logic
+
+
 /********************************************************************************************************/
 /*************************************************  AND   ***********************************************/
 /********************************************************************************************************/
@@ -24,9 +30,23 @@ REGISTER_FUNCTION(MAND);
 REGISTER_FUNCTION(MSAND);
 REGISTER_FUNCTION(SAND);
 
-//TODO
+
 void MAND::compute()
 {
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}		
+	
+	output = output.unaryExpr(NormFunc<double>(inMatrix.size()));
 }
 
 void MAND::setparameters()
@@ -35,9 +55,32 @@ void MAND::setparameters()
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 
-//TODO
+
 void MSAND::compute()
 {
+	double sSumAND=0;	
+
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}
+
+	for(unsigned int i=0; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() >= 0.5) sSumAND += 1;  
+	}
+
+	output.array()+=sSumAND;
+
+	output = output.unaryExpr(NormFunc<double>(inMatrix.size()+inScalar.size()));
 }
 
 void MSAND::setparameters()
@@ -48,17 +91,17 @@ void MSAND::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-//TODO
+
 void SAND::compute()
 {
-	output = inScalar(0)();
+	output = 0;
 
-	for(unsigned int i=1; i < inScalar.size(); i++)
+	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		if(inScalar(i)() > 0.5)	output += 1 / inScalar.size() ; 
+		if(inScalar(i)() >= 0.5) output += 1;  
 	}
 		
-	if(output < 1)	output = 0;
+	if(output/inScalar.size() < 1)	output = 0;
 	else output = 1;
 	
 }
@@ -78,9 +121,25 @@ REGISTER_FUNCTION(MOR);
 REGISTER_FUNCTION(MSOR);
 REGISTER_FUNCTION(SOR);
 
-//TODO
 void MOR::compute()
 {
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}		
+	
+	output = output.unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
 }
 
 void MOR::setparameters()
@@ -89,9 +148,35 @@ void MOR::setparameters()
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 
-//TODO
 void MSOR::compute()
 {
+	double sSumOR=0;	
+
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}
+
+	for(unsigned int i=0; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() >= 0.5) sSumOR += 1;  
+	}
+
+	output.array()+=sSumOR;
+
+	output = output.unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
 }
 
 void MSOR::setparameters()
@@ -102,9 +187,16 @@ void MSOR::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-//TODO
+
 void SOR::compute()
 {
+	output = 0;
+
+	for(unsigned int i=0; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() >= 0.5) output = 1;  
+	}
+	
 }
 
 void SOR::setparameters()
@@ -121,9 +213,25 @@ REGISTER_FUNCTION(MXOR);
 REGISTER_FUNCTION(MSXOR);
 REGISTER_FUNCTION(SXOR);
 
-//TODO
 void MXOR::compute()
 {
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}		
+	
+	output = output.unaryExpr([](double elem)
+	{
+		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
+	});
 }
 
 void MXOR::setparameters()
@@ -132,9 +240,34 @@ void MXOR::setparameters()
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 
-//TODO
 void MSXOR::compute()
 {
+	double sSumXOR=0;	
+
+	output = inMatrix(0)().unaryExpr([](double elem)
+	{
+		return elem < 0.5 ? 0.0 : 1.0; 
+	});
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		output += inMatrix(i)().unaryExpr([](double elem)
+    		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+    		});
+	}
+
+	for(unsigned int i=0; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() >= 0.5) sSumXOR += 1;  
+	}
+
+	output.array()+=sSumXOR;
+
+	output = output.unaryExpr([](double elem)
+	{
+		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
+	});
 }
 
 void MSXOR::setparameters()
@@ -145,9 +278,19 @@ void MSXOR::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-//TODO
+
 void SXOR::compute()
 {
+	output = 0;
+
+	for(unsigned int i=0; i < inScalar.size(); i++)
+	{
+		if(inScalar(i)() >= 0.5) output += 1;  
+	}
+		
+	if(output > 0 && output/inScalar.size() < 1)	output = 1;
+	else output = 0;
+
 }
 
 void SXOR::setparameters()
@@ -163,9 +306,13 @@ void SXOR::setparameters()
 REGISTER_FUNCTION(MNOT);
 REGISTER_FUNCTION(SNOT);
 
-//TODO
+
 void MNOT::compute()
 {
+ 	output = inMatrix()().unaryExpr([](double elem)
+    	{
+		return elem < 0.5 ? 1.0 : 0.0; 
+    	});
 }
 
 void MNOT::setparameters()
@@ -173,9 +320,11 @@ void MNOT::setparameters()
         Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 
-//TODO
+
 void SNOT::compute()
 {
+	if(inScalar()() >= 0.5)	output = 0;  
+	else output = 1;
 }
 
 void SNOT::setparameters()
