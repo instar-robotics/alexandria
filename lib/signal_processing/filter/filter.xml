@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-	<libname>signal</libname>
+	<libname>filter</libname>
 	<functions>
 		<function>
 			<name>SFrontDetection</name>
@@ -272,6 +272,83 @@
                         </inputs>
                         <icon>Scalar-Heaviside-custom.svg</icon>
 			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
+                </function>
+		<function>
+                        <name>SSigmoid</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>inScalar</name>
+                                        <desc>Input scalar</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Sigmoid filter</desc>
+                </function>
+		<function>
+                        <name>MSigmoid</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Sigmoid filter</desc>
+                </function>
+		<function>
+                        <name>SSigmoidLambda</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>inScalar</name>
+                                        <desc>Input scalar</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>lambda</name>
+                                        <desc>lambda coefficient : e^(lambda * x)</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Sigmoid filter. General form </desc>
+                </function>
+		<function>
+                        <name>MSSigmoidLambda</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>lambda</name>
+                                        <desc>lambda coefficient : e^(lambda * x)</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Sigmoid filter. General form </desc>
+                </function>
+		<function>
+                        <name>MMSigmoidLambda</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>lambda</name>
+                                        <desc>lambda coefficient : e^(lambda * x)</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Sigmoid filter. General form </desc>
                 </function>
 	</functions>
 </description>

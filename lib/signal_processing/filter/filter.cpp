@@ -14,11 +14,11 @@ and, more generally, to use and operate it in the same conditions as regards sec
 The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
 */
 
-#include "signal.h"
+#include "filter.h"
 
-/********************************************************************************************************/
-/*******************************************  Front Detection   *****************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/******************************************  Front Detection   *****************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(SFrontDetection);
 REGISTER_FUNCTION(MFrontDetection);
@@ -320,11 +320,74 @@ void MMHeavisideCustom::compute()
         {
                 return e1 < e2 ? 0.0 : 1.0;
         });
-
 }
 
 void MMHeavisideCustom::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(thres,"thres", getUuid());
+}
+
+/*******************************************************************************************************/
+/*******************************************   SIGMOID   ***********************************************/
+/*******************************************************************************************************/
+REGISTER_FUNCTION(SSigmoid);
+REGISTER_FUNCTION(MSigmoid);
+REGISTER_FUNCTION(SSigmoidLambda);
+REGISTER_FUNCTION(MSSigmoidLambda);
+REGISTER_FUNCTION(MMSigmoidLambda);
+
+void SSigmoid::compute()
+{
+	output = 1 / (1 + exp( -inScalar()())); 
+}
+
+void SSigmoid::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+}
+
+
+void MSigmoid::compute()
+{
+	output = 1 / (1 +  exp( - (inMatrix()().array()))) ; 
+}
+
+void MSigmoid::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+
+void SSigmoidLambda::compute()
+{
+	output = 1 / (1 + exp( -(lambda()() * inScalar()())) ); 
+}
+
+void SSigmoidLambda::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(lambda,"lambda", getUuid());
+}
+
+void MSSigmoidLambda::compute()
+{
+	output = 1 / (1 +  exp( - (lambda()() * (inMatrix()().array())))) ; 
+}
+
+void MSSigmoidLambda::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(lambda,"lambda", getUuid());
+}
+
+void MMSigmoidLambda::compute()
+{
+	output = 1 / (1 +  exp( - (inMatrix()() * lambda()()).array())) ; 
+}
+
+void MMSigmoidLambda::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(lambda,"lambda", getUuid());
 }

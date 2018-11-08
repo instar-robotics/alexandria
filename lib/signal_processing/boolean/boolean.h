@@ -24,18 +24,20 @@ The fact that you are presently reading this means that you have had knowledge o
 //  Input lower than 0.5 -> 0 logic
 //  Input greater than 0.5 -> 1 logic
 
-/********************************************************************************************************/
-/**************************************************  AND  ***********************************************/
-/********************************************************************************************************/
-
+/*******************************************************************************************************/
+/*************************************************  AND  ***********************************************/
+/*******************************************************************************************************/
 
 template<typename Scalar>
-struct NormFunc {
-  NormFunc(const Scalar& size) : size(size) {}
-  const Scalar operator()(const Scalar& x) const { return  x < size ? 0.0 : 1.0;   }
-  Scalar size;
+struct FuncOR {
+  FuncOR(const Scalar& sOR) : sOR(sOR) {}
+  const Scalar operator()(const Scalar& x) const 
+  { 
+	  double v = x < 0.5 ? 0.0 : 1.0;
+	  return std::max( v , sOR ) ;
+  }
+  Scalar sOR;
 };
-
 
 
 class MAND :  public FMatrix

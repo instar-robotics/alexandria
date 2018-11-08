@@ -14,22 +14,20 @@ and, more generally, to use and operate it in the same conditions as regards sec
 The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
 */
 
+#include <limits>
 #include "boolean.h"
-
 
 // Note : 
 //  Input lower than 0.5 -> 0 logic
 //  Input greater than 0.5 -> 1 logic
 
-
-/********************************************************************************************************/
-/*************************************************  AND   ***********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/************************************************  AND   ***********************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MAND);
 REGISTER_FUNCTION(MSAND);
 REGISTER_FUNCTION(SAND);
-
 
 void MAND::compute()
 {
@@ -40,13 +38,12 @@ void MAND::compute()
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
-    		{
-			return elem < 0.5 ? 0.0 : 1.0; 
-    		});
+		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		{
+			double v = e1 < 0.5 ? 0.0 : 1.0;
+			return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+		});
 	}		
-	
-	output = output.unaryExpr(NormFunc<double>(inMatrix.size()));
 }
 
 void MAND::setparameters()
@@ -58,29 +55,35 @@ void MAND::setparameters()
 
 void MSAND::compute()
 {
-	double sSumAND=0;	
-
-	output = inMatrix(0)().unaryExpr([](double elem)
-	{
-		return elem < 0.5 ? 0.0 : 1.0; 
-	});
-
-	for(unsigned int i=1; i < inMatrix.size(); i++)
-	{
-		output += inMatrix(i)().unaryExpr([](double elem)
-    		{
-			return elem < 0.5 ? 0.0 : 1.0; 
-    		});
-	}
+	double sAND = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		if(inScalar(i)() >= 0.5) sSumAND += 1;  
+		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+
+		sAND = ( sig + sAND ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
 	}
+	
+	if( sAND >  0.5 )  
+	{
+		output = inMatrix(0)().unaryExpr([](double elem)
+		{
+			return elem < 0.5 ? 0.0 : 1.0; 
+		});
 
-	output.array()+=sSumAND;
-
-	output = output.unaryExpr(NormFunc<double>(inMatrix.size()+inScalar.size()));
+		for(unsigned int i=1; i < inMatrix.size(); i++)
+		{
+			output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+			{
+				double v = e1 < 0.5 ? 0.0 : 1.0;
+				return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+			});
+		}
+	}
+	else
+	{
+		output = MatrixXd::Constant( output.rows(), output.cols(), 0);
+	}
 }
 
 void MSAND::setparameters()
@@ -94,16 +97,14 @@ void MSAND::setparameters()
 
 void SAND::compute()
 {
-	output = 0;
+	output = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		if(inScalar(i)() >= 0.5) output += 1;  
+		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+
+		output = ( sig + output ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
 	}
-		
-	if(output/inScalar.size() < 1)	output = 0;
-	else output = 1;
-	
 }
 
 void SAND::setparameters()
@@ -112,10 +113,9 @@ void SAND::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-
-/********************************************************************************************************/
-/*************************************************  OR   ************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/************************************************  OR  *************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MOR);
 REGISTER_FUNCTION(MSOR);
@@ -130,16 +130,12 @@ void MOR::compute()
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
-    		{
-			return elem < 0.5 ? 0.0 : 1.0; 
-    		});
+		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		{
+			double v = e1 < 0.5 ? 0.0 : 1.0;
+			return std::max( v , e2 ) ;
+		});
 	}		
-	
-	output = output.unaryExpr([](double elem)
-	{
-		return elem < 0.5 ? 0.0 : 1.0; 
-	});
 }
 
 void MOR::setparameters()
@@ -150,33 +146,25 @@ void MOR::setparameters()
 
 void MSOR::compute()
 {
-	double sSumOR=0;	
-
-	output = inMatrix(0)().unaryExpr([](double elem)
+	double sOR = inScalar(0)() < 0.5 ? 0.0 : 1.0;
+	
+	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		return elem < 0.5 ? 0.0 : 1.0; 
-	});
+		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+
+		sOR = std::max(sig, sOR);
+	}
+
+	output = inMatrix(0)().unaryExpr(FuncOR<double>(sOR) );
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
-    		{
-			return elem < 0.5 ? 0.0 : 1.0; 
-    		});
+		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		{
+			double v = e1 < 0.5 ? 0.0 : 1.0;
+			return std::max( v , e2 ) ;
+		});
 	}
-
-	for(unsigned int i=0; i < inScalar.size(); i++)
-	{
-		if(inScalar(i)() >= 0.5) sSumOR += 1;  
-	}
-
-	output.array()+=sSumOR;
-
-	output = output.unaryExpr([](double elem)
-	{
-		return elem < 0.5 ? 0.0 : 1.0; 
-	});
-
 }
 
 void MSOR::setparameters()
@@ -190,13 +178,14 @@ void MSOR::setparameters()
 
 void SOR::compute()
 {
-	output = 0;
+	output = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		if(inScalar(i)() >= 0.5) output = 1;  
+		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+
+		output = std::max(sig, output);
 	}
-	
 }
 
 void SOR::setparameters()
@@ -205,9 +194,9 @@ void SOR::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-/********************************************************************************************************/
-/************************************************  XOR   ************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/************************************************  XOR  ************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MXOR);
 REGISTER_FUNCTION(MSXOR);
@@ -299,9 +288,9 @@ void SXOR::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
-/********************************************************************************************************/
-/************************************************  NOT   ************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/***********************************************  NOT   ************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MNOT);
 REGISTER_FUNCTION(SNOT);
@@ -323,8 +312,7 @@ void MNOT::setparameters()
 
 void SNOT::compute()
 {
-	if(inScalar()() >= 0.5)	output = 0;  
-	else output = 1;
+	output = inScalar()() < 0.5 ? 1.0 : 0.0; 
 }
 
 void SNOT::setparameters()

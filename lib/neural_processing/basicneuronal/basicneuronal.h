@@ -42,6 +42,7 @@ shift operator (circularity option) -> On attend discution avec ALEX
 N_MAX/N_MIN (reviens à un sort si N = taille entrée)  -> implémenter plus tard si besoin
 -> SORT ?? Est-ce que ce n'est pas plus malin de l'appeler SORT ? Avec N -> N premier (soit max soit min)
 
+
 */
 
 /*******************************************************************************************************/
@@ -89,7 +90,7 @@ class KeepMin : public FMatrix
 /*******************************************************************************************************/
 /*
 Activity to population :  Single Neurons to Vector 
-2yyValue must be in [0,1] interval
+Value must be in [0,1] interval
 Output must be a Vector (rows or cols)
 */
 class  ActToPop : public FMatrix
