@@ -332,3 +332,4 @@ void Normalize::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
+

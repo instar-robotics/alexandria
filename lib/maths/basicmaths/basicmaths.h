@@ -26,10 +26,7 @@ The fact that you are presently reading this means that you have had knowledge o
  *  Difference Gaussienne Field
  *  Sigmoide  Field
  *
- *  Mono neurone ( donne value X sort Y )
- *  	-> Mettre dans maths/gaussian
- *
- *  Champ de neurones : (création de masques) ??
+ *  Champ de neurones : (création de masques 1D et 2D
  *  	-> Mettre dans neural_processing ??
  *
  *  Could add lpnorm ?
@@ -332,9 +329,5 @@ class Normalize : public FMatrix
 		virtual void compute();
 		virtual void setparameters();
 };
-
-/*******************************************************************************************************/
-/********************************************  Gaussian   *****************************************/
-/*******************************************************************************************************/
 
 #endif // _BASIC_MATH_H_

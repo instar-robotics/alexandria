@@ -13,7 +13,7 @@
 				</input>
 			</inputs>
 			<icon>and-matrix.svg</icon>
-			<desc>AND operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term AND operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>	
 		<function>
 			<name>MSAND</name>
@@ -30,7 +30,7 @@
 				</input>
 			</inputs>
 			<icon>and-matrix-scalar.svg</icon>
-			<desc>AND operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term AND operator for matrix part. Apply AND operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>	
 		<function>
 			<name>SAND</name>
@@ -56,7 +56,7 @@
 				</input>
 			</inputs>
 			<icon>or-matrix.svg</icon>
-			<desc>OR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term OR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MSOR</name>
@@ -73,7 +73,7 @@
 				</input>
 			</inputs>
 			<icon>or-matrix-scalar.svg</icon>
-			<desc>OR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term OR operator for matrix part. Apply OR operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>SOR</name>
@@ -99,7 +99,7 @@
 				</input>
 			</inputs>
 			<icon>xor-matrix.svg</icon>
-			<desc>XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MSXOR</name>
@@ -117,6 +117,7 @@
 			</inputs>
 			<icon>xor-matrix-scalar.svg</icon>
 			<desc>XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term XOR operator for matrix part. Apply XOR operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>SXOR</name>
@@ -155,7 +156,7 @@
 				</input>
 			</inputs>
 			<icon>not-scalar.svg</icon>
-			<desc>NOT operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term NOT operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 	</functions>
 </description>
