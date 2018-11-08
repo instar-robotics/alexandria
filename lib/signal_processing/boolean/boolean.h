@@ -28,6 +28,16 @@ The fact that you are presently reading this means that you have had knowledge o
 /**************************************************  AND  ***********************************************/
 /********************************************************************************************************/
 
+
+template<typename Scalar>
+struct NormFunc {
+  NormFunc(const Scalar& size) : size(size) {}
+  const Scalar operator()(const Scalar& x) const { return  x < size ? 0.0 : 1.0;   }
+  Scalar size;
+};
+
+
+
 class MAND :  public FMatrix
 {
 	private :
