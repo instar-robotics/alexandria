@@ -21,6 +21,7 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 
 //produit tensoriel -> à mettre dans un fichier tensor ?
+// Comparaison : m . m  et m . s ?
 
 // TODO : 
 

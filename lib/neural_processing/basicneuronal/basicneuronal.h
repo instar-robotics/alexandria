@@ -42,7 +42,6 @@ shift operator (circularity option) -> On attend discution avec ALEX
 N_MAX/N_MIN (reviens à un sort si N = taille entrée)  -> implémenter plus tard si besoin
 -> SORT ?? Est-ce que ce n'est pas plus malin de l'appeler SORT ? Avec N -> N premier (soit max soit min)
 
-
 */
 
 /*******************************************************************************************************/

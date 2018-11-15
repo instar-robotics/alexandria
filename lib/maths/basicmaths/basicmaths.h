@@ -25,6 +25,7 @@ The fact that you are presently reading this means that you have had knowledge o
  *  Gaussien Field
  *  Difference Gaussienne Field
  *  Sigmoide  Field
+ *  Cos/Sin Field 
  *
  *  Champ de neurones : (création de masques 1D et 2D
  *  	-> Mettre dans neural_processing ??
