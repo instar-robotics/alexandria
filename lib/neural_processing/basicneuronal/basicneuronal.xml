@@ -30,5 +30,49 @@
 			</inputs>
 			<icon>keepmin.svg</icon>
 		</function>
+		<function>
+			<name>ActToPop</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input multiple="false" type="SCALAR_SCALAR">
+					<name>activity</name>
+				</input>
+			</inputs>
+			<icon></icon>
+		</function>
+		<function>
+			<name>VActToPop</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input multiple="false" type="SCALAR_MATRIX">
+					<name>activity</name>
+				</input>
+			</inputs>
+			<icon></icon>
+		</function>
+		<function>
+			<name>PopToAct</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input multiple="false" type="SCALAR_MATRIX">
+					<name>population</name>
+				</input>
+			</inputs>
+			<icon></icon>
+		</function>
+		<function>
+			<name>PopToVAct</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input multiple="false" type="SCALAR_MATRIX">
+					<name>population</name>
+				</input>
+			</inputs>
+			<icon></icon>
+		</function>
 	</functions>
 </description>
