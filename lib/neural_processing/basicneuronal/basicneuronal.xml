@@ -7,28 +7,35 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
+
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>nMax</name>
+					<desc>Number of max to keep</desc>
 				</input>
 			</inputs>
 			<icon>keepmax.svg</icon>
+			<desc>Keep the value of the N max in the input matrix. Every other value are set to 0</desc>
 		</function>
 		<function>
 			<name>KeepMin</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>nMin</name>
+					<desc>Number of min to keep</desc>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>keepmin.svg</icon>
+			<desc>Keep the value of the N min in the input matrix. Every other value are set to 0</desc>
 		</function>
 		<function>
 			<name>ActToPop</name>

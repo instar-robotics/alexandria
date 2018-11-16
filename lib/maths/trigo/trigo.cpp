@@ -31,7 +31,7 @@ REGISTER_FUNCTION(STan);
 
 void MCos::compute()
 {
-       output = (inMatrix()(output)).array().cos();
+       output = inMatrix()().array().cos();
 }
 
 void MCos::setparameters()
@@ -51,7 +51,7 @@ void SCos::setparameters()
 
 void MSin::compute()
 {
-       output = (inMatrix()(output)).array().sin();
+       output = inMatrix()().array().sin();
 }
 
 void MSin::setparameters()
@@ -71,7 +71,7 @@ void SSin::setparameters()
 
 void MTan::compute()
 {
-       output = (inMatrix()(output)).array().tan();
+       output = inMatrix()(output).array().tan();
 }
 
 void MTan::setparameters()
@@ -102,7 +102,7 @@ REGISTER_FUNCTION(SAtan);
 
 void MAcos::compute()
 {
-       output = (inMatrix()(output)).array().acos();
+       output = inMatrix()().array().acos();
 }
 
 void MAcos::setparameters()
@@ -122,7 +122,7 @@ void SAcos::setparameters()
 
 void MAsin::compute()
 {
-       output = (inMatrix()(output)).array().asin();
+       output = inMatrix()().array().asin();
 }
 
 void MAsin::setparameters()
@@ -142,7 +142,7 @@ void SAsin::setparameters()
 
 void MAtan::compute()
 {
-       output = (inMatrix()(output)).array().atan();
+       output = inMatrix()().array().atan();
 }
 
 void MAtan::setparameters()
@@ -173,7 +173,7 @@ REGISTER_FUNCTION(STanh);
 
 void MCosh::compute()
 {
-       output = (inMatrix()(output)).array().cosh();
+       output = inMatrix()().array().cosh();
 }
 
 void MCosh::setparameters()
@@ -193,7 +193,7 @@ void SCosh::setparameters()
 
 void MSinh::compute()
 {
-       output = (inMatrix()(output)).array().sinh();
+       output = inMatrix()().array().sinh();
 }
 
 void MSinh::setparameters()
@@ -213,7 +213,7 @@ void SSinh::setparameters()
 
 void MTanh::compute()
 {
-       output = (inMatrix()(output)).array().tanh();
+       output = inMatrix()().array().tanh();
 }
 
 void MTanh::setparameters()

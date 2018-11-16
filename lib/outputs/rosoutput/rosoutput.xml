@@ -7,72 +7,92 @@
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
+					<desc>Name of the topic to which the function publish</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
+					<desc>Size of the queue</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.x</name>
+					<desc>Component on X axe of the linear velocity</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.y</name>
+					<desc>Component on Y axe of the linear velocity</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin.z</name>
+					<desc>Component on Z axe of the linear velocity</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.x</name>
+					<desc>Component on X axe of the rotational velocity</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.y</name>
+					<desc>Component on Y axe of the rotational velocity</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot.z</name>
+					<desc>Component on Z axe of the rotational velocity</desc>
 				</input>
 			</inputs>
 			<icon>motor_output.svg</icon>
+			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message</desc>
                 </function>
 		<function>
 			<name>CmdVelVectOutput</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
+					<desc>Name of the topic to which the function subscribes</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
+					<desc>Size of the queue</desc>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>lin</name>
+					<desc>Linear velocity. Must be dimension 3 [(3,1) or (3,1)]</desc>
+
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>rot</name>
+					<desc>Rotational velocity. Must be dimension 3 [(3,1) or (3,1)]</desc>
 				</input>
 			</inputs>
 			<icon>motor_output.svg</icon>
+			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message</desc>
                 </function>
 		<function>
 			<name>CmdVel2DOutput</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
-				<input multiple="false" type="STRING">
+				<input  type="STRING">
 					<name>topic_name</name>
+					<desc>Name of the topic to which the function subscribes</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>size_queue</name>
+					<desc>Size of the queue</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>lin</name>
+					<desc>Linear velocity. Component X only</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>rot</name>
+					<desc>Rotational velocity. Component Z only</desc>
 				</input>
 			</inputs>
 			<icon>motor_output.svg</icon>
+			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
                 </function>
 	</functions>
 </description>

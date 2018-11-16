@@ -9,9 +9,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>and-matrix.svg</icon>
+			<desc>Term-term AND operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>	
 		<function>
 			<name>MSAND</name>
@@ -20,12 +22,15 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>and-matrix-scalar.svg</icon>
+			<desc>Term-term AND operator for matrix part. Apply AND operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>	
 		<function>
 			<name>SAND</name>
@@ -34,9 +39,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>and-scalar.svg</icon>
+			<desc>AND operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MOR</name>
@@ -45,9 +52,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>or-matrix.svg</icon>
+			<desc>Term-term OR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MSOR</name>
@@ -56,12 +65,15 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>or-matrix-scalar.svg</icon>
+			<desc>Term-term OR operator for matrix part. Apply OR operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>SOR</name>
@@ -70,9 +82,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>or-scalar.svg</icon>
+			<desc>OR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MXOR</name>
@@ -81,9 +95,11 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>xor-matrix.svg</icon>
+			<desc>Term-term XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MSXOR</name>
@@ -92,12 +108,16 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>xor-matrix-scalar.svg</icon>
+			<desc>XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
+			<desc>Term-term XOR operator for matrix part. Apply XOR operator between scalar part and matrix part. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>SXOR</name>
@@ -106,31 +126,37 @@
 			<inputs>
 				<input multiple="true" type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>xor-scalar.svg</icon>
+			<desc>XOR operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>MNOT</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>not-matrix.svg</icon>
+			<desc>NOT operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 		<function>
 			<name>SNOT</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR">
+				<input  type="SCALAR_SCALAR">
 					<name>inScalar</name>
+					<desc>Input scalar</desc>
 				</input>
 			</inputs>
 			<icon>not-scalar.svg</icon>
+			<desc>Term-term NOT operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
 	</functions>
 </description>

@@ -7,17 +7,21 @@
 			<output type="MATRIX"> 
 			</output> 
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR"> 
+				<input type="SCALAR_SCALAR"> 
 					<name>learning_rate</name>
+					<desc>Learning rate</desc>
 				</input>
-				<input multiple="false" type="SCALAR_MATRIX"> 
+				<input type="SCALAR_MATRIX"> 
 					<name>unconditionnal</name>
+					<desc>Signal to predict</desc>
 				</input>
-				<input multiple="true" type="MATRIX_MATRIX">
-					<name>conditionnals</name>
+				<input multiple="true" checkSize="false"  type="MATRIX_MATRIX">
+					<name>Input signals</name>
+					<desc></desc>
 				</input>
 			</inputs>
 			<icon>lms.svg</icon>
+			<desc>Least Mean Square algorithm : gradiant descent with Widrow and Hoff learning rules</desc>
 		</function>	
 	</functions>
 </description>

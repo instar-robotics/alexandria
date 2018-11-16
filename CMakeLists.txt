@@ -7,6 +7,7 @@ set(CATKIN_DEP
   tf
   nav_msgs
   sensor_msgs
+  pcl_ros
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})

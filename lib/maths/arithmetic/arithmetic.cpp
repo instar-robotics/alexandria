@@ -16,9 +16,9 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "arithmetic.h"
 
-/********************************************************************************************************/
-/**********************************************   SUM   *************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/*********************************************   SUM   *************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MSum);
 REGISTER_FUNCTION(SSum);
@@ -26,7 +26,7 @@ REGISTER_FUNCTION(MSSum);
 
 void MSum::compute()
 {
-	inMatrix(0)(output);	
+	output = inMatrix(0)();	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
@@ -60,7 +60,7 @@ void MSSum::compute()
 {
 	double sSum=0;
 
-	inMatrix(0)(output);	
+	output = inMatrix(0)();	
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
@@ -86,9 +86,9 @@ void  MSSum::setparameters()
 }
 
 
-/********************************************************************************************************/
-/*****************************************   Substraction   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/****************************************   Substraction   *********************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MMSub);
 REGISTER_FUNCTION(MSSub);
@@ -96,8 +96,7 @@ REGISTER_FUNCTION(SSSub);
 
 void MMSub::compute()
 {
-	diminuende()(output);
-	output -= subtrahend();
+	output = diminuende()() - subtrahend()();
 }
 
 void MMSub::setparameters()
@@ -108,8 +107,7 @@ void MMSub::setparameters()
 
 void MSSub::compute()
 {
-	diminuende()(output);
-	output.array() -= subtrahend()();
+	output = diminuende()().array() -subtrahend()();
 }
 
 void MSSub::setparameters()
@@ -129,9 +127,9 @@ void SSSub::setparameters()
         Kernel::iBind(subtrahend,"subtrahend", getUuid());
 }
 
-/********************************************************************************************************/
-/*******************************************   Product   ************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/******************************************   Product   ************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MMul);
 REGISTER_FUNCTION(SMul);
@@ -139,7 +137,7 @@ REGISTER_FUNCTION(MSMul);
 
 void MMul::compute()
 {
-        inMatrix(0)(output);
+        output = inMatrix(0)();
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
@@ -180,7 +178,7 @@ void MSMul::compute()
                 sMul *= inScalar(i);
         }
 
-        inMatrix(0)(output);
+        output = inMatrix(0)();
 
         for(unsigned int i=1; i < inMatrix.size(); i++)
         {
@@ -197,9 +195,9 @@ void  MSMul::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
-/********************************************************************************************************/
-/******************************************   Division   ************************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/*****************************************   Division   ************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MMDiv);
 REGISTER_FUNCTION(MSDiv);
@@ -207,8 +205,7 @@ REGISTER_FUNCTION(SSDiv);
 
 void MMDiv::compute()
 {
-	numerator()(output);
-	output /= denumerator();
+	output = numerator()().array() / denumerator()().array();
 }
 
 void  MMDiv::setparameters()
@@ -219,8 +216,7 @@ void  MMDiv::setparameters()
 
 void MSDiv::compute()
 {
-        numerator()(output);
-        output /= denumerator()();
+        output = numerator()().array() / denumerator()();
 }
 
 void  MSDiv::setparameters()
@@ -238,5 +234,44 @@ void  SSDiv::setparameters()
 {
         Kernel::iBind(numerator,"numerator", getUuid());
         Kernel::iBind(denumerator,"denumerator", getUuid());
+}
+
+/*******************************************************************************************************/
+/******************************************  Normalization   *******************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(Norm);
+REGISTER_FUNCTION(SquaredNorm);
+REGISTER_FUNCTION(Normalize);
+
+void Norm::compute()
+{
+        output = inMatrix()().norm();
+}
+
+void Norm::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+
+void SquaredNorm::compute()
+{
+        output = inMatrix()().squaredNorm();
+}
+
+void SquaredNorm::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+void Normalize::compute()
+{
+        output = inMatrix()().normalized();
+}
+
+void Normalize::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 

@@ -26,6 +26,10 @@ The fact that you are presently reading this means that you have had knowledge o
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/Joy.h>
 #include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/PointCloud2.h>
+
+#include <pcl_ros/point_cloud.h>
+#include <pcl/point_types.h>
 
 
 /*******************************************************************************************************/
@@ -89,11 +93,11 @@ class MatrixInput : public FMatrix , public RosSubscriber<std_msgs::Float64Multi
 /*******************************************************************************************************/
 
 /*
- * JoyAxesInput : ROS Input for Joystick's axes values
+ * JoyAxes : ROS Input for Joystick's axes values
  * Axes array must have the same dimension than the Output Matrix
  * But Matrix could be in any row/col form
  */
-class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
+class JoyAxes : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 {
 	private :
 
@@ -102,8 +106,8 @@ class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 		ISInput sleep;
 
 	public : 
-		JoyAxesInput() : RosSubscriber<sensor_msgs::Joy>() {}
-		virtual ~JoyAxesInput(){}
+		JoyAxes() : RosSubscriber<sensor_msgs::Joy>() {}
+		virtual ~JoyAxes(){}
 		
 		virtual void compute();
                 virtual void setparameters();
@@ -115,10 +119,10 @@ class JoyAxesInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 };
 
 /*
- * JoyAxeInput : ROS Input for one Joystick's axe value
+ * JoyAxe : ROS Input for one Joystick's axe value
  * axe : the ID of the axe in the axes's array
  */
-class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
+class JoyAxe : public FScalar, public RosSubscriber<sensor_msgs::Joy>
 {
         private :
 
@@ -128,8 +132,8 @@ class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 ISInput axe;
 
         public :
-                JoyAxeInput() : FScalar() ,  RosSubscriber<sensor_msgs::Joy>() {}
-                virtual ~JoyAxeInput(){}
+                JoyAxe() : FScalar() ,  RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyAxe(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -141,11 +145,11 @@ class JoyAxeInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
 };
 
 /*
- * JoyButtonsInput : ROS Input for Joystick's buttons values
+ * JoyButtons : ROS Input for Joystick's buttons values
  * Buttons array must have the same dimension than the Output Matrix
  * But Matrix could be in any row/col form
  */
-class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
+class JoyButtons : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 {
         private :
 
@@ -154,8 +158,8 @@ class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
                 ISInput sleep;
 
         public :
-                JoyButtonsInput() : FMatrix(),  RosSubscriber<sensor_msgs::Joy>() {}
-                virtual ~JoyButtonsInput(){}
+                JoyButtons() : FMatrix(),  RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyButtons(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -167,10 +171,10 @@ class JoyButtonsInput : public FMatrix, public RosSubscriber<sensor_msgs::Joy>
 };
 
 /*
- * JoyButtonInput : ROS Input for one Joystick's axe value
+ * JoyButton : ROS Input for one Joystick's axe value
  * button : the ID of the button in the buttons's array
  */
-class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
+class JoyButton : public FScalar, public RosSubscriber<sensor_msgs::Joy>
 {
         private :
 
@@ -180,8 +184,8 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
                 ISInput button;
 
         public :
-                JoyButtonInput() : RosSubscriber<sensor_msgs::Joy>() {}
-                virtual ~JoyButtonInput(){}
+                JoyButton() : RosSubscriber<sensor_msgs::Joy>() {}
+                virtual ~JoyButton(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -197,10 +201,10 @@ class JoyButtonInput : public FScalar, public RosSubscriber<sensor_msgs::Joy>
 /*******************************************************************************************************/
 
 /*
- * OdoPosInput : ROS Input Odometric Cartesian Position
+ * OdoPos : ROS Input Odometric Cartesian Position
  * Vector with X,Y,Z absolute coordinate
  */
-class OdoPosInput :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+class OdoPos :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 {
 	private : 
 
@@ -210,8 +214,8 @@ class OdoPosInput :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 
 	public : 
 
-		OdoPosInput() : RosSubscriber<nav_msgs::Odometry>() {}
-		virtual ~OdoPosInput(){}
+		OdoPos() : RosSubscriber<nav_msgs::Odometry>() {}
+		virtual ~OdoPos(){}
 
 		virtual void uprerun();
                 virtual void compute();
@@ -224,10 +228,10 @@ class OdoPosInput :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoPosXInput : ROS Input Odometric Cartesian Position, X component
+ * OdoPosX : ROS Input Odometric Cartesian Position, X component
  * Point X
  */
-class OdoPosXInput :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoPosX :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private : 
 
@@ -237,8 +241,8 @@ class OdoPosXInput :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
         public : 
 
-                OdoPosXInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoPosXInput(){}
+                OdoPosX() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosX(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -250,10 +254,10 @@ class OdoPosXInput :  public FScalar, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoPosYInput : ROS Input Odometric Cartesian Position, Y component
+ * OdoPosY : ROS Input Odometric Cartesian Position, Y component
  * Point Y
  */
-class OdoPosYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoPosY : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -263,8 +267,8 @@ class OdoPosYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
         public :
 
-                OdoPosYInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoPosYInput(){}
+                OdoPosY() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosY(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -276,10 +280,10 @@ class OdoPosYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoPosZInput : ROS Input Odometric Cartesian Position, Z component
+ * OdoPosZ : ROS Input Odometric Cartesian Position, Z component
  * Point Z
  */
-class OdoPosZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoPosZ : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -289,8 +293,8 @@ class OdoPosZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
         public :
 
-                OdoPosZInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoPosZInput(){}
+                OdoPosZ() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoPosZ(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -302,10 +306,10 @@ class OdoPosZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoEulerInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll, Pitch, Yaw)
+ * OdoEuler : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll, Pitch, Yaw)
  * Vector Roll, Pitch, Yaw
  */
-class OdoEulerInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+class OdoEuler : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -315,8 +319,8 @@ class OdoEulerInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
         
         public :
 
-                OdoEulerInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoEulerInput(){}
+                OdoEuler() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEuler(){}
 
 		virtual void uprerun();
                 virtual void compute();
@@ -329,10 +333,10 @@ class OdoEulerInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoEulerRollInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll)
+ * OdoEulerRoll : ROS Input Odometric Absolute Orientation in Euler coordinate (Roll)
  * Scalar Roll
  */
-class OdoEulerRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoEulerRoll : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -342,8 +346,8 @@ class OdoEulerRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 
         public :
 
-                OdoEulerRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoEulerRollInput(){}
+                OdoEulerRoll() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerRoll(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -355,10 +359,10 @@ class OdoEulerRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 }; 
 
 /*
- * OdoEulerPitchInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Pitch)
+ * OdoEulerPitch : ROS Input Odometric Absolute Orientation in Euler coordinate (Pitch)
  * Scalar Pitch
  */
-class OdoEulerPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoEulerPitch : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -368,8 +372,8 @@ class OdoEulerPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odomet
 
         public :
 
-                OdoEulerPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoEulerPitchInput(){}
+                OdoEulerPitch() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerPitch(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -381,10 +385,10 @@ class OdoEulerPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odomet
 };
 
 /*
- * OdoEulerYawInput : ROS Input Odometric Absolute Orientation in Euler coordinate (Yaw)
+ * OdoEulerYaw : ROS Input Odometric Absolute Orientation in Euler coordinate (Yaw)
  * Scalar Yaw
  */
-class OdoEulerYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoEulerYaw : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -394,8 +398,8 @@ class OdoEulerYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry
         
         public :
 
-                OdoEulerYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoEulerYawInput(){}
+                OdoEulerYaw() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoEulerYaw(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -407,10 +411,10 @@ class OdoEulerYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry
 };
 
 /*
- * OdoQuaterInput : ROS Input Odometric Absolute Orientation in Quaternion coordinate (X,Y,Z,W)
+ * OdoQuater : ROS Input Odometric Absolute Orientation in Quaternion coordinate (X,Y,Z,W)
  * Vector X,Y,Z,W
  */
-class OdoQuaterInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+class OdoQuater : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
                 IString topic_name;
@@ -419,8 +423,8 @@ class OdoQuaterInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
         
         public :
 
-                OdoQuaterInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoQuaterInput(){}
+                OdoQuater() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuater(){}
 
 		virtual void uprerun();
                 virtual void compute();
@@ -433,10 +437,10 @@ class OdoQuaterInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoQuaterXInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (X)
+ * OdoQuaterX : ROS Input Odometric Absolute Orientation in Quaternion coodinate (X)
  * Scalar X
  */
-class OdoQuaterXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoQuaterX : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -446,8 +450,8 @@ class OdoQuaterXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
         public :
 
-                OdoQuaterXInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoQuaterXInput(){}
+                OdoQuaterX() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterX(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -459,10 +463,10 @@ class OdoQuaterXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 };
 
 /*
- * OdoQuaterYInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Y)
+ * OdoQuaterY : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Y)
  * Scalar Y
  */
-class OdoQuaterYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoQuaterY : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -472,8 +476,8 @@ class OdoQuaterYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
         
         public :
 
-                OdoQuaterYInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoQuaterYInput(){}
+                OdoQuaterY() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterY(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -486,10 +490,10 @@ class OdoQuaterYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
 
 /*
- * OdoQuaterZInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Z)
+ * OdoQuaterZ : ROS Input Odometric Absolute Orientation in Quaternion coodinate (Z)
  * Scalar Z
  */
-class OdoQuaterZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoQuaterZ : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -499,8 +503,8 @@ class OdoQuaterZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
         
         public :
 
-                OdoQuaterZInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoQuaterZInput(){}
+                OdoQuaterZ() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterZ(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -513,10 +517,10 @@ class OdoQuaterZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
 
 /*
- * OdoQuaterWInput : ROS Input Odometric Absolute Orientation in Quaternion coodinate (W)
+ * OdoQuaterW : ROS Input Odometric Absolute Orientation in Quaternion coodinate (W)
  * Scalar W
  */
-class OdoQuaterWInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoQuaterW : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -526,8 +530,8 @@ class OdoQuaterWInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
         
         public :
 
-                OdoQuaterWInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoQuaterWInput(){}
+                OdoQuaterW() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoQuaterW(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -540,10 +544,10 @@ class OdoQuaterWInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 
 
 /*
- * OdoTwistLinInput : ROS Input Odometric Twist, Linear movement on (X,Y,Z)
+ * OdoTwistLin : ROS Input Odometric Twist, Linear movement on (X,Y,Z)
  * Vector (X,Y,Z)
  */
-class OdoTwistLinInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistLin : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -553,8 +557,8 @@ class OdoTwistLinInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
         
         public :
 
-                OdoTwistLinInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistLinInput(){}
+                OdoTwistLin() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLin(){}
 
 		virtual void uprerun();
                 virtual void compute();
@@ -568,10 +572,10 @@ class OdoTwistLinInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
 
 
 /*
- * OdoTwistLinXInput : ROS Input Odometric Twist, Linear movement on X
+ * OdoTwistLinX : ROS Input Odometric Twist, Linear movement on X
  * Scalar X
  */
-class OdoTwistLinXInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistLinX : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -581,8 +585,8 @@ class OdoTwistLinXInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 
         public :
 
-                OdoTwistLinXInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistLinXInput(){}
+                OdoTwistLinX() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinX(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -594,10 +598,10 @@ class OdoTwistLinXInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 }; 
 
 /*
- * OdoTwistLinXInput : ROS Input Odometric Twist, Linear movement on Y
+ * OdoTwistLinX : ROS Input Odometric Twist, Linear movement on Y
  * Scalar Y
  */
-class OdoTwistLinYInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistLinY : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -607,8 +611,8 @@ class OdoTwistLinYInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 
         public :
 
-                OdoTwistLinYInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistLinYInput(){}
+                OdoTwistLinY() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinY(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -621,10 +625,10 @@ class OdoTwistLinYInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 };
 
 /*
- * OdoTwistLinZInput : ROS Input Odometric Twist, Linear movement on Z
+ * OdoTwistLinZ : ROS Input Odometric Twist, Linear movement on Z
  * Scalar Z
  */
-class OdoTwistLinZInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistLinZ : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -634,8 +638,8 @@ class OdoTwistLinZInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
         
         public :
 
-                OdoTwistLinZInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistLinZInput(){}
+                OdoTwistLinZ() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistLinZ(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -647,10 +651,10 @@ class OdoTwistLinZInput : public FScalar, public RosSubscriber<nav_msgs::Odometr
 };
 
 /*
- * OdoTwistAngInput : ROS Input Odometric Twist, Angular movement on (Roll,Pitch,Yaw)
+ * OdoTwistAng : ROS Input Odometric Twist, Angular movement on (Roll,Pitch,Yaw)
  * Vector (Roll, Pitch, Yaw)
  */
-class OdoTwistAngInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistAng : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 {
 	private :
 
@@ -660,8 +664,8 @@ class OdoTwistAngInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
 
         public :
 
-                OdoTwistAngInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistAngInput(){}
+                OdoTwistAng() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAng(){}
 
 		virtual void uprerun();
                 virtual void compute();
@@ -675,10 +679,10 @@ class OdoTwistAngInput : public FMatrix, public RosSubscriber<nav_msgs::Odometry
 };
 
 /*
- * OdoTwistAngRollInput : ROS Input Odometric Twist, Angular movement on (Roll)
+ * OdoTwistAngRoll : ROS Input Odometric Twist, Angular movement on (Roll)
  * Scalar (Roll)
  */
-class OdoTwistAngRollInput : public FScalar, public RosSubscriber<nav_msgs::Odometry>
+class OdoTwistAngRoll : public FScalar, public RosSubscriber<nav_msgs::Odometry>
 {
         private :
 
@@ -688,8 +692,8 @@ class OdoTwistAngRollInput : public FScalar, public RosSubscriber<nav_msgs::Odom
 
         public :
 
-                OdoTwistAngRollInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistAngRollInput(){}
+                OdoTwistAngRoll() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngRoll(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -701,10 +705,10 @@ class OdoTwistAngRollInput : public FScalar, public RosSubscriber<nav_msgs::Odom
 };
 
 /*
- * OdoTwistAngPitchInput : ROS Input Odometric Twist, Angular movement on (Pitch)
+ * OdoTwistAngPitch : ROS Input Odometric Twist, Angular movement on (Pitch)
  * Scalar (Pitch)
  */
-class OdoTwistAngPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
+class OdoTwistAngPitch : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
 {
         private :
 
@@ -714,8 +718,8 @@ class OdoTwistAngPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odo
 
         public :
 
-                OdoTwistAngPitchInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistAngPitchInput(){}
+                OdoTwistAngPitch() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngPitch(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -727,10 +731,10 @@ class OdoTwistAngPitchInput : public FScalar, public RosSubscriber<nav_msgs::Odo
 };
 
 /*
- * OdoTwistAngYawInput : ROS Input Odometric Twist, Angular movement on (Yaw)
+ * OdoTwistAngYaw : ROS Input Odometric Twist, Angular movement on (Yaw)
  * Scalar (Yaw)
  */
-class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
+class OdoTwistAngYaw : public FScalar, public RosSubscriber<nav_msgs::Odometry> 
 {
         private :
 
@@ -740,8 +744,8 @@ class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odome
 
         public :
 
-                OdoTwistAngYawInput() : RosSubscriber<nav_msgs::Odometry>(){}
-                virtual ~OdoTwistAngYawInput(){}
+                OdoTwistAngYaw() : RosSubscriber<nav_msgs::Odometry>(){}
+                virtual ~OdoTwistAngYaw(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -753,10 +757,10 @@ class OdoTwistAngYawInput : public FScalar, public RosSubscriber<nav_msgs::Odome
 };
 
 /*******************************************************************************************************/
-/*****************                         LaserScan Inputs                          *******************/
+/*****************                          Lidar1D Inputs                           *******************/
 /*******************************************************************************************************/
 
-class LaserScanInput : public FMatrix, public RosSubscriber<sensor_msgs::LaserScan>
+class Lidar1D : public FMatrix, public RosSubscriber<sensor_msgs::LaserScan>
 {
 	private : 
 
@@ -770,8 +774,8 @@ class LaserScanInput : public FMatrix, public RosSubscriber<sensor_msgs::LaserSc
 
 	public : 
 
-                LaserScanInput() : RosSubscriber<sensor_msgs::LaserScan>(){}
-                virtual ~LaserScanInput(){}
+                Lidar1D() : RosSubscriber<sensor_msgs::LaserScan>(){}
+                virtual ~Lidar1D(){}
 
                 virtual void compute();
                 virtual void setparameters();
@@ -780,6 +784,43 @@ class LaserScanInput : public FMatrix, public RosSubscriber<sensor_msgs::LaserSc
                 virtual void onRun();
                 virtual void onPause();
                 virtual void callback( const sensor_msgs::LaserScan::ConstPtr &msg );
+};
+
+/*******************************************************************************************************/
+/*****************                          Lidar2D Inputs                           *******************/
+/*******************************************************************************************************/
+
+typedef pcl::PointCloud<pcl::PointXYZ> PointCloud;
+
+
+//class Lidar2D : public FMatrix, public RosSubscriber<sensor_msgs::PointCloud2>
+class Lidar2D : public FMatrix, public RosSubscriber<PointCloud>
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput sleep;
+
+                ISInput range_max;
+
+		MatrixXi moy; 
+
+        public :
+
+                //Lidar2D() : RosSubscriber<sensor_msgs::PointCloud2>(){}
+                Lidar2D() : RosSubscriber<PointCloud>(){}
+                virtual ~Lidar2D(){}
+
+                virtual void compute();
+                virtual void setparameters();
+
+                virtual void onQuit();
+                virtual void onRun();
+                virtual void onPause();
+
+                //virtual void callback( const sensor_msgs::PointCloud2::ConstPtr &msg );
+                virtual void callback( const PointCloud::ConstPtr& msg );
 };
 
 #endif // __ROS_INPUT_HPP__

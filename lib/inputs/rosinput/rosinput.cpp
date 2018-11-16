@@ -21,32 +21,33 @@ The fact that you are presently reading this means that you have had knowledge o
 
 REGISTER_FUNCTION(ScalarInput);
 REGISTER_FUNCTION(MatrixInput);
-REGISTER_FUNCTION(JoyAxesInput);
-REGISTER_FUNCTION(JoyAxeInput);
-REGISTER_FUNCTION(JoyButtonsInput);
-REGISTER_FUNCTION(JoyButtonInput);
-REGISTER_FUNCTION(OdoPosInput);
-REGISTER_FUNCTION(OdoPosXInput);
-REGISTER_FUNCTION(OdoPosYInput);
-REGISTER_FUNCTION(OdoPosZInput);
-REGISTER_FUNCTION(OdoEulerInput);
-REGISTER_FUNCTION(OdoEulerRollInput);
-REGISTER_FUNCTION(OdoEulerPitchInput);
-REGISTER_FUNCTION(OdoEulerYawInput);
-REGISTER_FUNCTION(OdoQuaterInput);
-REGISTER_FUNCTION(OdoQuaterXInput);
-REGISTER_FUNCTION(OdoQuaterYInput);
-REGISTER_FUNCTION(OdoQuaterZInput);
-REGISTER_FUNCTION(OdoQuaterWInput);
-REGISTER_FUNCTION(OdoTwistLinInput);
-REGISTER_FUNCTION(OdoTwistLinXInput);
-REGISTER_FUNCTION(OdoTwistLinYInput);
-REGISTER_FUNCTION(OdoTwistLinZInput);
-REGISTER_FUNCTION(OdoTwistAngInput);
-REGISTER_FUNCTION(OdoTwistAngRollInput);
-REGISTER_FUNCTION(OdoTwistAngPitchInput);
-REGISTER_FUNCTION(OdoTwistAngYawInput);
-REGISTER_FUNCTION(LaserScanInput);
+REGISTER_FUNCTION(JoyAxes);
+REGISTER_FUNCTION(JoyAxe);
+REGISTER_FUNCTION(JoyButtons);
+REGISTER_FUNCTION(JoyButton);
+REGISTER_FUNCTION(OdoPos);
+REGISTER_FUNCTION(OdoPosX);
+REGISTER_FUNCTION(OdoPosY);
+REGISTER_FUNCTION(OdoPosZ);
+REGISTER_FUNCTION(OdoEuler);
+REGISTER_FUNCTION(OdoEulerRoll);
+REGISTER_FUNCTION(OdoEulerPitch);
+REGISTER_FUNCTION(OdoEulerYaw);
+REGISTER_FUNCTION(OdoQuater);
+REGISTER_FUNCTION(OdoQuaterX);
+REGISTER_FUNCTION(OdoQuaterY);
+REGISTER_FUNCTION(OdoQuaterZ);
+REGISTER_FUNCTION(OdoQuaterW);
+REGISTER_FUNCTION(OdoTwistLin);
+REGISTER_FUNCTION(OdoTwistLinX);
+REGISTER_FUNCTION(OdoTwistLinY);
+REGISTER_FUNCTION(OdoTwistLinZ);
+REGISTER_FUNCTION(OdoTwistAng);
+REGISTER_FUNCTION(OdoTwistAngRoll);
+REGISTER_FUNCTION(OdoTwistAngPitch);
+REGISTER_FUNCTION(OdoTwistAngYaw);
+REGISTER_FUNCTION(Lidar1D);
+REGISTER_FUNCTION(Lidar2D);
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/
@@ -128,26 +129,26 @@ void MatrixInput::onRun()
 
 
 /*******************************************************************************************************/
-/*****************                           JoyAxesInput                            *******************/
+/*****************                           JoyAxes                            *******************/
 /*******************************************************************************************************/
 
-void JoyAxesInput::compute()
+void JoyAxes::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()()  ));
 }
 
-void JoyAxesInput::setparameters()
+void JoyAxes::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void JoyAxesInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+void JoyAxes::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
 	if( msg->axes.size() != output.rows() * output.cols() ) 
 	{
-		throw std::invalid_argument("JoyAxesInput : Output dimension is not egal to the numbers of Joystick axes !");
+		throw std::invalid_argument("JoyAxes : Output dimension is not egal to the numbers of Joystick axes !");
 	}
 
         auto mout = getMapVect(output);
@@ -157,25 +158,25 @@ void JoyAxesInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
 	}
 }
 
-void JoyAxesInput::onQuit()
+void JoyAxes::onQuit()
 {
 	disable();
 }
 
-void JoyAxesInput::onPause()
+void JoyAxes::onPause()
 {
 	disable();
 }
 
-void JoyAxesInput::onRun()
+void JoyAxes::onRun()
 {
 	enable(topic_name, (int)(size_queue()()) );
 }
 /*******************************************************************************************************/
-/******************                           JoyAxeInput                            *******************/
+/******************                           JoyAxe                            *******************/
 /*******************************************************************************************************/
 
-void JoyAxeInput::setparameters()
+void JoyAxe::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
@@ -183,57 +184,57 @@ void JoyAxeInput::setparameters()
         Kernel::iBind(axe,"axe", getUuid());
 }
 
-void JoyAxeInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+void JoyAxe::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
         if( axe()() >  msg->axes.size())
         {
-                throw std::invalid_argument("JoyAxeInput : axe ID is out of range !");
+                throw std::invalid_argument("JoyAxe : axe ID is out of range !");
         }
 
 	output = msg->axes[ (int)(axe()()) - 1];
 }
 
-void JoyAxeInput::compute()
+void JoyAxe::compute()
 {
        my_queue.callOne(ros::WallDuration( sleep()()  ));
 }
 
-void JoyAxeInput::onQuit()
+void JoyAxe::onQuit()
 {
 	disable();
 }
 
-void JoyAxeInput::onPause()
+void JoyAxe::onPause()
 {
 	disable();
 }
 
-void JoyAxeInput::onRun()
+void JoyAxe::onRun()
 {
 	enable(topic_name, (int)(size_queue()()) );
 }
 
 /*******************************************************************************************************/
-/*****************                         JoyButtonsInput                           *******************/
+/*****************                         JoyButtons                           *******************/
 /*******************************************************************************************************/
 
-void JoyButtonsInput::compute()
+void JoyButtons::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()()  ));
 }
 
-void JoyButtonsInput::setparameters()
+void JoyButtons::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+void JoyButtons::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
         if( msg->buttons.size() != output.rows() * output.cols() )
         {
-                throw std::invalid_argument("JoyButtonsInput : Output dimension is not egal to the numbers of Joystick axes !");
+                throw std::invalid_argument("JoyButtons : Output dimension is not egal to the numbers of Joystick axes !");
         }
 
         auto mout = getMapVect(output);
@@ -243,31 +244,31 @@ void JoyButtonsInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
         }
 }
 
-void JoyButtonsInput::onQuit()
+void JoyButtons::onQuit()
 {
 	disable();
 }
 
-void JoyButtonsInput::onPause()
+void JoyButtons::onPause()
 {
 	disable();
 }
 
-void JoyButtonsInput::onRun()
+void JoyButtons::onRun()
 {
 	enable(topic_name, (int)(size_queue()()) );
 }
 
 /*******************************************************************************************************/
-/*****************                           JoyButtonInput                          *******************/
+/*****************                           JoyButton                          *******************/
 /*******************************************************************************************************/
 
-void JoyButtonInput::compute()
+void JoyButton::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()()  ));
 }
 
-void JoyButtonInput::setparameters()
+void JoyButton::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
@@ -275,55 +276,55 @@ void JoyButtonInput::setparameters()
         Kernel::iBind(button,"button", getUuid());
 }
 
-void JoyButtonInput::callback( const sensor_msgs::Joy::ConstPtr &msg)
+void JoyButton::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
         if( button()() >  msg->buttons.size())
         {
-                throw std::invalid_argument("JoyButtonInput : button ID is out of range !");
+                throw std::invalid_argument("JoyButton : button ID is out of range !");
         }
 
         output = msg->buttons[ (int)(button()()) - 1];
 }
 
-void JoyButtonInput::onQuit()
+void JoyButton::onQuit()
 {
 	disable();
 }
 
-void JoyButtonInput::onPause()
+void JoyButton::onPause()
 {
 	disable();
 }
 
-void JoyButtonInput::onRun()
+void JoyButton::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 
 /*******************************************************************************************************/
-/*********************                         OdoPosInput                          ********************/
+/*********************                         OdoPos                          ********************/
 /*******************************************************************************************************/
 
 
-void OdoPosInput::compute()
+void OdoPos::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoPosInput::setparameters()
+void OdoPos::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosInput::uprerun()
+void OdoPos::uprerun()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPos : Output dimension should be 3 !");
 }
 
-void OdoPosInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoPos::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         auto mout = getMapVect(output);
         mout[0] = msg->pose.pose.position.x;
@@ -331,152 +332,152 @@ void OdoPosInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->pose.pose.position.z;
 }
 
-void OdoPosInput::onQuit()
+void OdoPos::onQuit()
 {
 	disable();
 }
 
-void OdoPosInput::onPause()
+void OdoPos::onPause()
 {
 	disable();
 }
 
-void OdoPosInput::onRun()
+void OdoPos::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                        OdoPosXInput                          ********************/
+/*********************                        OdoPosX                          ********************/
 /*******************************************************************************************************/
 
 
-void OdoPosXInput::compute()
+void OdoPosX::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoPosXInput::setparameters()
+void OdoPosX::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoPosX::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.x;
 }
 
-void OdoPosXInput::onQuit()
+void OdoPosX::onQuit()
 {
 	disable();
 }
 
-void OdoPosXInput::onPause()
+void OdoPosX::onPause()
 {
 	disable();
 }
 
-void OdoPosXInput::onRun()
+void OdoPosX::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                        OdoPosYInput                          ********************/
+/*********************                        OdoPosY                          ********************/
 /*******************************************************************************************************/
 
 
-void OdoPosYInput::compute()
+void OdoPosY::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoPosYInput::setparameters()
+void OdoPosY::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoPosY::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.y;
 }
 
-void OdoPosYInput::onQuit()
+void OdoPosY::onQuit()
 {
 	disable();
 }
 
-void OdoPosYInput::onPause()
+void OdoPosY::onPause()
 {
 	disable();
 }
 
-void OdoPosYInput::onRun()
+void OdoPosY::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                        OdoPosZInput                          ********************/
+/*********************                        OdoPosZ                          ********************/
 /*******************************************************************************************************/
 
-void OdoPosZInput::compute()
+void OdoPosZ::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoPosZInput::setparameters()
+void OdoPosZ::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPosZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoPosZ::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	output = msg->pose.pose.position.z;
 }
 
-void OdoPosZInput::onQuit()
+void OdoPosZ::onQuit()
 {
 	disable();
 }
 
-void OdoPosZInput::onPause()
+void OdoPosZ::onPause()
 {
 	disable();
 }
 
-void OdoPosZInput::onRun()
+void OdoPosZ::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                       OdoEulerInput                          ********************/
+/*********************                       OdoEuler                          ********************/
 /*******************************************************************************************************/
 
-void OdoEulerInput::compute()
+void OdoEuler::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoEulerInput::setparameters()
+void OdoEuler::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerInput::uprerun()
+void OdoEuler::uprerun()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPosInput : Output dimension should be 3 !");
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoEuler : Output dimension should be 3 !");
 }
 
-void OdoEulerInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoEuler::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
@@ -491,38 +492,38 @@ void OdoEulerInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
 
 }
 
-void OdoEulerInput::onQuit()
+void OdoEuler::onQuit()
 {
 	disable();
 }
 
-void OdoEulerInput::onPause()
+void OdoEuler::onPause()
 {
 	disable();
 }
 
-void OdoEulerInput::onRun()
+void OdoEuler::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                    OdoEulerRollInput                         ********************/
+/*********************                    OdoEulerRoll                         ********************/
 /*******************************************************************************************************/
 
-void OdoEulerRollInput::compute()
+void OdoEulerRoll::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoEulerRollInput::setparameters()
+void OdoEulerRoll::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoEulerRoll::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
@@ -533,38 +534,38 @@ void OdoEulerRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         output = roll;
 }
 
-void OdoEulerRollInput::onQuit()
+void OdoEulerRoll::onQuit()
 {
 	disable();
 }
 
-void OdoEulerRollInput::onPause()
+void OdoEulerRoll::onPause()
 {
 	disable();
 }
 
-void OdoEulerRollInput::onRun()
+void OdoEulerRoll::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                   OdoEulerPitchInput                         ********************/
+/*********************                   OdoEulerPitch                         ********************/
 /*******************************************************************************************************/
 
-void OdoEulerPitchInput::compute()
+void OdoEulerPitch::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoEulerPitchInput::setparameters()
+void OdoEulerPitch::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoEulerPitch::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
@@ -575,38 +576,38 @@ void OdoEulerPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         output = pitch;
 }
 
-void OdoEulerPitchInput::onQuit()
+void OdoEulerPitch::onQuit()
 {
 	disable();
 }
 
-void OdoEulerPitchInput::onPause()
+void OdoEulerPitch::onPause()
 {
 	disable();
 }
 
-void OdoEulerPitchInput::onRun()
+void OdoEulerPitch::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                     OdoEulerYawInput                         ********************/
+/*********************                     OdoEulerYaw                         ********************/
 /*******************************************************************************************************/
 
-void OdoEulerYawInput::compute()
+void OdoEulerYaw::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoEulerYawInput::setparameters()
+void OdoEulerYaw::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEulerYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoEulerYaw::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
@@ -617,43 +618,43 @@ void OdoEulerYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         output = yaw;
 }
 
-void OdoEulerYawInput::onQuit()
+void OdoEulerYaw::onQuit()
 {
 	disable();
 }
 
-void OdoEulerYawInput::onPause()
+void OdoEulerYaw::onPause()
 {
 	disable();
 }
 
-void OdoEulerYawInput::onRun()
+void OdoEulerYaw::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                     OdoQuaterInput                         ********************/
+/*********************                     OdoQuater                         ********************/
 /*******************************************************************************************************/
 
-void OdoQuaterInput::compute()
+void OdoQuater::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoQuaterInput::setparameters()
+void OdoQuater::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterInput::uprerun()
+void OdoQuater::uprerun()
 {
-	if( output.rows() * output.cols() != 4 ) throw std::invalid_argument("OdoQuaterInput : Output dimension should be 3 !");
+	if( output.rows() * output.cols() != 4 ) throw std::invalid_argument("OdoQuater : Output dimension should be 3 !");
 }
 
-void OdoQuaterInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
+void OdoQuater::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
         auto mout = getMapVect(output);
         mout[0] = msg->pose.pose.orientation.x;
@@ -662,184 +663,184 @@ void OdoQuaterInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
         mout[3] = msg->pose.pose.orientation.w;
 }
 
-void OdoQuaterInput::onQuit()
+void OdoQuater::onQuit()
 {
 	disable();
 }
 
-void OdoQuaterInput::onPause()
+void OdoQuater::onPause()
 {
 	disable();
 }
 
-void OdoQuaterInput::onRun()
+void OdoQuater::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                     OdoQuaterXInput                         ********************/
+/*********************                     OdoQuaterX                         ********************/
 /*******************************************************************************************************/
 
-void OdoQuaterXInput::compute()
+void OdoQuaterX::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoQuaterXInput::setparameters()
+void OdoQuaterX::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoQuaterX::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.x;
 }
 
-void OdoQuaterXInput::onQuit()
+void OdoQuaterX::onQuit()
 {
 	disable();
 }
 
-void OdoQuaterXInput::onPause()
+void OdoQuaterX::onPause()
 {
 	disable();
 }
 
-void OdoQuaterXInput::onRun()
+void OdoQuaterX::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                     OdoQuaterYInput                         ********************/
+/*********************                     OdoQuaterY                         ********************/
 /*******************************************************************************************************/
 
-void OdoQuaterYInput::compute()
+void OdoQuaterY::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoQuaterYInput::setparameters()
+void OdoQuaterY::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterYInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
+void OdoQuaterY::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.y;
 }
 
-void OdoQuaterYInput::onQuit()
+void OdoQuaterY::onQuit()
 {
 	disable();
 }
 
-void OdoQuaterYInput::onPause()
+void OdoQuaterY::onPause()
 {
 	disable();
 }
 
-void OdoQuaterYInput::onRun()
+void OdoQuaterY::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                     OdoQuaterZInput                         ********************/
+/*********************                     OdoQuaterZ                         ********************/
 /*******************************************************************************************************/
 
-void OdoQuaterZInput::compute()
+void OdoQuaterZ::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoQuaterZInput::setparameters()
+void OdoQuaterZ::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterZInput::callback( const nav_msgs::Odometry::ConstPtr &msg )
+void OdoQuaterZ::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.z;
 }
 
-void OdoQuaterZInput::onQuit()
+void OdoQuaterZ::onQuit()
 {
 	disable();
 }
 
-void OdoQuaterZInput::onPause()
+void OdoQuaterZ::onPause()
 {
 	disable();
 }
 
-void OdoQuaterZInput::onRun()
+void OdoQuaterZ::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                     OdoQuaterWInput                         ********************/
+/*********************                     OdoQuaterW                         ********************/
 /*******************************************************************************************************/
 
-void OdoQuaterWInput::compute()
+void OdoQuaterW::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoQuaterWInput::setparameters()
+void OdoQuaterW::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuaterWInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoQuaterW::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->pose.pose.orientation.w;
 }
 
-void OdoQuaterWInput::onQuit()
+void OdoQuaterW::onQuit()
 {
 	disable();
 }
 
-void OdoQuaterWInput::onPause()
+void OdoQuaterW::onPause()
 {
 	disable();
 }
 
-void OdoQuaterWInput::onRun()
+void OdoQuaterW::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                     OdoTwistLinInput                         ********************/
+/*********************                     OdoTwistLin                         ********************/
 /*******************************************************************************************************/
 
-void OdoTwistLinInput::compute()
+void OdoTwistLin::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistLinInput::setparameters()
+void OdoTwistLin::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinInput::uprerun()
+void OdoTwistLin::uprerun()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistLinInput : Output dimension should be 3 !");
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistLin : Output dimension should be 3 !");
 }
 
-void OdoTwistLinInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistLin::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         auto mout = getMapVect(output);
         mout[0] = msg->twist.twist.linear.x;
@@ -847,149 +848,149 @@ void OdoTwistLinInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->twist.twist.linear.z;
 }
 
-void OdoTwistLinInput::onQuit()
+void OdoTwistLin::onQuit()
 {
 	disable();
 }
 
-void OdoTwistLinInput::onPause()
+void OdoTwistLin::onPause()
 {
 	disable();
 }
 
-void OdoTwistLinInput::onRun()
+void OdoTwistLin::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                    OdoTwistLinXInput                         ********************/
+/*********************                    OdoTwistLinX                         ********************/
 /*******************************************************************************************************/
 
-void OdoTwistLinXInput::compute()
+void OdoTwistLinX::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistLinXInput::setparameters()
+void OdoTwistLinX::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinXInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistLinX::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.x;
 }
 
-void OdoTwistLinXInput::onQuit()
+void OdoTwistLinX::onQuit()
 {
 	disable();
 }
 
-void OdoTwistLinXInput::onPause()
+void OdoTwistLinX::onPause()
 {
 	disable();
 }
 
-void OdoTwistLinXInput::onRun()
+void OdoTwistLinX::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                    OdoTwistLinYInput                         ********************/
+/*********************                    OdoTwistLinY                         ********************/
 /*******************************************************************************************************/
 
-void OdoTwistLinYInput::compute()
+void OdoTwistLinY::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistLinYInput::setparameters()
+void OdoTwistLinY::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinYInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistLinY::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.y;
 }
 
 
-void OdoTwistLinYInput::onQuit()
+void OdoTwistLinY::onQuit()
 {
 	disable();
 }
 
-void OdoTwistLinYInput::onPause()
+void OdoTwistLinY::onPause()
 {
 	disable();
 }
 
-void OdoTwistLinYInput::onRun()
+void OdoTwistLinY::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                    OdoTwistLinZInput                         ********************/
+/*********************                    OdoTwistLinZ                         ********************/
 /*******************************************************************************************************/
 
-void OdoTwistLinZInput::compute()
+void OdoTwistLinZ::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistLinZInput::setparameters()
+void OdoTwistLinZ::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLinZInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistLinZ::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.linear.z;
 }
 
-void OdoTwistLinZInput::onQuit()
+void OdoTwistLinZ::onQuit()
 {
 	disable();
 }
 
-void OdoTwistLinZInput::onPause()
+void OdoTwistLinZ::onPause()
 {
 	disable();
 }
 
-void OdoTwistLinZInput::onRun()
+void OdoTwistLinZ::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                    OdoTwistAngInput                         ********************/
+/*********************                    OdoTwistAng                         ********************/
 /*******************************************************************************************************/
 
-void OdoTwistAngInput::compute()
+void OdoTwistAng::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistAngInput::setparameters()
+void OdoTwistAng::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngInput::uprerun()
+void OdoTwistAng::uprerun()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistAngInput : Output dimension should be 3 !");
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistAng : Output dimension should be 3 !");
 }
 
-void OdoTwistAngInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistAng::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         auto mout = getMapVect(output);
         mout[0] = msg->twist.twist.angular.x;
@@ -997,142 +998,142 @@ void OdoTwistAngInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
         mout[2] = msg->twist.twist.angular.z;
 }
 
-void OdoTwistAngInput::onQuit()
+void OdoTwistAng::onQuit()
 {
 	disable();
 }
 
-void OdoTwistAngInput::onPause()
+void OdoTwistAng::onPause()
 {
 	disable();
 }
 
-void OdoTwistAngInput::onRun()
+void OdoTwistAng::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                  OdoTwistAngRollInput                        ********************/
+/*********************                  OdoTwistAngRoll                        ********************/
 /*******************************************************************************************************/
 
-void OdoTwistAngRollInput::compute()
+void OdoTwistAngRoll::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistAngRollInput::setparameters()
+void OdoTwistAngRoll::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngRollInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistAngRoll::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.x;
 }
 
-void OdoTwistAngRollInput::onQuit()
+void OdoTwistAngRoll::onQuit()
 {
 	disable();
 }
 
-void OdoTwistAngRollInput::onPause()
+void OdoTwistAngRoll::onPause()
 {
 	disable();
 }
 
-void OdoTwistAngRollInput::onRun()
+void OdoTwistAngRoll::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 /*******************************************************************************************************/
-/*********************                  OdoTwistAngPitchInput                       ********************/
+/*********************                  OdoTwistAngPitch                       ********************/
 /*******************************************************************************************************/
 
-void OdoTwistAngPitchInput::compute()
+void OdoTwistAngPitch::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistAngPitchInput::setparameters()
+void OdoTwistAngPitch::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngPitchInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistAngPitch::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.y;
 }
 
-void OdoTwistAngPitchInput::onQuit()
+void OdoTwistAngPitch::onQuit()
 {
 	disable();
 }
 
-void OdoTwistAngPitchInput::onPause()
+void OdoTwistAngPitch::onPause()
 {
 	disable();
 }
 
-void OdoTwistAngPitchInput::onRun()
+void OdoTwistAngPitch::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 /*******************************************************************************************************/
-/*********************                    OdoTwistAngYawInput                       ********************/
+/*********************                    OdoTwistAngYaw                       ********************/
 /*******************************************************************************************************/
 
-void OdoTwistAngYawInput::compute()
+void OdoTwistAngYaw::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void OdoTwistAngYawInput::setparameters()
+void OdoTwistAngYaw::setparameters()
 {
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAngYawInput::callback(const nav_msgs::Odometry::ConstPtr &msg )
+void OdoTwistAngYaw::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
         output = msg->twist.twist.angular.z;
 }
 
 
-void OdoTwistAngYawInput::onQuit()
+void OdoTwistAngYaw::onQuit()
 {
 	disable();
 }
 
-void OdoTwistAngYawInput::onPause()
+void OdoTwistAngYaw::onPause()
 {
 	disable();
 }
 
-void OdoTwistAngYawInput::onRun()
+void OdoTwistAngYaw::onRun()
 {
 	enable( topic_name, (int)(size_queue()())   );
 }
 
 
 /*******************************************************************************************************/
-/*********************                       LaserScanInput                         ********************/
+/************************                       Lidar1D                        *************************/
 /*******************************************************************************************************/
 
-void LaserScanInput::compute()
+void Lidar1D::compute()
 {
         my_queue.callOne(ros::WallDuration( sleep()() ));
 }
 
-void LaserScanInput::setparameters()
+void Lidar1D::setparameters()
 {
-	if( output.rows() > 1 )  throw std::invalid_argument("LaserScanInput : Output must be a Vector [ROW = 1 and Cols = N]");
+	if( output.rows() > 1 )  throw std::invalid_argument("Lidar1D : Output must be a Vector [ROW = 1 and Cols = N]");
 
 	moy.assign(output.cols(), 0);
 
@@ -1142,45 +1143,140 @@ void LaserScanInput::setparameters()
         Kernel::iBind(range_max,"range_max", getUuid());
 }
 
-void LaserScanInput::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
+void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 {
-	double RM = std::min(range_max()(),  (double)(msg->range_max) ); 
-	double offset =  M_PI - fabs(msg->angle_min);
+        double RM = std::min(range_max()(),  (double)(msg->range_max) );
+        double offset =  M_PI - fabs(msg->angle_min);
 
-	for( unsigned int i = 0 ; i < msg->ranges.size() ; i++)
-	{
-		unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( output.cols() / (2* M_PI)) ;
+        for( unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
+        {
+                unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( output.cols() / (2* M_PI)) ;
 
-		double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
-		if( value < 0 ) value = 0;
+                double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
+                if( value < 0 ) value = 0;
 
-		if( moy[j] == 0 ) output(0,j) = value;
-		else output(0,j) += value;
+                if( moy[j] == 0 ) output(0,j) = value;
+                else output(0,j) += value;
 
-		moy[j]++;
-	}
+                moy[j]++;
+        }
 
-	for(unsigned int i = 0 ; i < output.cols() ; i++)
-	{
+        for(unsigned int i = 0 ; i < output.cols() ; i++)
+        {
+                if( moy[i] > 0 ) output(0,i) = output(0,i) / moy[i];
+                else output(0,i) = 0;
 
-		if( moy[i] > 0 ) output(0,i) = output(0,i) / moy[i];
-		else output(0,i) = 0;
-
-		moy[i] = 0;
-	}
+                moy[i] = 0;
+        }
 }
 
-void LaserScanInput::onQuit()
-{
-        disable();
-}
-
-void LaserScanInput::onPause()
+void Lidar1D::onQuit()
 {
         disable();
 }
 
-void LaserScanInput::onRun()
+void Lidar1D::onPause()
+{
+        disable();
+}
+
+void Lidar1D::onRun()
+{
+        enable( topic_name, (int)(size_queue()())   );
+}
+
+
+/*******************************************************************************************************/
+/************************                       Lidar2D                        *************************/
+/*******************************************************************************************************/
+
+void Lidar2D::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()() ));
+}
+
+void Lidar2D::setparameters()
+{
+        Kernel::iBind(topic_name,"topic_name", getUuid());
+        Kernel::iBind(size_queue,"size_queue", getUuid());
+        Kernel::iBind(sleep,"sleep", getUuid());
+        Kernel::iBind(range_max,"range_max", getUuid());
+
+	moy = MatrixXi::Constant(output.rows(), output.cols(),0);
+}
+
+//void Lidar2D::callback(const sensor_msgs::PointCloud2::ConstPtr &msg )
+void Lidar2D::callback(const PointCloud::ConstPtr &msg )
+{
+	output = MatrixXd::Constant(output.rows(),output.cols(),0);
+
+	for( unsigned int i = 0 ; i <  msg->points.size() ; i++ )
+	{
+		
+
+		 double theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
+
+		 double value = sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z  );
+
+		 std::cout <<  msg->points[i].z+10  << " " << theta << " "<< value << std::endl;
+		 if( ! std::isnan(theta) )  output( msg->points[i].z+10 , theta) = value;
+	}
+
+/*
+	std::cout << msg->points.size() << std::endl;
+
+	std::cout << msg->width << " " << msg->height << std::endl;
+
+	auto const m = msg->getMatrixXfMap();
+	std::cout << m.rows() << " . " << m.cols() << std::endl;
+
+	for( unsigned int i = 0 ; i < m.cols() ; i++)
+		for(unsigned int j = 0; j < m.rows(); j++)
+	{
+		output( j * output.rows() / m.rows() , i * output.cols() / m.cols() ) = m(j,i);	
+	}
+*/
+
+
+//	std::cout << m << std::endl;
+
+
+	/*
+	for( unsigned int i = 0 ; i <  msg->points.size() ; i++ )
+	{
+		 std::cout << msg->points[i].x << "  " << msg->points[i].y << " " <<  msg->points[i].z << std::endl;
+	}
+	*/
+	/*
+	std::cout << "Width : " << msg->width << std::endl;
+	std::cout << "Height : " << msg->height << std::endl;
+	std::cout << "Point Step : " << msg->point_step << std::endl;
+	std::cout << "Row Step : " << msg->row_step << std::endl;
+
+
+	std::cout << "Point Fields Size : " << msg->fields.size() << std::endl;
+
+	for(unsigned int i =0 ; i < msg->fields.size() ; i++)
+	{
+		std::cout << "\tPF Name : " << msg->fields[i].name << std::endl;
+		std::cout << "\tPF offset : " << msg->fields[i].offset << std::endl;
+		std::cout << "\tPF datatype : " << (int)msg->fields[i].datatype << std::endl;
+		std::cout << "\tPF count : " << msg->fields[i].count << std::endl;
+
+	}*/
+}
+
+void Lidar2D::onQuit()
+{
+        disable();
+}
+
+void Lidar2D::onPause()
+{
+        disable();
+}
+
+void Lidar2D::onRun()
 {
         enable( topic_name, (int)(size_queue()())   );
 }

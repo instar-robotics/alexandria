@@ -26,9 +26,7 @@ REGISTER_FUNCTION(SExp);
 
 void MExp::compute()
 {
-	//TODO : Could be that : (optimal code)
-	//	output = (exponent().w() * exponent().i()).array().exp();
-	output = exponent()(output).array().exp() ;
+	output = exponent()().array().exp() ;
 }
 
 void  MExp::setparameters()
@@ -58,7 +56,7 @@ REGISTER_FUNCTION(SLog10);
 
 void MLog::compute()
 {
-	output = inMatrix()(output).array().log() ;
+	output = inMatrix()().array().log() ;
 }
 
 void MLog::setparameters()
@@ -78,7 +76,7 @@ void SLog::setparameters()
 
 void MLog10::compute()
 {
-	output = inMatrix()(output).array().log10();
+	output = inMatrix()().array().log10();
 }
 
 void MLog10::setparameters()
@@ -108,7 +106,7 @@ REGISTER_FUNCTION(SMPow);
 
 void MPow::compute()
 {
-	output = base()(output).array().pow( exponent()().array() );
+	output = base()().array().pow( exponent()().array() );
 }
 
 void MPow::setparameters()
@@ -130,7 +128,7 @@ void SPow::setparameters()
 
 void MSPow::compute()
 {
-	output = base()(output).array().pow(  exponent()() );
+	output = base()().array().pow(  exponent()() );
 }
 
 void MSPow::setparameters()
@@ -161,7 +159,7 @@ REGISTER_FUNCTION(SSqrt);
 
 void MSqrt::compute()
 {
-	output = inMatrix()(output).array().sqrt();
+	output = inMatrix()().array().sqrt();
 }
 
 void MSqrt::setparameters()
@@ -189,7 +187,7 @@ REGISTER_FUNCTION(SSquare);
 
 void MSquare::compute()
 {
-	output = inMatrix()(output).array().square();
+	output = inMatrix()().array().square();
 }
 
 void MSquare::setparameters()
@@ -218,7 +216,7 @@ REGISTER_FUNCTION(SCube);
 
 void MCube::compute()
 {
-	output = inMatrix()(output).array().cube();
+	output = inMatrix()().array().cube();
 }
 
 void MCube::setparameters()
@@ -247,7 +245,7 @@ REGISTER_FUNCTION(SInverse);
 
 void MInverse::compute()
 {
-	output = inMatrix()(output).array().inverse();
+	output = inMatrix()().array().inverse();
 }
 
 void MInverse::setparameters()

@@ -97,10 +97,10 @@ virtual void setparameters();
 * There are a third function which are optional : 
 
 ```javascript
-virtual void prerun();
+virtual void uprerun();
 ```
 
-* **prerun** function is called by kheops after creating the graph.  We will describe in details this function later.
+* **uprerun** function is called by kheops after creating the graph.  We will describe in details this function later.
 * The last functions you have to define is the class constructor and destructor : 
 
 ```javascript
@@ -298,7 +298,7 @@ void HelloFunct::setparameters()
 ### Input with multiple iLink ###
 
 * By default, an Input could receive only one iLink
-* If you want to add more than one iLink on an Input you have to specify that the Inpu is multiple.
+* If you want to add more than one iLink on an Input you have to specify that the Input is multiple.
 * In **setparameters** function :
 
 ```javascript
@@ -317,16 +317,42 @@ void HelloFunct::setparameters()
      <input type="SCALAR_MATRIX"  multiple="true">
         <name>inMat</name>
      </input> 
-     <input type="STRING"  multiple="false">
+     <input type="STRING">
        <name>myString</name>
      </input> 
 ```
 
-* Note : you have to specify the attribute **multiple** in every case ! Even if input is not multiple.
+### Check Size for Input ###
+
+* By default when you add an input to a function, kheops check that the dimension of object from iLink is egal to the dimension of the function output.
+* By default : **checkSize** is **true**
+* For Scalar input, check size is ignore (because it is a non-sense to check 1-D object)
+* You could inhibate this behaviour by calling **setCheckSize** in **setparameters** function : 
+
+```javascript
+void HelloFunct::setparameters() 
+{
+        inMat.setCheckSize(false);   // kheops will not check size for inMat
+
+        Kernel::iBind(inMat,"inMat", getUuid());
+        Kernel::iBind(myString,"myString", getUuid());
+}
+```
+
+* And in the XML File : 
+
+```xml
+     <input type="SCALAR_MATRIX"  checkSize="false">
+        <name>inMat</name>
+     </input> 
+     <input type="STRING">
+       <name>myString</name>
+     </input> 
+```
 
 ### kernel loading parameters ###
 
-* We describe **setparameters** and **prerun** functions.
+* We describe **setparameters** and **uprerun** functions.
 * Each function is called by the kernel at a specific moment.
 
 * **setparameters** :
@@ -336,7 +362,7 @@ void HelloFunct::setparameters()
   4. In case of **FMatrix**, the output dimension is set an the MatrixXd is initialize 
   5. Output is set to zero (SCALAR and MATRIX)
 
-* **prerun** :
+* **uprerun** :
   1. is called after the kernel load the graph
   2. At this moment, the graph is complete and each input can acces to the Output data from the predecessor Function (from iLink)
 
@@ -360,10 +386,10 @@ class HelloFunct : public FMatrix
 };
 ```
 
-* But if you need to initialize attribute member with Input/Output parameters, you have to do in **setparameters** or **prerun** function.
+* But if you need to initialize attribute member with Input/Output parameters, you have to do in **setparameters** or **uprerun** function.
 * Depend on what you need :
  1. if you need only output information : you can initialize your attribute in **setparameters**
- 2. if you need some input informaton : you have to initailize your attribute in **prerun**
+ 2. if you need some input informaton : you have to initailize your attribute in **uprerun**
 
 * For example, you add a MatrixXd **tempMat** with the same size that **output Matrix**.
 * To initialize **tempMat** you ony need to add : 
@@ -382,7 +408,7 @@ void HelloFunct::setparameters()
 * Now, you need to create a tempMat with the same dimension than Input dimension.
 
 ```javascript
-void HelloFunct::prerun() 
+void HelloFunct::uprerun() 
 {
     tempMat = MatrixXd::Constant(inMat().i().rows(),inMat().i().cols(),0);  // create a tempMat with the same dimension that Input 
 }
@@ -456,7 +482,7 @@ typedef Input<iScalar> ISInput;
   5. operator*=(double, iScalar) : return double * input * weight 
 
 * iSMatrix operators : 
-  1. operator() : return input * weight  [Becareful : return a temporary MatrixXd ! So avoid this operator if possible]
+  1. operator() : return input * weight  
   2. operator(MatrixXd & res) : copy in res =  input * weight  [Better than 1.]
   2. operator+=(double, iSMatrix) : copy  double + input * weight     
   3. operator-=(double, iSMatrix) : copy  double - input * weight 
@@ -499,22 +525,22 @@ typedef Input<iScalar> ISInput;
   
     MatrixXd output; //Declare an Eigen Matrix
     
-    // Good solution : 
-    // Here get the first iMarix and apply operator(MatrixXd) to compute input * weight and copy the result in output. 
-    in(0)(output);   
+    output = in(0)();  // Return I * W and init output
 
-    // Bad solution !! 
-    output = in(0)();  // Here you use a temporary MatrixXd before copying into output !
+    // Another solution : Here get the first iMarix and apply operator(MatrixXd) to compute input * weight and copy the result in output. 
+    // in(0)(output);   
 
+    
     for(unsigned int n=1; i < in.size(); i++)
     {
-        // Best practice 
+        //This 3 syntax are equivalent in performance
+        
         // use operator(int n) of Input class to get the N iSMatrix
         // then call operator+= for iSMatrix class [ double + input * weight ]
         output += in(n) ;    
         
-       // Bad solution !! 
-        output += in(n)()   // Here you use a temporary MatrixXd before copying into output !
+       // You can use :  
+        output += in(n)()   
         
         // Alternative :  
         output += in(n).i() * in(n).w();   // or in.i(n).i() * in.i(n).w(); 

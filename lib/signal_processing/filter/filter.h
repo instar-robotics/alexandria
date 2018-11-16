@@ -15,16 +15,15 @@ The fact that you are presently reading this means that you have had knowledge o
 */
 
 
-#ifndef _SIGNAL_H_
-#define _SIGNAL_H_
+#ifndef _FILTER_H_
+#define _FILTER_H_
 
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
 
-
-/********************************************************************************************************/
-/*******************************************  Front Detection   *****************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/******************************************  Front Detection   *****************************************/
+/*******************************************************************************************************/
 
 const IString FD_SUP = "up" ;
 const IString FD_SDOWN = "down" ;
@@ -304,4 +303,76 @@ class MMHeavisideCustom : public FMatrix
                 virtual void setparameters();
 };
 
-#endif // _SIGNAL_H_
+/*******************************************************************************************************/
+/*********************************************  SIGMOID   **********************************************/
+/*******************************************************************************************************/
+
+class SSigmoid : public FScalar
+{
+	private : 
+		ISInput inScalar;
+
+	public : 
+
+		virtual ~SSigmoid(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+class MSigmoid : public FMatrix
+{
+	private : 
+		ISMInput inMatrix;
+
+	public : 
+
+		virtual ~MSigmoid(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+class SSigmoidLambda : public FScalar
+{
+	private : 
+		ISInput inScalar;
+		ISInput lambda;
+
+	public : 
+
+		virtual ~SSigmoidLambda(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+class MSSigmoidLambda : public FMatrix
+{
+	private : 
+		ISMInput inMatrix;
+		ISInput lambda;
+
+	public : 
+
+		virtual ~MSSigmoidLambda(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+class MMSigmoidLambda : public FMatrix
+{
+	private : 
+		ISMInput inMatrix;
+		ISMInput lambda;
+
+	public : 
+
+		virtual ~MMSigmoidLambda(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+#endif // _FILTER_H_
