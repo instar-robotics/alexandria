@@ -283,7 +283,7 @@
                                         <desc>Input scalar</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Scalar_sigmoid.svg</icon>
                         <desc>Sigmoid filter</desc>
                 </function>
 		<function>
@@ -296,7 +296,7 @@
                                         <desc>Input matrix</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Matrix_sigmoid.svg</icon>
                         <desc>Sigmoid filter</desc>
                 </function>
 		<function>
@@ -313,7 +313,7 @@
                                         <desc>lambda coefficient : e^(lambda * x)</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Scalar_sigmoid_lambda.svg</icon>
                         <desc>Sigmoid filter. General form </desc>
                 </function>
 		<function>
@@ -330,7 +330,7 @@
                                         <desc>lambda coefficient : e^(lambda * x)</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Matrix_sigmoid_lambda.svg</icon>
                         <desc>Sigmoid filter. General form </desc>
                 </function>
 		<function>
@@ -347,7 +347,7 @@
                                         <desc>lambda coefficient : e^(lambda * x)</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Matrix_sigmoid_lambda.svg</icon>
                         <desc>Sigmoid filter. General form </desc>
                 </function>
 	</functions>

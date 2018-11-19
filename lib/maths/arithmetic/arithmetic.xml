@@ -200,7 +200,7 @@
                                         <desc>Input matrix</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>norm.svg</icon>
                         <desc>Compute the norm of the input matrix</desc>
                 </function>
                 <function>
@@ -213,7 +213,7 @@
                                         <desc>Input matrix</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>squarednorm.svg</icon>
                         <desc>Compute the squared norm of the input matrix</desc>
                 </function>
                 <function>
@@ -226,7 +226,7 @@
                                         <desc>Input matrix</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>normalized.svg</icon>
                         <desc>Normalize the input matrix</desc>
                 </function>
 	</functions>

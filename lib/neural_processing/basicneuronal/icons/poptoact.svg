@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6"
-     inkscape:cx="32.045614"
+     inkscape:cx="0.88489971"
      inkscape:cy="49.549386"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,12 +60,12 @@
     <circle
        style="fill:#ff8080;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.64231855;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path829"
-       cx="68.902657"
-       cy="84.340469"
+       cx="67.97834"
+       cy="84.342949"
        r="1.2746007" />
     <g
        id="g900"
-       transform="matrix(0,0.99146829,-0.99146829,0,127.41157,20.944939)">
+       transform="matrix(0,0.89638023,-0.89638023,0,120.85144,27.02745)">
       <circle
          r="0.9921875"
          cy="71.840378"
@@ -105,17 +105,18 @@
     </g>
     <g
        id="g908"
-       transform="matrix(1.284637,0,0,1.284637,-13.649001,7.3834937)">
+       transform="matrix(1.284637,0,0,1.284637,-14.52461,7.3859738)">
       <path
          inkscape:connector-curvature="0"
          id="path902"
-         d="m 56.237185,59.905619 c 5.055432,0 5.055432,0 5.055432,0"
-         style="fill:none;stroke:#1a1a1a;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 57.472943,59.905619 h 3.407755"
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:nodetypes="cc" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          id="path904"
-         d="m 62.119166,59.910126 -0.961008,-0.558715 v 1.109958 z"
+         d="m 61.707247,59.910126 -0.961008,-0.558715 v 1.109958 z"
          style="fill:#1a1a1a;stroke:#1a1a1a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>

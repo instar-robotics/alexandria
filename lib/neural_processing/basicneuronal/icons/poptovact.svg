@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.919596"
-     inkscape:cx="42.347533"
-     inkscape:cy="42.11939"
+     inkscape:zoom="5.6"
+     inkscape:cx="15.201883"
+     inkscape:cy="52.544451"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,7 +59,7 @@
      transform="translate(-53.449611,-76.18607)">
     <g
        id="g908"
-       transform="matrix(1.284637,0,0,1.284637,-13.147871,7.3563881)">
+       transform="matrix(1.1421673,0,0,1.1421673,-4.724059,16.00136)">
       <path
          inkscape:connector-curvature="0"
          id="path902"
@@ -75,7 +75,7 @@
     </g>
     <g
        id="g900-6"
-       transform="matrix(0,0.99146828,-0.99146828,0,141.32521,22.243002)">
+       transform="matrix(0,0.88151176,-0.88151176,0,132.61754,29.237008)">
       <circle
          r="0.9921875"
          cy="71.840378"
@@ -109,7 +109,7 @@
     </g>
     <g
        id="g1086"
-       transform="translate(1.030297,1.3328111)">
+       transform="matrix(0.88909729,0,0,0.88909729,7.8817117,10.645814)">
       <g
          transform="matrix(0,0.99146829,-0.99146829,0,127.98429,20.91019)"
          id="g900">
