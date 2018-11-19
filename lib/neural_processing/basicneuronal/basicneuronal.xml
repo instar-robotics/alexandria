@@ -46,7 +46,7 @@
 					<name>activity</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>acttopop.svg</icon>
 		</function>
 		<function>
 			<name>VActToPop</name>
@@ -57,7 +57,7 @@
 					<name>activity</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>vacttopop.svg</icon>
 		</function>
 		<function>
 			<name>PopToAct</name>
@@ -68,7 +68,7 @@
 					<name>population</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>poptoact.svg</icon>
 		</function>
 		<function>
 			<name>PopToVAct</name>
@@ -79,7 +79,7 @@
 					<name>population</name>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>poptovact.svg</icon>
 		</function>
 	</functions>
 </description>
