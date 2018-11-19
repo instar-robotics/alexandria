@@ -88,18 +88,20 @@ class KeepMin : public FMatrix
 /*********************************************  ActToPop   *********************************************/
 /*******************************************************************************************************/
 /*
-Activity to population :  Single Neurons to Vector 
-Value must be in [0,1] interval
-Output must be a Vector (rows or cols)
+ * Activity to population :  Single Neurons to Vector 
+ * Value must be in [0,1] interval
+ * Output must be a Vector (rows or cols)
 */
 class  ActToPop : public FMatrix
 {
 	private : 
                 
 		ISInput activity;
+		MatrixXd::Index lastIndex;
         
 	public :
 
+		ActToPop() : lastIndex(0) {}
                 virtual ~ActToPop(){}
 
                 virtual void compute();
@@ -112,18 +114,25 @@ class  ActToPop : public FMatrix
 /*******************************************************************************************************/
 
 /*
-Activity to population :  Vector to Matrix (each neurons from the input Vector is discretize on a ligne or cols of the output Matrix 
-Each Value from the input vectur must be in [0,1] interval
-Output must be a Matrix with rows (or cols) egal to the size of the input Vector
+ * Activity to population :  Vector to Matrix (each neurons from the input Vector is discretize on a row or a col of the output Matrix [ROW or COL depend on the input] 
+ * Each Value from the input vectur must be in [0,1] interval
+ * Output must be a Matrix with rows (or cols) egal to the size of the input Vector
 */
+
+enum PROJ{COLPROJ,ROWPROJ,SINGLEV};
+
 class  VActToPop : public FMatrix
 {
 	private : 
                 
-		ISMInput activity;
+		ISMInput activities;
+
+		unsigned int proj;
+		VectorXd lastIndex;
         
 	public :
 
+		VActToPop() : proj(0) {}
                 virtual ~VActToPop(){}
 
                 virtual void compute();
@@ -135,12 +144,12 @@ class  VActToPop : public FMatrix
 /*********************************************  PopToAct   *********************************************/
 /*******************************************************************************************************/
 /*
- (vector -> neuron)
- population to activity  
-  Output is a scalar between [0,1]
-  Input must be a Vector (rows or cols) 
+ * Population to Activity : Take the index of the max coefficient and convert the index into a scalar
+ * If there are more than one max coefficient, takes the index of the first one
+ * Output is a scalar between [0,1]
+ * Input must be a Vector [ROW or COL]
 */
-class  PopToAct : public FScalar
+class PopToAct : public FScalar
 {
 	private : 
 		ISMInput population;

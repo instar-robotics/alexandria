@@ -27,15 +27,54 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
+					<desc>Input matrix</desc>
 				</input>
 				<input  type="SCALAR_SCALAR">
 					<name>nMin</name>
 					<desc>Number of min to keep</desc>
-					<desc>Input matrix</desc>
 				</input>
 			</inputs>
 			<icon>keepmin.svg</icon>
 			<desc>Keep the value of the N min in the input matrix. Every other value are set to 0</desc>
+		</function>
+		<function>
+			<name>ActoToPop</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input  type="SCALAR_SCALAR">
+					<name>activity</name>
+					<desc>Scalar activity to discretized. Value should be in [0;1]</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Discretized scalar activity into a 1D field [ROW or COL].</desc>
+		</function>
+		<function>
+			<name>VActoToPop</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input  type="SCALAR_MATRIX">
+					<name>activities</name>
+					<desc>Scalar activities to discretized.Each value should be in [0;1]. Activities is a Vector [ROW or COL].</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Discretize scalar activities into a Matrix. If activities is ROW Vector, each scalar is discretized on a ROW of the output matrix. If activities is COL Vector, each scalar is discretized on a COL of the output matrix.</desc>
+		</function>
+		<function>
+			<name>PopToAct</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input  type="SCALAR_MATRIX">
+					<name>population</name>
+					<desc>Population field to convert into activity.[take the index of the max coeff, if there are two max, take the first one] </desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Convert population into a scalar activity.</desc>
 		</function>
 	</functions>
 </description>
