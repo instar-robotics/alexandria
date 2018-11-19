@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+        <libname>cast</libname>
+	<functions>
+		<function>
+			<name>Cast_SToM</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>	
+				<input type="SCALAR_SCALAR">
+					<name>inScalar</name>
+					<desc></desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Cast Scalar to 1-1 Matrix.</desc>
+		</function>
+		<function>
+			<name>Cast_MToS</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>	
+				<input type="SCALAR_MATRIX">
+					<name>inMatrix</name>
+					<desc></desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Cast 1-1 Matrix to Scalar</desc>
+		</function>
+        </functions>
+</description>
+
