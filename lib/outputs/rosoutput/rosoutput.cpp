@@ -47,6 +47,8 @@ void CmdVelRawOutput::compute()
 
 void CmdVelRawOutput::setparameters()
 {
+	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
+
  	Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(linX,"lin.x", getUuid());
@@ -59,8 +61,6 @@ void CmdVelRawOutput::setparameters()
 
 void CmdVelRawOutput::uprerun()
 {
-	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
-
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
 
@@ -99,6 +99,8 @@ void CmdVelVectOutput::compute()
 
 void CmdVelVectOutput::setparameters()
 {
+	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
+
         Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(lin,"lin", getUuid());
@@ -107,12 +109,8 @@ void CmdVelVectOutput::setparameters()
 
 void CmdVelVectOutput::uprerun()
 {
-	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
-
-
 	if( lin().getISize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Linear Input dimension should be 3 !");
 	if( rot().getISize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Rotational Input dimension should be 3 !");
-
 
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
@@ -142,6 +140,8 @@ void CmdVel2DOutput::compute()
 
 void CmdVel2DOutput::setparameters()
 {
+	if( output.rows() * output.cols() != 2 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 2 !");
+
         Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(lin,"lin", getUuid());
@@ -150,7 +150,5 @@ void CmdVel2DOutput::setparameters()
 
 void CmdVel2DOutput::uprerun()
 {
-	if( output.rows() * output.cols() != 2 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 2 !");
-	
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
