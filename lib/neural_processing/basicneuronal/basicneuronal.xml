@@ -38,7 +38,7 @@
 			<desc>Keep the value of the N min in the input matrix. Every other value are set to 0</desc>
 		</function>
 		<function>
-			<name>ActoToPop</name>
+			<name>ActToPop</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -51,7 +51,7 @@
 			<desc>Discretized scalar activity into a 1D field [ROW or COL].</desc>
 		</function>
 		<function>
-			<name>VActoToPop</name>
+			<name>VActToPop</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
