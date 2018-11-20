@@ -21,6 +21,8 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
 
+// See here for more Filter functions : https://fr.wikipedia.org/wiki/Fonction_d%27activation
+
 /*******************************************************************************************************/
 /******************************************  Front Detection   *****************************************/
 /*******************************************************************************************************/
@@ -29,9 +31,9 @@ const IString FD_SUP = "up" ;
 const IString FD_SDOWN = "down" ;
 const IString FD_SBOTH = "both" ;
 
-const unsigned int  FD_IUP = 1 ;
-const unsigned int FD_IDOWN = 0 ;
-const unsigned int FD_IBOTH = -1 ;
+const int FD_IUP = 1 ;
+const int FD_IDOWN = 0 ;
+const int FD_IBOTH = -1 ;
 
 bool checkMode(const std::string & smode, int &mode);
 

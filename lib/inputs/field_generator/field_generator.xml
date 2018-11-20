@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+        <libname>field_generator</libname>
+	<functions>
+		<function>	
+			<name>DiracField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>The position of the dirac</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a One-D Dirac Field. MUST be [ROW or COL Vector]</desc>
+		</function>
+		<function>	
+			<name>DiracField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>The position of the dirac [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>The position of the dirac [Y = ROW]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a Two-D Dirac Field.</desc>
+		</function>
+		<function>
+                        <name>HeavisideField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>thres</name>
+                                        <desc>The threshold for the heaviside</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a One-D Heavisde Field. f(x) = 0 for x lower than thres, 1 otherwise</desc>
+                </function>
+                <function>
+                        <name>HeavisideField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>thres_x</name>
+                                        <desc>The threshold for X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>thres_y</name>
+                                        <desc>The threshold for Y axis [Y = ROW]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a Two-D Heaviside Field. f(x,y) = 1 for x egal or greater than thres_x and y greater or egal to thres_y, 0 otherwise </desc>
+                </function>
+                <function>
+                        <name>SinusField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset</name>
+                                        <desc></desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a One-D Sinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
+                </function>
+                <function>
+                        <name>CosinusField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset</name>
+                                        <desc></desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a One-D Cosinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
+                </function>
+        </functions>
+</description>

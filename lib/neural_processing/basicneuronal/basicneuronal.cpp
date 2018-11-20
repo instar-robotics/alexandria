@@ -16,9 +16,9 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "basicneuronal.h"
 
-/********************************************************************************************************/
+/*******************************************************************************************************/
 /************************************************ KeepMax  *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(KeepMax);
 
@@ -40,9 +40,9 @@ void KeepMax::setparameters()
         Kernel::instance().bind(nMax,"nMax", getUuid());
 }
 
-/********************************************************************************************************/
+/*******************************************************************************************************/
 /************************************************ KeepMin  *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(KeepMin);
 
@@ -65,24 +65,27 @@ void KeepMin::setparameters()
 }
 
 
-/********************************************************************************************************/
-/**********************************************  ActToPop   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/*********************************************  ActToPop   *********************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(ActToPop);
 
 void ActToPop::compute()
 {
-	static auto vect = getMapVect(output);
 	double value = activity()();
 
 	// Threshold betwen 0 and 1
 	if( value < 0 ) value = 0;
 	if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
 
-	unsigned int index = (unsigned int)(value * vect.size());
+	auto vect = getMapVect(output);
+	MatrixXd::Index index = nearbyint(value * vect.size()) - 1;
 
-	vect(index) = activity().w();
+	vect(lastIndex) = 0;
+	vect(index) = 1;
+
+	lastIndex = index ;
 }
 
 void ActToPop::setparameters()
@@ -92,40 +95,134 @@ void ActToPop::setparameters()
 	// Check Output dimension : 
 	if( output.rows() != 1 && output.cols() != 1 ) 
 	{
-		throw std::invalid_argument("ActToPop : Output must be a vector (Rows or Cols)");	
+		throw std::invalid_argument("ActToPop : Output must be a vector [ROW or COL]");	
 	}
 }
 
-/********************************************************************************************************/
-/**********************************************  VActToPop   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/********************************************  VActToPop   *********************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(VActToPop);
 
 void VActToPop::compute()
 {
+	if( proj == COLPROJ )
+	{
+		auto vact = getCMapVect(activities().i());
+
+		for( unsigned int i = 0; i < vact.size(); i++)
+		{
+			double value =  vact(i) * activities().w();
+			// Threshold betwen 0 and 1
+			if( value < 0 ) value = 0;
+			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+
+			MatrixXd::Index index = nearbyint( value * output.cols()) - 1;
+			output( i, lastIndex(i) ) = 0;
+			output( i , index ) = 1;
+
+			lastIndex(i) = index;
+		}
+
+	}
+	else if( proj == ROWPROJ )
+	{
+		auto vact = getCMapVect(activities().i());
+
+		for( unsigned int i = 0; i < vact.size(); i++)
+		{
+			double value =  vact(i) * activities().w();
+			// Threshold betwen 0 and 1
+			if( value < 0 ) value = 0;
+			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+
+			MatrixXd::Index index = nearbyint( value * output.rows() ) - 1;
+			output( lastIndex(i), i ) = 0;
+			output( index , i ) = 1;
+
+			lastIndex(i) = index;
+		}
+	}
+	else if( proj == SINGLEV)
+	{
+		double value = activities()()(0,0);
+
+		// Threshold betwen 0 and 1
+		if( value < 0 ) value = 0;
+		if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+
+		auto vect = getMapVect(output);
+		MatrixXd::Index index = nearbyint(value * vect.size()) - 1;
+
+		vect(lastIndex(0)) = 0;
+		vect(index) = 1;
+
+		lastIndex(0) = index ;
+	}
 }
 
 void VActToPop::setparameters()
 {
-        Kernel::instance().bind(activity,"activity", getUuid());
+        Kernel::instance().bind(activities,"activities", getUuid());
 }
 
 void VActToPop::uprerun()
 {
+	if( activities().i().rows() != 1 && activities().i().cols() != 1 ) 
+	{
+		throw std::invalid_argument("VAcToPop : Input \"activities\" must be a vector [ROW or COL]");	
+	}
+	
+	if( activities().i().cols() > 1 )
+	{
+		if(output.cols() != activities().i().cols() )
+		{
+			throw std::invalid_argument("VAcToPop : \"activities\" input is a COL Vector so, activities and output cols must be egal !");	
+		}
+
+		// ROW Projection
+		proj = ROWPROJ;
+		lastIndex = VectorXd::Constant( activities().i().cols() , 0);
+	}
+	else if( activities().i().rows() > 1)  
+	{
+		if( output.rows() != activities().i().rows() )
+		{
+			throw std::invalid_argument("VAcToPop : \"activities\" input is a ROW Vector so, activities and output rows must be egal !");	
+		}
+
+		// COL Projection
+		proj = COLPROJ;
+		lastIndex = VectorXd::Constant( activities().i().rows() , 0);
+	}
+	else
+	{
+		if( output.rows() != 1 && output.cols() != 1 ) 
+		{
+			throw std::invalid_argument("VActToPop : \"activities\" dimension is egal to one, so output must be a vector [ROW or COL]");	
+		}
+
+		//Single Neuron : Projection depend on output [ROW or COL]
+		proj = SINGLEV;
+		lastIndex = VectorXd::Constant( 1 , 0);
+	}
 }
 
-/********************************************************************************************************/
-/**********************************************  PopToAct   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/*********************************************  PopToAct   *********************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(PopToAct);
 
 void PopToAct::compute()
 {
-	static auto vect = getCMapVect(population().i());
+	auto vect = getCMapVect(population().i());
+	
+	MatrixXd::Index i;
+	vect.maxCoeff(&i); 
 
-//	output = 
+	output = double(i)  / double(vect.size());
 }
 
 void PopToAct::setparameters()
@@ -135,10 +232,10 @@ void PopToAct::setparameters()
 
 void PopToAct::uprerun()
 {
-	// Check Output dimension : 
+	// Check Input dimension : 
 	if( population().i().rows() != 1 && population().i().cols() != 1 ) 
 	{
-		throw std::invalid_argument("PopToAct : Input \"population\" must be a vector (Rows or Cols)");	
+		throw std::invalid_argument("PopToAct : Input \"population\" must be a vector [ROW or COL]");	
 	}
 }
 
