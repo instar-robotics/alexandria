@@ -16,8 +16,8 @@
 					<desc>Signal to predict</desc>
 				</input>
 				<input multiple="true" checkSize="false"  type="MATRIX_MATRIX">
-					<name>Input signals</name>
-					<desc></desc>
+					<name>conditionnals</name>
+					<desc>Input signals</desc>
 				</input>
 			</inputs>
 			<icon>lms.svg</icon>

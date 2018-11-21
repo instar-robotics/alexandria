@@ -30,8 +30,7 @@ void LMS::compute()
         }
 
 	// Compute gradiant
-        grad = learning_rate()() * (unconditionnal()(grad) - output);
-        //grad = learning_rate()() * (unconditionnal()() - output);
+        grad = learning_rate()() * (unconditionnal()() - output);
 	auto vgrad = getMapRow(grad); 
 
 	for(unsigned int i=0; i < conditionnals.size(); i++)
