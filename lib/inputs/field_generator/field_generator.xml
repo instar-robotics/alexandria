@@ -12,7 +12,7 @@
                                         <desc>The position of the dirac</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>diracgenerator.svg</icon>
                         <desc>Generate a One-D Dirac Field. MUST be [ROW or COL Vector]</desc>
 		</function>
 		<function>	
@@ -29,7 +29,7 @@
                                         <desc>The position of the dirac [Y = ROW]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>diracgenerator2d.svg</icon>
                         <desc>Generate a Two-D Dirac Field.</desc>
 		</function>
 		<function>
@@ -42,7 +42,7 @@
                                         <desc>The threshold for the heaviside</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>heavisidegenerator.svg</icon>
 			<desc>Generate a One-D Heavisde Field. f(x) = 0 for x lower than thres, 1 otherwise</desc>
                 </function>
                 <function>
@@ -59,7 +59,7 @@
                                         <desc>The threshold for Y axis [Y = ROW]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>heavisidegenerator2d.svg</icon>
                         <desc>Generate a Two-D Heaviside Field. f(x,y) = 1 for x egal or greater than thres_x and y greater or egal to thres_y, 0 otherwise </desc>
                 </function>
                 <function>
@@ -76,7 +76,7 @@
                                         <desc></desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>sinusgenerator.svg</icon>
                         <desc>Generate a One-D Sinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
                 </function>
                 <function>
@@ -93,7 +93,7 @@
                                         <desc></desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>cosinusgenerator.svg</icon>
                         <desc>Generate a One-D Cosinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
                 </function>
         </functions>
