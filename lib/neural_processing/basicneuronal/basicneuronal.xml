@@ -38,7 +38,7 @@
 			<desc>Keep the value of the N min in the input matrix. Every other value are set to 0</desc>
 		</function>
 		<function>
-			<name>ActoToPop</name>
+			<name>ActToPop</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -51,7 +51,7 @@
 			<desc>Discretized scalar activity into a 1D field [ROW or COL].</desc>
 		</function>
 		<function>
-			<name>VActoToPop</name>
+			<name>VActToPop</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -70,11 +70,24 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>population</name>
-					<desc>Population field to convert into activity.[take the index of the max coeff, if there are two max, take the first one] </desc>
+					<desc>Population field to convert into activity.[convert the index of the max coeff into a scalar, if there are more than one max, take the first one] </desc>
 				</input>
 			</inputs>
 			<icon></icon>
-			<desc>Convert population into a scalar activity.</desc>
+			<desc>Convert population into a scalar activity. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
+		</function>
+		<function>
+			<name>PopToVAct</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input  type="SCALAR_MATRIX">
+					<name>population</name>
+					<desc>Population field to convert into activities.[For each Rows (or cols), convert the index of the max coeff into a scalar, if there are more than one max, take the first one] </desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Convert population into a vector of scalar activities. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
 		</function>
 	</functions>
 </description>
