@@ -286,8 +286,17 @@ class Normalize : public FMatrix
 /*******************************************************************************************************/
 
 
-class Transpose : public FMatrix
+class MTranspose : public FMatrix
 {
+	private :
+		ISMInput inMatrix;
+
+	public :
+		virtual ~MTranspose(){}
+
+		virtual void compute();
+		virtual void setparameters();
+		virtual void uprerun();
 };
 
 #endif // _ARITHMETIC_H_
