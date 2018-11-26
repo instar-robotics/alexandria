@@ -188,6 +188,22 @@ class MSMul : public FMatrix
                 virtual void setparameters();
 };
 
+class DotProd : public FScalar
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~DotProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
