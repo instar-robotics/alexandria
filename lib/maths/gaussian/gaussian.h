@@ -71,10 +71,10 @@ class MMGauss : public FMatrix
 };
 
 /*******************************************************************************************************/
-/******************************************  Gaussian Difference ***************************************/
+/**************************************************  DoG ***********************************************/
 /*******************************************************************************************************/
 
-class SGaussDiff : public FScalar
+class SDoG : public FScalar
 {
         private :
                 ISInput inScalar;
@@ -85,13 +85,13 @@ class SGaussDiff : public FScalar
                 ISInput sigma2;
 
         public :
-                virtual ~SGaussDiff(){}
+                virtual ~SDoG(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class MSGaussDiff : public FMatrix
+class MSDoG : public FMatrix
 {
         private :
                 ISMInput inMatrix;
@@ -102,13 +102,13 @@ class MSGaussDiff : public FMatrix
                 ISInput sigma2;
 
         public :
-                virtual ~MSGaussDiff(){}
+                virtual ~MSDoG(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
-class MMGaussDiff : public FMatrix
+class MMDoG : public FMatrix
 {
         private :
                 ISMInput inMatrix;
@@ -119,7 +119,7 @@ class MMGaussDiff : public FMatrix
                 ISMInput sigma2;
 
         public :
-                virtual ~MMGaussDiff(){}
+                virtual ~MMDoG(){}
 
                 virtual void compute();
                 virtual void setparameters();

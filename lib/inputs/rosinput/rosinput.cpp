@@ -105,10 +105,7 @@ void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
 	if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() ) 
 	{
-		std::cout << "DIM 0 : " << msg->layout.dim[0].size << " DIM 1 : " << msg->layout.dim[1].size << std::endl; 
-
 		throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
-
 	}
 
  	Map<const MatrixXd> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
