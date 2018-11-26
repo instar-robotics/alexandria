@@ -55,7 +55,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>activities</name>
 					<desc>Scalar activities to discretized.Each value should be in [0;1]. Activities is a Vector [ROW or COL].</desc>
 				</input>
