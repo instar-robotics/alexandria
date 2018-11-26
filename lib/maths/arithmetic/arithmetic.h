@@ -189,7 +189,7 @@ class MSMul : public FMatrix
 };
 
 // Matrix product 
-class MMMul : public FMatrix
+class MatrixProd : public FMatrix
 {
         private :
 
@@ -197,7 +197,7 @@ class MMMul : public FMatrix
                 ISMInput inMatrix2;
 
         public :
-                virtual ~MMMul(){}
+                virtual ~MatrixProd(){}
 
                 virtual void compute();
                 virtual void setparameters();

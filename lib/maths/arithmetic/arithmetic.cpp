@@ -134,7 +134,7 @@ void SSSub::setparameters()
 REGISTER_FUNCTION(MMul);
 REGISTER_FUNCTION(SMul);
 REGISTER_FUNCTION(MSMul);
-REGISTER_FUNCTION(MMMul);
+REGISTER_FUNCTION(MatrixProd);
 
 void MMul::compute()
 {
@@ -196,12 +196,12 @@ void  MSMul::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
-void MMMul::compute()
+void MatrixProd::compute()
 {
         output = inMatrix1(0)() * inMatrix2(0)();
 }
 
-void  MMMul::setparameters()
+void MatrixProd::setparameters()
 {
 	inMatrix1.setCheckSize(false);
 	inMatrix2.setCheckSize(false);
@@ -210,7 +210,7 @@ void  MMMul::setparameters()
 	Kernel::iBind(inMatrix2,"inMatrix2", getUuid());
 }
 
-void MMMul::uprerun()
+void MatrixProd::uprerun()
 {
 	if( inMatrix1().i().rows() != output.rows() )
 	{

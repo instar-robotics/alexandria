@@ -89,7 +89,7 @@
 			<desc>Term-term product of matrices multiplied by the product of scalars</desc>
 		</function>
 		<function>
-			<name>MMMul</name>
+			<name>MatrixProd</name>
 			<output type="MATRIX" >
 			</output>
 			<inputs>
