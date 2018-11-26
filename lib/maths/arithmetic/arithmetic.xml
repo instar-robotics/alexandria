@@ -229,5 +229,18 @@
                         <icon></icon>
                         <desc>Normalize the input matrix</desc>
                 </function>
+                <function>
+                        <name>MTranspose</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Transpose the input matrix</desc>
+		</function>
 	</functions>
 </description>
