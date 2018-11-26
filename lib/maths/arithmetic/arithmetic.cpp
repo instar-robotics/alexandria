@@ -275,3 +275,27 @@ void Normalize::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+/*******************************************************************************************************/
+/**********************************************  Transpose   *******************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(MTranspose);
+
+void MTranspose::compute()
+{
+	output = inMatrix()().transpose();
+}
+
+void MTranspose::setparameters()
+{
+	inMatrix.setCheckSize(false);
+	Kernel::iBind(inMatrix, "inMatrix", getUuid());
+}
+
+void MTranspose::uprerun()
+{
+	if( (inMatrix().i().rows() != output.cols()) || (inMatrix().i().cols() != output.rows()) )
+	{
+		throw std::invalid_argument("MTranspose : input and output sizes mismatch.");
+	}
+}
