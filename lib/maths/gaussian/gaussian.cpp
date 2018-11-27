@@ -61,15 +61,15 @@ void MMGauss::setparameters()
 
 
 /*******************************************************************************************************/
-/***************************************  Gaussian Difference  *****************************************/
+/***********************************************  DoG  *************************************************/
 /*******************************************************************************************************/
 
-void SGaussDiff::compute()
+void SDoG::compute()
 {
         output = (1 / (sigma1()() * sqrt(2*M_PI))) * exp( -( pow(inScalar()() - mu1()(), 2) / (2*pow(sigma1()(),2)))) -  (1 / (sigma2()() * sqrt(2*M_PI))) * exp( -( pow(inScalar()() - mu2()(), 2) / (2*pow(sigma2()(),2)))) ;
 }
 
-void SGaussDiff::setparameters()
+void SDoG::setparameters()
 {
         Kernel::iBind(inScalar,"inScalar", getUuid());
         Kernel::iBind(mu1,"mu1", getUuid());
@@ -79,12 +79,12 @@ void SGaussDiff::setparameters()
 }
 
 
-void MSGaussDiff::compute()
+void MSDoG::compute()
 {
         output = (1 / (sigma1()() * sqrt(2*M_PI))) * exp( -( pow( inMatrix()().array() - mu1()(), 2) / (2*pow(sigma1()(),2)))) -  (1 / (sigma2()() * sqrt(2*M_PI))) * exp( -( pow( inMatrix()().array() - mu2()(), 2) / (2*pow(sigma2()(),2)))) ;
 }
 
-void MSGaussDiff::setparameters()
+void MSDoG::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(mu1,"mu1", getUuid());
@@ -94,12 +94,12 @@ void MSGaussDiff::setparameters()
 }
 
 
-void MMGaussDiff::compute()
+void MMDoG::compute()
 {
         output = (1 / (sigma1()().array() * sqrt(2*M_PI))) * exp( -( (inMatrix()() - mu1()()).array().square()  / (2 * sigma1()().array().square()  ))) -  (1 / (sigma2()().array().square() * sqrt(2*M_PI))) * exp( -( (inMatrix()() - mu2()()).array().square()  / ( 2 * sigma2()().array().square()  ))) ;
 }
 
-void MMGaussDiff::setparameters()
+void MMDoG::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(mu1,"mu1", getUuid());

@@ -11,9 +11,13 @@
                                         <name>x</name>
                                         <desc>The position of the dirac</desc>
                                 </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Generate a One-D Dirac Field. MUST be [ROW or COL Vector]</desc>
+                        <desc>Generate a One-D Dirac Field. MUST be [ROW or COL Vector].</desc>
 		</function>
 		<function>	
 			<name>DiracField2D</name>
@@ -22,11 +26,15 @@
                         <inputs>
                                 <input type="SCALAR_SCALAR">
                                         <name>x</name>
-                                        <desc>The position of the dirac [X = COL]</desc>
+                                        <desc>The position of the dirac for the X axis [X = COL]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>y</name>
-                                        <desc>The position of the dirac [Y = ROW]</desc>
+                                        <desc>The position of the dirac for the Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
                         <icon></icon>
@@ -38,12 +46,19 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>thres</name>
-                                        <desc>The threshold for the heaviside</desc>
+                                        <name>th</name>
+                                        <desc>The threshold of the step in the field</desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
                         <icon></icon>
-			<desc>Generate a One-D Heavisde Field. f(x) = 0 for x lower than thres, 1 otherwise</desc>
+			<desc>Generate a One-D Heavisde Field. 
+			      Equation : f(x) = 1 if x &gt;= th; 0 otherwise.
+			      MUST be [ROW or COL Vector].
+			</desc>
                 </function>
                 <function>
                         <name>HeavisideField2D</name>
@@ -51,16 +66,108 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>thres_x</name>
-                                        <desc>The threshold for X axis [X = COL]</desc>
+                                        <name>thx</name>
+                                        <desc>The threshold of the step for X axis [X = COL]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
-                                        <name>thres_y</name>
-                                        <desc>The threshold for Y axis [Y = ROW]</desc>
+                                        <name>thy</name>
+                                        <desc>The threshold of the step for Y axis [Y = ROW]</desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Generate a Two-D Heaviside Field. f(x,y) = 1 for x egal or greater than thres_x and y greater or egal to thres_y, 0 otherwise </desc>
+			<desc>Generate a Two-D Heaviside Field. 
+			      Equation : f(x,y) = 1 if x x &gt;= thx and y &gt;= thy; 0 otherwise.</desc>
+                 </function>
+		 <function>
+                        <name>GateField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>wth</name>
+                                        <desc>width of the Gate : [-wth,wth] </desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a 1-D Rectangular Gate Field. 
+			      f(x) = 1 if  -thx &lt;= x &lt; = thx; 0 otherwise.	
+			      MUST be [ROW or COL Vector]. 
+			</desc>
+                </function>
+                <function>
+                        <name>GateField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>wthx</name>
+                                        <desc>Width of the Gate on X axis [X = COL] : [-wthx,wthx] </desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>wthy</name>
+                                        <desc>Width of the Gate on Y axis [Y = ROW] : [-wthy,wthy] </desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a 2-D Rectangular Gate Field. 
+			      Equation : f(x,y) = 1 if -wthx &lt;= x &lt; = wthx and -wthy &lt;= y &lt; = wthy; 0 otherwise.	
+			      MUST be [ROW or COL Vector]. 
+			</desc>
+                </function>
+                 <function>
+                        <name>TriangularField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>a</name>
+                                        <desc>Leading coefficient</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a 1-D Triangular Gate Field.
+                              Equation : f(x) = max(1 - |a * x| , 0).
+                              MUST be [ROW or COL Vector].
+                        </desc>
+                </function>
+                 <function>
+                        <name>TriangularField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>ax</name>
+                                        <desc>Leading coefficient on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>ay</name>
+                                        <desc>Leading coefficient on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a 2-D Triangular Gate Field.
+                              Equation : f(x,y) = max(1 - (|a_x * x| + |a_y * y|), 0).
+                        </desc>
                 </function>
                 <function>
                         <name>SinusField1D</name>
@@ -77,7 +184,38 @@
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Generate a One-D Sinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
+			<desc>Generate a One-D Sinus Field. 
+			      Definition interval is [-PI, PI].
+			      Equation :  f(x) = sin(freq * x + offset). 
+			      MUST be [ROW or COL Vector].</desc>
+                </function>
+                <function>
+                        <name>SinusField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_x</name>
+                                        <desc>Frequency on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset_x</name>
+                                        <desc>Offset on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_y</name>
+                                        <desc>Frequency on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset_y</name>
+                                        <desc>Offset on Y axis [Y = COL]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a Two-D Sinus Field. 
+			      Definition interval is [-PI, PI].
+			      Equation : f(x,y) = sin( freq_x * x + offset_x) * sin( freq_y * y + offset_y)
+		       </desc>
                 </function>
                 <function>
                         <name>CosinusField1D</name>
@@ -94,7 +232,202 @@
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Generate a One-D Cosinus Field. Interval is [0, 2PI] and equation y = sin(freq * x + offset)</desc>
+			<desc>Generate a One-D Cosinus Field. 
+			      Definition interval is [-PI, PI].
+			      Equation :  f(x) = cos(freq * x + offset). 
+			      MUST be [ROW or COL Vector].</desc>
+                </function>
+		<function>
+                        <name>CosinusField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_x</name>
+                                        <desc>Frequency on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset_x</name>
+                                        <desc>Offset on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_y</name>
+                                        <desc>Frequency on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>offset_y</name>
+                                        <desc>Offset on Y axis [Y = COL]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a Two-D Cosinus Field. 
+			      Definition interval is [-PI, PI].
+			      Equation : f(x,y) = cos( freq_x * x + offset_x) * cos( freq_y * y + offset_y)
+		       </desc>
+                </function>
+
+                <function>
+                        <name>GaussianField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>mu</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a One-D Gaussian Field. 
+			      MUST be [ROW or COL Vector].</desc>
+                </function>
+                <function>
+                        <name>GaussianField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma_x</name>
+                                        <desc>Sigma on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>mu_x</name>
+                                        <desc>Mu on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma_y</name>
+                                        <desc>Sigma on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>mu_y</name>
+                                        <desc>Mu on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a Two-D Gaussian Field.</desc>
+                </function>
+                <function>
+                        <name>DoGField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma1</name>
+                                        <desc>Sigma of the first gaussian.</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma2</name>
+                                        <desc>Sigma of the second gaussian.</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a One-D DoG Field.
+				MUST be [ROW or COL Vector].</desc>
+                </function>
+                <function>
+                        <name>DoGField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma1_x</name>
+                                        <desc>Sigma of the first gaussian on X axis. [X = COL]</desc>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma1_y</name>
+                                        <desc>Sigma of the first gaussian on Y axis. [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma2_x</name>
+                                        <desc>Sigma of the second gaussian on X axis. [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma2_y</name>
+                                        <desc>Sigma of the second gaussian on Y axis. [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a Two-D DoG Field.</desc>
+                </function>
+		<function>
+                        <name>SincField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a 1-D sinus cardinal Field. 
+			 Equation : f(x) = sin( freq * x ) / (freq * x) 
+			 Note : if x = 0 then f(x) = 1
+			 MUST be [ROW or COL Vector].</desc>
+                </function>
+		<function>
+                        <name>SincField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_x</name>
+                                        <desc>Frequency on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>freq_y</name>
+                                        <desc>Frequency on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Generate a 2-D sinus cardinal Field. 
+				Equation : f(x,y) = sin( freq_x * x ) * sin(freq_y * y) / ( freq_x * x * freq_y * y)
+			</desc>
+                </function>
+		<function>
+                        <name>ChineseHatField</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a Chinese Hat Field.
+                         Could be a 1-D field [ROW or COL Vector] or 2-D field.
+			 Equation 1-D : f(x) = (N - ln(cosh(x))) / N.
+			 Equation 2-D : f(x,y) = (N - ln(cosh( &#8730; (x&#x00B2; + y&#x00B2;) )) / N.
+                        </desc>
                 </function>
         </functions>
 </description>

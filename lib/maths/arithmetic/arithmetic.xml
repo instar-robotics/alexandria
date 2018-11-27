@@ -89,6 +89,23 @@
 			<desc>Term-term product of matrices multiplied by the product of scalars</desc>
 		</function>
 		<function>
+			<name>MatrixProd</name>
+			<output type="MATRIX" >
+			</output>
+			<inputs>
+				<input type="SCALAR_MATRIX" checkSize="false">
+					<name>inMatrix1</name>
+					<desc>First inputs</desc>
+				</input>
+				<input type="SCALAR_MATRIX" checkSize="false">
+					<name>inMatrix2</name>
+					<desc>Second inputs</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Matrix product</desc>
+		</function>
+		<function>
 			<name>DotProd</name>
 			<output type="SCALAR">
 			</output>
