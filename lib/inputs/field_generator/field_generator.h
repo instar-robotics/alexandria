@@ -20,12 +20,11 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 #include "kheops/kernel/function.h"
 #include <limits>
+#include <algorithm>
 
 /*
-
 TODO : 
-- TriangleGate
-- DelarboulasField
+- ChineseHat 2D
 - Wave : SquarWave and TriangleWave
 - Gabor
 - Ondelette
@@ -179,7 +178,6 @@ class Gate2D_functor {
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
 
-
 public:
   Gate2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& thx, const typename ArgType::Scalar &thy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), thx(thx),thy(thy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
@@ -198,6 +196,66 @@ class GateField2D : public FMatrix
 
         public :
                 virtual ~GateField2D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/****************************************  Triangular Field  *******************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class Triangular1D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &a;
+  const typename ArgType::Index &max;
+
+public:
+  Triangular1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &a  ,const typename ArgType::Index& max ) : N(N), a(a), max(max) {}
+  const typename ArgType::Scalar operator() (Index ind) const {
+    double x = double(ind) * 2.0* N / max - N;
+    return  std::max( 1 - fabs(a*x), 0.0) ;
+  }
+};
+
+class TriangularField1D : public FMatrix
+{
+        private :
+                ISInput a;
+                ISInput N;
+
+        public :
+                virtual ~TriangularField1D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+template<class ArgType>
+class Triangular2D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &ax;
+  const typename ArgType::Scalar &ay;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+
+public:
+  Triangular2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& ax, const typename ArgType::Scalar &ay, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), ax(ax),ay(ay), max_x(max_x), max_y(max_y) {}
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+    double x = double(col) * 2.0* N / max_x - N;
+    double y = double(row) * 2.0* N / max_y - N;
+    return std::max( 1 - (fabs( ax *x ) + fabs( ay * y)), 0.0);
+  }
+};
+
+class TriangularField2D : public FMatrix
+{
+        private :
+                ISInput ax;
+                ISInput ay;
+                ISInput N;
+
+        public :
+                virtual ~TriangularField2D(){}
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -543,6 +601,52 @@ class SincField2D : public FMatrix
 
 	public : 
 		virtual ~SincField2D(){}
+		virtual void compute();
+		virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/****************************************  ChineseHat Field  *******************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class ChineseHat1D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Index &max;
+
+public:
+  ChineseHat1D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max) : N(N), max(max) {}
+  const typename ArgType::Scalar operator() (Index ind) const {
+    double x = double(ind) * 2.0* N / max - N ;
+    return (N - log( cosh(x))) / N ;
+  }
+};
+
+template<class ArgType>
+class ChineseHat2D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+
+public:
+  ChineseHat2D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), max_x(max_x), max_y(max_y) {}
+  const typename ArgType::Scalar operator() (Index row, Index col) const {
+    double x = double(col) * 2.0* N / max_x - N ;
+    double y = double(row) * 2.0* N / max_y - N ;
+    //return (N - log( cosh(x) * cosh(y)  )) / N ;
+    return (N - log( cosh( sqrt( x * x + y * y )))) / N ;
+  }
+};
+
+class ChineseHatField : public FMatrix
+{
+	private : 
+		ISInput N;
+		unsigned int dim;
+
+	public : 
+		ChineseHatField() : dim(0) {}
+		virtual ~ChineseHatField(){}
 		virtual void compute();
 		virtual void setparameters();
 };

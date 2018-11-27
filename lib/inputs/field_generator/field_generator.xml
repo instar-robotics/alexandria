@@ -81,7 +81,7 @@
                         <icon></icon>
 			<desc>Generate a Two-D Heaviside Field. 
 			      Equation : f(x,y) = 1 if x x &gt;= thx and y &gt;= thy; 0 otherwise.</desc>
-                </function>
+                 </function>
 		 <function>
                         <name>GateField1D</name>
                         <output type="MATRIX">
@@ -122,9 +122,52 @@
                         </inputs>
                         <icon></icon>
 			<desc>Generate a 2-D Rectangular Gate Field. 
-			      f(x,y) = 1 if  -wthx &lt;= x &lt; = wthx and -wthy &lt;= y &lt; = wthy; 0 otherwise.	
+			      Equation : f(x,y) = 1 if -wthx &lt;= x &lt; = wthx and -wthy &lt;= y &lt; = wthy; 0 otherwise.	
 			      MUST be [ROW or COL Vector]. 
 			</desc>
+                </function>
+                 <function>
+                        <name>TriangularField1D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>a</name>
+                                        <desc>Leading coefficient</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a 1-D Triangular Gate Field.
+                              Equation : f(x) = max(1 - |a * x| , 0).
+                              MUST be [ROW or COL Vector].
+                        </desc>
+                </function>
+                 <function>
+                        <name>TriangularField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>ax</name>
+                                        <desc>Leading coefficient on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>ay</name>
+                                        <desc>Leading coefficient on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a 2-D Triangular Gate Field.
+                              Equation : f(x,y) = max(1 - (|a_x * x| + |a_y * y|), 0).
+                        </desc>
                 </function>
                 <function>
                         <name>SinusField1D</name>
@@ -368,6 +411,23 @@
 			<desc>Generate a 2-D sinus cardinal Field. 
 				Equation : f(x,y) = sin( freq_x * x ) * sin(freq_y * y) / ( freq_x * x * freq_y * y)
 			</desc>
+                </function>
+		<function>
+                        <name>ChineseHatField</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Generate a 1-D Chinese Hat Field.
+                         Could be a 1-D field [ROW or COL Vector] or 2-D field.
+			 Equation 1-D : f(x) = (N - ln(cosh(x))) / N.
+			 Equation 2-D : f(x) = (N - ln(cosh(x))) / N.
+                        </desc>
                 </function>
         </functions>
 </description>
