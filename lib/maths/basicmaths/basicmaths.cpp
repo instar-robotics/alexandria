@@ -143,7 +143,7 @@ REGISTER_FUNCTION(ValueMax);
 
 void ValueMax::compute()
 {
-	output = inMatrix().i().minCoeff() * inMatrix().w() ;
+	output = inMatrix().i().maxCoeff() * inMatrix().w() ;
 }
 
 void ValueMax::setparameters()
@@ -159,7 +159,7 @@ REGISTER_FUNCTION(ValueMin);
 
 void ValueMin::compute()
 {
-	output = inMatrix().i().maxCoeff() * inMatrix().w() ;
+	output = inMatrix().i().minCoeff() * inMatrix().w() ;
 }
 
 void ValueMin::setparameters()

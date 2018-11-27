@@ -134,6 +134,8 @@ void SSSub::setparameters()
 REGISTER_FUNCTION(MMul);
 REGISTER_FUNCTION(SMul);
 REGISTER_FUNCTION(MSMul);
+REGISTER_FUNCTION(MatrixProd);
+REGISTER_FUNCTION(DotProd);
 
 void MMul::compute()
 {
@@ -193,6 +195,65 @@ void  MSMul::setparameters()
         inMatrix.setMultiple(true);
         Kernel::iBind(inScalar,"inScalar", getUuid());
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+void MatrixProd::compute()
+{
+        output = inMatrix1(0)() * inMatrix2(0)();
+}
+
+void MatrixProd::setparameters()
+{
+	inMatrix1.setCheckSize(false);
+	inMatrix2.setCheckSize(false);
+
+	Kernel::iBind(inMatrix1,"inMatrix1", getUuid());
+	Kernel::iBind(inMatrix2,"inMatrix2", getUuid());
+}
+
+void MatrixProd::uprerun()
+{
+	if( inMatrix1().i().rows() != output.rows() )
+	{
+		throw std::invalid_argument("MMMul : First input and output rows mismatch.");
+	}
+	if( inMatrix2().i().cols() != output.cols() )
+	{
+		throw std::invalid_argument("MMMul : Second input and output columns mismatch.");
+	}
+	if( inMatrix1().i().cols() != inMatrix2().i().rows() )
+	{
+		throw std::invalid_argument("MMMul : inputs sizes mismatch.");
+	}
+}
+
+void DotProd::compute()
+{
+	auto v1 = getCMapVect(inVector1().i()) * inVector1().w();
+	auto v2 = getCMapVect(inVector2().i()) * inVector2().w();
+	output = v1.dot(v2);
+}
+
+void DotProd::setparameters()
+{
+	Kernel::iBind(inVector1,"inVector1", getUuid());
+	Kernel::iBind(inVector2,"inVector2", getUuid());
+}
+
+void DotProd::uprerun()
+{
+	if( inVector1().i().rows() != 1 && inVector1().i().cols() != 1 )
+	{
+		throw std::invalid_argument("DotProd : Input 1 is not a vector.");
+	}
+	if( inVector2().i().rows() != 1 && inVector2().i().cols() != 1 )
+	{
+		throw std::invalid_argument("DotProd : Input 2 is not a vector.");
+	}
+	if( (inVector1().i().rows() != inVector2().i().rows()) || (inVector1().i().cols() != inVector2().i().cols()) )
+	{
+		throw std::invalid_argument("DotProd : Inputs size mismatch.");
+	}
 }
 
 /*******************************************************************************************************/
@@ -275,3 +336,27 @@ void Normalize::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+/*******************************************************************************************************/
+/**********************************************  Transpose   *******************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(MTranspose);
+
+void MTranspose::compute()
+{
+	output = inMatrix()().transpose();
+}
+
+void MTranspose::setparameters()
+{
+	inMatrix.setCheckSize(false);
+	Kernel::iBind(inMatrix, "inMatrix", getUuid());
+}
+
+void MTranspose::uprerun()
+{
+	if( (inMatrix().i().rows() != output.cols()) || (inMatrix().i().cols() != output.rows()) )
+	{
+		throw std::invalid_argument("MTranspose : input and output sizes mismatch.");
+	}
+}

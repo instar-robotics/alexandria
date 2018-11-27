@@ -92,7 +92,7 @@ class KeepMin : public FMatrix
  * Value must be in [0,1] interval
  * Output must be a Vector (rows or cols)
 */
-class  ActToPop : public FMatrix
+class ActToPop : public FMatrix
 {
 	private : 
                 
@@ -148,6 +148,8 @@ class  VActToPop : public FMatrix
  * If there are more than one max coefficient, takes the index of the first one
  * Output is a scalar between [0,1]
  * Input must be a Vector [ROW or COL]
+ *
+ * row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection
 */
 class PopToAct : public FScalar
 {
@@ -167,18 +169,23 @@ class PopToAct : public FScalar
 /********************************************  PopToVAct   *********************************************/
 /*******************************************************************************************************/
 /*
-(matrix -> vector)
-  population to activity  
-  Output is a vector where each neurons have an activity between [0,1]
-  Input must be a Matrix with rows (or cols) egals to the dimensions of the output vector 
+ * Population to activities : 
+ * For each row (or col), take the index of the max coefficient and convert the index into a scalar
+ * If there are more than one max coefficient, takes the index of the first one
+ * Output is a vector where each neurons have an activity between [0,1]
+ * Input must be a Matrix with rows (or cols) egals to the dimensions of the output vector
+ *
+ * row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection
 */
 class  PopToVAct : public FMatrix
 {
         private :
                 ISMInput population;
+		unsigned int proj;
 
         public :
 
+		PopToVAct() : proj(0) {}
                 virtual ~PopToVAct(){}
 
                 virtual void compute();

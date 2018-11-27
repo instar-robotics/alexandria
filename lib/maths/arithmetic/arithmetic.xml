@@ -89,6 +89,40 @@
 			<desc>Term-term product of matrices multiplied by the product of scalars</desc>
 		</function>
 		<function>
+			<name>MatrixProd</name>
+			<output type="MATRIX" >
+			</output>
+			<inputs>
+				<input type="SCALAR_MATRIX" checkSize="false">
+					<name>inMatrix1</name>
+					<desc>First inputs</desc>
+				</input>
+				<input type="SCALAR_MATRIX" checkSize="false">
+					<name>inMatrix2</name>
+					<desc>Second inputs</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Matrix product</desc>
+		</function>
+		<function>
+			<name>DotProd</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input type="SCALAR_MATRIX">
+					<name>inVector1</name>
+					<desc>First inputs</desc>
+				</input>
+				<input type="SCALAR_MATRIX">
+					<name>inVector2</name>
+					<desc>Second inputs</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Dot product between two vectors of same size</desc>
+		</function>
+		<function>
 			<name>MMDiv</name>
 			<output type="MATRIX">
 			</output>
@@ -229,5 +263,18 @@
                         <icon>normalized.svg</icon>
                         <desc>Normalize the input matrix</desc>
                 </function>
+                <function>
+                        <name>MTranspose</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Transpose the input matrix</desc>
+		</function>
 	</functions>
 </description>

@@ -188,6 +188,39 @@ class MSMul : public FMatrix
                 virtual void setparameters();
 };
 
+// Matrix product 
+class MatrixProd : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix1;
+                ISMInput inMatrix2;
+
+        public :
+                virtual ~MatrixProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
+//Dot Product
+class DotProd : public FScalar
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~DotProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
@@ -286,8 +319,17 @@ class Normalize : public FMatrix
 /*******************************************************************************************************/
 
 
-class Transpose : public FMatrix
+class MTranspose : public FMatrix
 {
+	private :
+		ISMInput inMatrix;
+
+	public :
+		virtual ~MTranspose(){}
+
+		virtual void compute();
+		virtual void setparameters();
+		virtual void uprerun();
 };
 
 #endif // _ARITHMETIC_H_

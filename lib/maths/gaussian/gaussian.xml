@@ -66,7 +66,7 @@
                         <desc>Term-term gaussian function</desc>
                 </function>
                 <function>
-                        <name>SGaussDiff</name>
+                        <name>SDoG</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -95,7 +95,7 @@
                         <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
                 </function>
                 <function>
-                        <name>MSGaussDiff</name>
+                        <name>MSDoG</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -124,7 +124,7 @@
                         <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
                 </function>
                 <function>
-                        <name>MMGaussDiff</name>
+                        <name>MMDoG</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>

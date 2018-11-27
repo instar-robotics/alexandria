@@ -22,6 +22,11 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 
 // See here for more Filter functions : https://fr.wikipedia.org/wiki/Fonction_d%27activation
+// TODO : 
+// Relu / PRelu / ELU
+// Sinc
+// SoftSign
+// SoftExpo
 
 /*******************************************************************************************************/
 /******************************************  Front Detection   *****************************************/

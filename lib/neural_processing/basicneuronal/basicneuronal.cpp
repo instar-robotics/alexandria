@@ -64,7 +64,6 @@ void KeepMin::setparameters()
         Kernel::instance().bind(nMin,"nMax", getUuid());
 }
 
-
 /*******************************************************************************************************/
 /*********************************************  ActToPop   *********************************************/
 /*******************************************************************************************************/
@@ -80,8 +79,8 @@ void ActToPop::compute()
 	if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
 
 	auto vect = getMapVect(output);
-	MatrixXd::Index index = nearbyint(value * vect.size()) - 1;
-
+	MatrixXd::Index index = value * double(vect.size()) ;
+	
 	vect(lastIndex) = 0;
 	vect(index) = 1;
 
@@ -107,37 +106,39 @@ REGISTER_FUNCTION(VActToPop);
 
 void VActToPop::compute()
 {
-	if( proj == COLPROJ )
+	if( proj == ROWPROJ )
 	{
 		auto vact = getCMapVect(activities().i());
 
 		for( unsigned int i = 0; i < vact.size(); i++)
 		{
 			double value =  vact(i) * activities().w();
+
 			// Threshold betwen 0 and 1
 			if( value < 0 ) value = 0;
 			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
 
-			MatrixXd::Index index = nearbyint( value * output.cols()) - 1;
+			MatrixXd::Index index = value * double(output.cols());
+
 			output( i, lastIndex(i) ) = 0;
 			output( i , index ) = 1;
 
 			lastIndex(i) = index;
 		}
-
 	}
-	else if( proj == ROWPROJ )
+	else if( proj == COLPROJ )
 	{
 		auto vact = getCMapVect(activities().i());
 
 		for( unsigned int i = 0; i < vact.size(); i++)
 		{
 			double value =  vact(i) * activities().w();
+
 			// Threshold betwen 0 and 1
 			if( value < 0 ) value = 0;
 			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
 
-			MatrixXd::Index index = nearbyint( value * output.rows() ) - 1;
+			MatrixXd::Index index = value * double(output.rows());
 			output( lastIndex(i), i ) = 0;
 			output( index , i ) = 1;
 
@@ -153,7 +154,7 @@ void VActToPop::compute()
 		if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
 
 		auto vect = getMapVect(output);
-		MatrixXd::Index index = nearbyint(value * vect.size()) - 1;
+		MatrixXd::Index index = value * double(vect.size()) ;
 
 		vect(lastIndex(0)) = 0;
 		vect(index) = 1;
@@ -164,6 +165,8 @@ void VActToPop::compute()
 
 void VActToPop::setparameters()
 {
+	activities.setCheckSize(false); 
+
         Kernel::instance().bind(activities,"activities", getUuid());
 }
 
@@ -174,29 +177,7 @@ void VActToPop::uprerun()
 		throw std::invalid_argument("VAcToPop : Input \"activities\" must be a vector [ROW or COL]");	
 	}
 	
-	if( activities().i().cols() > 1 )
-	{
-		if(output.cols() != activities().i().cols() )
-		{
-			throw std::invalid_argument("VAcToPop : \"activities\" input is a COL Vector so, activities and output cols must be egal !");	
-		}
-
-		// ROW Projection
-		proj = ROWPROJ;
-		lastIndex = VectorXd::Constant( activities().i().cols() , 0);
-	}
-	else if( activities().i().rows() > 1)  
-	{
-		if( output.rows() != activities().i().rows() )
-		{
-			throw std::invalid_argument("VAcToPop : \"activities\" input is a ROW Vector so, activities and output rows must be egal !");	
-		}
-
-		// COL Projection
-		proj = COLPROJ;
-		lastIndex = VectorXd::Constant( activities().i().rows() , 0);
-	}
-	else
+	if( activities().i().rows() == 1 && activities().i().cols() == 1)
 	{
 		if( output.rows() != 1 && output.cols() != 1 ) 
 		{
@@ -206,6 +187,29 @@ void VActToPop::uprerun()
 		//Single Neuron : Projection depend on output [ROW or COL]
 		proj = SINGLEV;
 		lastIndex = VectorXd::Constant( 1 , 0);
+	
+	}
+	else if( activities().i().rows() == 1 )
+	{
+		if(output.cols() != activities().i().cols() )
+		{
+			throw std::invalid_argument("VAcToPop : \"activities\" input is a ROW Vector so, activities cols and output cols must be egal !");	
+		}
+
+		// COL Projection
+		proj = COLPROJ;
+		lastIndex = VectorXd::Constant( activities().i().cols() , 0);
+	}
+	else if( activities().i().cols() == 1)  
+	{
+		if( output.rows() != activities().i().rows() )
+		{
+			throw std::invalid_argument("VAcToPop : \"activities\" input is a COL Vector so, activities rows and output rows must be egal !");	
+		}
+
+		// ROW Projection
+		proj = ROWPROJ;
+		lastIndex = VectorXd::Constant( activities().i().rows() , 0);
 	}
 }
 
@@ -215,6 +219,11 @@ void VActToPop::uprerun()
 
 REGISTER_FUNCTION(PopToAct);
 
+// Note : compute VALUE :
+// value = i / size + 1 / (2*size) 
+// 	or
+// value = i / ( size - 1) 
+
 void PopToAct::compute()
 {
 	auto vect = getCMapVect(population().i());
@@ -222,11 +231,13 @@ void PopToAct::compute()
 	MatrixXd::Index i;
 	vect.maxCoeff(&i); 
 
-	output = double(i)  / double(vect.size());
+//	output = population().w() * ( double(i)/double(vect.size())  + 1.0/(2.0*vect.size()));
+	output = population().w() * double(i) / (double(vect.size())-1.0);
 }
 
 void PopToAct::setparameters()
 {
+	population.setCheckSize(false); 
         Kernel::instance().bind(population,"population", getUuid());
 }
 
@@ -239,21 +250,84 @@ void PopToAct::uprerun()
 	}
 }
 
-/********************************************************************************************************/
-/**********************************************  PopToVAct   *********************************************/
-/********************************************************************************************************/
+/*******************************************************************************************************/
+/**********************************************  PopToVAct   *******************************************/
+/*******************************************************************************************************/
 
 REGISTER_FUNCTION(PopToVAct);
 
 void PopToVAct::compute()
 {
+	if( proj == COLPROJ )
+	{
+                auto vpop = getMapVect(output);
+
+                for( unsigned int i = 0; i < vpop.size(); i++)
+                {
+			MatrixXd::Index ind;
+			population().i().col(i).maxCoeff(&ind);		
+
+                        vpop(i) = population().w() * double(ind)/(double(population().i().rows()) - 1.0);
+                }
+	}
+	else if( proj == ROWPROJ )
+	{
+                auto vpop = getMapVect(output);
+
+                for( unsigned int i = 0; i < vpop.size(); i++)
+                {
+			MatrixXd::Index ind;
+			population().i().row(i).maxCoeff(&ind);		
+
+                        vpop(i) = population().w() * double(ind)/(double(population().i().cols()) - 1.0);
+                }
+	}
+	else if( proj == SINGLEV )
+	{
+		auto vect = getCMapVect(population().i());
+		
+		MatrixXd::Index i;
+		vect.maxCoeff(&i); 
+
+		output(0,0) = population().w() * double(i) / (double(vect.size())-1.0) ;
+	}
 }
 
 void PopToVAct::setparameters()
 {
+	population.setCheckSize(false); 
         Kernel::instance().bind(population,"population", getUuid());
+	
+	if( output.rows() != 1 && output.cols() != 1 ) 
+	{
+		throw std::invalid_argument("PopToVAct : Ouput must be a vector [ROW or COL]");	
+	}
 }
 
 void PopToVAct::uprerun()
 {
+	if(  output.rows() == 1 &&  output.cols() == 1)
+	{
+		if( population().i().rows() != 1 && population().i().cols() != 1 )
+        	{
+                	throw std::invalid_argument("PopToAct : Output is a One-One Matrix, so input \"population\" must be a vector [ROW or COL]");
+        	}
+		proj = SINGLEV;
+	}	
+	else if( output.rows() == 1 ) 
+	{
+		if( output.cols() != population().i().cols() )
+		{
+			throw std::invalid_argument("PopToVAct : Ouput is a ROW vector so, Population cols and output cols must be egal !");	
+		}
+		proj = COLPROJ;
+	}
+	else if( output.cols() == 1 )
+	{
+		if( output.rows() != population().i().rows() )
+		{
+			throw std::invalid_argument("PopToVAct : Ouput is a COL vector so, Population rows and output rows must be egal !");	
+		}
+		proj = ROWPROJ;
+	}
 }
