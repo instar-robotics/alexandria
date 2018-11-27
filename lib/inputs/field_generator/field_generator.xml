@@ -423,10 +423,10 @@
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Generate a 1-D Chinese Hat Field.
+                        <desc>Generate a Chinese Hat Field.
                          Could be a 1-D field [ROW or COL Vector] or 2-D field.
 			 Equation 1-D : f(x) = (N - ln(cosh(x))) / N.
-			 Equation 2-D : f(x) = (N - ln(cosh(x))) / N.
+			 Equation 2-D : f(x,y) = (N - ln(cosh( &#8730; (x&#x00B2; + y&#x00B2;) )) / N.
                         </desc>
                 </function>
         </functions>
