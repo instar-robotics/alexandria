@@ -193,4 +193,23 @@ class  PopToVAct : public FMatrix
                 virtual void uprerun();
 };
 
+/*******************************************************************************************************/
+/*******************************************  Convolution   ********************************************/
+/*******************************************************************************************************/
+
+class Convolution : public FMatrix
+{
+	private : 
+		ISMInput inMatrix;
+		ISMInput mask;
+		
+		unsigned int dim;
+
+        public :
+		virtual ~Convolution(){}
+		virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 #endif // _BASIC_NEURONAL_H_

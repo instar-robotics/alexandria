@@ -74,6 +74,13 @@ set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descr
                    COMMENT "Copying icon File description for library ${basename}"
 		   )
     ENDFOREACH()
+	  
+    add_custom_target("clean_desc" 
+    	     COMMAND rm -rf ${SHARE_DESC}/*
+	     )
+    add_custom_target("all_desc")
+    
+    add_dependencies("all_desc" "clean_desc")
 
     file(GLOB_RECURSE xmlfiles lib/*.xml) 
     FOREACH(xml ${xmlfiles})
@@ -93,8 +100,10 @@ set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descr
     	  add_custom_target("${basename}_desc" 
 		  DEPENDS ${SHARE_DESC}/${basedir}/${xml}
 		  )
+    	  
+	  add_dependencies("${basename}_desc" "clean_desc")
+	  add_dependencies("all_desc"  "${basename}_desc")
     ENDFOREACH()
-
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

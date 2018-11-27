@@ -24,7 +24,6 @@ The fact that you are presently reading this means that you have had knowledge o
 
 /*
 TODO : 
-- ChineseHat 2D
 - Wave : SquarWave and TriangleWave
 - Gabor
 - Ondelette
@@ -613,7 +612,6 @@ template<class ArgType>
 class ChineseHat1D_functor {
   const typename ArgType::Scalar &N;
   const typename ArgType::Index &max;
-
 public:
   ChineseHat1D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max) : N(N), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
@@ -627,13 +625,11 @@ class ChineseHat2D_functor {
   const typename ArgType::Scalar &N;
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
-
 public:
   ChineseHat2D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), max_x(max_x), max_y(max_y) {}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
     double x = double(col) * 2.0* N / max_x - N ;
     double y = double(row) * 2.0* N / max_y - N ;
-    //return (N - log( cosh(x) * cosh(y)  )) / N ;
     return (N - log( cosh( sqrt( x * x + y * y )))) / N ;
   }
 };

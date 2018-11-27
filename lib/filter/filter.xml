@@ -350,5 +350,154 @@
                         <icon>Matrix_sigmoid_lambda.svg</icon>
                         <desc>Sigmoid filter. General form </desc>
                 </function>
+		                <function>
+                        <name>SGauss</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>inScalar</name>
+                                        <desc>Input scalar</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu</name>
+                                        <desc>Mu parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma</name>
+                                        <desc>Sigma parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Gaussian function</desc>
+                </function>
+                <function>
+                        <name>MSGauss</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu</name>
+                                        <desc>Mu parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma</name>
+                                        <desc>Sigma parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Term-term gaussian function</desc>
+                </function>
+                <function>
+                        <name>MMGauss</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>mu</name>
+                                        <desc>Mu parameter</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>sigma</name>
+                                        <desc>Sigma parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Term-term gaussian function</desc>
+                </function>
+                <function>
+                        <name>SDoG</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>inScalar</name>
+                                        <desc>Input scalar</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu1</name>
+                                        <desc>Mu1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma1</name>
+                                        <desc>Sigma1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu2</name>
+                                        <desc>Mu2 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma2</name>
+                                        <desc>Sigma2 parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
+                </function>
+                        <name>MSDoG</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu1</name>
+                                        <desc>Mu1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma1</name>
+                                        <desc>Sigma1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>mu2</name>
+                                        <desc>Mu2 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sigma2</name>
+                                        <desc>Sigma2 parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
+                </function>
+                <function>
+                        <name>MMDoG</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>Input matrix</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>mu1</name>
+                                        <desc>Mu1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>sigma1</name>
+                                        <desc>Sigma1 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>mu2</name>
+                                        <desc>Mu2 parameter</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>sigma2</name>
+                                        <desc>Sigma2 parameter</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
+                </function>
 	</functions>
 </description>

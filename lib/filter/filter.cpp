@@ -391,3 +391,94 @@ void MMSigmoidLambda::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(lambda,"lambda", getUuid());
 }
+
+/*******************************************************************************************************/
+/*********************************************  Gaussian   *********************************************/
+/*******************************************************************************************************/
+
+void SGauss::compute()
+{
+        output = (1 / (sigma()() * sqrt(2 * M_PI))) * exp( - pow(inScalar()() - mu()(), 2) / (2 * pow(sigma()(),2) ));
+}
+
+void SGauss::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(mu,"mu", getUuid());
+        Kernel::iBind(sigma,"sigma", getUuid());
+}
+
+
+void MSGauss::compute()
+{
+        output = (1 / (sigma()() * sqrt(2 * M_PI))) * exp( - pow(inMatrix()().array() - mu()(), 2) / (2 * pow(sigma()(),2) ));
+}
+
+void MSGauss::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mu,"mu", getUuid());
+        Kernel::iBind(sigma,"sigma", getUuid());
+}
+
+void MMGauss::compute()
+{
+        output = (1 / (sigma()().array() * sqrt(2 * M_PI))) * exp( - (inMatrix()() -mu()()).array().square()  / (2 * sigma()().array().square()) ) ;
+}
+
+void MMGauss::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mu,"mu", getUuid());
+        Kernel::iBind(sigma,"sigma", getUuid());
+}
+
+
+/*******************************************************************************************************/
+/***********************************************  DoG  *************************************************/
+/*******************************************************************************************************/
+
+void SDoG::compute()
+{
+        output = (1 / (sigma1()() * sqrt(2*M_PI))) * exp( -( pow(inScalar()() - mu1()(), 2) / (2*pow(sigma1()(),2)))) -  (1 / (sigma2()() * sqrt(2*M_PI))) * exp( -( pow(inScalar()() - mu2()(), 2) / (2*pow(sigma2()(),2)))) ;
+}
+
+void SDoG::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(mu1,"mu1", getUuid());
+        Kernel::iBind(sigma1,"sigma1", getUuid());
+        Kernel::iBind(mu2,"mu2", getUuid());
+        Kernel::iBind(sigma2,"sigma2", getUuid());
+}
+
+
+void MSDoG::compute()
+{
+        output = (1 / (sigma1()() * sqrt(2*M_PI))) * exp( -( pow( inMatrix()().array() - mu1()(), 2) / (2*pow(sigma1()(),2)))) -  (1 / (sigma2()() * sqrt(2*M_PI))) * exp( -( pow( inMatrix()().array() - mu2()(), 2) / (2*pow(sigma2()(),2)))) ;
+}
+
+void MSDoG::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mu1,"mu1", getUuid());
+        Kernel::iBind(sigma1,"sigma1", getUuid());
+        Kernel::iBind(mu2,"mu2", getUuid());
+        Kernel::iBind(sigma2,"sigma2", getUuid());
+}
+
+
+void MMDoG::compute()
+{
+        output = (1 / (sigma1()().array() * sqrt(2*M_PI))) * exp( -( (inMatrix()() - mu1()()).array().square()  / (2 * sigma1()().array().square()  ))) -  (1 / (sigma2()().array().square() * sqrt(2*M_PI))) * exp( -( (inMatrix()() - mu2()()).array().square()  / ( 2 * sigma2()().array().square()  ))) ;
+}
+
+void MMDoG::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mu1,"mu1", getUuid());
+        Kernel::iBind(sigma1,"sigma1", getUuid());
+        Kernel::iBind(mu2,"mu2", getUuid());
+        Kernel::iBind(sigma2,"sigma2", getUuid());
+}
+
