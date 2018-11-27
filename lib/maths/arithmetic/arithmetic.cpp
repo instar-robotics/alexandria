@@ -134,6 +134,7 @@ void SSSub::setparameters()
 REGISTER_FUNCTION(MMul);
 REGISTER_FUNCTION(SMul);
 REGISTER_FUNCTION(MSMul);
+REGISTER_FUNCTION(MatrixProd);
 
 void MMul::compute()
 {
@@ -193,6 +194,36 @@ void  MSMul::setparameters()
         inMatrix.setMultiple(true);
         Kernel::iBind(inScalar,"inScalar", getUuid());
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+void MatrixProd::compute()
+{
+        output = inMatrix1(0)() * inMatrix2(0)();
+}
+
+void MatrixProd::setparameters()
+{
+	inMatrix1.setCheckSize(false);
+	inMatrix2.setCheckSize(false);
+
+	Kernel::iBind(inMatrix1,"inMatrix1", getUuid());
+	Kernel::iBind(inMatrix2,"inMatrix2", getUuid());
+}
+
+void MatrixProd::uprerun()
+{
+	if( inMatrix1().i().rows() != output.rows() )
+	{
+		throw std::invalid_argument("MMMul : First input and output rows mismatch.");
+	}
+	if( inMatrix2().i().cols() != output.cols() )
+	{
+		throw std::invalid_argument("MMMul : Second input and output columns mismatch.");
+	}
+	if( inMatrix1().i().cols() != inMatrix2().i().rows() )
+	{
+		throw std::invalid_argument("MMMul : inputs sizes mismatch.");
+	}
 }
 
 /*******************************************************************************************************/

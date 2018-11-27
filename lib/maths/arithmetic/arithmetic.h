@@ -188,6 +188,22 @@ class MSMul : public FMatrix
                 virtual void setparameters();
 };
 
+// Matrix product 
+class MatrixProd : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix1;
+                ISMInput inMatrix2;
+
+        public :
+                virtual ~MatrixProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
