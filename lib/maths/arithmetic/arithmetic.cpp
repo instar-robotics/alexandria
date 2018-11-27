@@ -135,6 +135,7 @@ REGISTER_FUNCTION(MMul);
 REGISTER_FUNCTION(SMul);
 REGISTER_FUNCTION(MSMul);
 REGISTER_FUNCTION(MatrixProd);
+REGISTER_FUNCTION(DotProd);
 
 void MMul::compute()
 {
@@ -223,6 +224,35 @@ void MatrixProd::uprerun()
 	if( inMatrix1().i().cols() != inMatrix2().i().rows() )
 	{
 		throw std::invalid_argument("MMMul : inputs sizes mismatch.");
+	}
+}
+
+void DotProd::compute()
+{
+	auto v1 = getCMapVect(inVector1().i()) * inVector1().w();
+	auto v2 = getCMapVect(inVector2().i()) * inVector2().w();
+	output = v1.dot(v2);
+}
+
+void DotProd::setparameters()
+{
+	Kernel::iBind(inVector1,"inVector1", getUuid());
+	Kernel::iBind(inVector2,"inVector2", getUuid());
+}
+
+void DotProd::uprerun()
+{
+	if( inVector1().i().rows() != 1 && inVector1().i().cols() != 1 )
+	{
+		throw std::invalid_argument("DotProd : Input 1 is not a vector.");
+	}
+	if( inVector2().i().rows() != 1 && inVector2().i().cols() != 1 )
+	{
+		throw std::invalid_argument("DotProd : Input 2 is not a vector.");
+	}
+	if( (inVector1().i().rows() != inVector2().i().rows()) || (inVector1().i().cols() != inVector2().i().cols()) )
+	{
+		throw std::invalid_argument("DotProd : Inputs size mismatch.");
 	}
 }
 

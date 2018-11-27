@@ -204,6 +204,23 @@ class MatrixProd : public FMatrix
                 virtual void uprerun();
 };
 
+//Dot Product
+class DotProd : public FScalar
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~DotProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
