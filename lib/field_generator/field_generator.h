@@ -24,7 +24,6 @@ The fact that you are presently reading this means that you have had knowledge o
 
 /*
 TODO : 
-- ChineseHat 2D
 - Wave : SquarWave and TriangleWave
 - Gabor
 - Ondelette
@@ -631,7 +630,6 @@ public:
   const typename ArgType::Scalar operator() (Index row, Index col) const {
     double x = double(col) * 2.0* N / max_x - N ;
     double y = double(row) * 2.0* N / max_y - N ;
-    //return (N - log( cosh(x) * cosh(y)  )) / N ;
     return (N - log( cosh( sqrt( x * x + y * y )))) / N ;
   }
 };
