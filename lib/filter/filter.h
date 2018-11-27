@@ -382,4 +382,109 @@ class MMSigmoidLambda : public FMatrix
 		virtual void setparameters();
 };
 
+/*******************************************************************************************************/
+/**********************************************  Gaussian   ********************************************/
+/*******************************************************************************************************/
+
+class SGauss : public FScalar
+{
+        private :
+
+                ISInput inScalar;
+                ISInput mu;
+                ISInput sigma;
+
+        public :
+                virtual ~SGauss(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MSGauss : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+                ISInput mu;
+                ISInput sigma;
+
+        public :
+                virtual ~MSGauss(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MMGauss : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+                ISMInput mu;
+                ISMInput sigma;
+
+        public :
+                virtual ~MMGauss(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/**************************************************  DoG ***********************************************/
+/*******************************************************************************************************/
+
+class SDoG : public FScalar
+{
+        private :
+                ISInput inScalar;
+                ISInput mu1;
+                ISInput sigma1;
+
+                ISInput mu2;
+                ISInput sigma2;
+
+        public :
+                virtual ~SDoG(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MSDoG : public FMatrix
+{
+        private :
+                ISMInput inMatrix;
+                ISInput mu1;
+                ISInput sigma1;
+
+                ISInput mu2;
+                ISInput sigma2;
+
+        public :
+                virtual ~MSDoG(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MMDoG : public FMatrix
+{
+        private :
+                ISMInput inMatrix;
+                ISMInput mu1;
+                ISMInput sigma1;
+
+                ISMInput mu2;
+                ISMInput sigma2;
+
+        public :
+                virtual ~MMDoG(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
 #endif // _FILTER_H_
