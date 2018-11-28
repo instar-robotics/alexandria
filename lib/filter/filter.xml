@@ -368,7 +368,7 @@
                                         <desc>Sigma parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>gaussian.svg</icon>
                         <desc>Gaussian function</desc>
                 </function>
                 <function>
@@ -389,7 +389,7 @@
                                         <desc>Sigma parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>gaussian.svg</icon>
                         <desc>Term-term gaussian function</desc>
                 </function>
                 <function>
@@ -410,7 +410,7 @@
                                         <desc>Sigma parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>gaussian.svg</icon>
                         <desc>Term-term gaussian function</desc>
                 </function>
                 <function>
@@ -439,9 +439,10 @@
                                         <desc>Sigma2 parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>dog.svg</icon>
                         <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
                 </function>
+		<function>
                         <name>MSDoG</name>
                         <output type="MATRIX">
                         </output>
@@ -467,7 +468,7 @@
                                         <desc>Sigma2 parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>dog.svg</icon>
                         <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
                 </function>
                 <function>
@@ -496,7 +497,7 @@
                                         <desc>Sigma2 parameter</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>dog.svg</icon>
                         <desc>Gaussian Difference function [ Gauss1 - Gauss2 ]</desc>
                 </function>
 	</functions>

@@ -78,7 +78,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>heavisidegenerator2d.svg</icon>
 			<desc>Generate a Two-D Heaviside Field. 
 			      Equation : f(x,y) = 1 if x x &gt;= thx and y &gt;= thy; 0 otherwise.</desc>
                  </function>
@@ -96,7 +96,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>gategenerator.svg</icon>
 			<desc>Generate a 1-D Rectangular Gate Field. 
 			      f(x) = 1 if  -thx &lt;= x &lt; = thx; 0 otherwise.	
 			      MUST be [ROW or COL Vector]. 
@@ -120,7 +120,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>gategenerator2d.svg</icon>
 			<desc>Generate a 2-D Rectangular Gate Field. 
 			      Equation : f(x,y) = 1 if -wthx &lt;= x &lt; = wthx and -wthy &lt;= y &lt; = wthy; 0 otherwise.	
 			      MUST be [ROW or COL Vector]. 
@@ -140,7 +140,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>trianglegenerator.svg</icon>
                         <desc>Generate a 1-D Triangular Gate Field.
                               Equation : f(x) = max(1 - |a * x| , 0).
                               MUST be [ROW or COL Vector].
@@ -164,7 +164,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon>heavisidegenerator2d.svg</icon>
+                        <icon>trianglegenerator2d.svg</icon>
                         <desc>Generate a 2-D Triangular Gate Field.
                               Equation : f(x,y) = max(1 - (|a_x * x| + |a_y * y|), 0). </desc>
                 </function>
