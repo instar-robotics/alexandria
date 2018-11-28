@@ -221,6 +221,23 @@ class DotProd : public FScalar
                 virtual void uprerun();
 };
 
+//Cross Product
+class CrossProd : public FMatrix
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~CrossProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void uprerun();
+};
+
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
