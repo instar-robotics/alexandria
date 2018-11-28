@@ -136,6 +136,7 @@ REGISTER_FUNCTION(SMul);
 REGISTER_FUNCTION(MSMul);
 REGISTER_FUNCTION(MatrixProd);
 REGISTER_FUNCTION(DotProd);
+REGISTER_FUNCTION(CrossProd);
 
 void MMul::compute()
 {
@@ -253,6 +254,39 @@ void DotProd::uprerun()
 	if( (inVector1().i().rows() != inVector2().i().rows()) || (inVector1().i().cols() != inVector2().i().cols()) )
 	{
 		throw std::invalid_argument("DotProd : Inputs size mismatch.");
+	}
+}
+
+void CrossProd::compute()
+{
+	Map<const RowVector3d> v1(inVector1().i().data(), 3);
+	Map<const RowVector3d> v2(inVector2().i().data(), 3);
+	output = v1.cross(v2) * inVector1().w() * inVector2().w();
+}
+
+void CrossProd::setparameters()
+{
+	Kernel::iBind(inVector1,"inVector1", getUuid());
+	Kernel::iBind(inVector2,"inVector2", getUuid());
+}
+
+void CrossProd::uprerun()
+{
+	if( inVector1().i().rows() != 1 && inVector1().i().cols() != 1 )
+	{
+		throw std::invalid_argument("CrossProd : Input 1 is not a vector.");
+	}
+	if( inVector2().i().rows() != 1 && inVector2().i().cols() != 1 )
+	{
+		throw std::invalid_argument("CrossProd : Input 2 is not a vector.");
+	}
+	if( inVector1().i().size() != 3 )
+	{
+		throw std::invalid_argument("CrossProd : Input 1 is not of size 3.");
+	}
+	if( inVector2().i().size() != 3 )
+	{
+		throw std::invalid_argument("CrossProd : Input 2 is not of size 3.");
 	}
 }
 
