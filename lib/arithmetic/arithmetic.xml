@@ -123,6 +123,23 @@
 			<desc>Dot product between two vectors of same size</desc>
 		</function>
 		<function>
+			<name>CrossProd</name>
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input type="SCALAR_MATRIX">
+					<name>inVector1</name>
+					<desc>First inputs</desc>
+				</input>
+				<input type="SCALAR_MATRIX">
+					<name>inVector2</name>
+					<desc>Second inputs</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Cross product between two vectors of size 3</desc>
+		</function>
+		<function>
 			<name>MMDiv</name>
 			<output type="MATRIX">
 			</output>
