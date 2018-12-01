@@ -25,16 +25,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="84.572685"
-     inkscape:cy="106.44941"
+     inkscape:zoom="3.959798"
+     inkscape:cx="56.089312"
+     inkscape:cy="85.847768"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="3200"
-     inkscape:window-height="1645"
+     inkscape:window-width="1920"
+     inkscape:window-height="992"
      inkscape:window-x="0"
-     inkscape:window-y="41"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,18 +58,18 @@
      id="layer1"
      transform="translate(-51.208552,-60.934199)">
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.63009542;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 77.329654,76.574595 h -3.67334"
+       style="fill:none;stroke:#000000;stroke-width:0.50486749;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 75.313022,76.942091 H 72.369738"
        id="path5801"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#333333;stroke-width:0.33342546px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 73.721153,73.225454 v 6.69828"
+       style="fill:none;stroke:#333333;stroke-width:0.26715904px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 72.42169,74.258574 v 5.367034"
        id="path5797"
        inkscape:connector-curvature="0" />
     <g
        id="g5774"
-       transform="matrix(1.2601909,0,0,1.2601909,-21.548524,-19.926628)">
+       transform="matrix(1.0097351,0,0,1.0097351,-3.9136765,-0.38005906)">
       <rect
          ry="3.4661555"
          y="67.355873"
@@ -155,13 +155,13 @@
       </g>
     </g>
     <rect
-       style="fill:#ff00ff;fill-opacity:0.30769234;stroke:#1a1a1a;stroke-width:0.75296175;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ff00ff;fill-opacity:0.30769234;stroke:#1a1a1a;stroke-width:0.60331488;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect17210-3-6-5-3"
-       width="5.1946034"
-       height="5.1946034"
-       x="77.089851"
-       y="73.972443"
-       rx="1.2909834"
-       ry="1.2137982" />
+       width="4.1622057"
+       height="4.1622057"
+       x="75.12088"
+       y="74.857101"
+       rx="1.0344077"
+       ry="0.97256261" />
   </g>
 </svg>

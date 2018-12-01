@@ -12,7 +12,7 @@
 					<desc></desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>cast_stom.svg</icon>
 			<desc>Cast Scalar to 1-1 Matrix.</desc>
 		</function>
 		<function>
@@ -25,7 +25,7 @@
 					<desc></desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>cast_mtos.svg</icon>
 			<desc>Cast 1-1 Matrix to Scalar</desc>
 		</function>
         </functions>

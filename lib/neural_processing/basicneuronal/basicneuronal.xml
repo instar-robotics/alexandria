@@ -47,7 +47,7 @@
 					<desc>Scalar activity to discretized. Value should be in [0;1]</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>acttopop.svg</icon>
 			<desc>Discretized scalar activity into a 1D field [ROW or COL].</desc>
 		</function>
 		<function>
@@ -60,7 +60,7 @@
 					<desc>Scalar activities to discretized.Each value should be in [0;1]. Activities is a Vector [ROW or COL].</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>vacttopop.svg</icon>
 			<desc>Discretize scalar activities into a Matrix. If activities is ROW Vector, each scalar is discretized on a ROW of the output matrix. If activities is COL Vector, each scalar is discretized on a COL of the output matrix.</desc>
 		</function>
 		<function>
@@ -73,7 +73,7 @@
 					<desc>Population field to convert into activity.[convert the index of the max coeff into a scalar, if there are more than one max, take the first one] </desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>poptoact.svg</icon>
 			<desc>Convert population into a scalar activity. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
 		</function>
 		<function>
@@ -86,7 +86,7 @@
 					<desc>Population field to convert into activities.[For each Rows (or cols), convert the index of the max coeff into a scalar, if there are more than one max, take the first one] </desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>poptovact.svg</icon>
 			<desc>Convert population into a vector of scalar activities. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
 		</function>
 	</functions>
