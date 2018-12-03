@@ -31,7 +31,7 @@ class Cast_SToM : public FMatrix
 
 	public :
 
-		Cast_SToM(){}
+		Cast_SToM() : FMatrix(POINT){}
 		virtual ~Cast_SToM(){}
 
 		virtual void setparameters();
@@ -54,7 +54,7 @@ class Cast_MToS : public FScalar
 
 		virtual void setparameters();
 		virtual void compute();
-		virtual void uprerun();
+		virtual void prerun();
 };
 
 #endif // __CAST_HPP__

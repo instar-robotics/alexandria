@@ -31,8 +31,6 @@ void Cast_SToM::compute()
 
 void Cast_SToM::setparameters()
 {
-	     if( output.rows() * output.cols() != 1 ) throw std::invalid_argument("Cast_SToM : Output dimension should be 1 !");
-
 	Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
@@ -52,8 +50,8 @@ void Cast_MToS::setparameters()
 }
 
 
-void Cast_MToS::uprerun()
+void Cast_MToS::prerun()
 {
-	     if( inMatrix().getISize() != 1 ) throw std::invalid_argument("Cast_MToS : Matrix Input dimension should be 1 !");
+	     if( inMatrix().iSize() != 1 ) throw std::invalid_argument("Cast_MToS : Matrix Input dimension should be 1 !");
 }
 

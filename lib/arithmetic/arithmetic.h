@@ -201,7 +201,7 @@ class MatrixProd : public FMatrix
 
                 virtual void compute();
                 virtual void setparameters();
-                virtual void uprerun();
+                virtual void prerun();
 };
 
 //Dot Product
@@ -218,7 +218,7 @@ class DotProd : public FScalar
 
                 virtual void compute();
                 virtual void setparameters();
-                virtual void uprerun();
+                virtual void prerun();
 };
 
 //Cross Product
@@ -235,7 +235,7 @@ class CrossProd : public FMatrix
 
                 virtual void compute();
                 virtual void setparameters();
-                virtual void uprerun();
+                virtual void prerun();
 };
 
 /*******************************************************************************************************/
@@ -346,7 +346,7 @@ class MTranspose : public FMatrix
 
 		virtual void compute();
 		virtual void setparameters();
-		virtual void uprerun();
+		virtual void prerun();
 };
 
 #endif // _ARITHMETIC_H_

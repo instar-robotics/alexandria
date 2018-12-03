@@ -57,7 +57,7 @@ class SFrontDetection : public FScalar
 
                 virtual ~SFrontDetection(){}
 
-                virtual void uprerun();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -77,7 +77,7 @@ class MFrontDetection : public FMatrix
 
                 virtual ~MFrontDetection(){}
 
-                virtual void uprerun();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -97,7 +97,7 @@ class MMFrontDetection : public FMatrix
 
                 virtual ~MMFrontDetection(){}
 
-                virtual void uprerun();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };

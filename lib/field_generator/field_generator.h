@@ -43,7 +43,7 @@ class DiracField1D : public FMatrix
 
 	public : 
 
-		DiracField1D() : lastIndex(0){}
+		DiracField1D() : FMatrix(VECTOR) , lastIndex(0) {}
 		virtual ~DiracField1D(){}
 
 		virtual void compute();
@@ -98,6 +98,7 @@ class HeavisideField1D : public FMatrix
 
 	public : 
 
+		HeavisideField1D() : FMatrix(VECTOR) {}
 		virtual ~HeavisideField1D(){}
 
 		virtual void compute();
@@ -164,6 +165,7 @@ class GateField1D : public FMatrix
 		ISInput N; 
 
         public :
+		GateField1D() : FMatrix(VECTOR) {}
                 virtual ~GateField1D(){}
                 virtual void compute();
                 virtual void setparameters();
@@ -224,6 +226,7 @@ class TriangularField1D : public FMatrix
                 ISInput N;
 
         public :
+		TriangularField1D() : FMatrix(VECTOR) {}
                 virtual ~TriangularField1D(){}
                 virtual void compute();
                 virtual void setparameters();
@@ -286,6 +289,7 @@ class SinusField1D : public FMatrix
 
 	public : 
 
+		SinusField1D() : FMatrix(VECTOR) {}
 		virtual ~SinusField1D(){}
 
 		virtual void compute();
@@ -356,6 +360,7 @@ class CosinusField1D : public FMatrix
 
 	public : 
 
+		CosinusField1D() : FMatrix(VECTOR) {}
 		virtual ~CosinusField1D(){}
 
 		virtual void compute();
@@ -425,6 +430,7 @@ class GaussianField1D : public FMatrix
 		ISInput N;
 		
 	public : 
+		GaussianField1D() : FMatrix(VECTOR) {}
 		virtual ~GaussianField1D(){}
 
 		virtual void compute();
@@ -496,6 +502,7 @@ class DoGField1D : public FMatrix
 		ISInput N;
 		
 	public : 
+		DoGField1D() : FMatrix(VECTOR) {}
 		virtual ~DoGField1D(){}
 
 		virtual void compute();
@@ -566,6 +573,7 @@ class SincField1D : public FMatrix
 		ISInput N;
 
 	public : 
+		SincField1D() : FMatrix(VECTOR) {}
 		virtual ~SincField1D(){}
 		virtual void compute();
 		virtual void setparameters();
@@ -638,10 +646,8 @@ class ChineseHatField : public FMatrix
 {
 	private : 
 		ISInput N;
-		unsigned int dim;
 
 	public : 
-		ChineseHatField() : dim(0) {}
 		virtual ~ChineseHatField(){}
 		virtual void compute();
 		virtual void setparameters();

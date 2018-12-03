@@ -47,7 +47,7 @@ bool checkMode(const std::string & smode, int& mode)
 }
 
 
-void SFrontDetection::uprerun()
+void SFrontDetection::prerun()
 {
 	if( !checkMode(mode, imode) ) throw std::invalid_argument("SFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
 }
@@ -83,7 +83,7 @@ void SFrontDetection::setparameters()
 
 /**************************************************************************/
 
-void MFrontDetection::uprerun()
+void MFrontDetection::prerun()
 {
 	if( !checkMode(mode, imode)) throw std::invalid_argument("SFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
 }
@@ -120,7 +120,7 @@ void MFrontDetection::setparameters()
 
 /**************************************************************************/
 
-void MMFrontDetection::uprerun()
+void MMFrontDetection::prerun()
 {
 	if( !checkMode(mode, imode)) throw std::invalid_argument("MMFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
 }

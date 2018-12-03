@@ -217,7 +217,7 @@ class OdoPos :  public FMatrix, public RosSubscriber<nav_msgs::Odometry>
 		OdoPos() : RosSubscriber<nav_msgs::Odometry>() {}
 		virtual ~OdoPos(){}
 
-		virtual void uprerun();
+		virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 
@@ -322,7 +322,7 @@ class OdoEuler : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoEuler() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoEuler(){}
 
-		virtual void uprerun();
+		virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 
@@ -426,7 +426,7 @@ class OdoQuater : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoQuater() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoQuater(){}
 
-		virtual void uprerun();
+		virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 
@@ -560,7 +560,7 @@ class OdoTwistLin : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoTwistLin() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLin(){}
 
-		virtual void uprerun();
+		virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 
@@ -667,7 +667,7 @@ class OdoTwistAng : public FMatrix, public RosSubscriber<nav_msgs::Odometry>
                 OdoTwistAng() : RosSubscriber<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAng(){}
 
-		virtual void uprerun();
+		virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 
@@ -774,7 +774,7 @@ class Lidar1D : public FMatrix, public RosSubscriber<sensor_msgs::LaserScan>
 
 	public : 
 
-                Lidar1D() : RosSubscriber<sensor_msgs::LaserScan>(){}
+                Lidar1D() : FMatrix(VECTOR) , RosSubscriber<sensor_msgs::LaserScan>(){}
                 virtual ~Lidar1D(){}
 
                 virtual void compute();

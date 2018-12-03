@@ -319,7 +319,7 @@ void OdoPos::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoPos::uprerun()
+void OdoPos::prerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoPos : Output dimension should be 3 !");
 }
@@ -472,7 +472,7 @@ void OdoEuler::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoEuler::uprerun()
+void OdoEuler::prerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoEuler : Output dimension should be 3 !");
 }
@@ -649,7 +649,7 @@ void OdoQuater::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoQuater::uprerun()
+void OdoQuater::prerun()
 {
 	if( output.rows() * output.cols() != 4 ) throw std::invalid_argument("OdoQuater : Output dimension should be 3 !");
 }
@@ -835,7 +835,7 @@ void OdoTwistLin::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistLin::uprerun()
+void OdoTwistLin::prerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistLin : Output dimension should be 3 !");
 }
@@ -985,7 +985,7 @@ void OdoTwistAng::setparameters()
         Kernel::iBind(sleep,"sleep", getUuid());
 }
 
-void OdoTwistAng::uprerun()
+void OdoTwistAng::prerun()
 {
 	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("OdoTwistAng : Output dimension should be 3 !");
 }
@@ -1133,9 +1133,7 @@ void Lidar1D::compute()
 
 void Lidar1D::setparameters()
 {
-	if( output.rows() > 1 )  throw std::invalid_argument("Lidar1D : Output must be a Vector [ROW = 1 and Cols = N]");
-
-	moy.assign(output.cols(), 0);
+	moy.assign(output.size(), 0);
 
         Kernel::iBind(topic_name,"topic_name", getUuid());
         Kernel::iBind(size_queue,"size_queue", getUuid());
@@ -1145,6 +1143,7 @@ void Lidar1D::setparameters()
 
 void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 {
+	auto mout = getMapVect(output);
         double RM = std::min(range_max()(),  (double)(msg->range_max) );
         double offset =  M_PI - fabs(msg->angle_min);
 
@@ -1156,15 +1155,15 @@ void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
                 if( value < 0 ) value = 0;
 
                 if( moy[j] == 0 ) output(0,j) = value;
-                else output(0,j) += value;
+                else mout(j) += value;
 
                 moy[j]++;
         }
 
-        for(unsigned int i = 0 ; i < output.cols() ; i++)
+        for(unsigned int i = 0 ; i < mout.size() ; i++)
         {
-                if( moy[i] > 0 ) output(0,i) = output(0,i) / moy[i];
-                else output(0,i) = 0;
+                if( moy[i] > 0 ) mout(i) = mout(0,i) / moy[i];
+                else mout(i) = 0;
 
                 moy[i] = 0;
         }
