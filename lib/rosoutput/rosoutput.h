@@ -46,7 +46,7 @@ class CmdVelRawOutput : public FMatrix
 		CmdVelRawOutput(){}
 		virtual ~CmdVelRawOutput(){}
 
-		virtual void uprerun();
+		virtual void prerun();
 		virtual void compute();
                 virtual void setparameters();
 };
@@ -71,7 +71,7 @@ class CmdVelVectOutput : public FMatrix
                 CmdVelVectOutput(){}
                 virtual ~CmdVelVectOutput(){}
 
-                virtual void uprerun();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -97,7 +97,7 @@ class CmdVel2DOutput : public FMatrix
                 CmdVel2DOutput(){}
                 virtual ~CmdVel2DOutput(){}
 
-                virtual void uprerun();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };

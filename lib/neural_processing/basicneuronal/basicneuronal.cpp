@@ -90,12 +90,6 @@ void ActToPop::compute()
 void ActToPop::setparameters()
 {
         Kernel::instance().bind(activity,"activity", getUuid());
-
-	// Check Output dimension : 
-	if( output.rows() != 1 && output.cols() != 1 ) 
-	{
-		throw std::invalid_argument("ActToPop : Output must be a vector [ROW or COL]");	
-	}
 }
 
 /*******************************************************************************************************/
@@ -170,16 +164,16 @@ void VActToPop::setparameters()
         Kernel::instance().bind(activities,"activities", getUuid());
 }
 
-void VActToPop::uprerun()
+void VActToPop::prerun()
 {
-	if( activities().i().rows() != 1 && activities().i().cols() != 1 ) 
+	if( ! activities().isVect() ) 
 	{
 		throw std::invalid_argument("VAcToPop : Input \"activities\" must be a vector [ROW or COL]");	
 	}
 	
-	if( activities().i().rows() == 1 && activities().i().cols() == 1)
+	if( activities().isPoint())
 	{
-		if( output.rows() != 1 && output.cols() != 1 ) 
+		if(!isVect()) 
 		{
 			throw std::invalid_argument("VActToPop : \"activities\" dimension is egal to one, so output must be a vector [ROW or COL]");	
 		}
@@ -189,18 +183,18 @@ void VActToPop::uprerun()
 		lastIndex = VectorXd::Constant( 1 , 0);
 	
 	}
-	else if( activities().i().rows() == 1 )
+	else if( activities().isRowVect() )
 	{
-		if(output.cols() != activities().i().cols() )
+		if(output.cols() != activities().iCols() )
 		{
 			throw std::invalid_argument("VAcToPop : \"activities\" input is a ROW Vector so, activities cols and output cols must be egal !");	
 		}
 
 		// COL Projection
 		proj = COLPROJ;
-		lastIndex = VectorXd::Constant( activities().i().cols() , 0);
+		lastIndex = VectorXd::Constant( activities().iCols() , 0);
 	}
-	else if( activities().i().cols() == 1)  
+	else if( activities().isColVect())  
 	{
 		if( output.rows() != activities().i().rows() )
 		{
@@ -209,7 +203,7 @@ void VActToPop::uprerun()
 
 		// ROW Projection
 		proj = ROWPROJ;
-		lastIndex = VectorXd::Constant( activities().i().rows() , 0);
+		lastIndex = VectorXd::Constant( activities().iRows() , 0);
 	}
 }
 
@@ -241,10 +235,10 @@ void PopToAct::setparameters()
         Kernel::instance().bind(population,"population", getUuid());
 }
 
-void PopToAct::uprerun()
+void PopToAct::prerun()
 {
 	// Check Input dimension : 
-	if( population().i().rows() != 1 && population().i().cols() != 1 ) 
+	if( !population().isVect()) 
 	{
 		throw std::invalid_argument("PopToAct : Input \"population\" must be a vector [ROW or COL]");	
 	}
@@ -297,37 +291,64 @@ void PopToVAct::setparameters()
 {
 	population.setCheckSize(false); 
         Kernel::instance().bind(population,"population", getUuid());
-	
-	if( output.rows() != 1 && output.cols() != 1 ) 
-	{
-		throw std::invalid_argument("PopToVAct : Ouput must be a vector [ROW or COL]");	
-	}
 }
 
-void PopToVAct::uprerun()
+void PopToVAct::prerun()
 {
-	if(  output.rows() == 1 &&  output.cols() == 1)
+	if(isPoint())
 	{
-		if( population().i().rows() != 1 && population().i().cols() != 1 )
+		if( !population().isVect() )
         	{
                 	throw std::invalid_argument("PopToAct : Output is a One-One Matrix, so input \"population\" must be a vector [ROW or COL]");
         	}
 		proj = SINGLEV;
 	}	
-	else if( output.rows() == 1 ) 
+	else if( isRowVect()) 
 	{
-		if( output.cols() != population().i().cols() )
+		if( output.cols() != population().iCols() )
 		{
 			throw std::invalid_argument("PopToVAct : Ouput is a ROW vector so, Population cols and output cols must be egal !");	
 		}
 		proj = COLPROJ;
 	}
-	else if( output.cols() == 1 )
+	else if( isColVect() )
 	{
-		if( output.rows() != population().i().rows() )
+		if( output.rows() != population().iRows() )
 		{
 			throw std::invalid_argument("PopToVAct : Ouput is a COL vector so, Population rows and output rows must be egal !");	
 		}
 		proj = ROWPROJ;
 	}
 }
+
+/*******************************************************************************************************/
+/*******************************************  Convolution   ********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(Convolution);
+
+void Convolution::compute()
+{
+}
+
+void Convolution::setparameters()
+{
+	mask.setCheckSize(false); 
+        Kernel::instance().bind(mask,"mask", getUuid());
+        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+}
+
+/*******************************************************************************************************/
+/**********************************************  Shift   ***********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(Shift);
+
+void Shift::compute()
+{
+}
+
+void Shift::setparameters()
+{
+}
+

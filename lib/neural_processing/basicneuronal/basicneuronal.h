@@ -101,7 +101,7 @@ class ActToPop : public FMatrix
         
 	public :
 
-		ActToPop() : lastIndex(0) {}
+		ActToPop() : FMatrix(VECTOR), lastIndex(0) {}
                 virtual ~ActToPop(){}
 
                 virtual void compute();
@@ -137,7 +137,7 @@ class  VActToPop : public FMatrix
 
                 virtual void compute();
                 virtual void setparameters();
-		virtual void uprerun();
+		virtual void prerun();
 };
 
 /*******************************************************************************************************/
@@ -162,7 +162,7 @@ class PopToAct : public FScalar
 
                 virtual void compute();
                 virtual void setparameters();
-		virtual void uprerun();
+		virtual void prerun();
 };
 
 /*******************************************************************************************************/
@@ -185,12 +185,12 @@ class  PopToVAct : public FMatrix
 
         public :
 
-		PopToVAct() : proj(0) {}
+		PopToVAct() : FMatrix(VECTOR),proj(0) {}
                 virtual ~PopToVAct(){}
 
                 virtual void compute();
                 virtual void setparameters();
-                virtual void uprerun();
+                virtual void prerun();
 };
 
 /*******************************************************************************************************/
@@ -206,10 +206,26 @@ class Convolution : public FMatrix
 		unsigned int dim;
 
         public :
+		Convolution() : dim(0) {}
+
 		virtual ~Convolution(){}
 		virtual void compute();
                 virtual void setparameters();
-                virtual void uprerun();
+};
+
+/*******************************************************************************************************/
+/**********************************************  Shift   ***********************************************/
+/*******************************************************************************************************/
+
+class Shift : public FMatrix
+{
+	private :
+
+	public : 
+
+		virtual ~Shift(){}
+		virtual void compute();
+                virtual void setparameters();
 };
 
 #endif // _BASIC_NEURONAL_H_

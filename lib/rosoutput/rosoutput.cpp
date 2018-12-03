@@ -59,7 +59,7 @@ void CmdVelRawOutput::setparameters()
  	Kernel::iBind(rotZ,"rot.z", getUuid());
 }
 
-void CmdVelRawOutput::uprerun()
+void CmdVelRawOutput::prerun()
 {
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
@@ -107,10 +107,10 @@ void CmdVelVectOutput::setparameters()
         Kernel::iBind(rot,"rot", getUuid());
 }
 
-void CmdVelVectOutput::uprerun()
+void CmdVelVectOutput::prerun()
 {
-	if( lin().getISize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Linear Input dimension should be 3 !");
-	if( rot().getISize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Rotational Input dimension should be 3 !");
+	if( lin().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Linear Input dimension should be 3 !");
+	if( rot().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Rotational Input dimension should be 3 !");
 
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
@@ -148,7 +148,7 @@ void CmdVel2DOutput::setparameters()
         Kernel::iBind(rot,"rot", getUuid());
 }
 
-void CmdVel2DOutput::uprerun()
+void CmdVel2DOutput::prerun()
 {
 	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }

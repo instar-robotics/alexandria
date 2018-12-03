@@ -41,8 +41,6 @@ void DiracField1D::compute()
 
 void DiracField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("DiracField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(x,"x", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
@@ -88,8 +86,6 @@ void HeavisideField1D::compute()
 
 void HeavisideField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("HeavisideField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(th,"th", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
@@ -183,8 +179,6 @@ void SinusField1D::compute()
 
 void SinusField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("SinusField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(freq,"freq", getUuid());
 	Kernel::iBind(offset,"offset", getUuid());
 }
@@ -217,8 +211,6 @@ void CosinusField1D::compute()
 
 void CosinusField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("CosinusField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(freq,"freq", getUuid());
 	Kernel::iBind(offset,"offset", getUuid());
 }
@@ -255,8 +247,6 @@ void GaussianField1D::compute()
 
 void GaussianField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("GaussianField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(mu,"mu", getUuid());
 	Kernel::iBind(sigma,"sigma", getUuid());
 	Kernel::iBind(N,"N", getUuid());
@@ -264,8 +254,6 @@ void GaussianField1D::setparameters()
 
 void GaussianField2D::compute()
 {
-	auto vout = getMapVect(output); 
-	
 	double sx = sigma_x()();
 	double sy = sigma_y()();
 	if(sx == 0.0) sx = std::numeric_limits<double>::epsilon();
@@ -305,8 +293,6 @@ void DoGField1D::compute()
 
 void DoGField1D::setparameters()
 {
-	if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("DoGField1D : output Matrix must be a vector [ROW or COL]");
-
 	Kernel::iBind(sigma1,"sigma1", getUuid());
 	Kernel::iBind(sigma2,"sigma2", getUuid());
 	Kernel::iBind(N,"N", getUuid());
@@ -353,8 +339,6 @@ void SincField1D::compute()
 
 void SincField1D::setparameters()
 {
-        if( output.rows() != 1 && output.cols() != 1) throw std::invalid_argument("SinusField1D : output Matrix must be a vector [ROW or COL]");
-
         Kernel::iBind(freq,"freq", getUuid());
         Kernel::iBind(N,"N", getUuid());
 }
@@ -379,12 +363,12 @@ REGISTER_FUNCTION(ChineseHatField);
 
 void ChineseHatField::compute()
 {
-	if( dim == 1)
+	if( isVect())
 	{
         	auto vout = getMapVect(output);
         	vout = VectorXd::NullaryExpr( vout.size(), ChineseHat1D_functor<VectorXd>( N()() ,vout.size() ));
 	}
-	else if( dim == 2 ) 
+	else 
 	{
 		output = MatrixXd::NullaryExpr( output.rows(), output.cols() , 	ChineseHat2D_functor<MatrixXd>( N()(), output.cols(), output.rows()));
 	}
@@ -392,12 +376,6 @@ void ChineseHatField::compute()
 
 void ChineseHatField::setparameters()
 {
-        if( output.rows() != 1 && output.cols() != 1) 
-	{
-		dim = 2 ;
-	}
-	else dim = 1;
-
         Kernel::iBind(N,"N", getUuid());
 }
 

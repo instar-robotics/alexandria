@@ -212,7 +212,7 @@ void MatrixProd::setparameters()
 	Kernel::iBind(inMatrix2,"inMatrix2", getUuid());
 }
 
-void MatrixProd::uprerun()
+void MatrixProd::prerun()
 {
 	if( inMatrix1().i().rows() != output.rows() )
 	{
@@ -241,7 +241,7 @@ void DotProd::setparameters()
 	Kernel::iBind(inVector2,"inVector2", getUuid());
 }
 
-void DotProd::uprerun()
+void DotProd::prerun()
 {
 	if( inVector1().i().rows() != 1 && inVector1().i().cols() != 1 )
 	{
@@ -270,7 +270,7 @@ void CrossProd::setparameters()
 	Kernel::iBind(inVector2,"inVector2", getUuid());
 }
 
-void CrossProd::uprerun()
+void CrossProd::prerun()
 {
 	if( inVector1().i().rows() != 1 && inVector1().i().cols() != 1 )
 	{
@@ -387,7 +387,7 @@ void MTranspose::setparameters()
 	Kernel::iBind(inMatrix, "inMatrix", getUuid());
 }
 
-void MTranspose::uprerun()
+void MTranspose::prerun()
 {
 	if( (inMatrix().i().rows() != output.cols()) || (inMatrix().i().cols() != output.rows()) )
 	{
