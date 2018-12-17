@@ -19,8 +19,9 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
-#include "kheops/ros/roswrapper.h"
 #include <nav_msgs/Odometry.h>
+#include <ros/ros.h>
+
 
 /*
  * CmdVelRawOutput : Send CmdVelocity message 
