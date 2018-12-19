@@ -37,8 +37,6 @@ projection (
 
 convolution operator (circularity option) -> OK simple 
 
-shift operator (circularity option) -> On attend discution avec ALEX
-
 N_MAX/N_MIN (reviens à un sort si N = taille entrée)  -> implémenter plus tard si besoin
 -> SORT ?? Est-ce que ce n'est pas plus malin de l'appeler SORT ? Avec N -> N premier (soit max soit min)
 
@@ -203,10 +201,8 @@ class Convolution : public FMatrix
 		ISMInput inMatrix;
 		ISMInput mask;
 		
-		unsigned int dim;
-
         public :
-		Convolution() : dim(0) {}
+		Convolution() {}
 
 		virtual ~Convolution(){}
 		virtual void compute();
@@ -217,13 +213,49 @@ class Convolution : public FMatrix
 /**********************************************  Shift   ***********************************************/
 /*******************************************************************************************************/
 
+template<class ArgType>
+class Shift_functor {
+  const ArgType &input;
+  const typename ArgType::Index &sx;
+  const typename ArgType::Index &sy;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+  const typename ArgType::Index &inv;
+public:
+  Shift_functor(const ArgType &input , const typename ArgType::Index& sx , const typename ArgType::Index& sy,  const typename ArgType::Index& max_x , const typename ArgType::Index& max_y, const typename ArgType::Index &inv) : input(input), sx(sx),sy(sy),max_x(max_x), max_y(max_y), inv(inv) {}
+  
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+	const typename ArgType::Index  sr = (row - (sy * inv) + max_y) % max_y ; 
+	const typename ArgType::Index  sc = (col - (sx * inv) + max_x) % max_x ; 
+
+        return  input(sr,sc);
+  }
+};
+
 class Shift : public FMatrix
 {
 	private :
 
+		ISMInput inMatrix;
+		ISMInput mask;
+
 	public : 
 
 		virtual ~Shift(){}
+		virtual void compute();
+                virtual void setparameters();
+};
+
+class ShiftInv : public FMatrix
+{
+	private :
+
+		ISMInput inMatrix;
+		ISMInput mask;
+
+	public : 
+
+		virtual ~ShiftInv(){}
 		virtual void compute();
                 virtual void setparameters();
 };

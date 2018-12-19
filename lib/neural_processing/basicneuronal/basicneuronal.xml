@@ -89,5 +89,39 @@
 			<icon>poptovact.svg</icon>
 			<desc>Convert population into a vector of scalar activities. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
 		</function>
+		 <function>
+                        <name>Shift</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to shift</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>mask</name>
+                                        <desc>The mask defining the shift.</desc>
+                                </input>
+                        </inputs>
+                        <icon>shift.svg</icon>
+                        <desc>Shift operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                </function>
+		 <function>
+                        <name>ShiftInv</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to shift</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>mask</name>
+                                        <desc>The mask defining the shift.</desc>
+                                </input>
+                        </inputs>
+                        <icon>shift-inv.svg</icon>
+                        <desc>Shift^-1 operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                </function>
 	</functions>
 </description>

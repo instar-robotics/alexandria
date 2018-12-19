@@ -21,20 +21,12 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 
 //produit tensoriel -> à mettre dans un fichier tensor ?
-// Comparaison : m . m  et m . s ?
-
-// TODO : 
-
-//Matrix transpose
-
-// produit matriciel
+//Comparaison : m . m  et m . s ?
 
 /*
-*   Matrix/Vector Product    
-*   Dot Product
+// TODO : 
 *   Inner Product
 *   Outer Product 
-*   Cross Product
 */
 
 /*******************************************************************************************************/
@@ -188,56 +180,6 @@ class MSMul : public FMatrix
                 virtual void setparameters();
 };
 
-// Matrix product 
-class MatrixProd : public FMatrix
-{
-        private :
-
-                ISMInput inMatrix1;
-                ISMInput inMatrix2;
-
-        public :
-                virtual ~MatrixProd(){}
-
-                virtual void compute();
-                virtual void setparameters();
-                virtual void prerun();
-};
-
-//Dot Product
-class DotProd : public FScalar
-{
-        private :
-
-                ISMInput inVector1;
-                ISMInput inVector2;
-
-        public :
-
-                virtual ~DotProd(){}
-
-                virtual void compute();
-                virtual void setparameters();
-                virtual void prerun();
-};
-
-//Cross Product
-class CrossProd : public FMatrix
-{
-        private :
-
-                ISMInput inVector1;
-                ISMInput inVector2;
-
-        public :
-
-                virtual ~CrossProd(){}
-
-                virtual void compute();
-                virtual void setparameters();
-                virtual void prerun();
-};
-
 /*******************************************************************************************************/
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
@@ -335,7 +277,6 @@ class Normalize : public FMatrix
 /**********************************************  Transpose   *******************************************/
 /*******************************************************************************************************/
 
-
 class MTranspose : public FMatrix
 {
 	private :
@@ -348,5 +289,60 @@ class MTranspose : public FMatrix
 		virtual void setparameters();
 		virtual void prerun();
 };
+
+/*******************************************************************************************************/
+/***************************************  Matrix/Dot/Cross Product  ************************************/
+/*******************************************************************************************************/
+
+// Matrix product 
+class MatrixProd : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix1;
+                ISMInput inMatrix2;
+
+        public :
+                virtual ~MatrixProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
+};
+
+//Dot Product
+class DotProd : public FScalar
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~DotProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
+};
+
+//Cross Product
+class CrossProd : public FMatrix
+{
+        private :
+
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+        public :
+
+                virtual ~CrossProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
+};
+
 
 #endif // _ARITHMETIC_H_

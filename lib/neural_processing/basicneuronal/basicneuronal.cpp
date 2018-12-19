@@ -343,12 +343,33 @@ void Convolution::setparameters()
 /*******************************************************************************************************/
 
 REGISTER_FUNCTION(Shift);
+REGISTER_FUNCTION(ShiftInv);
 
 void Shift::compute()
 {
+	MatrixXd::Index mRow, mCol;
+	mask().i().maxCoeff(&mRow, &mCol);
+	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), Shift_functor<MatrixXd>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), 1 ));
 }
 
 void Shift::setparameters()
 {
+	mask.setCheckSize(false); 
+        Kernel::instance().bind(mask,"mask", getUuid());
+        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+}
+
+void ShiftInv::compute()
+{
+        MatrixXd::Index mRow, mCol;
+        mask().i().maxCoeff(&mRow, &mCol);
+        output = MatrixXd::NullaryExpr( output.rows(), output.cols(), Shift_functor<MatrixXd>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), -1 ));
+}
+
+void ShiftInv::setparameters()
+{
+        mask.setCheckSize(false);
+        Kernel::instance().bind(mask,"mask", getUuid());
+        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
 }
 

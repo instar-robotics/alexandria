@@ -61,7 +61,8 @@ void CmdVelRawOutput::setparameters()
 
 void CmdVelRawOutput::prerun()
 {
-	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
+	ros::NodeHandle n;
+	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
 
 
@@ -112,7 +113,8 @@ void CmdVelVectOutput::prerun()
 	if( lin().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Linear Input dimension should be 3 !");
 	if( rot().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Rotational Input dimension should be 3 !");
 
-	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
+	ros::NodeHandle n;
+	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
 
 /*******************************************************************************************************/
@@ -150,5 +152,6 @@ void CmdVel2DOutput::setparameters()
 
 void CmdVel2DOutput::prerun()
 {
-	pub = RosWrapper::getNodeHandle()->advertise<geometry_msgs::Twist>( topic_name , size_queue()());
+	ros::NodeHandle n;
+	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
 }
