@@ -103,7 +103,7 @@
                                         <desc>The mask defining the shift.</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>shift.svg</icon>
                         <desc>Shift operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
                 </function>
 		 <function>
@@ -120,7 +120,7 @@
                                         <desc>The mask defining the shift.</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>shift-inv.svg</icon>
                         <desc>Shift^-1 operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
                 </function>
 	</functions>
