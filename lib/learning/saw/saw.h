@@ -23,19 +23,55 @@ The fact that you are presently reading this means that you have had knowledge o
 
 class Saw : public FMatrix
 {
-	private :
-
+	protected :
 		ISInput learning_rate;
 		ISInput vigilence;
 		IMMInput inputs;
-	
-        public :
-		
+
+		unsigned int nbn;
+
+	public : 
+		Saw() : nbn(0) {}
 		virtual ~Saw(){}
 
-		virtual void compute();
+		void updateWeight();
 		virtual void setparameters();
+		virtual void compute() = 0;
+};
 
+class Saw_L1 : public Saw
+{
+        public :
+		
+		Saw_L1() : Saw() {}
+		virtual ~Saw_L1(){}
+
+		virtual void compute();
+};
+
+class Saw_L2 : public Saw
+{
+        public :
+		
+		Saw_L2() : Saw() {}
+		virtual ~Saw_L2(){}
+
+		virtual void compute();
+};
+
+class Saw_Exp : public Saw
+{
+	private :
+
+		ISInput sigma;
+
+        public :
+
+                Saw_Exp() : Saw() {}
+                virtual ~Saw_Exp(){}
+
+                virtual void compute();
+		virtual void setparameters();
 };
 
 #endif // __SAW_HPP__

@@ -52,6 +52,6 @@ void Cast_MToS::setparameters()
 
 void Cast_MToS::prerun()
 {
-	     if( inMatrix().iSize() != 1 ) throw std::invalid_argument("Cast_MToS : Matrix Input dimension should be 1 !");
+	     if( !inMatrix().isPoint() ) throw std::invalid_argument("Cast_MToS : Matrix Input dimension should be 1 !");
 }
 

@@ -3,21 +3,71 @@
 	<libname>saw</libname>
 	<functions>
 		<function>
-			<name>Saw</name>
+			<name>Saw_L1</name>
 			<output type="MATRIX"> 
 			</output> 
 			<inputs>
-				<input multiple="false" type="SCALAR_SCALAR"> 
+				<input type="SCALAR_SCALAR"> 
 					<name>learning_rate</name>
+					<desc>Learning rate : speed of centroid deplacement. With a value of 0, centroid are not updated.</desc>
 				</input>
-				<input multiple="false" type="SCALAR_SCALAR"> 
+				<input type="SCALAR_SCALAR"> 
 					<name>vigilence</name>
+					<desc>The thresold that triggers recruitment.</desc>
 				</input>
-				<input multiple="true" type="MATRIX_MATRIX">
+				<input multiple="true" type="MATRIX_MATRIX" checkSize="false">
 					<name>inputs</name>
+					<desc>Input data.</desc>
 				</input>
 			</inputs>
+			<desc> SAW : Selective Adaptive Winner. This algortihms is a kid of online k-means. A new centroid is recruted when activities of other centroids are lower than "vigilence" value. At each iteration, the winner's centroid (the closest to the input data) is moved at a speed given by "learning_rate". Distance used is L1 Norm.</desc>
 			<icon>saw.svg</icon>
 		</function>	
+		<function>
+                        <name>Saw_L2</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>learning_rate</name>
+                                        <desc>Learning rate : speed of centroid deplacement. With a value of 0, centroid are not updated.</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>vigilence</name>
+                                        <desc>The thresold that triggers recruitment.</desc>
+                                </input>
+                                <input multiple="true" type="MATRIX_MATRIX" checkSize="false">
+                                        <name>inputs</name>
+                                        <desc>Input data.</desc>
+                                </input>
+                        </inputs>
+                        <desc> SAW : Selective Adaptive Winner. This algortihms is a kid of online k-means. A new centroid is recruted when activities of other centroids are lower than "vigilence" value. At each iteration, the winner's centroid (the closest to the input data) is moved at a speed given by "learning_rate". Distance used is L2 Norm.</desc>
+                        <icon>saw.svg</icon>
+                </function>
+	        <function>
+                        <name>Saw_Exp</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>learning_rate</name>
+                                        <desc>Learning rate : speed of centroid deplacement. With a value of 0, centroid are not updated.</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>vigilence</name>
+                                        <desc>The thresold that triggers recruitment.</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma</name>
+                                        <desc>Sigma of the exponential.</desc>
+                                </input>
+                                <input multiple="true" type="MATRIX_MATRIX" checkSize="false">
+                                        <name>inputs</name>
+                                        <desc>Input data.</desc>
+                                </input>
+                        </inputs>
+			<desc> SAW : Selective Adaptive Winner. This algortihms is a kid of online k-means. A new centroid is recruted when activities of other centroids are lower than "vigilence" value. At each iteration, the winner's centroid (the closest to the input data) is moved at a speed given by "learning_rate". Distance used is Exponetial : C_j = exp( -1/(2 x sigma) x sum_j( E_j - w_ij)^2) .</desc>
+                        <icon>saw.svg</icon>
+                </function>
 	</functions>
 </description>
