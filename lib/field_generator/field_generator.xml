@@ -140,7 +140,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon>trianglegenerator.svg</icon>
+                        <icon>trianglegategenerator.svg</icon>
                         <desc>Generate a 1-D Triangular Gate Field.
                               Equation : f(x) = max(1 - |a * x| , 0).
                               MUST be [ROW or COL Vector].
@@ -164,7 +164,7 @@
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon>trianglegenerator2d.svg</icon>
+                        <icon>trianglegategenerator2d.svg</icon>
                         <desc>Generate a 2-D Triangular Gate Field.
                               Equation : f(x,y) = max(1 - (|a_x * x| + |a_y * y|), 0). </desc>
                 </function>
