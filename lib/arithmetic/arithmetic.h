@@ -20,11 +20,9 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
 
-//produit tensoriel -> à mettre dans un fichier tensor ?
-//Comparaison : m . m  et m . s ?
-
 /*
 // TODO : 
+*   Tensor product of 2 vector
 *   Inner Product
 *   Outer Product 
 */

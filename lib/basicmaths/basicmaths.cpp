@@ -136,33 +136,33 @@ void ArgMin2D::setparameters()
 }
 
 /*******************************************************************************************************/
-/*******************************************  ValueMax  ************************************************/
+/*******************************************  MaxCoeff  ************************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(ValueMax);
+REGISTER_FUNCTION(MaxCoeff);
 
-void ValueMax::compute()
+void MaxCoeff::compute()
 {
 	output = inMatrix().i().maxCoeff() * inMatrix().w() ;
 }
 
-void ValueMax::setparameters()
+void MaxCoeff::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 /*******************************************************************************************************/
-/*******************************************  ValueMin   ***********************************************/
+/*******************************************  MinCoeff   ***********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(ValueMin);
+REGISTER_FUNCTION(MinCoeff);
 
-void ValueMin::compute()
+void MinCoeff::compute()
 {
 	output = inMatrix().i().minCoeff() * inMatrix().w() ;
 }
 
-void ValueMin::setparameters()
+void MinCoeff::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }

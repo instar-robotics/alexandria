@@ -55,7 +55,7 @@
 			<desc>Get the argmin of the matrix input</desc>
 		</function>
 		<function>
-			<name>ValueMax</name>
+			<name>MaxCoeff</name>
 			<output type="SCALAR">	
 			</output>	
 			<inputs>
@@ -68,7 +68,7 @@
 			<desc>Get the max value of the matrix input</desc>
 		</function>	
 		<function>
-			<name>ValueMin</name>
+			<name>MinCoeff</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>

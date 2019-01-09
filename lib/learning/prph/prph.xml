@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<description>
+	<libname>prph</libname>
+	<functions>
+		<function>
+			<name>PrPh</name>
+			<output type="MATRIX"> 
+			</output> 
+			<inputs>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>vigilence</name>
+					<desc>Vigilence : on activity</desc>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>learn</name>
+					<desc>Learning rate : set to 1 to trigger learning. Learning is apply in one iteration.</desc>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>reset</name>
+					<desc></desc>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>timeout</name>
+					<desc>Timeout (in number of iteration) before resetting memory.</desc>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>dicket</name>
+					<desc></desc>
+				</input>
+				<input multiple="false" type="SCALAR_SCALAR"> 
+					<name>threshold</name>
+					<desc></desc>
+				</input>
+				<input multiple="true" type="MATRIX_MATRIX" checkSize="false">
+                                        <name>inputs</name>
+                                        <desc>Input data.</desc>
+                                </input>
+			</inputs>
+		        <desc>PrPh algorithm.</desc>
+
+			<icon>prph.svg</icon>
+		</function>	
+	</functions>
+</description>

@@ -14,18 +14,39 @@ and, more generally, to use and operate it in the same conditions as regards sec
 The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
 */
 
-#include "sigmapi.h"
+#ifndef __PRPH_HPP__
+#define __PRPH_HPP__
 
-REGISTER_FUNCTION(SigmaPi);
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
+#include <iostream>
 
-//TODO
-void SigmaPi::compute()
-{	
-
-}
-
-void  SigmaPi::setparameters()
+class PrPh : public FMatrix
 {
-        Kernel::iBind(vigilence,"vigilence", getUuid());
-}
+	private :
+	
+		ISInput reset;	// Transition_detect 
+		ISInput dicket;
+		ISInput timeout;
+		ISInput vigilence;
+		ISInput learn; 
+		ISInput threshold; 
 
+		IMMInput inputs;
+
+		// Add inhibitor entry ?
+		// Hard to said : need to talk with Philippe, because it's not really clear 
+		// how we use it and to do what ? 
+		//IMMInput inhibitor;
+
+		VectorXb memory;
+	
+        public :
+		
+		virtual ~PrPh(){}
+
+		virtual void compute();
+		virtual void setparameters();
+};
+
+#endif // __PRPH_HPP__

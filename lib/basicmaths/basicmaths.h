@@ -21,6 +21,11 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 
 /*
+ *	
+ *	MAX for N scalar 
+ *
+ *	MAX for N matrix (neuron by neuro )
+ *
  *  Could add lpnorm ?
  */
 
@@ -94,10 +99,10 @@ class ArgMin2D : public FMatrix
 };
 
 /*******************************************************************************************************/
-/**********************************************  ValueMax   ********************************************/
+/**********************************************  MaxCoeff   ********************************************/
 /*******************************************************************************************************/
 
-class ValueMax : public FScalar
+class MaxCoeff : public FScalar
 {
         private :
 
@@ -105,17 +110,17 @@ class ValueMax : public FScalar
 
         public :
 
-                virtual ~ValueMax(){}
+                virtual ~MaxCoeff(){}
 
                 virtual void compute();
                 virtual void setparameters();
 };
 
 /*******************************************************************************************************/
-/*********************************************  ValueMin   *********************************************/
+/*********************************************  MinCoeff   *********************************************/
 /*******************************************************************************************************/
 
-class ValueMin : public FScalar
+class MinCoeff : public FScalar
 {
         private :
 
@@ -123,7 +128,7 @@ class ValueMin : public FScalar
 
         public :
 
-                virtual ~ValueMin(){}
+                virtual ~MinCoeff(){}
 
                 virtual void compute();
                 virtual void setparameters();
