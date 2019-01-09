@@ -9,7 +9,7 @@
 			<inputs>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>vigilence</name>
-					<desc>Vigilence : on activity</desc>
+					<desc>Vigilence : allow to trigger learning and reset activities </desc>
 				</input>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>learn</name>
@@ -17,7 +17,7 @@
 				</input>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>reset</name>
-					<desc></desc>
+					<desc>Reset output activities : if vigilence is lower than 0.5, start to forget using "dicket" factor, else output activities is set to zero.</desc>
 				</input>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>timeout</name>
@@ -25,11 +25,11 @@
 				</input>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>dicket</name>
-					<desc></desc>
+					<desc>Forgetting factor to decrease output activities</desc>
 				</input>
 				<input multiple="false" type="SCALAR_SCALAR"> 
 					<name>threshold</name>
-					<desc></desc>
+					<desc>Activation threshold of neurons.</desc>
 				</input>
 				<input multiple="true" type="MATRIX_MATRIX" checkSize="false">
                                         <name>inputs</name>
