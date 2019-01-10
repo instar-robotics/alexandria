@@ -95,28 +95,28 @@
 			<inputs>
 				<input type="SCALAR_MATRIX" checkSize="false">
 					<name>inMatrix1</name>
-					<desc>First inputs</desc>
+					<desc>First input</desc>
 				</input>
 				<input type="SCALAR_MATRIX" checkSize="false">
 					<name>inMatrix2</name>
-					<desc>Second inputs</desc>
+					<desc>Second input</desc>
 				</input>
 			</inputs>
 			<icon>matrixproduct.svg</icon>
-			<desc>Matrix product</desc>
+			<desc>Matrix product : inMatrix1 * inMatrix2</desc>
 		</function>
 		<function>
 			<name>DotProd</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input type="SCALAR_MATRIX">
+				<input type="SCALAR_MATRIX" shape="VECT">
 					<name>inVector1</name>
-					<desc>First inputs</desc>
+					<desc>First input : must be a VECTOR</desc>
 				</input>
-				<input type="SCALAR_MATRIX">
+				<input type="SCALAR_MATRIX" shape="VECT">
 					<name>inVector2</name>
-					<desc>Second inputs</desc>
+					<desc>Second input : must be a VECTOR</desc>
 				</input>
 			</inputs>
 			<icon>dotproduct.svg</icon>
@@ -127,18 +127,35 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input type="SCALAR_MATRIX">
+				<input type="SCALAR_MATRIX" shape="VECT">
 					<name>inVector1</name>
-					<desc>First inputs</desc>
+					<desc>First input : must be a VECTOR</desc>
 				</input>
-				<input type="SCALAR_MATRIX">
+				<input type="SCALAR_MATRIX" shape="VECT">
 					<name>inVector2</name>
-					<desc>Second inputs</desc>
+					<desc>Second input : must be a VECTOR</desc>
 				</input>
 			</inputs>
 			<icon>crossproduct.svg</icon>
 			<desc>Cross product between two vectors of size 3</desc>
 		</function>
+		<function>
+                        <name>OuterProd</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_MATRIX" shape="COL_VECT">
+                                        <name>inVector1</name>
+                                        <desc>First input : must be a COL VECTOR</desc>
+                                </input>
+                                <input type="SCALAR_MATRIX" shape="ROW_VECT">
+                                        <name>inVector2</name>
+                                        <desc>Second input : must be a ROW VECTOR</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Outer product : Tensor Product for two vectors</desc>
+                </function>
 		<function>
 			<name>MMDiv</name>
 			<output type="MATRIX">

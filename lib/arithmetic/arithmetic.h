@@ -342,5 +342,20 @@ class CrossProd : public FMatrix
                 virtual void prerun();
 };
 
+//Outer Product is a Tensor Product for Vector
+//This is the same operation same a Matrix Product for the two vector 
+class OuterProd : public FMatrix
+{
+	private : 
+                ISMInput inVector1;
+                ISMInput inVector2;
+
+	public : 
+		virtual ~OuterProd(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
+};
 
 #endif // _ARITHMETIC_H_

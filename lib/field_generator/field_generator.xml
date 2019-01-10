@@ -4,7 +4,7 @@
 	<functions>
 		<function>	
 			<name>DiracField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -18,7 +18,6 @@
                         </inputs>
                         <icon>diracgenerator.svg</icon>
                         <desc>Generate a One-D Dirac Field. MUST be [ROW or COL Vector].</desc>
-
 		</function>
 		<function>	
 			<name>DiracField2D</name>
@@ -43,7 +42,7 @@
 		</function>
 		<function>
                         <name>HeavisideField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -84,7 +83,7 @@
                  </function>
 		 <function>
                         <name>GateField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -128,7 +127,7 @@
                 </function>
                  <function>
                         <name>TriangularField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -170,7 +169,7 @@
                 </function>
                 <function>
                         <name>SinusField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -218,7 +217,7 @@
                 </function>
                 <function>
                         <name>CosinusField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -267,7 +266,7 @@
 
                 <function>
                         <name>GaussianField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -318,7 +317,7 @@
                 </function>
                 <function>
                         <name>DoGField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
@@ -370,7 +369,7 @@
                 </function>
 		<function>
                         <name>SincField1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">

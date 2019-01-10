@@ -7,7 +7,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" shape="VECT">
 					<name>inMatrix</name>
 					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
 				</input>
@@ -20,7 +20,7 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" shape="VECT">
 					<name>inMatrix</name>
 					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
 				</input>

@@ -296,21 +296,22 @@ void MTranspose::prerun()
 {
 	if( (inMatrix().i().rows() != output.cols()) || (inMatrix().i().cols() != output.rows()) )
 	{
-		throw std::invalid_argument("MTranspose : input and output sizes mismatch.");
+		throw std::invalid_argument("Transpose : input and output sizes mismatch.");
 	}
 }
 
 /*******************************************************************************************************/
-/***************************************  Matrix/Dot/Cross Product  ************************************/
+/************************************  Matrix/Dot/Cross/Outer Product  *********************************/
 /*******************************************************************************************************/
 
 REGISTER_FUNCTION(MatrixProd);
 REGISTER_FUNCTION(DotProd);
 REGISTER_FUNCTION(CrossProd);
+REGISTER_FUNCTION(OuterProd);
 
 void MatrixProd::compute()
 {
-        output = inMatrix1(0)() * inMatrix2(0)();
+        output.noalias() = inMatrix1()() * inMatrix2()();
 }
 
 void MatrixProd::setparameters()
@@ -340,9 +341,9 @@ void MatrixProd::prerun()
 
 void DotProd::compute()
 {
-        auto v1 = getCMapVect(inVector1().i()) * inVector1().w();
-        auto v2 = getCMapVect(inVector2().i()) * inVector2().w();
-        output = v1.dot(v2);
+        auto v1 = getCMapVect(inVector1().i());
+        auto v2 = getCMapVect(inVector2().i());
+        output = (v1 * inVector1().w()).dot( v2 * inVector2().w());
 }
 
 void DotProd::setparameters()
@@ -361,7 +362,7 @@ void DotProd::prerun()
         {
                 throw std::invalid_argument("DotProd : Input 2 is not a vector.");
         }
-        if( (inVector1().i().rows() != inVector2().i().rows()) || (inVector1().i().cols() != inVector2().i().cols()) )
+        if( inVector1().iSize()  !=  inVector2().iSize() )
         {
                 throw std::invalid_argument("DotProd : Inputs size mismatch.");
         }
@@ -398,4 +399,32 @@ void CrossProd::prerun()
         {
                 throw std::invalid_argument("CrossProd : Input 2 is not of size 3.");
         }
+}
+
+void OuterProd::compute()
+{
+	output.noalias() =  inVector1()() * inVector2()();
+}
+
+void OuterProd::setparameters()
+{
+        Kernel::iBind(inVector1,"inVector1", getUuid());
+        Kernel::iBind(inVector2,"inVector2", getUuid());
+}
+
+void OuterProd::prerun()
+{
+        if( !inVector1().isColVect() )
+        {
+                throw std::invalid_argument("OuterProd : Input 1 is not a col vector.");
+        }
+        if( !inVector2().isRowVect() )
+        {
+                throw std::invalid_argument("OuterProd : Input 2 is not a row vector.");
+        }
+
+	if( output.size() != inVector1().iSize() * inVector2().iSize() )
+	{
+                throw std::invalid_argument("OuterProd : Output dimension should be egal to inVector1 dimension * inVector2 dimension.");
+	}
 }
