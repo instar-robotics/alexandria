@@ -14,29 +14,26 @@ and, more generally, to use and operate it in the same conditions as regards sec
 The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
 */
 
-#ifndef __LMS_HPP__
-#define __LMS_HPP__
+#ifndef __DNF_HPP__
+#define __DNF_HPP__
 
-#include "kheops/kernel/function.h"
-#include "kheops/kernel/kernel.h"
-
-class LMS : public FMatrix
+class AmariDnf : public FMatrix
 {
-	private :
+	private : 
 
-		ISInput learning_rate;
-		ISMInput unconditionnal;
-		IMMInput conditionnals;
+		ISInput tau;
+		ISInput h;
 
-		MatrixXd grad;
-	
-        public :
-		
-		virtual ~LMS(){}
+		ISMInput input;
+		ISMInput kernel;
+
+	public  :
+
+		virtual ~AmariDnf(){}
 
 		virtual void compute();
 		virtual void setparameters();
 
 };
 
-#endif // __LMS_HPP__
+#endif  // __DNF_HPP__

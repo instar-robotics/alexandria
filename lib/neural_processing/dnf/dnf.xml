@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<description>
+	<libname>dnf</libname>
+	<functions>
+		<function>
+			<name>AmariDnf</name>
+			<output type="MATRIX"> 
+			</output> 
+			<inputs>
+				<input type="SCALAR_SCALAR"> 
+					<name>tau</name>
+					<desc></desc>
+				</input>
+				<input type="SCALAR_SCALAR"> 
+					<name>h</name>
+					<desc></desc>
+				</input>
+				<input type="SCALAR_MATRIX">
+					<name>kernel</name>
+					<desc>Kernel mask</desc>
+				</input>
+				<input type="SCALAR_MATRIX">
+					<name>input</name>
+					<desc>Input signal</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Dynamic Neural Field using Amari equation.</desc>
+		</function>	
+	</functions>
+</description>

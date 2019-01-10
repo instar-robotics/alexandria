@@ -36,8 +36,8 @@ void KeepMax::compute()
 
 void KeepMax::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(nMax,"nMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(nMax,"nMax", getUuid());
 }
 
 /*******************************************************************************************************/
@@ -60,8 +60,8 @@ void KeepMin::compute()
 
 void KeepMin::setparameters()
 {
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
-        Kernel::instance().bind(nMin,"nMax", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(nMin,"nMax", getUuid());
 }
 
 /*******************************************************************************************************/
@@ -89,7 +89,7 @@ void ActToPop::compute()
 
 void ActToPop::setparameters()
 {
-        Kernel::instance().bind(activity,"activity", getUuid());
+        Kernel::iBind(activity,"activity", getUuid());
 }
 
 /*******************************************************************************************************/
@@ -161,7 +161,7 @@ void VActToPop::setparameters()
 {
 	activities.setCheckSize(false); 
 
-        Kernel::instance().bind(activities,"activities", getUuid());
+        Kernel::iBind(activities,"activities", getUuid());
 }
 
 void VActToPop::prerun()
@@ -232,7 +232,7 @@ void PopToAct::compute()
 void PopToAct::setparameters()
 {
 	population.setCheckSize(false); 
-        Kernel::instance().bind(population,"population", getUuid());
+        Kernel::iBind(population,"population", getUuid());
 }
 
 void PopToAct::prerun()
@@ -290,7 +290,7 @@ void PopToVAct::compute()
 void PopToVAct::setparameters()
 {
 	population.setCheckSize(false); 
-        Kernel::instance().bind(population,"population", getUuid());
+        Kernel::iBind(population,"population", getUuid());
 }
 
 void PopToVAct::prerun()
@@ -334,8 +334,8 @@ void Convolution::compute()
 void Convolution::setparameters()
 {
 	mask.setCheckSize(false); 
-        Kernel::instance().bind(mask,"mask", getUuid());
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mask,"mask", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 /*******************************************************************************************************/
@@ -355,8 +355,8 @@ void Shift::compute()
 void Shift::setparameters()
 {
 	mask.setCheckSize(false); 
-        Kernel::instance().bind(mask,"mask", getUuid());
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mask,"mask", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
 void ShiftInv::compute()
@@ -369,7 +369,7 @@ void ShiftInv::compute()
 void ShiftInv::setparameters()
 {
         mask.setCheckSize(false);
-        Kernel::instance().bind(mask,"mask", getUuid());
-        Kernel::instance().bind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(mask,"mask", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
