@@ -61,7 +61,7 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
-					<desc>Input matrix</desc>
+					<desc>Matrix input</desc>
 				</input>
 			</inputs>
 			<icon>max.svg</icon>
@@ -74,12 +74,64 @@
 			<inputs>
 				<input  type="SCALAR_MATRIX">
 					<name>inMatrix</name>
-					<desc>Input matrix</desc>
+					<desc>Matrix input</desc>
 				</input>
 			</inputs>
 			<icon>min.svg</icon>
 			<desc>Get the min value of the matrix input</desc>
 		</function>
+		<function>
+			<name>SMin</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR" multiple="true">
+                                        <name>inScalar</name>
+                                        <desc>Scalar inputs</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Get the min value of the scalar inputs</desc>
+		</function>
+		<function>
+                        <name>FMin</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+				<input  type="SCALAR_MATRIX" multiple="true">
+					<name>inMatrix</name>
+					<desc>Matrix input</desc>
+				</input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Get the min value of the matrix inputs</desc>
+                </function>
+		<function>
+                        <name>SMax</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR" multiple="true">
+                                        <name>inScalar</name>
+                                        <desc>Scalar inputs</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Get the max value of the scalar inputs</desc>
+                </function>
+                <function>
+                        <name>FMax</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX" multiple="true">
+                                        <name>inMatrix</name>
+                                        <desc>Matrix input</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Get the max value of the matrix inputs</desc>
+                </function>
 		<function>
 			<name>MAbs</name>
 			<output type="MATRIX">

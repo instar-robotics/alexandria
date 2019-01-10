@@ -32,12 +32,15 @@
 					<desc>Activation threshold of neurons.</desc>
 				</input>
 				<input multiple="true" type="MATRIX_MATRIX" checkSize="false">
-                                        <name>inputs</name>
-                                        <desc>Input data.</desc>
+                                        <name>inhibitor</name>
+                                        <desc>Inhibitory inputs.</desc>
+                                </input>
+				<input multiple="true" type="MATRIX_MATRIX" checkSize="false">
+                                        <name>inSigma</name>
+                                        <desc>Input data to learn.</desc>
                                 </input>
 			</inputs>
 		        <desc>PrPh algorithm.</desc>
-
 			<icon>prph.svg</icon>
 		</function>	
 	</functions>

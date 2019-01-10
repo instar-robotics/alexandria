@@ -167,6 +167,83 @@ void MinCoeff::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+
+/*******************************************************************************************************/
+/************************************************  Min   ***********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(SMin);
+
+void SMin::compute()
+{
+	output = inScalar()();
+
+	for(unsigned int i = 1; i < inScalar.size(); i++)
+	{
+		output = std::min(output,inScalar(i)());
+	}
+}
+
+void SMin::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+}
+
+REGISTER_FUNCTION(FMin);
+
+void FMin::compute()
+{
+	output = inMatrix()();
+
+	for(unsigned int i = 1; i < inMatrix.size(); i++)
+        {
+                output = output.array().min(inMatrix(i)().array());
+        }
+}
+
+void FMin::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+/*******************************************************************************************************/
+/************************************************  Max   ***********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(SMax);
+
+void SMax::compute()
+{
+	output = inScalar()();
+
+	for(unsigned int i = 1; i < inScalar.size(); i++)
+	{
+		output = std::max(output,inScalar(i)());
+	}
+}
+
+void SMax::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+}
+
+REGISTER_FUNCTION(FMax);
+
+void FMax::compute()
+{
+	output = inMatrix()();
+
+	for(unsigned int i = 1; i < inMatrix.size(); i++)
+        {
+                output = output.array().max(inMatrix(i)().array());
+	}
+}
+
+void FMax::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
 /*******************************************************************************************************/
 /************************************************  Abs   ***********************************************/
 /*******************************************************************************************************/

@@ -21,11 +21,6 @@ The fact that you are presently reading this means that you have had knowledge o
 #include "kheops/kernel/kernel.h"
 
 /*
- *	
- *	MAX for N scalar 
- *
- *	MAX for N matrix (neuron by neuro )
- *
  *  Could add lpnorm ?
  */
 
@@ -134,6 +129,70 @@ class MinCoeff : public FScalar
                 virtual void setparameters();
 };
 
+
+/*******************************************************************************************************/
+/************************************************  Max   ***********************************************/
+/*******************************************************************************************************/
+
+class SMax : public FScalar
+{
+        private :
+
+                ISInput inScalar;
+
+        public :
+
+                virtual ~SMax(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class FMax : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+
+        public :
+
+                virtual ~FMax(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/************************************************  Min   ***********************************************/
+/*******************************************************************************************************/
+
+class SMin : public FScalar
+{
+        private :
+
+                ISInput inScalar;
+
+        public :
+
+                virtual ~SMin(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class FMin : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+
+        public :
+
+                virtual ~FMin(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
 
 /*******************************************************************************************************/
 /************************************************  Abs   ***********************************************/

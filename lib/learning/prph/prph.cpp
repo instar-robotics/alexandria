@@ -22,21 +22,22 @@ REGISTER_FUNCTION(PrPh);
 void PrPh::compute()
 {	
 	static auto mout = getMapRow(output);
-
+	
 	// For each neurons from PrPh
 	for( unsigned int i = 0; i < mout.size(); i++ )
 	{
 		double PI = 1;
 		double forget;
-		double sum_input_activities = 0;
+		double sum_input_activities = 0; 
 		double nb_input_active = 0;
+		double sum_neg = 0;
 		
 		// Compute Activity
-		for( unsigned int j = 0; j < inputs.size(); j++)
+		for( unsigned int j = 0; j < inSigma.size(); j++)
 		{
-			auto E = inputs(j).ivec();
-			auto W = inputs(j).wj_col(i);
-			auto F = inputs(j).fj_col(i);
+			auto E = inSigma(j).ivec();
+			auto W = inSigma(j).wj_col(i);
+			auto F = inSigma(j).fj_col(i);
 
 			double Sigma = (E.array() *  filter(W,F).array()).maxCoeff()  ;	
 			double MaxInput = E.maxCoeff();
@@ -49,9 +50,19 @@ void PrPh::compute()
 
 			PI = PI * rectification(Sigma, threshold()());
 		}	
+	
+		// Compute inhibition
+		for( unsigned int j=0; j < inhibitor.size() ; j++)
+		{
+			auto E = inhibitor(j).ivec();
+			auto W = inhibitor(j).wj_col(i);
+			auto F = inhibitor(j).fj_col(i);
 
-		// Do inhibitor 
-		// If we had micro neuro inhibitor : get activity here
+			MatrixXd in = E * filter(W,F);
+
+			sum_neg += in(0,0);
+			sum_input_activities += in(0,0);
+		}
 
 		if( vigilence()() < 0.5 &&  isequal( reset()(), 1.0) )
 		{
@@ -69,7 +80,8 @@ void PrPh::compute()
 		}
 		else forget = 1.;	
 
-		mout(i) = mout(i) * forget ; 
+		if( sum_neg < 0 ) mout(i) = 0;
+		else mout(i) = mout(i) * forget ; 
 
 		if( PI > mout(i) )
 		{
@@ -82,11 +94,11 @@ void PrPh::compute()
 		//Learn
 		if(sum_input_activities/nb_input_active > 0.999 && mout(i) < 0.001 && isequal(learn()(), 1.0 ))
 		{
-			for( unsigned int j = 0; j < inputs.size(); j++ )
+			for( unsigned int j = 0; j < inSigma.size(); j++ )
 			{
-				auto E = inputs(j).ivec();
-	                        auto W = inputs(j).wj_col(i);
-				auto F = inputs(j).fj_col(i);
+				auto E = inSigma(j).ivec();
+	                        auto W = inSigma(j).wj_col(i);
+				auto F = inSigma(j).fj_col(i);
 				
 				W =  (filter(E,F).array() > 0.99).cast<double>();
 			}	
@@ -102,8 +114,8 @@ void  PrPh::setparameters()
         Kernel::iBind(timeout,"timeout", getUuid());
         Kernel::iBind(threshold,"threshold", getUuid());
         Kernel::iBind(vigilence,"vigilence", getUuid());
-        Kernel::iBind(inputs,"inputs", getUuid());
+        Kernel::iBind(inhibitor,"inhibitor", getUuid());
+        Kernel::iBind(inSigma,"inSigma", getUuid());
 
 	memory = VectorXb::Zero( output.size() ); 
 }
-

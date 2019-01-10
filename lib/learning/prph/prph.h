@@ -32,12 +32,8 @@ class PrPh : public FMatrix
 		ISInput learn; 
 		ISInput threshold; 
 
-		IMMInput inputs;
-
-		// Add inhibitor entry ?
-		// Hard to said : need to talk with Philippe, because it's not really clear 
-		// how we use it and to do what ? 
-		//IMMInput inhibitor;
+		IMMInput inSigma;
+		IMMInput inhibitor;
 
 		VectorXb memory;
 	

@@ -110,11 +110,11 @@
 			<output type="SCALAR">
 			</output>
 			<inputs>
-				<input type="SCALAR_MATRIX" shape="VECT">
+				<input type="SCALAR_MATRIX" shape="VECT" checkSize="false">
 					<name>inVector1</name>
 					<desc>First input : must be a VECTOR</desc>
 				</input>
-				<input type="SCALAR_MATRIX" shape="VECT">
+				<input type="SCALAR_MATRIX" shape="VECT" checkSize="false">
 					<name>inVector2</name>
 					<desc>Second input : must be a VECTOR</desc>
 				</input>
@@ -127,11 +127,11 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input type="SCALAR_MATRIX" shape="VECT">
+				<input type="SCALAR_MATRIX" shape="VECT" checkSize="false">
 					<name>inVector1</name>
 					<desc>First input : must be a VECTOR</desc>
 				</input>
-				<input type="SCALAR_MATRIX" shape="VECT">
+				<input type="SCALAR_MATRIX" shape="VECT" checkSize="false">
 					<name>inVector2</name>
 					<desc>Second input : must be a VECTOR</desc>
 				</input>
@@ -144,11 +144,11 @@
                         <output type="MATRIX">
                         </output>
                         <inputs>
-                                <input type="SCALAR_MATRIX" shape="COL_VECT">
+                                <input type="SCALAR_MATRIX" shape="COL_VECT" checkSize="false">
                                         <name>inVector1</name>
                                         <desc>First input : must be a COL VECTOR</desc>
                                 </input>
-                                <input type="SCALAR_MATRIX" shape="ROW_VECT">
+                                <input type="SCALAR_MATRIX" shape="ROW_VECT" checkSize="false">
                                         <name>inVector2</name>
                                         <desc>Second input : must be a ROW VECTOR</desc>
                                 </input>
