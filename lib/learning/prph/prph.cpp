@@ -108,6 +108,9 @@ void PrPh::compute()
 
 void  PrPh::setparameters()
 {
+	inSigma.setCheckSize(false);
+	inhibitor.setCheckSize(false);
+
         Kernel::iBind(reset,"reset", getUuid());
         Kernel::iBind(learn,"learn", getUuid());
         Kernel::iBind(dicket,"dicket", getUuid());

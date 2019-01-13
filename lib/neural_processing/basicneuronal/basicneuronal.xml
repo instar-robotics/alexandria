@@ -90,6 +90,27 @@
 			<desc>Convert population into a vector of scalar activities. [row/col projection is choosen according to the dimension of output. if output is a ROW Vector : col projection, if output is a COL Vector : row projection]</desc>
 		</function>
 		 <function>
+			<name>Convolution</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>circular</name>
+					<desc>True if the convolution is circular [>0.5 == TRUE]</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>mask</name>
+                                        <desc>The convolution mask.</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to convolute</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Convolution operator.</desc>
+		</function>
+		 <function>
                         <name>Shift</name>
                         <output type="MATRIX">
                         </output>

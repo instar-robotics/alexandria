@@ -8,6 +8,10 @@
 			</output> 
 			<inputs>
 				<input type="SCALAR_SCALAR"> 
+					<name>circular</name>
+					<desc></desc>
+				</input>
+				<input type="SCALAR_SCALAR"> 
 					<name>tau</name>
 					<desc></desc>
 				</input>
@@ -15,7 +19,11 @@
 					<name>h</name>
 					<desc></desc>
 				</input>
-				<input type="SCALAR_MATRIX">
+				<input type="SCALAR_SCALAR"> 
+					<name>beta</name>
+					<desc></desc>
+				</input>
+				<input type="SCALAR_MATRIX" checkSize="false">
 					<name>kernel</name>
 					<desc>Kernel mask</desc>
 				</input>

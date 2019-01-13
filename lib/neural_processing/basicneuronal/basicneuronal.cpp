@@ -329,11 +329,16 @@ REGISTER_FUNCTION(Convolution);
 
 void Convolution::compute()
 {
+	bool isCircular = false;
+        if( circular()() >= 0.5 ) isCircular = true;
+
+        output = MatrixXd::NullaryExpr( output.rows(), output.cols() , Conv_functor<MatrixXd>( inMatrix()(), mask()(), isCircular ));
 }
 
 void Convolution::setparameters()
 {
 	mask.setCheckSize(false); 
+        Kernel::iBind(circular,"circular", getUuid());
         Kernel::iBind(mask,"mask", getUuid());
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }

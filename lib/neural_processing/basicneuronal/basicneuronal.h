@@ -196,9 +196,54 @@ class  PopToVAct : public FMatrix
 /*******************************************  Convolution   ********************************************/
 /*******************************************************************************************************/
 
+template<class ArgType>
+class Conv_functor{
+
+	const ArgType &I;
+	const ArgType &mask;
+	bool circular;
+
+	public : 
+
+	Conv_functor(const ArgType& I, const ArgType& mask, bool circular) : I(I), mask(mask), circular(circular) {}
+
+	const typename ArgType::Scalar operator() (Index irow, Index icol) const {
+
+		static typename ArgType::Index mrows = mask.rows();
+		static typename ArgType::Index mcols = mask.cols();
+
+		static typename ArgType::Index irows = I.rows();
+		static typename ArgType::Index icols = I.cols();
+
+		typename ArgType::Scalar value = 0.0;
+
+	   	for( typename ArgType::Index i = 0; i < mrows; i++)
+         	{
+                 for( typename ArgType::Index j = 0; j < mcols; j++)
+                 {
+			typename ArgType::Index zrow = irow + i - mrows/2.0 ;
+                        typename ArgType::Index zcol = icol + j - mcols/2.0 ;
+
+                        if( circular )
+                        {
+                                zrow = (int)(zrow + irows) % irows;
+                                zcol = (int)(zcol + icols) % icols;
+                        }
+
+			if( zrow >= 0 && zrow < irows && zcol >= 0 && zcol < icols)
+			{
+				value += mask(i,j) * I(zrow,zcol);	
+			}
+		 }
+		}
+		return value;
+	}
+};
+
 class Convolution : public FMatrix
 {
 	private : 
+		ISInput circular;
 		ISMInput inMatrix;
 		ISMInput mask;
 		

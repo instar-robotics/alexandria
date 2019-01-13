@@ -246,7 +246,7 @@
 			<output type="MATRIX">
 			</output>
 			<inputs>
-				<input   type="SCALAR_SCALAR">
+				<input   type="SCALAR_MATRIX">
 					<name>diminuende</name>
 					<desc>Diminuende</desc>
 				</input>

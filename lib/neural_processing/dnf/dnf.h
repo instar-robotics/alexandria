@@ -17,10 +17,64 @@ The fact that you are presently reading this means that you have had knowledge o
 #ifndef __DNF_HPP__
 #define __DNF_HPP__
 
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
+
+template<class ArgType>
+class Amari_functor{
+      
+  const ArgType &U;
+  const ArgType &mask;
+  const ArgType &I;
+  const typename ArgType::Scalar &h;
+  const typename ArgType::Scalar &tau;
+  const typename ArgType::Scalar &beta;
+  bool circular;
+
+  public :
+
+ Amari_functor(const ArgType &U, const ArgType &mask, const ArgType &I, const typename ArgType::Scalar &h, const typename ArgType::Scalar &tau, const typename ArgType::Scalar &beta ,bool circular ) : U(U), mask(mask), I(I), h(h), tau(tau), beta(beta), circular(circular){}
+
+ const typename ArgType::Scalar operator() (Index urow, Index ucol) const{
+	 static typename ArgType::Index mrows = mask.rows(); 
+	 static typename ArgType::Index mcols = mask.cols();
+	 
+	 static typename ArgType::Index urows = U.rows(); 
+	 static typename ArgType::Index ucols = U.cols();
+
+	 typename ArgType::Scalar neighbor = 0.0;
+
+	 for( typename ArgType::Index i = 0; i < mrows; i++)
+	 {
+		 for( typename ArgType::Index j = 0; j < mcols; j++)
+		 {
+			typename ArgType::Index zrow = urow + i - mrows/2.0 ;
+			typename ArgType::Index zcol = ucol + j - mcols/2.0 ; 
+		
+			if( circular ) 
+			{
+				zrow = (int)(zrow + urows) % urows;
+				zcol = (int)(zcol + ucols) % ucols; 
+			}	
+
+			if( zrow >= 0 && zrow < urows && zcol >= 0 && zcol < ucols)
+			{
+				// Sigmoid as activation function
+				neighbor +=  mask(i,j) * (1 / (1 + exp(-beta * U(zrow,zcol))))  ;
+			}
+		 }
+	 }
+
+	 return U(urow,ucol) + tau * ( -U(urow,ucol) + I(urow,ucol) + neighbor + h );
+ }
+};
+
 class AmariDnf : public FMatrix
 {
 	private : 
-
+	
+		ISInput circular;
+		ISInput beta;
 		ISInput tau;
 		ISInput h;
 
