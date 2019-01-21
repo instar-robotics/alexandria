@@ -65,7 +65,7 @@
 				</input>
 			</inputs>
 			<icon>max.svg</icon>
-			<desc>Get the max value of the matrix input</desc>
+			<desc>Get the max value of the matrix input. Output is a SCALAR</desc>
 		</function>	
 		<function>
 			<name>MinCoeff</name>
@@ -78,7 +78,7 @@
 				</input>
 			</inputs>
 			<icon>min.svg</icon>
-			<desc>Get the min value of the matrix input</desc>
+			<desc>Get the min value of the matrix input. Output is a SCALAR</desc>
 		</function>
 		<function>
 			<name>SMin</name>
@@ -95,7 +95,7 @@
 		</function>
 		<function>
                         <name>FMin</name>
-                        <output type="SCALAR">
+                        <output type="MATRIX">
                         </output>
                         <inputs>
 				<input  type="SCALAR_MATRIX" multiple="true">
@@ -104,7 +104,7 @@
 				</input>
                         </inputs>
                         <icon></icon>
-                        <desc>Get the min value of the matrix inputs</desc>
+                        <desc>Get the min value term-term of the matrix inputs. Output is a MATRIX</desc>
                 </function>
 		<function>
                         <name>SMax</name>
@@ -121,7 +121,7 @@
                 </function>
                 <function>
                         <name>FMax</name>
-                        <output type="SCALAR">
+                        <output type="MATRIX">
                         </output>
                         <inputs>
                                 <input  type="SCALAR_MATRIX" multiple="true">
@@ -130,7 +130,7 @@
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc>Get the max value of the matrix inputs</desc>
+                        <desc>Get the max value term-term of the matrix inputs. Output is a MATRIX</desc>
                 </function>
 		<function>
 			<name>MAbs</name>
