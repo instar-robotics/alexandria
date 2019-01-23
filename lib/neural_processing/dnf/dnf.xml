@@ -32,7 +32,7 @@
 					<desc>Input signal</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>amaridnf.svg</icon>
 			<desc>Dynamic Neural Field using Amari equation.</desc>
 		</function>	
 	</functions>

@@ -107,7 +107,7 @@
                                         <desc>The input field to convolute</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>convolution.svg</icon>
                         <desc>Convolution operator.</desc>
 		</function>
 		 <function>
