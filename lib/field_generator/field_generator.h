@@ -653,4 +653,21 @@ class ChineseHatField : public FMatrix
 		virtual void setparameters();
 };
 
+
+/*******************************************************************************************************/
+/******************************************  Random Field  *********************************************/
+/*******************************************************************************************************/
+
+class RandomField : public FMatrix
+{
+	private :
+
+
+	public : 
+
+		virtual ~RandomField(){}
+		virtual void compute();
+		virtual void setparameters();
+};
+
 #endif // _FIELD_GENERATOR_H_
