@@ -94,5 +94,97 @@
 			<icon>motor_output.svg</icon>
 			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
                 </function>
+		<function>
+			<name>AccelRawOutput</name>
+			<output type="MATRIX">	
+			</output>	
+			<inputs>
+				<input  type="STRING">
+					<name>topic_name</name>
+					<desc>Name of the topic to which the function publish</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>size_queue</name>
+					<desc>Size of the queue</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>lin.x</name>
+					<desc>Component on X axe of the linear acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>lin.y</name>
+					<desc>Component on Y axe of the linear acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>lin.z</name>
+					<desc>Component on Z axe of the linear acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>rot.x</name>
+					<desc>Component on X axe of the rotational acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>rot.y</name>
+					<desc>Component on Y axe of the rotational acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>rot.z</name>
+					<desc>Component on Z axe of the rotational acceleration</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Publish 3D linear and rotational acceleration in geometry_msgs::Accel message</desc>
+                </function>
+		<function>
+			<name>AccelVectOutput</name>
+			<output type="MATRIX">	
+			</output>	
+			<inputs>
+				<input  type="STRING">
+					<name>topic_name</name>
+					<desc>Name of the topic to which the function subscribes</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>size_queue</name>
+					<desc>Size of the queue</desc>
+				</input>
+				<input  type="SCALAR_MATRIX">
+					<name>lin</name>
+					<desc>Linear Acceleration. Must be dimension 3 [(3,1) or (3,1)]</desc>
+
+				</input>
+				<input  type="SCALAR_MATRIX">
+					<name>rot</name>
+					<desc>Rotational Accceleration. Must be dimension 3 [(3,1) or (3,1)]</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Publish 3D linear and rotational acceleration parameters in geometry_msgs::Accel message</desc>
+                </function>
+		<function>
+			<name>Accel2DOutput</name>
+			<output type="MATRIX">	
+			</output>	
+			<inputs>
+				<input  type="STRING">
+					<name>topic_name</name>
+					<desc>Name of the topic to which the function subscribes</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>size_queue</name>
+					<desc>Size of the queue</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>lin</name>
+					<desc>Linear Acceleration. Component X only</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>rot</name>
+					<desc>Rotational Acceleration. Component Z only</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Publish 3D linear and rotational acceleration parameters in geometry_msgs::Accel message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
+                </function>
 	</functions>
 </description>

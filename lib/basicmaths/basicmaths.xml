@@ -90,7 +90,7 @@
                                         <desc>Scalar inputs</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>smin.svg</icon>
                         <desc>Get the min value of the scalar inputs</desc>
 		</function>
 		<function>
@@ -103,7 +103,7 @@
 					<desc>Matrix input</desc>
 				</input>
                         </inputs>
-                        <icon></icon>
+                        <icon>fmin.svg</icon>
                         <desc>Get the min value term-term of the matrix inputs. Output is a MATRIX</desc>
                 </function>
 		<function>
@@ -116,7 +116,7 @@
                                         <desc>Scalar inputs</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>smax.svg</icon>
                         <desc>Get the max value of the scalar inputs</desc>
                 </function>
                 <function>
@@ -129,8 +129,8 @@
                                         <desc>Matrix input</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
                         <desc>Get the max value term-term of the matrix inputs. Output is a MATRIX</desc>
+                        <icon>fmax.svg</icon>
                 </function>
 		<function>
 			<name>MAbs</name>

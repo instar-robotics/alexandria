@@ -89,9 +89,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="40.962037"
-     inkscape:cy="23.544658"
+     inkscape:zoom="7.9999996"
+     inkscape:cx="42.476903"
+     inkscape:cy="39.453138"
      inkscape:document-units="mm"
      inkscape:current-layer="g923"
      showgrid="false"
@@ -99,10 +99,10 @@
      fit-margin-left="2"
      fit-margin-right="2"
      fit-margin-bottom="2"
-     inkscape:window-width="3200"
-     inkscape:window-height="1645"
+     inkscape:window-width="1920"
+     inkscape:window-height="992"
      inkscape:window-x="0"
-     inkscape:window-y="41"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -112,7 +112,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -220,6 +220,30 @@
                        id="path915"
                        inkscape:connector-curvature="0"
                        sodipodi:nodetypes="cccc" />
+                    <text
+                       xml:space="preserve"
+                       style="font-style:normal;font-weight:normal;font-size:1.56603014px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.03915075"
+                       x="63.592796"
+                       y="-80.800835"
+                       id="text868"
+                       transform="rotate(108.79276)"><tspan
+                         sodipodi:role="line"
+                         id="tspan866"
+                         x="63.592796"
+                         y="-80.800835"
+                         style="fill:#333333;stroke-width:0.03915075">A</tspan></text>
+                    <text
+                       xml:space="preserve"
+                       style="font-style:normal;font-weight:normal;font-size:0.87458527px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.02186463"
+                       x="64.41967"
+                       y="-81.626518"
+                       id="text872"
+                       transform="rotate(108.79276)"><tspan
+                         sodipodi:role="line"
+                         id="tspan870"
+                         x="64.41967"
+                         y="-81.626518"
+                         style="fill:#333333;stroke-width:0.02186463">T</tspan></text>
                   </g>
                 </g>
               </g>

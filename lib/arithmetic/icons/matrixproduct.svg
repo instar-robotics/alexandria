@@ -90,8 +90,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.9999995"
-     inkscape:cx="3.7968209"
-     inkscape:cy="22.228503"
+     inkscape:cx="19.02887"
+     inkscape:cy="35.828141"
      inkscape:document-units="mm"
      inkscape:current-layer="g1064"
      showgrid="false"
@@ -99,10 +99,10 @@
      fit-margin-left="2"
      fit-margin-right="2"
      fit-margin-bottom="2"
-     inkscape:window-width="3200"
-     inkscape:window-height="1645"
+     inkscape:window-width="1920"
+     inkscape:window-height="992"
      inkscape:window-x="0"
-     inkscape:window-y="41"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -129,7 +129,7 @@
          transform="matrix(1.2646968,0,0,1.2646968,-16.50459,-22.814155)">
         <g
            id="g1031"
-           transform="matrix(1.1703525,0,0,1.1703525,-8.3580946,-8.6842367)">
+           transform="matrix(0.74174072,0,0,0.74174072,17.943078,27.818992)">
           <g
              transform="translate(0,-0.0169678)"
              id="g930">
@@ -173,7 +173,7 @@
         </g>
         <g
            id="g930-5"
-           transform="matrix(-1.1703525,0,0,-1.1703525,133.58409,189.221)">
+           transform="matrix(-0.74174072,0,0,-0.74174072,107.90256,153.24649)">
           <g
              id="g1012">
             <circle
@@ -216,7 +216,7 @@
         </g>
         <g
            id="g1022"
-           transform="matrix(1.1703525,0,0,1.1703525,-8.4401065,-20.144716)">
+           transform="matrix(0.74174072,0,0,0.74174072,17.891101,20.555622)">
           <circle
              transform="translate(121.35501,169.13598)"
              r="0.68312001"
@@ -255,22 +255,33 @@
           </g>
         </g>
         <rect
-           style="opacity:1;fill:#ffffff;fill-opacity:0.35350324;stroke:#4d4d4d;stroke-width:0.18508033;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           style="opacity:1;fill:#ffffff;fill-opacity:0.35350324;stroke:#4d4d4d;stroke-width:0.11729938;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            id="rect1033"
-           width="8.4461775"
-           height="2.4983752"
-           x="57.196323"
-           y="85.17704"
-           ry="1.2435384" />
+           width="5.3529801"
+           height="1.583409"
+           x="59.489857"
+           y="87.305969"
+           ry="0.78812414" />
         <rect
-           style="opacity:1;fill:#ffffff;fill-opacity:0.35350324;stroke:#4d4d4d;stroke-width:0.18508033;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           style="opacity:1;fill:#ffffff;fill-opacity:0.35350324;stroke:#4d4d4d;stroke-width:0.11729938;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            id="rect1033-7"
-           width="8.4461775"
-           height="2.4983752"
-           x="79.22924"
-           y="-65.642494"
-           ry="1.2435384"
+           width="5.3529801"
+           height="1.583409"
+           x="83.536415"
+           y="-64.842819"
+           ry="0.78812414"
            transform="rotate(90)" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:4.90680075px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12267001"
+           x="59.785713"
+           y="82.373291"
+           id="text874"><tspan
+             sodipodi:role="line"
+             id="tspan872"
+             x="59.785713"
+             y="82.373291"
+             style="fill:#333333;stroke-width:0.12267001">AB</tspan></text>
       </g>
     </g>
   </g>

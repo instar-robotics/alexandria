@@ -19,12 +19,12 @@ The fact that you are presently reading this means that you have had knowledge o
 
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
-#include <nav_msgs/Odometry.h>
+#include <geometry_msgs/Accel.h>
+#include <geometry_msgs/Twist.h>
 #include <ros/ros.h>
 
-
 /*
- * CmdVelRawOutput : Send CmdVelocity message 
+ * CmdVelRawOutput : Send command velocity in geometry_msgs/Twist message 
  * 6 Scalars input (lin.x, lin.y, lin.z and rot.x, rot.y, rot.z)
  */
 class CmdVelRawOutput : public FMatrix
@@ -53,7 +53,7 @@ class CmdVelRawOutput : public FMatrix
 };
 
 /*
- * CmdVelVectOutput : Send CmdVelocity message 
+ * CmdVelVectOutput : Send command velocity in geometry_msgs/Twist message
  * 2 Vectors input (lin(x,y,z) and rot(x,y,z) where x = roll, y = pitch and z = yaw )
  */
 class CmdVelVectOutput : public FMatrix
@@ -78,7 +78,7 @@ class CmdVelVectOutput : public FMatrix
 };
 
 /*
- * CmdVel2DOutput : Send CmdVelocity message
+ * CmdVel2DOutput : Send command velocity in geometry_msgs/Twist message
  * 2 Scalar input (lin(x) and rot(z) where z = yaw )
  * This is the Function to command 2D Mobile Base
  */
@@ -97,6 +97,88 @@ class CmdVel2DOutput : public FMatrix
 
                 CmdVel2DOutput(){}
                 virtual ~CmdVel2DOutput(){}
+
+                virtual void prerun();
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+/*
+ * AccelRawOutput : Send acceleration parameters in geometry_msgs/Accel message 
+ * 6 Scalars input (lin.x, lin.y, lin.z and rot.x, rot.y, rot.z)
+ */
+class AccelRawOutput : public FMatrix
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput linX;
+                ISInput linY;
+                ISInput linZ;
+                ISInput rotX;
+                ISInput rotY;
+                ISInput rotZ;
+
+                ros::Publisher pub;
+
+        public :
+
+                AccelRawOutput(){}
+                virtual ~AccelRawOutput(){}
+
+                virtual void prerun();
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+/*
+ * AccelVectOutput : Send acceleration parameters in geometry_msgs/Accel message 
+ * 2 Vectors input (lin(x,y,z) and rot(x,y,z) where x = roll, y = pitch and z = yaw )
+ */
+class AccelVectOutput : public FMatrix
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISMInput lin;
+                ISMInput rot;
+
+                ros::Publisher pub;
+
+        public :
+
+                AccelVectOutput(){}
+                virtual ~AccelVectOutput(){}
+
+                virtual void prerun();
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*
+ * Accel2DOutput : Send acceleration parameters in geometry_msgs/Accel message
+ * 2 Scalar input (lin(x) and rot(z) where z = yaw )
+ * This is the Function to command 2D Mobile Base
+ */
+class Accel2DOutput : public FMatrix
+{
+        private :
+
+                IString topic_name;
+                ISInput size_queue;
+                ISInput lin;
+                ISInput rot;
+
+                ros::Publisher pub;
+
+        public :
+
+                Accel2DOutput(){}
+                virtual ~Accel2DOutput(){}
 
                 virtual void prerun();
                 virtual void compute();
