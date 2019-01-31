@@ -379,3 +379,22 @@ void ChineseHatField::setparameters()
         Kernel::iBind(N,"N", getUuid());
 }
 
+
+
+/*******************************************************************************************************/
+/*****************************************  Random Field  **********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(RandomField);
+
+void RandomField::compute()
+{
+	output = MatrixXd::Random( output.rows(), output.cols() );
+}
+
+void RandomField::setparameters()
+{
+
+}
+
+

@@ -427,5 +427,13 @@
 			 Equation 2-D : f(x,y) = (N - ln(cosh( &#8730; (x&#x00B2; + y&#x00B2;) )) / N.
                         </desc>
                 </function>
+		<function>
+                        <name>RandomField</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs></inputs>
+                        <icon>randomgenerator.svg</icon>
+                        <desc>Simply set neurons with purely random values.</desc>
+                </function>
         </functions>
 </description>
