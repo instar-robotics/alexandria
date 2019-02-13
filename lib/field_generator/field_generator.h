@@ -582,19 +582,23 @@ class SincField1D : public FMatrix
 template<class ArgType>
 class Sinc2D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &freq_x;
-  const typename ArgType::Scalar &freq_y;
+  const typename ArgType::Scalar &freq;
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
 
 public:
-  Sinc2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& freq_x, const typename ArgType::Scalar& freq_y,  const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), freq_x(freq_x), freq_y(freq_y), max_x(max_x), max_y(max_y){}
+  Sinc2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& freq, const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), freq(freq), max_x(max_x), max_y(max_y){}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
 	double x = double(col) * 2.0 * N / max_x - N;
 	double y = double(row) * 2.0 * N / max_y - N; 
     if( x == 0.0 ) x = std::numeric_limits<double>::epsilon();
     if( y == 0.0 ) y = std::numeric_limits<double>::epsilon();
-    return  sin( x * freq_x ) * sin( y + freq_y  ) / ( freq_x * x * freq_y * y ); 
+  
+//    return  sin( x * freq_x ) * sin( y * freq_y  ) / ( freq_x * x * freq_y * y ); 
+//    return  sin( x * freq_x  *  y * freq_y  ) / ( freq_x * x * freq_y * y ); 
+ 
+    double R = sqrt(x*x+y*y);
+    return  sin( R * freq ) / ( freq * R ); 
   }
 };
 
@@ -602,8 +606,7 @@ class SincField2D : public FMatrix
 {
 	private : 
 
-                ISInput freq_x;
-                ISInput freq_y;
+                ISInput freq;
 		ISInput N;
 
 	public : 

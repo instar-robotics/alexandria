@@ -57,8 +57,8 @@ void DiracField2D::compute()
 	if( ix < 0) ix = 0;
 	if( iy < 0) iy = 0;
 
-	output( iy, ix ) = 1 ;
 	output( lastIy, lastIx ) = 0 ;
+	output( iy, ix ) = 1 ;
 
 	lastIy = iy;
 	lastIx = ix;
@@ -317,7 +317,7 @@ void DoGField2D::compute()
 
 void DoGField2D::setparameters()
 {
-        Kernel::iBind(sigma1_x,"sigma1_y", getUuid());
+        Kernel::iBind(sigma1_x,"sigma1_x", getUuid());
         Kernel::iBind(sigma1_y,"sigma1_y", getUuid());
         Kernel::iBind(sigma2_x,"sigma2_x", getUuid());
         Kernel::iBind(sigma2_y,"sigma2_y", getUuid());
@@ -345,13 +345,12 @@ void SincField1D::setparameters()
 
 void SincField2D::compute()
 {
-        output = MatrixXd::NullaryExpr( output.rows(), output.cols() , Sinc2D_functor<MatrixXd>( N()(), freq_x()(), freq_y()(),   output.cols() , output.rows() ));
+        output = MatrixXd::NullaryExpr( output.rows(), output.cols() , Sinc2D_functor<MatrixXd>( N()(), freq()(), output.cols() , output.rows() ));
 }
 
 void SincField2D::setparameters()
 {
-        Kernel::iBind(freq_x,"freq_x", getUuid());
-        Kernel::iBind(freq_y,"freq_y", getUuid());
+        Kernel::iBind(freq,"freq", getUuid());
         Kernel::iBind(N,"N", getUuid());
 }
 

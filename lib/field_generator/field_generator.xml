@@ -348,12 +348,12 @@
                                         <desc></desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
-                                        <name>sigma1_y</name>
-                                        <desc>Sigma of the first gaussian on Y axis. [Y = ROW]</desc>
-                                </input>
-                                <input type="SCALAR_SCALAR">
                                         <name>sigma2_x</name>
                                         <desc>Sigma of the second gaussian on X axis. [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>sigma1_y</name>
+                                        <desc>Sigma of the first gaussian on Y axis. [Y = ROW]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>sigma2_y</name>
@@ -374,7 +374,7 @@
                         <inputs>
                                 <input type="SCALAR_SCALAR">
                                         <name>freq</name>
-                                        <desc></desc>
+                                        <desc>Frequency</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -393,12 +393,8 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>freq_x</name>
-                                        <desc>Frequency on X axis [X = COL]</desc>
-                                </input>
-                                <input type="SCALAR_SCALAR">
-                                        <name>freq_y</name>
-                                        <desc>Frequency on Y axis [Y = ROW]</desc>
+                                        <name>freq</name>
+                                        <desc>Frequency</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -407,7 +403,7 @@
                         </inputs>
                         <icon>sincardgenerator2d.svg</icon>
 			<desc>Generate a 2-D sinus cardinal Field. 
-				Equation : f(x,y) = sin( freq_x * x ) * sin(freq_y * y) / ( freq_x * x * freq_y * y)
+				Equation : f(x,y) = sin( freq * R ) / (freq * R) with R^2 = x^2 + y^2
 			</desc>
                 </function>
 		<function>
