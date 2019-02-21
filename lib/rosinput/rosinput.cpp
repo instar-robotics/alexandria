@@ -1149,20 +1149,22 @@ void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 
         for( unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
         {
-                unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( output.cols() / (2* M_PI)) ;
+                unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( mout.size() / (2* M_PI)) ;
 
                 double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
                 if( value < 0 ) value = 0;
 
-                if( moy[j] == 0 ) output(0,j) = value;
-                else mout(j) += value;
+								if( j < mout.size() ) {
+                	if( moy[j] == 0 ) mout(j) = value;
+                	else mout(j) += value;
 
-                moy[j]++;
+                	moy[j]++;
+								}
         }
 
         for(unsigned int i = 0 ; i < mout.size() ; i++)
         {
-                if( moy[i] > 0 ) mout(i) = mout(0,i) / moy[i];
+                if( moy[i] > 0 ) mout(i) = mout(i) / moy[i];
                 else mout(i) = 0;
 
                 moy[i] = 0;
