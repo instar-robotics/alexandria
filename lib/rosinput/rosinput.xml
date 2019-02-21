@@ -579,7 +579,7 @@
                 </function>
 		<function>
                         <name>Lidar1D</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
