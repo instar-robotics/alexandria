@@ -27,6 +27,7 @@ The fact that you are presently reading this means that you have had knowledge o
 #include <sensor_msgs/Joy.h>
 #include <sensor_msgs/LaserScan.h>
 #include <sensor_msgs/PointCloud2.h>
+#include <sensor_msgs/Imu.h>
 
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
@@ -821,6 +822,90 @@ class Lidar2D : public FMatrix, public RosSubscriber<PointCloud>
 
                 //virtual void callback( const sensor_msgs::PointCloud2::ConstPtr &msg );
                 virtual void callback( const PointCloud::ConstPtr& msg );
+};
+
+/*******************************************************************************************************/
+/*****************                     		    3D Compass	      	                   *******************/
+/*******************************************************************************************************/
+
+
+class Compass3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		Compass3D() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~Compass3D(){}
+		
+		virtual void prerun();
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     	    3D Gyroscope	      	                   *******************/
+/*******************************************************************************************************/
+
+
+class Gyroscope3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		Gyroscope3D() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~Gyroscope3D(){}
+		
+		virtual void prerun();
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                   	    3D Accelerometer	     	                   *******************/
+/*******************************************************************************************************/
+
+
+class Accelerometer3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		Accelerometer3D() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~Accelerometer3D(){}
+		
+		virtual void prerun();
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
 };
 
 #endif // __ROS_INPUT_HPP__

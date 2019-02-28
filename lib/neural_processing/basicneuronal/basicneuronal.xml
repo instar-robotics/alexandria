@@ -81,7 +81,7 @@
 			<output type="MATRIX" shape="VECT">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>population</name>
 					<desc>Population field to convert into activities.[For each Rows (or cols), convert the index of the max coeff into a scalar, if there are more than one max, take the first one] </desc>
 				</input>

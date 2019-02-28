@@ -48,6 +48,9 @@ REGISTER_FUNCTION(OdoTwistAngPitch);
 REGISTER_FUNCTION(OdoTwistAngYaw);
 REGISTER_FUNCTION(Lidar1D);
 REGISTER_FUNCTION(Lidar2D);
+REGISTER_FUNCTION(Compass3D);
+REGISTER_FUNCTION(Gyroscope3D);
+REGISTER_FUNCTION(Accelerometer3D);
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/
@@ -1280,5 +1283,151 @@ void Lidar2D::onPause()
 void Lidar2D::onRun()
 {
         enable( topic_name, (int)(size_queue()())   );
+}
+
+
+/*******************************************************************************************************/
+/*****************                        	   3D Compass                            *******************/
+/*******************************************************************************************************/
+
+void Compass3D::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void Compass3D::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void Compass3D::prerun()
+{
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Compass3D : Output dimension should be 3 !");
+}
+
+void Compass3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+
+	tf::Matrix3x3 m(q);
+	double roll, pitch, yaw;
+	m.getRPY(roll, pitch, yaw);
+
+	auto mout = getMapVect(output);
+  mout[0] = roll;
+  mout[1] = pitch;
+  mout[2] = yaw;
+
+}
+
+void Compass3D::onQuit()
+{
+	disable();
+}
+
+void Compass3D::onPause()
+{
+	disable();
+}
+
+void Compass3D::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+
+/*******************************************************************************************************/
+/*****************                        		 3D Gyroscope  		                     *******************/
+/*******************************************************************************************************/
+
+void Gyroscope3D::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void Gyroscope3D::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void Gyroscope3D::prerun()
+{
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Gyroscope3D : Output dimension should be 3 !");
+}
+
+void Gyroscope3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	auto mout = getMapVect(output);
+  mout[0] = msg->angular_velocity.x;
+  mout[1] = msg->angular_velocity.y;
+  mout[2] = msg->angular_velocity.z;
+
+}
+
+void Gyroscope3D::onQuit()
+{
+	disable();
+}
+
+void Gyroscope3D::onPause()
+{
+	disable();
+}
+
+void Gyroscope3D::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+
+/*******************************************************************************************************/
+/*****************                      		 3D Accelerometer  	                     *******************/
+/*******************************************************************************************************/
+
+void Accelerometer3D::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void Accelerometer3D::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void Accelerometer3D::prerun()
+{
+	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Accelerometer3D : Output dimension should be 3 !");
+}
+
+void Accelerometer3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	auto mout = getMapVect(output);
+  mout[0] = msg->linear_acceleration.x;
+  mout[1] = msg->linear_acceleration.y;
+  mout[2] = msg->linear_acceleration.z;
+
+}
+
+void Accelerometer3D::onQuit()
+{
+	disable();
+}
+
+void Accelerometer3D::onPause()
+{
+	disable();
+}
+
+void Accelerometer3D::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
 }
 
