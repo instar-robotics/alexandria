@@ -645,7 +645,7 @@
 											<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 										</input>
 									</inputs>
-									<icon></icon>
+									<icon>compass.svg</icon>
 									<desc>Read sensor_msgs/Imu.orientation and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 							</function>
 							<function>
@@ -666,7 +666,7 @@
 										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 									</input>
 								</inputs>
-								<icon></icon>
+								<icon>compass.svg</icon>
 								<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the X compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 						</function>
 						<function>
@@ -687,7 +687,7 @@
 									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 								</input>
 							</inputs>
-							<icon></icon>
+							<icon>compass.svg</icon>
 							<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Y compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 					</function>
 					<function>
@@ -708,7 +708,7 @@
 								<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 							</input>
 						</inputs>
-						<icon></icon>
+						<icon>compass.svg</icon>
 						<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Z compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 				</function>
 							<function>
@@ -729,7 +729,7 @@
 										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 									</input>
 								</inputs>
-								<icon></icon>
+								<icon>gyroscope.svg</icon>
 								<desc>Read sensor_msgs/Imu.angular_velocity and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 						</function>
 							<function>
@@ -750,7 +750,7 @@
 										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 									</input>
 								</inputs>
-								<icon></icon>
+								<icon>gyroscope.svg</icon>
 								<desc>Read sensor_msgs/Imu.angular_velocity.x and load value into a Scalar.</desc>
 						</function>
 							<function>
@@ -771,7 +771,7 @@
 										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 									</input>
 								</inputs>
-								<icon></icon>
+								<icon>gyroscope.svg</icon>
 								<desc>Read sensor_msgs/Imu.angular_velocity.y and load value into a Scalar.</desc>
 						</function>
 							<function>
@@ -792,7 +792,7 @@
 										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 									</input>
 								</inputs>
-								<icon></icon>
+								<icon>gyroscope.svg</icon>
 								<desc>Read sensor_msgs/Imu.angular_velocity.z and load value into a Scalar.</desc>
 						</function>
 						<function>
@@ -813,7 +813,7 @@
 									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 								</input>
 							</inputs>
-							<icon></icon>
+							<icon>accelerometer.svg</icon>
 							<desc>Read sensor_msgs/Imu.linear_acceleration and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 					</function>
 						<function>
@@ -834,7 +834,7 @@
 									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 								</input>
 							</inputs>
-							<icon></icon>
+							<icon>accelerometer.svg</icon>
 							<desc>Read sensor_msgs/Imu.linear_acceleration.x and load value into a Scalar.</desc>
 					</function>
 						<function>
@@ -855,7 +855,7 @@
 									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 								</input>
 							</inputs>
-							<icon></icon>
+							<icon>accelerometer.svg</icon>
 							<desc>Read sensor_msgs/Imu.linear_acceleration.y and load value into a Scalar.</desc>
 					</function>
 						<function>
@@ -876,7 +876,7 @@
 									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
 								</input>
 							</inputs>
-							<icon></icon>
+							<icon>accelerometer.svg</icon>
 							<desc>Read sensor_msgs/Imu.linear_acceleration.z and load value into a Scalar.</desc>
 					</function>
 	</functions>

@@ -59,7 +59,7 @@ REGISTER_FUNCTION(GyroscopeZ);
 REGISTER_FUNCTION(Accelerometer3D);
 REGISTER_FUNCTION(AccelerometerX);
 REGISTER_FUNCTION(AccelerometerY);
-REGISTER_FUNCTION(AccelerometerZ);
+REGISTER_FUNCTION(AccelerometerZ); 
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/

@@ -30,7 +30,7 @@ The fact that you are presently reading this means that you have had knowledge o
 #include <sensor_msgs/Imu.h>
 
 #include <pcl_ros/point_cloud.h>
-#include <pcl/point_types.h>
+#include <pcl/point_types.h> 
 
 
 /*******************************************************************************************************/
