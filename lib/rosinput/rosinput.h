@@ -853,6 +853,84 @@ class Compass3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
 };
 
 /*******************************************************************************************************/
+/*****************                     		    3D Compass X      	                   *******************/
+/*******************************************************************************************************/
+
+
+class CompassX : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		CompassX() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~CompassX(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     		    3D Compass Y      	                   *******************/
+/*******************************************************************************************************/
+
+
+class CompassY : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		CompassY() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~CompassY(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     		    3D Compass Z      	                   *******************/
+/*******************************************************************************************************/
+
+
+class CompassZ : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		CompassZ() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~CompassZ(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
 /*****************                     	    3D Gyroscope	      	                   *******************/
 /*******************************************************************************************************/
 
@@ -870,6 +948,87 @@ class Gyroscope3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
 		virtual ~Gyroscope3D(){}
 		
 		virtual void prerun();
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     	    Gyroscope X 	      	                   *******************/
+/*******************************************************************************************************/
+
+
+class GyroscopeX : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		GyroscopeX() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~GyroscopeX(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     	    Gyroscope Y	      	                   *******************/
+/*******************************************************************************************************/
+
+
+class GyroscopeY : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		GyroscopeY() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~GyroscopeY(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                     	    Gyroscope Z 	      	                   *******************/
+/*******************************************************************************************************/
+
+
+class GyroscopeZ : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		GyroscopeZ() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~GyroscopeZ(){}
+		
 		virtual void compute();
 		virtual void setparameters();
 
@@ -907,5 +1066,87 @@ class Accelerometer3D : public FMatrix, public RosSubscriber<sensor_msgs::Imu>
 		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
 
 };
+
+/*******************************************************************************************************/
+/*****************                   	    Accelerometer X 	     	                   *******************/
+/*******************************************************************************************************/
+
+
+class AccelerometerX : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		AccelerometerX() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~AccelerometerX(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                   	    Accelerometer Y 	     	                   *******************/
+/*******************************************************************************************************/
+
+
+class AccelerometerY : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		AccelerometerY() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~AccelerometerY(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                   	    Accelerometer Z 	     	                   *******************/
+/*******************************************************************************************************/
+
+
+class AccelerometerZ : public FScalar, public RosSubscriber<sensor_msgs::Imu>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+
+	public : 
+		AccelerometerZ() : RosSubscriber<sensor_msgs::Imu>() {}
+		virtual ~AccelerometerZ(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
 
 #endif // __ROS_INPUT_HPP__

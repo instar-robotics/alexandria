@@ -49,8 +49,17 @@ REGISTER_FUNCTION(OdoTwistAngYaw);
 REGISTER_FUNCTION(Lidar1D);
 REGISTER_FUNCTION(Lidar2D);
 REGISTER_FUNCTION(Compass3D);
+REGISTER_FUNCTION(CompassX);
+REGISTER_FUNCTION(CompassY);
+REGISTER_FUNCTION(CompassZ);
 REGISTER_FUNCTION(Gyroscope3D);
+REGISTER_FUNCTION(GyroscopeX);
+REGISTER_FUNCTION(GyroscopeY);
+REGISTER_FUNCTION(GyroscopeZ);
 REGISTER_FUNCTION(Accelerometer3D);
+REGISTER_FUNCTION(AccelerometerX);
+REGISTER_FUNCTION(AccelerometerY);
+REGISTER_FUNCTION(AccelerometerZ);
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/
@@ -1339,6 +1348,138 @@ void Compass3D::onRun()
 
 
 /*******************************************************************************************************/
+/*****************                        	   Compass X  		                       *******************/
+/*******************************************************************************************************/
+
+void CompassX::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void CompassX::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void CompassX::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+
+	tf::Matrix3x3 m(q);
+	double roll, pitch, yaw;
+	m.getRPY(roll, pitch, yaw);
+
+
+	output = roll;
+
+}
+
+void CompassX::onQuit()
+{
+	disable();
+}
+
+void CompassX::onPause()
+{
+	disable();
+}
+
+void CompassX::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                        	   3D Compass Y                          *******************/
+/*******************************************************************************************************/
+
+void CompassY::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void CompassY::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void CompassY::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+
+	tf::Matrix3x3 m(q);
+	double roll, pitch, yaw;
+	m.getRPY(roll, pitch, yaw);
+
+
+	output = pitch;
+
+}
+
+void CompassY::onQuit()
+{
+	disable();
+}
+
+void CompassY::onPause()
+{
+	disable();
+}
+
+void CompassY::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                        	   3D Compass Z                          *******************/
+/*******************************************************************************************************/
+
+void CompassZ::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void CompassZ::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void CompassZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+
+	tf::Matrix3x3 m(q);
+	double roll, pitch, yaw;
+	m.getRPY(roll, pitch, yaw);
+
+
+	output = yaw;
+
+}
+
+void CompassZ::onQuit()
+{
+	disable();
+}
+
+void CompassZ::onPause()
+{
+	disable();
+}
+
+void CompassZ::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
 /*****************                        		 3D Gyroscope  		                     *******************/
 /*******************************************************************************************************/
 
@@ -1384,6 +1525,121 @@ void Gyroscope3D::onRun()
 	enable(topic_name, (int)(size_queue()()) );
 }
 
+/*******************************************************************************************************/
+/*****************                        		 Gyroscope X  		                     *******************/
+/*******************************************************************************************************/
+
+void GyroscopeX::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void GyroscopeX::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void GyroscopeX::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->angular_velocity.x;
+
+}
+
+void GyroscopeX::onQuit()
+{
+	disable();
+}
+
+void GyroscopeX::onPause()
+{
+	disable();
+}
+
+void GyroscopeX::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                        		 Gyroscope Y  		                     *******************/
+/*******************************************************************************************************/
+
+void GyroscopeY::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void GyroscopeY::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void GyroscopeY::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->angular_velocity.y;
+
+}
+
+void GyroscopeY::onQuit()
+{
+	disable();
+}
+
+void GyroscopeY::onPause()
+{
+	disable();
+}
+
+void GyroscopeY::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                        		 Gyroscope Z  		                     *******************/
+/*******************************************************************************************************/
+
+void GyroscopeZ::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void GyroscopeZ::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void GyroscopeZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->angular_velocity.z;
+
+}
+
+void GyroscopeZ::onQuit()
+{
+	disable();
+}
+
+void GyroscopeZ::onPause()
+{
+	disable();
+}
+
+void GyroscopeZ::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+
 
 /*******************************************************************************************************/
 /*****************                      		 3D Accelerometer  	                     *******************/
@@ -1427,6 +1683,120 @@ void Accelerometer3D::onPause()
 }
 
 void Accelerometer3D::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                      		 Accelerometer X  	                     *******************/
+/*******************************************************************************************************/
+
+void AccelerometerX::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void AccelerometerX::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void AccelerometerX::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->linear_acceleration.x;
+
+}
+
+void AccelerometerX::onQuit()
+{
+	disable();
+}
+
+void AccelerometerX::onPause()
+{
+	disable();
+}
+
+void AccelerometerX::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                      		 Accelerometer Y  	                     *******************/
+/*******************************************************************************************************/
+
+void AccelerometerY::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void AccelerometerY::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void AccelerometerY::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->linear_acceleration.y;
+
+}
+
+void AccelerometerY::onQuit()
+{
+	disable();
+}
+
+void AccelerometerY::onPause()
+{
+	disable();
+}
+
+void AccelerometerY::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}
+
+/*******************************************************************************************************/
+/*****************                      		 Accelerometer Z  	                     *******************/
+/*******************************************************************************************************/
+
+void AccelerometerZ::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void AccelerometerZ::setparameters()
+{
+  Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+}
+
+void AccelerometerZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
+{
+
+	output = msg->linear_acceleration.z;
+
+}
+
+void AccelerometerZ::onQuit()
+{
+	disable();
+}
+
+void AccelerometerZ::onPause()
+{
+	disable();
+}
+
+void AccelerometerZ::onRun()
 {
 	enable(topic_name, (int)(size_queue()()) );
 }
