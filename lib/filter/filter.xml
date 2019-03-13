@@ -207,7 +207,7 @@
 				</input>
 			</inputs>
 			<icon>Matrix-Heaviside.svg</icon>
-			<desc>Output are egals to 1 if inputs are greater than 0, 0 otherwise</desc>
+			<desc>Output are egals to 1 if inputs are greater or egal to 1, 0 otherwise</desc>
 		</function>
 		<function>
 			<name>SHeaviside</name>
@@ -220,7 +220,7 @@
 				</input>
 			</inputs>
 			<icon>Scalar-Heaviside.svg</icon>
-			<desc>Output is egal to 1 if input is greater than 0, 0 otherwise</desc>
+			<desc>Output is egal to 1 if input is greater or egal to 1, 0 otherwise</desc>
 		</function>
 		<function>
                         <name>MSHeavisideCustom</name>
@@ -254,7 +254,7 @@
                                 </input>
                         </inputs>
                         <icon>Matrix-Matrix-Heaviside.svg</icon>
-			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
+			<desc>Output are egals to 1 if inputs are greater or egal to thres, 0 otherwise</desc>
                 </function>
                 <function>
                         <name>SHeavisideCustom</name>
@@ -271,7 +271,7 @@
                                 </input>
                         </inputs>
                         <icon>Scalar-Heaviside-custom.svg</icon>
-			<desc>Output are egals to 1 if inputs are greater than thres, 0 otherwise</desc>
+			<desc>Output are egals to 1 if inputs are greater or egal to thres, 0 otherwise</desc>
                 </function>
 		<function>
                         <name>SSigmoid</name>

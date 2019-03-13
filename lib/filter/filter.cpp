@@ -56,10 +56,10 @@ void SFrontDetection::compute()
 {
         static double eps = std::numeric_limits<double>::epsilon();
 
-	double grad_1 = threshold()() - z_1;	
+	double grad_1 = z_1 -  threshold()();	
 	double grad = inScalar()() - threshold()();	
 	
-        output =((grad+eps)/abs(grad+eps) + (grad_1+eps)/abs(grad_1+eps))/2 ;
+	output =((grad+eps)/fabs(grad+eps) - (grad_1+eps)/fabs(grad_1+eps))/2 ;
 
 	switch(imode)
 	{
@@ -92,10 +92,10 @@ void MFrontDetection::compute()
 {
         static double eps = std::numeric_limits<double>::epsilon();
 
-        auto grad_1 = threshold()() - z_1.array() ;
+        auto grad_1 = z_1.array() -  threshold()() ;
         auto grad = inMatrix()().array() - threshold()() ;
 
-        output =((grad+eps)/abs(grad+eps) + (grad_1+eps)/abs(grad_1+eps))/2 ;
+        output =((grad+eps)/abs(grad+eps) - (grad_1+eps)/abs(grad_1+eps))/2 ;
 	
 	switch(imode)
 	{
@@ -129,10 +129,10 @@ void MMFrontDetection::compute()
 {
 	static double eps = std::numeric_limits<double>::epsilon();
 	
- 	auto grad_1 = threshold()() - z_1;
+ 	auto grad_1 = z_1 - threshold()() ;
 	auto grad = inMatrix()() - threshold()() ;
 
-        output =((grad.array()+eps)/abs(grad.array()+eps) + (grad_1.array()+eps)/abs(grad_1.array()+eps))/2 ;
+        output =((grad.array()+eps)/abs(grad.array()+eps) - (grad_1.array()+eps)/abs(grad_1.array()+eps))/2 ;
 
         switch(imode)
         {
@@ -269,7 +269,7 @@ void MHeaviside::compute()
 {
  	output = inMatrix()().unaryExpr([](double elem)
     	{
-		return elem < 0.0 ? 0.0 : 1.0; 
+		return elem < 1.0 ? 0.0 : 1.0; 
     	});
 }
 
@@ -281,7 +281,7 @@ void MHeaviside::setparameters()
 
 void SHeaviside::compute()
 {
-        if( inScalar()() < 0 ) output = 0;
+        if( inScalar()() < 1.0 ) output = 0;
         else output = 1;
 }
 
