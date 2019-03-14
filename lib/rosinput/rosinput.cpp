@@ -55,7 +55,7 @@ REGISTER_FUNCTION(Lidar2D);
 
 void ScalarInput::compute()
 {
-	my_queue.callOne(ros::WallDuration(sleep()()));
+	callOne(sleep()());
 }
 
 void ScalarInput::setparameters()
@@ -91,7 +91,7 @@ void ScalarInput::onRun()
 
 void MatrixInput::compute()
 {
-	my_queue.callOne(ros::WallDuration(sleep()()));
+	callOne(sleep()());
 }
 
 void MatrixInput::setparameters()
@@ -134,7 +134,7 @@ void MatrixInput::onRun()
 
 void JoyAxes::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()()  ));
+	callOne(sleep()());
 }
 
 void JoyAxes::setparameters()
@@ -196,7 +196,7 @@ void JoyAxe::callback( const sensor_msgs::Joy::ConstPtr &msg)
 
 void JoyAxe::compute()
 {
-       my_queue.callOne(ros::WallDuration( sleep()()  ));
+	callOne(sleep()());
 }
 
 void JoyAxe::onQuit()
@@ -220,7 +220,7 @@ void JoyAxe::onRun()
 
 void JoyButtons::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()()  ));
+	callOne(sleep()());
 }
 
 void JoyButtons::setparameters()
@@ -265,7 +265,7 @@ void JoyButtons::onRun()
 
 void JoyButton::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()()  ));
+	callOne(sleep()());
 }
 
 void JoyButton::setparameters()
@@ -309,7 +309,7 @@ void JoyButton::onRun()
 
 void OdoPos::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoPos::setparameters()
@@ -354,7 +354,7 @@ void OdoPos::onRun()
 
 void OdoPosX::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoPosX::setparameters()
@@ -390,7 +390,7 @@ void OdoPosX::onRun()
 
 void OdoPosY::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoPosY::setparameters()
@@ -426,7 +426,7 @@ void OdoPosY::onRun()
 
 void OdoPosZ::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoPosZ::setparameters()
@@ -462,7 +462,7 @@ void OdoPosZ::onRun()
 
 void OdoEuler::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoEuler::setparameters()
@@ -513,7 +513,7 @@ void OdoEuler::onRun()
 
 void OdoEulerRoll::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoEulerRoll::setparameters()
@@ -555,7 +555,7 @@ void OdoEulerRoll::onRun()
 
 void OdoEulerPitch::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoEulerPitch::setparameters()
@@ -597,7 +597,7 @@ void OdoEulerPitch::onRun()
 
 void OdoEulerYaw::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoEulerYaw::setparameters()
@@ -639,7 +639,7 @@ void OdoEulerYaw::onRun()
 
 void OdoQuater::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoQuater::setparameters()
@@ -684,7 +684,7 @@ void OdoQuater::onRun()
 
 void OdoQuaterX::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoQuaterX::setparameters()
@@ -755,7 +755,7 @@ void OdoQuaterY::onRun()
 
 void OdoQuaterZ::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoQuaterZ::setparameters()
@@ -790,7 +790,7 @@ void OdoQuaterZ::onRun()
 
 void OdoQuaterW::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoQuaterW::setparameters()
@@ -825,7 +825,7 @@ void OdoQuaterW::onRun()
 
 void OdoTwistLin::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistLin::setparameters()
@@ -868,7 +868,7 @@ void OdoTwistLin::onRun()
 
 void OdoTwistLinX::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistLinX::setparameters()
@@ -903,7 +903,7 @@ void OdoTwistLinX::onRun()
 
 void OdoTwistLinY::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistLinY::setparameters()
@@ -939,7 +939,7 @@ void OdoTwistLinY::onRun()
 
 void OdoTwistLinZ::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistLinZ::setparameters()
@@ -975,7 +975,7 @@ void OdoTwistLinZ::onRun()
 
 void OdoTwistAng::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistAng::setparameters()
@@ -1019,7 +1019,7 @@ void OdoTwistAng::onRun()
 
 void OdoTwistAngRoll::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistAngRoll::setparameters()
@@ -1054,7 +1054,7 @@ void OdoTwistAngRoll::onRun()
 
 void OdoTwistAngPitch::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistAngPitch::setparameters()
@@ -1090,7 +1090,7 @@ void OdoTwistAngPitch::onRun()
 
 void OdoTwistAngYaw::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void OdoTwistAngYaw::setparameters()
@@ -1128,7 +1128,7 @@ void OdoTwistAngYaw::onRun()
 
 void Lidar1D::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void Lidar1D::setparameters()
@@ -1193,7 +1193,7 @@ void Lidar1D::onRun()
 
 void Lidar2D::compute()
 {
-        my_queue.callOne(ros::WallDuration( sleep()() ));
+	callOne(sleep()());
 }
 
 void Lidar2D::setparameters()
