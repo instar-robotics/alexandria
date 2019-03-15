@@ -302,9 +302,10 @@ void MSModulo::setparameters()
         Kernel::iBind(modulo,"modulo", getUuid());
 }
 
+// Formula :  O = A - M ( [A/M] - [1 - (a/m - [a/m])])
 void SModulo::compute()
 {
-  output  =  inScalar()()  - ( modulo()()  * (int)( inScalar()() / modulo()()));
+  output  =   inScalar()() - modulo()() * (  (int)( inScalar()() / modulo()())  - (int)( 1.0 - ( inScalar()() / modulo()() - (int)(inScalar()() / modulo()()) ))   );
 }
 
 void SModulo::setparameters()
