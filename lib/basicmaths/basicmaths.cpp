@@ -281,7 +281,7 @@ REGISTER_FUNCTION(SModulo);
 
 void MModulo::compute()
 {
-  output.array() = inMatrix()().array() - (modulo()().array() * ((inMatrix()().array()/modulo()().array()).cast<int>()).cast<double>());	    
+  output = inMatrix()().array() - modulo()().array() * ( (inMatrix()().array()/modulo()().array()).floor() );
 }
 
 void MModulo::setparameters()
@@ -292,8 +292,7 @@ void MModulo::setparameters()
 
 void MSModulo::compute()
 {
-  output.array() = inMatrix()().array() - (modulo()() * ((inMatrix()().array()/modulo()()).cast<int>()).cast<double>());	    
-
+  output = inMatrix()().array() - modulo()() * ( (inMatrix()().array()/modulo()()).floor() );
 }
 
 void MSModulo::setparameters()
@@ -302,10 +301,9 @@ void MSModulo::setparameters()
         Kernel::iBind(modulo,"modulo", getUuid());
 }
 
-// Formula :  O = A - M ( [A/M] - [1 - (a/m - [a/m])])
 void SModulo::compute()
 {
-  output  =   inScalar()() - modulo()() * (  (int)( inScalar()() / modulo()())  - (int)( 1.0 - ( inScalar()() / modulo()() - (int)(inScalar()() / modulo()()) ))   );
+  output  =   inScalar()() - modulo()() * floor ( inScalar()() * modulo()() );
 }
 
 void SModulo::setparameters()
