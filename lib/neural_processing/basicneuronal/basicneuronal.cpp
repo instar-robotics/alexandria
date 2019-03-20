@@ -378,3 +378,28 @@ void ShiftInv::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+/*******************************************************************************************************/
+/********************************************* Projection **********************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(Projection);
+
+void Projection::compute()
+{
+	static auto mout = getMapRow(output);
+
+	mout.noalias() = filter( inMatrix(0).irow() * inMatrix(0).w() , inMatrix(0).f() );
+
+	for(unsigned int i=1; i < inMatrix.size(); i++)
+	{
+		mout.noalias() += filter( inMatrix(i).irow() * inMatrix(i).w() , inMatrix(i).f() );
+	}
+}
+
+void Projection::setparameters()
+{
+	inMatrix.setMultiple(true);
+        inMatrix.setCheckSize(false);
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+

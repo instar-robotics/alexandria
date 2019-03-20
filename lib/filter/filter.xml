@@ -24,7 +24,7 @@
 			<desc>Output is set to 1 only when the input crossed the threshold (falling, rising or both)</desc>
 		</function>
 		<function>
-			<name>MFrontDetection</name>
+			<name>MSFrontDetection</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>

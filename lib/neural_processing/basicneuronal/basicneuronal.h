@@ -306,4 +306,19 @@ class ShiftInv : public FMatrix
                 virtual void setparameters();
 };
 
+/*******************************************************************************************************/
+/********************************************  Projection  *********************************************/
+/*******************************************************************************************************/
+
+class Projection : public FMatrix
+{	
+	private :
+		IMMInput inMatrix;
+	
+	public :
+		virtual ~Projection(){}
+		virtual void compute();
+                virtual void setparameters();
+};
+
 #endif // _BASIC_NEURONAL_H_

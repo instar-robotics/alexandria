@@ -21,7 +21,7 @@ The fact that you are presently reading this means that you have had knowledge o
 /*******************************************************************************************************/
 
 REGISTER_FUNCTION(SFrontDetection);
-REGISTER_FUNCTION(MFrontDetection);
+REGISTER_FUNCTION(MSFrontDetection);
 REGISTER_FUNCTION(MMFrontDetection);
 
 bool checkMode(const std::string & smode, int& mode)
@@ -46,6 +46,19 @@ bool checkMode(const std::string & smode, int& mode)
 	return ret;
 }
 
+double getFront(const double& z_1,const  double& z,const double &thres, int mode)
+{
+	double res = 0.0;
+	if( z_1 < thres && thres <= z)
+        {
+                if( mode == FD_IBOTH || mode == FD_IUP ) res = 1.0;
+        }
+        else if( z_1 >= thres && thres > z )
+        {
+                if( mode == FD_IBOTH || mode == FD_IDOWN ) res = -1.0;
+        }
+	return res;
+}
 
 void SFrontDetection::prerun()
 {
@@ -54,22 +67,7 @@ void SFrontDetection::prerun()
 
 void SFrontDetection::compute()
 {
-        static double eps = std::numeric_limits<double>::epsilon();
-
-	double grad_1 = z_1 -  threshold()();	
-	double grad = inScalar()() - threshold()();	
-	
-	output =((grad+eps)/fabs(grad+eps) - (grad_1+eps)/fabs(grad_1+eps))/2 ;
-
-	switch(imode)
-	{
-		case FD_IUP : 
-			output = std::max(output,0.0); 
-			break;
-		case FD_IDOWN :
-			output = std::min(output,0.0); 
-			break;
-	}
+	output = getFront( z_1, inScalar()(), threshold()(), imode);
 	z_1 = inScalar()();
 }
 
@@ -83,34 +81,19 @@ void SFrontDetection::setparameters()
 
 /**************************************************************************/
 
-void MFrontDetection::prerun()
+void MSFrontDetection::prerun()
 {
 	if( !checkMode(mode, imode)) throw std::invalid_argument("SFrontDetection : failed to check mode. Should be : "+FD_SUP+" , "+FD_SDOWN+" or "+FD_SBOTH);
 }
 
-void MFrontDetection::compute()
+void MSFrontDetection::compute()
 {
-        static double eps = std::numeric_limits<double>::epsilon();
+	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MSFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
 
-        auto grad_1 = z_1.array() -  threshold()() ;
-        auto grad = inMatrix()().array() - threshold()() ;
-
-        output =((grad+eps)/abs(grad+eps) - (grad_1+eps)/abs(grad_1+eps))/2 ;
-	
-	switch(imode)
-	{
-		case FD_IUP : 
-			output.array() = output.array().max(0.0); 
-			break;
-		case FD_IDOWN :
-			output.array() = output.array().min(0.0); 
-			break;
-	}
-
-	inMatrix()(z_1);
+	z_1 = inMatrix()();
 }
 
-void MFrontDetection::setparameters()
+void MSFrontDetection::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(threshold,"threshold", getUuid());
@@ -127,24 +110,9 @@ void MMFrontDetection::prerun()
 
 void MMFrontDetection::compute()
 {
-	static double eps = std::numeric_limits<double>::epsilon();
-	
- 	auto grad_1 = z_1 - threshold()() ;
-	auto grad = inMatrix()() - threshold()() ;
+	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MMFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
 
-        output =((grad.array()+eps)/abs(grad.array()+eps) - (grad_1.array()+eps)/abs(grad_1.array()+eps))/2 ;
-
-        switch(imode)
-        {
-                case FD_IUP :
-                        output.array() = output.array().max(0.0);
-                        break;
-                case FD_IDOWN :
-                        output.array() = output.array().min(0.0);
-                        break;
-        }
-
-        inMatrix()(z_1);
+        z_1 = inMatrix()();
 
 }
 

@@ -41,6 +41,7 @@ const int FD_IDOWN = 0 ;
 const int FD_IBOTH = -1 ;
 
 bool checkMode(const std::string & smode, int &mode);
+double getFront(const double& z_1,const  double& Z,const double &thres, int mode);
 
 class SFrontDetection : public FScalar
 {
@@ -62,7 +63,23 @@ class SFrontDetection : public FScalar
                 virtual void setparameters();
 };
 
-class MFrontDetection : public FMatrix
+template<class ArgType>
+class MSFD_Functor{
+	const int &mode;
+	const typename ArgType::Scalar &thres;
+	const ArgType &Z_1;
+	const ArgType &Z;
+
+	public :
+	MSFD_Functor(const int &mode, const typename ArgType::Scalar &thres,const ArgType &Z_1,const ArgType &Z) : mode(mode), thres(thres),Z_1(Z_1), Z(Z) {} 
+
+	const typename ArgType::Scalar operator() (Index r, Index c) const {
+		return getFront(Z_1(r,c), Z(r,c), thres, mode);
+ 	}
+};
+
+
+class MSFrontDetection : public FMatrix
 {
         private :
 
@@ -75,11 +92,26 @@ class MFrontDetection : public FMatrix
 
         public :
 
-                virtual ~MFrontDetection(){}
+                virtual ~MSFrontDetection(){}
 
                 virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
+};
+
+template<class ArgType>
+class MMFD_Functor{
+	const int &mode;
+	const ArgType &thres;
+	const ArgType &Z_1;
+	const ArgType &Z;
+
+	public :
+	MMFD_Functor(const int &mode, const ArgType &thres,const ArgType &Z_1,const ArgType &Z) : mode(mode), thres(thres),Z_1(Z_1), Z(Z) {} 
+
+	const typename ArgType::Scalar operator() (Index r, Index c) const {
+		return getFront(Z_1(r,c), Z(r,c), thres(r,c), mode);
+ 	}
 };
 
 class MMFrontDetection : public FMatrix
