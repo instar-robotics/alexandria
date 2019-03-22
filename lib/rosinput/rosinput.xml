@@ -627,5 +627,257 @@
                         <icon>1d_lidar.svg</icon>
 			<desc></desc>
                 </function>
+								<function>
+									<name>Compass3D</name>
+									<output type="MATRIX"> 
+									</output> 
+									<inputs>
+										<input  type="STRING">
+											<name>topic_name</name>
+											<desc>Name of the topic to which the function subscribes </desc>
+										</input>
+										<input  type="SCALAR_SCALAR">
+											<name>size_queue</name>
+											<desc>Size of the queue</desc>
+										</input>
+										<input  type="SCALAR_SCALAR">
+											<name>sleep</name>
+											<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+										</input>
+									</inputs>
+									<icon>compass.svg</icon>
+									<desc>Read sensor_msgs/Imu.orientation and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+							</function>
+							<function>
+								<name>CompassX</name>
+								<output type="SCALAR"> 
+								</output> 
+								<inputs>
+									<input  type="STRING">
+										<name>topic_name</name>
+										<desc>Name of the topic to which the function subscribes </desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>size_queue</name>
+										<desc>Size of the queue</desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>sleep</name>
+										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+									</input>
+								</inputs>
+								<icon>compass.svg</icon>
+								<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the X compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+						</function>
+						<function>
+							<name>CompassY</name>
+							<output type="SCALAR"> 
+							</output> 
+							<inputs>
+								<input  type="STRING">
+									<name>topic_name</name>
+									<desc>Name of the topic to which the function subscribes </desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>size_queue</name>
+									<desc>Size of the queue</desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>sleep</name>
+									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+								</input>
+							</inputs>
+							<icon>compass.svg</icon>
+							<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Y compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+					</function>
+					<function>
+						<name>CompassZ</name>
+						<output type="SCALAR"> 
+						</output> 
+						<inputs>
+							<input  type="STRING">
+								<name>topic_name</name>
+								<desc>Name of the topic to which the function subscribes </desc>
+							</input>
+							<input  type="SCALAR_SCALAR">
+								<name>size_queue</name>
+								<desc>Size of the queue</desc>
+							</input>
+							<input  type="SCALAR_SCALAR">
+								<name>sleep</name>
+								<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+							</input>
+						</inputs>
+						<icon>compass.svg</icon>
+						<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Z compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+				</function>
+							<function>
+								<name>Gyroscope3D</name>
+								<output type="MATRIX"> 
+								</output> 
+								<inputs>
+									<input  type="STRING">
+										<name>topic_name</name>
+										<desc>Name of the topic to which the function subscribes </desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>size_queue</name>
+										<desc>Size of the queue</desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>sleep</name>
+										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+									</input>
+								</inputs>
+								<icon>gyroscope.svg</icon>
+								<desc>Read sensor_msgs/Imu.angular_velocity and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+						</function>
+							<function>
+								<name>GyroscopeX</name>
+								<output type="SCALAR"> 
+								</output> 
+								<inputs>
+									<input  type="STRING">
+										<name>topic_name</name>
+										<desc>Name of the topic to which the function subscribes </desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>size_queue</name>
+										<desc>Size of the queue</desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>sleep</name>
+										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+									</input>
+								</inputs>
+								<icon>gyroscope.svg</icon>
+								<desc>Read sensor_msgs/Imu.angular_velocity.x and load value into a Scalar.</desc>
+						</function>
+							<function>
+								<name>GyroscopeY</name>
+								<output type="SCALAR"> 
+								</output> 
+								<inputs>
+									<input  type="STRING">
+										<name>topic_name</name>
+										<desc>Name of the topic to which the function subscribes </desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>size_queue</name>
+										<desc>Size of the queue</desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>sleep</name>
+										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+									</input>
+								</inputs>
+								<icon>gyroscope.svg</icon>
+								<desc>Read sensor_msgs/Imu.angular_velocity.y and load value into a Scalar.</desc>
+						</function>
+							<function>
+								<name>GyroscopeZ</name>
+								<output type="SCALAR"> 
+								</output> 
+								<inputs>
+									<input  type="STRING">
+										<name>topic_name</name>
+										<desc>Name of the topic to which the function subscribes </desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>size_queue</name>
+										<desc>Size of the queue</desc>
+									</input>
+									<input  type="SCALAR_SCALAR">
+										<name>sleep</name>
+										<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+									</input>
+								</inputs>
+								<icon>gyroscope.svg</icon>
+								<desc>Read sensor_msgs/Imu.angular_velocity.z and load value into a Scalar.</desc>
+						</function>
+						<function>
+							<name>Accelerometer3D</name>
+							<output type="MATRIX"> 
+							</output> 
+							<inputs>
+								<input  type="STRING">
+									<name>topic_name</name>
+									<desc>Name of the topic to which the function subscribes </desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>size_queue</name>
+									<desc>Size of the queue</desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>sleep</name>
+									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+								</input>
+							</inputs>
+							<icon>accelerometer.svg</icon>
+							<desc>Read sensor_msgs/Imu.linear_acceleration and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+					</function>
+						<function>
+							<name>AccelerometerX</name>
+							<output type="SCALAR"> 
+							</output> 
+							<inputs>
+								<input  type="STRING">
+									<name>topic_name</name>
+									<desc>Name of the topic to which the function subscribes </desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>size_queue</name>
+									<desc>Size of the queue</desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>sleep</name>
+									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+								</input>
+							</inputs>
+							<icon>accelerometer.svg</icon>
+							<desc>Read sensor_msgs/Imu.linear_acceleration.x and load value into a Scalar.</desc>
+					</function>
+						<function>
+							<name>AccelerometerY</name>
+							<output type="SCALAR"> 
+							</output> 
+							<inputs>
+								<input  type="STRING">
+									<name>topic_name</name>
+									<desc>Name of the topic to which the function subscribes </desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>size_queue</name>
+									<desc>Size of the queue</desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>sleep</name>
+									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+								</input>
+							</inputs>
+							<icon>accelerometer.svg</icon>
+							<desc>Read sensor_msgs/Imu.linear_acceleration.y and load value into a Scalar.</desc>
+					</function>
+						<function>
+							<name>AccelerometerZ</name>
+							<output type="SCALAR"> 
+							</output> 
+							<inputs>
+								<input  type="STRING">
+									<name>topic_name</name>
+									<desc>Name of the topic to which the function subscribes </desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>size_queue</name>
+									<desc>Size of the queue</desc>
+								</input>
+								<input  type="SCALAR_SCALAR">
+									<name>sleep</name>
+									<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+								</input>
+							</inputs>
+							<icon>accelerometer.svg</icon>
+							<desc>Read sensor_msgs/Imu.linear_acceleration.z and load value into a Scalar.</desc>
+					</function>
 	</functions>
 </description>
