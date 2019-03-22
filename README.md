@@ -676,6 +676,7 @@ typedef Input<iScalar> ISInput;
 * prop : describe the propagation method in the matrix. left prop is for source matrix, right prop is for the destination matrix.
 * rep : describe how many times the block are propagated 
 
+* NOTE : propagation part is optional. Without source is only copie once.
 
 * src/dst :  row,col,height,width  [each value is ann integer]
 * op : "." or "x"   
@@ -689,7 +690,17 @@ typedef Input<iScalar> ISInput;
 * {offset} : is optionnal. without value, offset is egal to "height" or "width" according to prop option. 
 * rep : the number of time block are propagated. Could be an integer or "*" (repeat until reaching the end of matrix). 
  
-* [(0,0,1,2).(0,0,1,2)](c,n)*
+```javascript 
+
+// extract the third value of the source row vector on the first neuron of the destination matrix
+[(0,2,1,1).(0,0,1,1)]
+
+// modulo : copy the first two neuron of the source matrix on the first two neuron of the destination matrix
+// then offset the source matrix of 2 two columns and repeat the copy until reaching the end of the source matrix
+[(0,0,1,2).(0,0,1,2)](c,n)*
+
+```
+ 
 
 
 ## Create its own repository ##
