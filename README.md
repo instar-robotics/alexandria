@@ -665,7 +665,11 @@ typedef Input<iScalar> ISInput;
 * In each IMMATRIX link, when you choose a ONE_TO_NEI connectivity, you can add expression to describe the connectivity.
 * The number of expression for each link is unlimited.
 
-* The expression have the following shape : [(src)op(dst)](prop{offset};prop{offset})rep
+* The expression have the following shape : 
+```javascript 
+ [(src)op(dst)](prop{offset};prop{offset})rep
+```
+
 * src : describe a block in the source matrix
 * dst : describe a block in the destination matrix
 * op : describe the connectivity between the source and destination block
