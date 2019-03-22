@@ -678,16 +678,17 @@ typedef Input<iScalar> ISInput;
 
 
 * src/dst :  row,col,height,width  [each value is ann integer]
-* op : ""."" or "x"   
-   1. ""."" : **ONE_TO_ONE** connectivity
+* op : "." or "x"   
+   1. "." : **ONE_TO_ONE** connectivity
    2. "x" : **ONE_TO_ALL** connectivity
 * prop : "r","c","d","n"
-   1. "r" : 
-   2. "c" :
-   3. "d" :
-   4. "n" :
-  
-
+   1. "r" : row propagation
+   2. "c" : col propagation
+   3. "d" : diagonnal propagation
+   4. "n" : no propagation
+* {offset} : is optionnal. without value, offset is egal to "height" or "width" according to prop option. 
+* rep : the number of time block are propagated. Could be an integer or "*" (repeat until reaching the end of matrix). 
+ 
 * [(0,0,1,2).(0,0,1,2)](c,n)*
 
 
