@@ -659,6 +659,34 @@ typedef Input<iScalar> ISInput;
     
 ```
 
+#### ONE_TO_NEI connectivity ####
+
+* **ONE_TO_NEI** connectivity must be describe in each link using a kind of regex expression.
+* In each IMMATRIX link, when you choose a ONE_TO_NEI connectivity, you can add expression to describe the connectivity.
+* The number of expression for each link is unlimited.
+
+* The expression have the following shape : [(src)op(dst)](prop{offset};prop{offset})rep
+* src : describe a block in the source matrix
+* dst : describe a block in the destination matrix
+* op : describe the connectivity between the source and destination block
+* prop : describe the propagation method in the matrix. left prop is for source matrix, right prop is for the destination matrix.
+* rep : describe how many times the block are propagated 
+
+
+* src/dst :  row,col,height,width  [each value is ann integer]
+* op : ""."" or "x"   
+   1. ""."" : **ONE_TO_ONE** connectivity
+   2. "x" : **ONE_TO_ALL** connectivity
+* prop : "r","c","d","n"
+   1. "r" : 
+   2. "c" :
+   3. "d" :
+   4. "n" :
+  
+
+* [(0,0,1,2).(0,0,1,2)](c,n)*
+
+
 ## Create its own repository ##
 
 * TODO 
