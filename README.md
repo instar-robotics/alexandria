@@ -659,6 +659,50 @@ typedef Input<iScalar> ISInput;
     
 ```
 
+#### ONE_TO_NEI connectivity ####
+
+* **ONE_TO_NEI** connectivity must be describe in each link using a kind of regex expression.
+* In each IMMATRIX link, when you choose a ONE_TO_NEI connectivity, you can add expression to describe the connectivity.
+* The number of expression for each link is unlimited.
+
+* The expression have the following shape : 
+```javascript 
+ [(src)op(dst)](prop{offset};prop{offset})rep
+```
+
+* src : describe a block in the source matrix
+* dst : describe a block in the destination matrix
+* op : describe the connectivity between the source and destination block
+* prop : describe the propagation method in the matrix. left prop is for source matrix, right prop is for the destination matrix.
+* rep : describe how many times the block are propagated 
+
+* NOTE : propagation part is optional. Without source is only copie once.
+
+* src/dst :  row,col,height,width  [each value is ann integer]
+* op : "." or "x"   
+   1. "." : **ONE_TO_ONE** connectivity
+   2. "x" : **ONE_TO_ALL** connectivity
+* prop : "r","c","d","n"
+   1. "r" : row propagation
+   2. "c" : col propagation
+   3. "d" : diagonnal propagation
+   4. "n" : no propagation
+* {offset} : is optionnal. without value, offset is egal to "height" or "width" according to prop option. 
+* rep : the number of time block are propagated. Could be an integer or "*" (repeat until reaching the end of matrix). 
+ 
+```javascript 
+
+// extract the third value of the source row vector on the first neuron of the destination matrix
+[(0,2,1,1).(0,0,1,1)]
+
+// modulo : copy the first two neuron of the source matrix on the first two neuron of the destination matrix
+// then offset the source matrix of 2 two columns and repeat the copy until reaching the end of the source matrix
+[(0,0,1,2).(0,0,1,2)](c,n)*
+
+```
+ 
+
+
 ## Create its own repository ##
 
 * TODO 
