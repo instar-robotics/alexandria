@@ -154,7 +154,7 @@
                                         <desc>The input field</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>projection.svg</icon>
                         <desc>Projection operator : use ONE_TO_ONE, ONE_TO_ALL or ONE_TO_NEI to perform concatenation,extraction and generic projection. See Alexandria documentation for explanation.</desc>
                 </function>
 	</functions>
