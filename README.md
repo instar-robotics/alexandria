@@ -29,7 +29,7 @@
 
 **_cd /home/johndoe/catkin_workspace/src_**
 
-**_git clone git@git.instar-robotics.com:software/NeuralNetwork/alexandria.git_**
+**_git clone https://github.com/instar-robotics/alexandria.git_**
 
 * go to your root catkin workspace :
 
