@@ -64,7 +64,7 @@ void  SSum::setparameters()
 
 void MSSum::compute()
 {
-	double sSum=0;
+	SCALAR sSum=0;
 
 	output = inMatrix(0)();	
 
@@ -175,7 +175,7 @@ void  SMul::setparameters()
 
 void MSMul::compute()
 {
-        double sMul=0;
+        SCALAR sMul=0;
 
         sMul = inScalar(0)();
 

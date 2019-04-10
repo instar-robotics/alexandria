@@ -102,7 +102,7 @@ class ActToPop : public FMatrix
 	private : 
                 
 		ISInput activity;
-		MatrixXd::Index lastIndex;
+		MATRIX::Index lastIndex;
         
 	public :
 
@@ -133,7 +133,7 @@ class  VActToPop : public FMatrix
 		ISMInput activities;
 
 		unsigned int proj;
-		VectorXd lastIndex;
+		VectorXs lastIndex;
         
 	public :
 

@@ -32,11 +32,11 @@ void PrPh::compute()
 	// For each neurons from PrPh
 	for( unsigned int i = 0; i < mout.size(); i++ )
 	{
-		double PI = 1;
-		double forget;
-		double sum_input_activities = 0; 
-		double nb_input_active = 0;
-		double sum_neg = 0;
+		SCALAR PI = 1;
+		SCALAR forget;
+		SCALAR sum_input_activities = 0; 
+		SCALAR nb_input_active = 0;
+		SCALAR sum_neg = 0;
 		
 		// Compute Activity
 		for( unsigned int j = 0; j < inSigma.size(); j++)
@@ -45,8 +45,8 @@ void PrPh::compute()
 			auto W = inSigma(j).wj_col(i);
 			auto F = inSigma(j).fj_col(i);
 
-			double Sigma = (E.array() *  filter(W,F).array()).maxCoeff()  ;	
-			double MaxInput = E.maxCoeff();
+			SCALAR Sigma = (E.array() *  filter(W,F).array()).maxCoeff()  ;	
+			SCALAR MaxInput = E.maxCoeff();
 
 			if( Sigma < 0 ) Sigma = 0;
 			if( MaxInput > 0 ){
@@ -64,7 +64,7 @@ void PrPh::compute()
 			auto W = inhibitor(j).wj_col(i);
 			auto F = inhibitor(j).fj_col(i);
 
-			MatrixXd in = E * filter(W,F);
+			MATRIX in = E * filter(W,F);
 
 			sum_neg += in(0,0);
 			sum_input_activities += in(0,0);
@@ -106,7 +106,7 @@ void PrPh::compute()
 	                        auto W = inSigma(j).wj_col(i);
 				auto F = inSigma(j).fj_col(i);
 				
-				W =  (filter(E,F).array() > 0.99).cast<double>();
+				W =  (filter(E,F).array() > 0.99).cast<SCALAR>();
 			}	
 		} 
 	}

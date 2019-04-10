@@ -75,7 +75,7 @@ void Saw_L1::compute()
 	// Compute Activities
 	for( unsigned int i = 0; i < std::min((unsigned int)mout.size(),nbn) ; i++)
 	{
-		double N = 0;
+		SCALAR N = 0;
 		auto E = inputs(0).ivec();
 		auto W = inputs(0).wj_col(i);
 		auto F = inputs(0).fj_col(i);
@@ -110,7 +110,7 @@ void Saw_L2::compute()
         // Compute Activities
         for( unsigned int i = 0; i < std::min((unsigned int)mout.size(),nbn) ; i++)
         {
-        	double N = 0;
+        	SCALAR N = 0;
                 auto E = inputs(0).ivec();
                 auto W = inputs(0).wj_col(i);
                 auto F = inputs(0).fj_col(i);

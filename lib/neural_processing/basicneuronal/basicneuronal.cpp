@@ -30,11 +30,11 @@ REGISTER_FUNCTION(KeepMax);
 
 void KeepMax::compute()
 {
-	output = MatrixXd::Constant(output.rows(),output.cols(), 0);
+	output = MATRIX::Constant(output.rows(),output.cols(), 0);
 	for(unsigned int i = 0; i < nMax()(); i++)
 	{
-		MatrixXd::Index maxRow, maxCol;
-  		double max = inMatrix().i().maxCoeff(&maxRow, &maxCol);
+		MATRIX::Index maxRow, maxCol;
+  		SCALAR max = inMatrix().i().maxCoeff(&maxRow, &maxCol);
 	
 		output(maxRow,maxCol) = max * inMatrix().w();
 	}
@@ -54,11 +54,11 @@ REGISTER_FUNCTION(KeepMin);
 
 void KeepMin::compute()
 {
-	output = MatrixXd::Constant(output.rows(),output.cols(), 0);
+	output = MATRIX::Constant(output.rows(),output.cols(), 0);
 	for(unsigned int i = 0; i < nMin()(); i++)
 	{
-		MatrixXd::Index minRow, minCol;
-  		double min = inMatrix().i().minCoeff(&minRow, &minCol);
+		MATRIX::Index minRow, minCol;
+  		SCALAR min = inMatrix().i().minCoeff(&minRow, &minCol);
 	
 		output(minRow,minCol) = min * inMatrix().w();
 	}
@@ -78,14 +78,14 @@ REGISTER_FUNCTION(ActToPop);
 
 void ActToPop::compute()
 {
-	double value = activity()();
+	SCALAR value = activity()();
 
 	// Threshold betwen 0 and 1
 	if( value < 0 ) value = 0;
-	if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+	if( value >= 1 ) value = 1 - std::numeric_limits<SCALAR>::epsilon();
 
 	auto vect = getMapVect(output);
-	MatrixXd::Index index = value * double(vect.size()) ;
+	MATRIX::Index index = value * SCALAR(vect.size()) ;
 	
 	vect(lastIndex) = 0;
 	vect(index) = 1;
@@ -112,13 +112,13 @@ void VActToPop::compute()
 
 		for( unsigned int i = 0; i < vact.size(); i++)
 		{
-			double value =  vact(i) * activities().w();
+			SCALAR value =  vact(i) * activities().w();
 
 			// Threshold betwen 0 and 1
 			if( value < 0 ) value = 0;
-			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+			if( value >= 1 ) value = 1 - std::numeric_limits<SCALAR>::epsilon();
 
-			MatrixXd::Index index = value * double(output.cols());
+			MATRIX::Index index = value * SCALAR(output.cols());
 
 			output( i, lastIndex(i) ) = 0;
 			output( i , index ) = 1;
@@ -132,13 +132,13 @@ void VActToPop::compute()
 
 		for( unsigned int i = 0; i < vact.size(); i++)
 		{
-			double value =  vact(i) * activities().w();
+			SCALAR value =  vact(i) * activities().w();
 
 			// Threshold betwen 0 and 1
 			if( value < 0 ) value = 0;
-			if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+			if( value >= 1 ) value = 1 - std::numeric_limits<SCALAR>::epsilon();
 
-			MatrixXd::Index index = value * double(output.rows());
+			MATRIX::Index index = value * SCALAR(output.rows());
 			output( lastIndex(i), i ) = 0;
 			output( index , i ) = 1;
 
@@ -147,14 +147,14 @@ void VActToPop::compute()
 	}
 	else if( proj == SINGLEV)
 	{
-		double value = activities()()(0,0);
+		SCALAR value = activities()()(0,0);
 
 		// Threshold betwen 0 and 1
 		if( value < 0 ) value = 0;
-		if( value >= 1 ) value = 1 - std::numeric_limits<double>::epsilon();
+		if( value >= 1 ) value = 1 - std::numeric_limits<SCALAR>::epsilon();
 
 		auto vect = getMapVect(output);
-		MatrixXd::Index index = value * double(vect.size()) ;
+		MATRIX::Index index = value * SCALAR(vect.size()) ;
 
 		vect(lastIndex(0)) = 0;
 		vect(index) = 1;
@@ -186,7 +186,7 @@ void VActToPop::prerun()
 
 		//Single Neuron : Projection depend on output [ROW or COL]
 		proj = SINGLEV;
-		lastIndex = VectorXd::Constant( 1 , 0);
+		lastIndex = VectorXs::Constant( 1 , 0);
 	
 	}
 	else if( activities().isRowVect() )
@@ -198,7 +198,7 @@ void VActToPop::prerun()
 
 		// COL Projection
 		proj = COLPROJ;
-		lastIndex = VectorXd::Constant( activities().iCols() , 0);
+		lastIndex = VectorXs::Constant( activities().iCols() , 0);
 	}
 	else if( activities().isColVect())  
 	{
@@ -209,7 +209,7 @@ void VActToPop::prerun()
 
 		// ROW Projection
 		proj = ROWPROJ;
-		lastIndex = VectorXd::Constant( activities().iRows() , 0);
+		lastIndex = VectorXs::Constant( activities().iRows() , 0);
 	}
 }
 
@@ -228,11 +228,11 @@ void PopToAct::compute()
 {
 	auto vect = getCMapVect(population().i());
 	
-	MatrixXd::Index i;
+	MATRIX::Index i;
 	vect.maxCoeff(&i); 
 
-//	output = population().w() * ( double(i)/double(vect.size())  + 1.0/(2.0*vect.size()));
-	output = population().w() * double(i) / (double(vect.size())-1.0);
+//	output = population().w() * ( SCALAR(i)/SCALAR(vect.size())  + 1.0/(2.0*vect.size()));
+	output = population().w() * SCALAR(i) / (SCALAR(vect.size())-1.0);
 }
 
 void PopToAct::setparameters()
@@ -264,10 +264,10 @@ void PopToVAct::compute()
 
                 for( unsigned int i = 0; i < vpop.size(); i++)
                 {
-			MatrixXd::Index ind;
+			MATRIX::Index ind;
 			population().i().col(i).maxCoeff(&ind);		
 
-                        vpop(i) = population().w() * double(ind)/(double(population().i().rows()) - 1.0);
+                        vpop(i) = population().w() * SCALAR(ind)/(SCALAR(population().i().rows()) - 1.0);
                 }
 	}
 	else if( proj == ROWPROJ )
@@ -276,20 +276,20 @@ void PopToVAct::compute()
 
                 for( unsigned int i = 0; i < vpop.size(); i++)
                 {
-			MatrixXd::Index ind;
+			MATRIX::Index ind;
 			population().i().row(i).maxCoeff(&ind);		
 
-                        vpop(i) = population().w() * double(ind)/(double(population().i().cols()) - 1.0);
+                        vpop(i) = population().w() * SCALAR(ind)/(SCALAR(population().i().cols()) - 1.0);
                 }
 	}
 	else if( proj == SINGLEV )
 	{
 		auto vect = getCMapVect(population().i());
 		
-		MatrixXd::Index i;
+		MATRIX::Index i;
 		vect.maxCoeff(&i); 
 
-		output(0,0) = population().w() * double(i) / (double(vect.size())-1.0) ;
+		output(0,0) = population().w() * SCALAR(i) / (SCALAR(vect.size())-1.0) ;
 	}
 }
 
@@ -338,7 +338,7 @@ void Convolution::compute()
 	bool isCircular = false;
         if( circular()() >= 0.5 ) isCircular = true;
 
-        output = MatrixXd::NullaryExpr( output.rows(), output.cols() , Conv_functor<MatrixXd>( inMatrix()(), mask()(), isCircular ));
+        output = MATRIX::NullaryExpr( output.rows(), output.cols() , Conv_functor<MATRIX>( inMatrix()(), mask()(), isCircular ));
 }
 
 void Convolution::setparameters()
@@ -358,9 +358,9 @@ REGISTER_FUNCTION(ShiftInv);
 
 void Shift::compute()
 {
-	MatrixXd::Index mRow, mCol;
+	MATRIX::Index mRow, mCol;
 	mask().i().maxCoeff(&mRow, &mCol);
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), Shift_functor<MatrixXd>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), 1 ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), 1 ));
 }
 
 void Shift::setparameters()
@@ -372,9 +372,9 @@ void Shift::setparameters()
 
 void ShiftInv::compute()
 {
-        MatrixXd::Index mRow, mCol;
+        MATRIX::Index mRow, mCol;
         mask().i().maxCoeff(&mRow, &mCol);
-        output = MatrixXd::NullaryExpr( output.rows(), output.cols(), Shift_functor<MatrixXd>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), -1 ));
+        output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), -1 ));
 }
 
 void ShiftInv::setparameters()

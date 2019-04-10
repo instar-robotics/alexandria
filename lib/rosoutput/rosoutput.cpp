@@ -80,7 +80,7 @@ void CmdVelVectOutput::compute()
 {
 	auto mout = getMapVect(output);
 	
-	MatrixXd tmpO = lin()(); 
+	MATRIX tmpO = lin()(); 
 
 	auto mtmp = getMapVect(tmpO);
 	mout[0] = mtmp[0];
@@ -220,7 +220,7 @@ void AccelVectOutput::compute()
 {
         auto mout = getMapVect(output);
 
-        MatrixXd tmpO = lin()();
+        MATRIX tmpO = lin()();
 
         auto mtmp = getMapVect(tmpO);
         mout[0] = mtmp[0];

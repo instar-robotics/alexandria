@@ -37,17 +37,17 @@ REGISTER_FUNCTION(SAND);
 
 void MAND::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
-			return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
+			return ( v + e2 ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 		});
 	}		
 }
@@ -61,34 +61,34 @@ void MAND::setparameters()
 
 void MSAND::compute()
 {
-	double sAND = inScalar(0)() < 0.5 ? 0.0 : 1.0;
+	SCALAR sAND = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
-		sAND = ( sig + sAND ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+		sAND = ( sig + sAND ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 	}
 	
 	if( sAND >  0.5 )  
 	{
-		output = inMatrix(0)().unaryExpr([](double elem)
+		output = inMatrix(0)().unaryExpr([](SCALAR elem)
 		{
 			return elem < 0.5 ? 0.0 : 1.0; 
 		});
 
 		for(unsigned int i=1; i < inMatrix.size(); i++)
 		{
-			output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+			output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 			{
-				double v = e1 < 0.5 ? 0.0 : 1.0;
-				return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+				SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
+				return ( v + e2 ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 			});
 		}
 	}
 	else
 	{
-		output = MatrixXd::Constant( output.rows(), output.cols(), 0);
+		output = MATRIX::Constant( output.rows(), output.cols(), 0);
 	}
 }
 
@@ -107,9 +107,9 @@ void SAND::compute()
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
-		output = ( sig + output ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+		output = ( sig + output ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 	}
 }
 
@@ -129,16 +129,16 @@ REGISTER_FUNCTION(SOR);
 
 void MOR::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
 			return std::max( v , e2 ) ;
 		});
 	}		
@@ -152,22 +152,22 @@ void MOR::setparameters()
 
 void MSOR::compute()
 {
-	double sOR = inScalar(0)() < 0.5 ? 0.0 : 1.0;
+	SCALAR sOR = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 	
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
 		sOR = std::max(sig, sOR);
 	}
 
-	output = inMatrix(0)().unaryExpr(FuncOR<double>(sOR) );
+	output = inMatrix(0)().unaryExpr(FuncOR<SCALAR>(sOR) );
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
 			return std::max( v , e2 ) ;
 		});
 	}
@@ -188,7 +188,7 @@ void SOR::compute()
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
 		output = std::max(sig, output);
 	}
@@ -210,20 +210,20 @@ REGISTER_FUNCTION(SXOR);
 
 void MXOR::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
+		output += inMatrix(i)().unaryExpr([](SCALAR elem)
     		{
 			return elem < 0.5 ? 0.0 : 1.0; 
     		});
 	}		
 	
-	output = output.unaryExpr([](double elem)
+	output = output.unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
 	});
@@ -237,16 +237,16 @@ void MXOR::setparameters()
 
 void MSXOR::compute()
 {
-	double sSumXOR=0;	
+	SCALAR sSumXOR=0;	
 
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
+		output += inMatrix(i)().unaryExpr([](SCALAR elem)
     		{
 			return elem < 0.5 ? 0.0 : 1.0; 
     		});
@@ -259,7 +259,7 @@ void MSXOR::compute()
 
 	output.array()+=sSumXOR;
 
-	output = output.unaryExpr([](double elem)
+	output = output.unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
 	});
@@ -304,7 +304,7 @@ REGISTER_FUNCTION(SNOT);
 
 void MNOT::compute()
 {
- 	output = inMatrix()().unaryExpr([](double elem)
+ 	output = inMatrix()().unaryExpr([](SCALAR elem)
     	{
 		return elem < 0.5 ? 1.0 : 0.0; 
     	});

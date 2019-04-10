@@ -291,7 +291,7 @@ class MDerivative : public FMatrix
 
                 ISMInput inMatrix;
 
-		MatrixXd z_1;
+		MATRIX z_1;
 
 
         public :
@@ -308,7 +308,7 @@ class SDerivative : public FScalar
 
                 ISInput inScalar;
 
-		double z_1;
+		SCALAR z_1;
 
         public :
 
@@ -324,7 +324,7 @@ class MZ_1 : public FMatrix
 
                 ISMInput inMatrix;
 		
-		MatrixXd z_1;
+		MATRIX z_1;
 
         public :
 
@@ -340,7 +340,7 @@ class SZ_1 : public FScalar
 
                 ISInput inScalar;
 		
-		double z_1;
+		SCALAR z_1;
 
         public :
 

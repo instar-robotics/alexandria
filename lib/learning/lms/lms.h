@@ -34,7 +34,7 @@ class LMS : public FMatrix
 		ISMInput unconditionnal;
 		IMMInput conditionnals;
 
-		MatrixXd grad;
+		MATRIX grad;
 	
         public :
 		

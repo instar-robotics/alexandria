@@ -52,9 +52,9 @@ bool checkMode(const std::string & smode, int& mode)
 	return ret;
 }
 
-double getFront(const double& z_1,const  double& z,const double &thres, int mode)
+SCALAR getFront(const SCALAR& z_1,const  SCALAR& z,const SCALAR &thres, int mode)
 {
-	double res = 0.0;
+	SCALAR res = 0.0;
 	if( z_1 < thres && thres <= z)
         {
                 if( mode == FD_IBOTH || mode == FD_IUP ) res = 1.0;
@@ -94,7 +94,7 @@ void MSFrontDetection::prerun()
 
 void MSFrontDetection::compute()
 {
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MSFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), MSFD_Functor<MATRIX>(imode, threshold()(), z_1, inMatrix()() ));
 
 	z_1 = inMatrix()();
 }
@@ -104,7 +104,7 @@ void MSFrontDetection::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(threshold,"threshold", getUuid());
         Kernel::iBind(mode,"mode", getUuid());
-	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+	z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 /**************************************************************************/
@@ -116,7 +116,7 @@ void MMFrontDetection::prerun()
 
 void MMFrontDetection::compute()
 {
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MMFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), MMFD_Functor<MATRIX>(imode, threshold()(), z_1, inMatrix()() ));
 
         z_1 = inMatrix()();
 
@@ -128,7 +128,7 @@ void MMFrontDetection::setparameters()
         Kernel::iBind(threshold,"threshold", getUuid());
         Kernel::iBind(mode,"mode", getUuid());
 	
-	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+	z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 /*******************************************************************************************************/
@@ -241,7 +241,7 @@ REGISTER_FUNCTION(SHeavisideCustom);
 
 void MHeaviside::compute()
 {
- 	output = inMatrix()().unaryExpr([](double elem)
+ 	output = inMatrix()().unaryExpr([](SCALAR elem)
     	{
 		return elem < 1.0 ? 0.0 : 1.0; 
     	});
@@ -279,7 +279,7 @@ void SHeavisideCustom::setparameters()
 
 void MSHeavisideCustom::compute()
 {
-        output = inMatrix()().unaryExpr(HeaviFunc<double>(thres()()));
+        output = inMatrix()().unaryExpr(HeaviFunc<SCALAR>(thres()()));
 }
 
 void MSHeavisideCustom::setparameters()
@@ -290,7 +290,7 @@ void MSHeavisideCustom::setparameters()
 
 void MMHeavisideCustom::compute()
 {
-        output = inMatrix()().binaryExpr(thres()(), [](double e1, double e2)
+        output = inMatrix()().binaryExpr(thres()(), [](SCALAR e1, SCALAR e2)
         {
                 return e1 < e2 ? 0.0 : 1.0;
         });

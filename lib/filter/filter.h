@@ -47,7 +47,7 @@ const int FD_IDOWN = 0 ;
 const int FD_IBOTH = -1 ;
 
 bool checkMode(const std::string & smode, int &mode);
-double getFront(const double& z_1,const  double& Z,const double &thres, int mode);
+SCALAR getFront(const SCALAR& z_1,const  SCALAR& Z,const SCALAR &thres, int mode);
 
 class SFrontDetection : public FScalar
 {
@@ -57,7 +57,7 @@ class SFrontDetection : public FScalar
                 ISInput threshold;
 		IString mode;
 		
-		double z_1;
+		SCALAR z_1;
 		int imode;
 
         public :
@@ -93,7 +93,7 @@ class MSFrontDetection : public FMatrix
                 ISInput threshold;
 		IString mode;
 
-		MatrixXd z_1;
+		MATRIX z_1;
 		int imode;
 
         public :
@@ -128,7 +128,7 @@ class MMFrontDetection : public FMatrix
                 ISMInput threshold;
 		IString mode;
 		
-		MatrixXd z_1;
+		MATRIX z_1;
 		int imode;
 
         public :

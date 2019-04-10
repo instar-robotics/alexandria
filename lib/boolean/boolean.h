@@ -39,7 +39,7 @@ struct FuncOR {
   FuncOR(const Scalar& sOR) : sOR(sOR) {}
   const Scalar operator()(const Scalar& x) const 
   { 
-	  double v = x < 0.5 ? 0.0 : 1.0;
+	  Scalar v = x < 0.5 ? 0.0 : 1.0;
 	  return std::max( v , sOR ) ;
   }
   Scalar sOR;

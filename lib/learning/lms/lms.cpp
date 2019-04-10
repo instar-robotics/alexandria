@@ -60,6 +60,6 @@ void  LMS::setparameters()
         Kernel::iBind(unconditionnal,"unconditionnal", getUuid());
         Kernel::iBind(conditionnals,"conditionnals", getUuid());
 	
-	grad = MatrixXd::Constant(output.rows(),output.cols(),0);
+	grad = MATRIX::Constant(output.rows(),output.cols(),0);
 }
 

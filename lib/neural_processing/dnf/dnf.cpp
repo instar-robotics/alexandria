@@ -29,7 +29,7 @@ void AmariDnf::compute()
 	bool isCircular = false;
 	if( circular()() >= 0.5 ) isCircular = true;
 
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols() , Amari_functor<MatrixXd>( output, kernel()(), input()(), h()() , tau()(), beta()() ,isCircular ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols() , Amari_functor<MATRIX>( output, kernel()(), input()(), h()() , tau()(), beta()() ,isCircular ));
 
 }
 

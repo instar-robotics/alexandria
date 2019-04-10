@@ -126,7 +126,7 @@ void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 		throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
 	}
 
- 	Map<const MatrixXd> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
+ 	Map<const MATRIX> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
 
        	output = mEnc;
 }
@@ -500,7 +500,7 @@ void OdoEuler::callback(const nav_msgs::Odometry::ConstPtr &msg )
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
 	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 	auto mout = getMapVect(output);
@@ -546,7 +546,7 @@ void OdoEulerRoll::callback(const nav_msgs::Odometry::ConstPtr &msg )
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
         tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = roll;
@@ -588,7 +588,7 @@ void OdoEulerPitch::callback(const nav_msgs::Odometry::ConstPtr &msg )
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
         tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = pitch;
@@ -630,7 +630,7 @@ void OdoEulerYaw::callback(const nav_msgs::Odometry::ConstPtr &msg )
 	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
         tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = yaw;
@@ -1162,14 +1162,14 @@ void Lidar1D::setparameters()
 void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 {
 	auto mout = getMapVect(output);
-        double RM = std::min(range_max()(),  (double)(msg->range_max) );
-        double offset =  M_PI - fabs(msg->angle_min);
+        SCALAR RM = std::min(range_max()(),  (SCALAR)(msg->range_max) );
+        SCALAR offset =  M_PI - fabs(msg->angle_min);
 
         for( unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
         {
                 unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( mout.size() / (2* M_PI)) ;
 
-                double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
+                SCALAR value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
                 if( value < 0 ) value = 0;
 
 								if( j < mout.size() ) {
@@ -1227,15 +1227,15 @@ void Lidar2D::setparameters()
 //void Lidar2D::callback(const sensor_msgs::PointCloud2::ConstPtr &msg )
 void Lidar2D::callback(const PointCloud::ConstPtr &msg )
 {
-	output = MatrixXd::Constant(output.rows(),output.cols(),0);
+	output = MATRIX::Constant(output.rows(),output.cols(),0);
 
 	for( unsigned int i = 0 ; i <  msg->points.size() ; i++ )
 	{
 		
 
-		 double theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
+		 SCALAR theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
 
-		 double value = sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z  );
+		 SCALAR value = sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z  );
 
 		 std::cout <<  msg->points[i].z+10  << " " << theta << " "<< value << std::endl;
 		 if( ! std::isnan(theta) )  output( msg->points[i].z+10 , theta) = value;
@@ -1327,7 +1327,7 @@ void Compass3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
 	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
 	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 	auto mout = getMapVect(output);
@@ -1374,7 +1374,7 @@ void CompassX::callback( const sensor_msgs::Imu::ConstPtr &msg)
 	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
 	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 
@@ -1418,7 +1418,7 @@ void CompassY::callback( const sensor_msgs::Imu::ConstPtr &msg)
 	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
 	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 
@@ -1462,7 +1462,7 @@ void CompassZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
 	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
 	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 

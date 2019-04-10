@@ -40,7 +40,7 @@ void ArgMax1D::upreload()
 
 void ArgMax1D::compute()
 {
-	MatrixXd::Index maxRow, maxCol;
+	MATRIX::Index maxRow, maxCol;
 
 	inMatrix().i().maxCoeff(&maxRow, &maxCol);
 
@@ -64,7 +64,7 @@ void ArgMax2D::upreload()
 
 void ArgMax2D::compute()
 {
-	MatrixXd::Index maxRow, maxCol;
+	MATRIX::Index maxRow, maxCol;
  	auto mOut = getMapVect(output) ;
 
         inMatrix().i().maxCoeff(&maxRow, &maxCol);
@@ -99,7 +99,7 @@ void ArgMin1D::upreload()
 
 void ArgMin1D::compute()
 {
-	MatrixXd::Index minRow, minCol;
+	MATRIX::Index minRow, minCol;
 
         inMatrix().i().minCoeff(&minRow, &minCol);
 
@@ -123,7 +123,7 @@ void ArgMin2D::upreload()
 
 void ArgMin2D::compute()
 {
-	MatrixXd::Index minRow, minCol;
+	MATRIX::Index minRow, minCol;
         auto mOut = getMapVect(output) ;
 
         inMatrix().i().minCoeff(&minRow, &minCol);
@@ -336,7 +336,7 @@ void MDerivative::compute()
 void MDerivative::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
-        z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+        z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 void SDerivative::compute()
@@ -360,7 +360,7 @@ void MZ_1::compute()
 void MZ_1::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
-        z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+        z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 void SZ_1::compute()
