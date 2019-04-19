@@ -21,7 +21,8 @@
 
 
 #include "rosinput.h"
-#include <tf/tf.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Matrix3x3.h>
 #include <algorithm>
 #include <cmath>
 
@@ -497,9 +498,9 @@ void OdoEuler::prerun()
 
 void OdoEuler::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-	tf::Matrix3x3 m(q);
+	tf2::Matrix3x3 m(q);
 	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
@@ -543,9 +544,9 @@ void OdoEulerRoll::setparameters()
 
 void OdoEulerRoll::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
+        tf2::Matrix3x3 m(q);
         SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
@@ -585,9 +586,9 @@ void OdoEulerPitch::setparameters()
 
 void OdoEulerPitch::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
+        tf2::Matrix3x3 m(q);
         SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
@@ -627,9 +628,9 @@ void OdoEulerYaw::setparameters()
 
 void OdoEulerYaw::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
+        tf2::Matrix3x3 m(q);
         SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
@@ -1324,9 +1325,9 @@ void Compass3D::prerun()
 
 void Compass3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
+	tf2::Matrix3x3 m(q);
 	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
@@ -1371,9 +1372,9 @@ void CompassX::setparameters()
 
 void CompassX::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
+	tf2::Matrix3x3 m(q);
 	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
@@ -1415,9 +1416,9 @@ void CompassY::setparameters()
 
 void CompassY::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
+	tf2::Matrix3x3 m(q);
 	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
@@ -1459,9 +1460,9 @@ void CompassZ::setparameters()
 
 void CompassZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
+	tf2::Matrix3x3 m(q);
 	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
@@ -1658,7 +1659,7 @@ void Accelerometer3D::compute()
 
 void Accelerometer3D::setparameters()
 {
-  Kernel::iBind(topic_name,"topic_name", getUuid());
+  	Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(sleep,"sleep", getUuid());
 }
