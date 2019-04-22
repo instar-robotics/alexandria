@@ -26,7 +26,7 @@ REGISTER_FUNCTION(LMS);
 
 void LMS::compute()
 {	
-	static auto mout = getMapRow(output);
+	auto mout = getMapRow(output);
 
 	// Compute output activity
 	mout.noalias() = conditionnals(0).irow()  * conditionnals(0).w();

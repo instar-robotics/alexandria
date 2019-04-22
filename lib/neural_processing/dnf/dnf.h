@@ -42,11 +42,11 @@ class Amari_functor{
  Amari_functor(const ArgType &U, const ArgType &mask, const ArgType &I, const typename ArgType::Scalar &h, const typename ArgType::Scalar &tau, const typename ArgType::Scalar &beta ,bool circular ) : U(U), mask(mask), I(I), h(h), tau(tau), beta(beta), circular(circular){}
 
  const typename ArgType::Scalar operator() (Index urow, Index ucol) const{
-	 static typename ArgType::Index mrows = mask.rows(); 
-	 static typename ArgType::Index mcols = mask.cols();
+	 typename ArgType::Index mrows = mask.rows(); 
+	 typename ArgType::Index mcols = mask.cols();
 	 
-	 static typename ArgType::Index urows = U.rows(); 
-	 static typename ArgType::Index ucols = U.cols();
+	 typename ArgType::Index urows = U.rows(); 
+	 typename ArgType::Index ucols = U.cols();
 
 	 typename ArgType::Scalar neighbor = 0.0;
 

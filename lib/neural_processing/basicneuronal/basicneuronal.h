@@ -215,11 +215,11 @@ class Conv_functor{
 
 	const typename ArgType::Scalar operator() (Index irow, Index icol) const {
 
-		static typename ArgType::Index mrows = mask.rows();
-		static typename ArgType::Index mcols = mask.cols();
+		typename ArgType::Index mrows = mask.rows();
+		typename ArgType::Index mcols = mask.cols();
 
-		static typename ArgType::Index irows = I.rows();
-		static typename ArgType::Index icols = I.cols();
+		typename ArgType::Index irows = I.rows();
+		typename ArgType::Index icols = I.cols();
 
 		typename ArgType::Scalar value = 0.0;
 

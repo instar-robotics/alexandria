@@ -392,7 +392,7 @@ REGISTER_FUNCTION(Projection);
 
 void Projection::compute()
 {
-	static auto mout = getMapRow(output);
+	auto mout = getMapRow(output);
 
 	mout.noalias() =  inMatrix(0).irow() * filter( inMatrix(0).w() , inMatrix(0).f() );
 

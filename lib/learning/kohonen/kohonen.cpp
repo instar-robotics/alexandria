@@ -26,7 +26,7 @@ REGISTER_FUNCTION(Kohonen);
 
 void Kohonen::compute()
 {	
-	static auto mout = getMapRow(output);
+	auto mout = getMapRow(output);
 
 	for( unsigned int i = 0; i < mout.size(); i++)
 	{

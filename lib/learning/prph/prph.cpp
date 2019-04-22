@@ -27,7 +27,7 @@ REGISTER_FUNCTION(PrPh);
 
 void PrPh::compute()
 {	
-	static auto mout = getMapRow(output);
+	auto mout = getMapRow(output);
 	
 	// For each neurons from PrPh
 	for( unsigned int i = 0; i < mout.size(); i++ )

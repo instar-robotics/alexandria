@@ -70,7 +70,7 @@ REGISTER_FUNCTION(Saw_L1);
 
 void Saw_L1::compute()
 {	
-	static auto mout = getMapRow(output);
+	auto mout = getMapRow(output);
 
 	// Compute Activities
 	for( unsigned int i = 0; i < std::min((unsigned int)mout.size(),nbn) ; i++)
