@@ -28,6 +28,7 @@ The fact that you are presently reading this means that you have had knowledge o
 #include <sensor_msgs/LaserScan.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/Imu.h>
+#include <detect_msgs/ObjDetect.h>
 
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h> 
@@ -1145,6 +1146,35 @@ class AccelerometerZ : public FScalar, public RosSubscriber<sensor_msgs::Imu>
 		virtual void onRun();
 		virtual void onPause();
 		virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
+
+};
+
+/*******************************************************************************************************/
+/*****************                   	   Object Detection 	                     *******************/
+/*******************************************************************************************************/
+
+
+class ObjDetect : public FMatrix, public RosSubscriber<detect_msgs::ObjDetect>
+{
+	private :
+
+		IString topic_name;
+		ISInput size_queue;
+		ISInput sleep;
+		ISInput size_x;
+		ISInput size_y;
+
+	public : 
+		ObjDetect() : RosSubscriber<detect_msgs::ObjDetect>() {}
+		virtual ~ObjDetect(){}
+		
+		virtual void compute();
+		virtual void setparameters();
+
+		virtual void onQuit();
+		virtual void onRun();
+		virtual void onPause();
+		virtual void callback( const detect_msgs::ObjDetect::ConstPtr &msg );
 
 };
 

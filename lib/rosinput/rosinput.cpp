@@ -3,14 +3,14 @@ Copyright INSTAR Robotics
 
 Author: Pierre Delarboulas
 
-This software is governed by the CeCILL v2.1 license under French law and abiding by the rules of distribution of free software. 
+This software is governed by the CeCILL v2.1 license under French law and abiding by the rules of distribution of free software.
 You can use, modify and/ or redistribute the software under the terms of the CeCILL v2.1 license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info".
-As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by the license, 
-users are provided only with a limited warranty and the software's author, the holder of the economic rights,  and the successive licensors have only limited liability.  
-In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, 
-that may mean  that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge. 
-Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured 
-and, more generally, to use and operate it in the same conditions as regards security. 
+As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by the license,
+users are provided only with a limited warranty and the software's author, the holder of the economic rights,  and the successive licensors have only limited liability.
+In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software,
+that may mean  that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge.
+Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured
+and, more generally, to use and operate it in the same conditions as regards security.
 The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
 */
 
@@ -59,7 +59,8 @@ REGISTER_FUNCTION(GyroscopeZ);
 REGISTER_FUNCTION(Accelerometer3D);
 REGISTER_FUNCTION(AccelerometerX);
 REGISTER_FUNCTION(AccelerometerY);
-REGISTER_FUNCTION(AccelerometerZ); 
+REGISTER_FUNCTION(AccelerometerZ);
+REGISTER_FUNCTION(ObjDetect);
 
 /*******************************************************************************************************/
 /*****************                             ScalarInput                           *******************/
@@ -115,7 +116,7 @@ void MatrixInput::setparameters()
 
 void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
-	if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() ) 
+	if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() )
 	{
 		throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
 	}
@@ -158,7 +159,7 @@ void JoyAxes::setparameters()
 
 void JoyAxes::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
-	if( msg->axes.size() != output.rows() * output.cols() ) 
+	if( msg->axes.size() != output.rows() * output.cols() )
 	{
 		throw std::invalid_argument("JoyAxes : Output dimension is not egal to the numbers of Joystick axes !");
 	}
@@ -166,7 +167,7 @@ void JoyAxes::callback( const sensor_msgs::Joy::ConstPtr &msg)
         auto mout = getMapVect(output);
 	for(unsigned int i = 0; i < msg->axes.size() ; i++ )
 	{
-		mout[i] = msg->axes[i];	
+		mout[i] = msg->axes[i];
 	}
 }
 
@@ -1225,7 +1226,7 @@ void Lidar2D::callback(const PointCloud::ConstPtr &msg )
 
 	for( unsigned int i = 0 ; i <  msg->points.size() ; i++ )
 	{
-		
+
 
 		 double theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
 
@@ -1246,7 +1247,7 @@ void Lidar2D::callback(const PointCloud::ConstPtr &msg )
 	for( unsigned int i = 0 ; i < m.cols() ; i++)
 		for(unsigned int j = 0; j < m.rows(); j++)
 	{
-		output( j * output.rows() / m.rows() , i * output.cols() / m.cols() ) = m(j,i);	
+		output( j * output.rows() / m.rows() , i * output.cols() / m.cols() ) = m(j,i);
 	}
 */
 
@@ -1801,3 +1802,60 @@ void AccelerometerZ::onRun()
 	enable(topic_name, (int)(size_queue()()) );
 }
 
+/*******************************************************************************************************/
+/*****************                 	    Object Detection                         *******************/
+/*******************************************************************************************************/
+
+void ObjDetect::compute()
+{
+        my_queue.callOne(ros::WallDuration( sleep()()  ));
+}
+
+void ObjDetect::setparameters()
+{
+  	Kernel::iBind(topic_name,"topic_name", getUuid());
+ 	Kernel::iBind(size_queue,"size_queue", getUuid());
+ 	Kernel::iBind(sleep,"sleep", getUuid());
+ 	Kernel::iBind(size_x,"size_x", getUuid());
+ 	Kernel::iBind(size_y,"size_y", getUuid());
+}
+
+void ObjDetect::callback( const detect_msgs::ObjDetect::ConstPtr &msg )
+{
+	int cloud_pos_x, cloud_pos_y;
+	float cloud_val_x, cloud_val_y;
+	int eigen_pos_x, eigen_pos_y;
+
+	output = MatrixXd::Constant(output.rows(),output.cols(),0);
+
+	for (int i=0; i<msg->position.width; i++)
+	{
+		cloud_pos_x = i * msg->position.point_step + msg->position.fields[0].offset;
+		cloud_pos_y = i * msg->position.point_step + msg->position.fields[1].offset;
+		cloud_val_x = *(float*)(&(msg->position.data[cloud_pos_x]));
+		cloud_val_y = *(float*)(&(msg->position.data[cloud_pos_y]));
+		eigen_pos_x = round((size_x(0)()/2 - cloud_val_x) / size_x(0)() * output.cols()); // Remove when lidar reverted
+		eigen_pos_y = round((size_y(0)()/2 - cloud_val_y) / size_y(0)() * output.rows());
+		eigen_pos_x = (eigen_pos_x > output.cols() - 1) ? output.cols() - 1 : eigen_pos_x;
+		eigen_pos_y = (eigen_pos_y > output.rows() - 1) ? output.rows() - 1 : eigen_pos_y;
+		eigen_pos_x = (eigen_pos_x < 0) ? 0 : eigen_pos_x;
+		eigen_pos_y = (eigen_pos_y < 0) ? 0 : eigen_pos_y;
+		output(eigen_pos_x, eigen_pos_y) = msg->vote[i];
+	}
+
+}
+
+void ObjDetect::onQuit()
+{
+	disable();
+}
+
+void ObjDetect::onPause()
+{
+	disable();
+}
+
+void ObjDetect::onRun()
+{
+	enable(topic_name, (int)(size_queue()()) );
+}

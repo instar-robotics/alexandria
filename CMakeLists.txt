@@ -7,6 +7,7 @@ set(CATKIN_DEP
   tf
   nav_msgs
   sensor_msgs
+  detect_msgs
   pcl_ros
 )
 
