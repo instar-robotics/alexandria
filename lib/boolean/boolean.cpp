@@ -1,18 +1,24 @@
 /*
-Copyright INSTAR Robotics
+  Copyright (C) INSTAR Robotics
 
-Author: Pierre Delarboulas
-
-This software is governed by the CeCILL v2.1 license under French law and abiding by the rules of distribution of free software. 
-You can use, modify and/ or redistribute the software under the terms of the CeCILL v2.1 license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info".
-As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by the license, 
-users are provided only with a limited warranty and the software's author, the holder of the economic rights,  and the successive licensors have only limited liability.  
-In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, 
-that may mean  that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge. 
-Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured 
-and, more generally, to use and operate it in the same conditions as regards security. 
-The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
+  Author: Pierre Delarboulas
+ 
+  This file is part of alexandria <https://github.com/instar-robotics/alexandria>.
+ 
+  alexandria is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  alexandria is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
+
 
 #include <limits>
 #include "boolean.h"
@@ -31,17 +37,17 @@ REGISTER_FUNCTION(SAND);
 
 void MAND::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
-			return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
+			return ( v + e2 ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 		});
 	}		
 }
@@ -55,34 +61,34 @@ void MAND::setparameters()
 
 void MSAND::compute()
 {
-	double sAND = inScalar(0)() < 0.5 ? 0.0 : 1.0;
+	SCALAR sAND = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
-		sAND = ( sig + sAND ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+		sAND = ( sig + sAND ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 	}
 	
 	if( sAND >  0.5 )  
 	{
-		output = inMatrix(0)().unaryExpr([](double elem)
+		output = inMatrix(0)().unaryExpr([](SCALAR elem)
 		{
 			return elem < 0.5 ? 0.0 : 1.0; 
 		});
 
 		for(unsigned int i=1; i < inMatrix.size(); i++)
 		{
-			output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+			output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 			{
-				double v = e1 < 0.5 ? 0.0 : 1.0;
-				return ( v + e2 ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+				SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
+				return ( v + e2 ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 			});
 		}
 	}
 	else
 	{
-		output = MatrixXd::Constant( output.rows(), output.cols(), 0);
+		output = MATRIX::Constant( output.rows(), output.cols(), 0);
 	}
 }
 
@@ -101,9 +107,9 @@ void SAND::compute()
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
-		output = ( sig + output ) < 1 +std::numeric_limits<double>::epsilon() ? 0.0 : 1.0 ;
+		output = ( sig + output ) < 1 +std::numeric_limits<SCALAR>::epsilon() ? 0.0 : 1.0 ;
 	}
 }
 
@@ -123,16 +129,16 @@ REGISTER_FUNCTION(SOR);
 
 void MOR::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
 			return std::max( v , e2 ) ;
 		});
 	}		
@@ -146,22 +152,22 @@ void MOR::setparameters()
 
 void MSOR::compute()
 {
-	double sOR = inScalar(0)() < 0.5 ? 0.0 : 1.0;
+	SCALAR sOR = inScalar(0)() < 0.5 ? 0.0 : 1.0;
 	
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
 		sOR = std::max(sig, sOR);
 	}
 
-	output = inMatrix(0)().unaryExpr(FuncOR<double>(sOR) );
+	output = inMatrix(0)().unaryExpr(FuncOR<SCALAR>(sOR) );
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output = inMatrix(i)().binaryExpr(output, [](double e1, double e2)
+		output = inMatrix(i)().binaryExpr(output, [](SCALAR e1, SCALAR e2)
 		{
-			double v = e1 < 0.5 ? 0.0 : 1.0;
+			SCALAR v = e1 < 0.5 ? 0.0 : 1.0;
 			return std::max( v , e2 ) ;
 		});
 	}
@@ -182,7 +188,7 @@ void SOR::compute()
 
 	for(unsigned int i=0; i < inScalar.size(); i++)
 	{
-		double sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
+		SCALAR sig = inScalar(i)() < 0.5 ? 0.0 : 1.0;
 
 		output = std::max(sig, output);
 	}
@@ -204,20 +210,20 @@ REGISTER_FUNCTION(SXOR);
 
 void MXOR::compute()
 {
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
+		output += inMatrix(i)().unaryExpr([](SCALAR elem)
     		{
 			return elem < 0.5 ? 0.0 : 1.0; 
     		});
 	}		
 	
-	output = output.unaryExpr([](double elem)
+	output = output.unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
 	});
@@ -231,16 +237,16 @@ void MXOR::setparameters()
 
 void MSXOR::compute()
 {
-	double sSumXOR=0;	
+	SCALAR sSumXOR=0;	
 
-	output = inMatrix(0)().unaryExpr([](double elem)
+	output = inMatrix(0)().unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 ? 0.0 : 1.0; 
 	});
 
 	for(unsigned int i=1; i < inMatrix.size(); i++)
 	{
-		output += inMatrix(i)().unaryExpr([](double elem)
+		output += inMatrix(i)().unaryExpr([](SCALAR elem)
     		{
 			return elem < 0.5 ? 0.0 : 1.0; 
     		});
@@ -253,7 +259,7 @@ void MSXOR::compute()
 
 	output.array()+=sSumXOR;
 
-	output = output.unaryExpr([](double elem)
+	output = output.unaryExpr([](SCALAR elem)
 	{
 		return elem < 0.5 || elem > 1 ? 0.0 : 1.0; 
 	});
@@ -298,7 +304,7 @@ REGISTER_FUNCTION(SNOT);
 
 void MNOT::compute()
 {
- 	output = inMatrix()().unaryExpr([](double elem)
+ 	output = inMatrix()().unaryExpr([](SCALAR elem)
     	{
 		return elem < 0.5 ? 1.0 : 0.0; 
     	});

@@ -1,3 +1,5 @@
+![Alt text](icon/alexandria_icon.png?raw=true "Title")
+
 # README #
 
 ## I Description ##
@@ -14,20 +16,20 @@
 * You need to install kheops first.
 * Alexandria requiers  :
    1. the ROS joy package (on ubuntu/debian : ros-melodic-joy or ros-lunar-joy for ROS Lunar)
-   2. the ROS tf package (on ubuntu/debian : ros-melodic-tf or ros-lunar-tf for ROS Lunar)
+   2. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2 or ros-lunar-tf2 for ROS Lunar)
    3. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs or ros-lunar-nav-msgs for ROS Lunar)
 
 
 ### Install Alexandria ###
 * Install ROS dependancy : 
 
-**_apt-get install ros-melodic-joy  ros-melodic-tf ros-melodic-nav-msgs_**  [or ros-lunar-* for ROS LUNAR version]   
+**_apt-get install ros-melodic-joy  ros-melodic-tf2 ros-melodic-nav-msgs_**  [or ros-lunar-* for ROS LUNAR version]   
 
 * clone the repository in your catkin workspace :
 
 **_cd /home/johndoe/catkin_workspace/src_**
 
-**_git clone git@git.instar-robotics.com:software/NeuralNetwork/alexandria.git_**
+**_git clone https://github.com/instar-robotics/alexandria.git_**
 
 * go to your root catkin workspace :
 

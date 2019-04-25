@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<description>
+	<libname>kohonen</libname>
+	<functions>
+		<function>
+			<name>Kohonen</name>
+			<output type="MATRIX"> 
+			</output> 
+			<inputs>
+				<input type="SCALAR_SCALAR"> 
+					<name>learning_rate</name>
+					<desc>Learning rate</desc>
+				</input>
+				<input type="SCALAR_SCALAR"> 
+					<name>neighborhood</name>
+					<desc>Value to set the neighborhood to update</desc>
+				</input>
+				<input multiple="true" checkSize="false"  type="MATRIX_MATRIX">
+					<name>input</name>
+					<desc>Input signals</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Kohonen : Self organizing map</desc>
+		</function>	
+	</functions>
+</description>

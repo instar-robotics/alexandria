@@ -5,7 +5,7 @@
   <description>Alexandria : collection of functions for the neural networks simulator</description>
 
   <maintainer email="pierre.delarboulas@instar-robotics.com">Pierre Delarboulas</maintainer>
-  <license>CeCILL v2.1</license>
+  <license>GPL v3.0</license>
 
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->

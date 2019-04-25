@@ -1,18 +1,24 @@
 /*
-Copyright INSTAR Robotics
+  Copyright (C) INSTAR Robotics
 
-Author: Pierre Delarboulas
-
-This software is governed by the CeCILL v2.1 license under French law and abiding by the rules of distribution of free software. 
-You can use, modify and/ or redistribute the software under the terms of the CeCILL v2.1 license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info".
-As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by the license, 
-users are provided only with a limited warranty and the software's author, the holder of the economic rights,  and the successive licensors have only limited liability.  
-In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, 
-that may mean  that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge. 
-Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured 
-and, more generally, to use and operate it in the same conditions as regards security. 
-The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
+  Author: Pierre Delarboulas
+ 
+  This file is part of alexandria <https://github.com/instar-robotics/alexandria>.
+ 
+  alexandria is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  alexandria is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
+
 
 #include "filter.h"
 
@@ -46,9 +52,9 @@ bool checkMode(const std::string & smode, int& mode)
 	return ret;
 }
 
-double getFront(const double& z_1,const  double& z,const double &thres, int mode)
+SCALAR getFront(const SCALAR& z_1,const  SCALAR& z,const SCALAR &thres, int mode)
 {
-	double res = 0.0;
+	SCALAR res = 0.0;
 	if( z_1 < thres && thres <= z)
         {
                 if( mode == FD_IBOTH || mode == FD_IUP ) res = 1.0;
@@ -88,7 +94,7 @@ void MSFrontDetection::prerun()
 
 void MSFrontDetection::compute()
 {
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MSFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), MSFD_Functor<MATRIX>(imode, threshold()(), z_1, inMatrix()() ));
 
 	z_1 = inMatrix()();
 }
@@ -98,7 +104,7 @@ void MSFrontDetection::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         Kernel::iBind(threshold,"threshold", getUuid());
         Kernel::iBind(mode,"mode", getUuid());
-	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+	z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 /**************************************************************************/
@@ -110,7 +116,7 @@ void MMFrontDetection::prerun()
 
 void MMFrontDetection::compute()
 {
-	output = MatrixXd::NullaryExpr( output.rows(), output.cols(), MMFD_Functor<MatrixXd>(imode, threshold()(), z_1, inMatrix()() ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), MMFD_Functor<MATRIX>(imode, threshold()(), z_1, inMatrix()() ));
 
         z_1 = inMatrix()();
 
@@ -122,7 +128,7 @@ void MMFrontDetection::setparameters()
         Kernel::iBind(threshold,"threshold", getUuid());
         Kernel::iBind(mode,"mode", getUuid());
 	
-	z_1 = MatrixXd::Constant( output.rows(), output.cols(), 0  );
+	z_1 = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 /*******************************************************************************************************/
@@ -235,7 +241,7 @@ REGISTER_FUNCTION(SHeavisideCustom);
 
 void MHeaviside::compute()
 {
- 	output = inMatrix()().unaryExpr([](double elem)
+ 	output = inMatrix()().unaryExpr([](SCALAR elem)
     	{
 		return elem < 1.0 ? 0.0 : 1.0; 
     	});
@@ -273,7 +279,7 @@ void SHeavisideCustom::setparameters()
 
 void MSHeavisideCustom::compute()
 {
-        output = inMatrix()().unaryExpr(HeaviFunc<double>(thres()()));
+        output = inMatrix()().unaryExpr(HeaviFunc<SCALAR>(thres()()));
 }
 
 void MSHeavisideCustom::setparameters()
@@ -284,7 +290,7 @@ void MSHeavisideCustom::setparameters()
 
 void MMHeavisideCustom::compute()
 {
-        output = inMatrix()().binaryExpr(thres()(), [](double e1, double e2)
+        output = inMatrix()().binaryExpr(thres()(), [](SCALAR e1, SCALAR e2)
         {
                 return e1 < e2 ? 0.0 : 1.0;
         });

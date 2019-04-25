@@ -20,7 +20,27 @@
 */
 
 
+#ifndef __KOHONEN_HPP__
+#define __KOHONEN_HPP__
 
-#include "demofct.h"
+#include "kheops/kernel/function.h"
+#include "kheops/kernel/kernel.h"
 
-REGISTER_FUNCTION(DemoFct);
+class Kohonen : public FMatrix
+{
+	private :
+
+		ISInput learning_rate;
+		ISInput neighborhood;
+		IMMInput input;
+	
+        public :
+		
+		virtual ~Kohonen(){}
+
+		virtual void compute();
+		virtual void setparameters();
+
+};
+
+#endif // __KOHONEN_HPP__

@@ -1,21 +1,28 @@
 /*
-Copyright INSTAR Robotics
+  Copyright (C) INSTAR Robotics
 
-Author: Pierre Delarboulas
-
-This software is governed by the CeCILL v2.1 license under French law and abiding by the rules of distribution of free software.
-You can use, modify and/ or redistribute the software under the terms of the CeCILL v2.1 license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info".
-As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by the license,
-users are provided only with a limited warranty and the software's author, the holder of the economic rights,  and the successive licensors have only limited liability.
-In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge.
-Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured
-and, more generally, to use and operate it in the same conditions as regards security.
-The fact that you are presently reading this means that you have had knowledge of the CeCILL v2.1 license and that you accept its terms.
+  Author: Pierre Delarboulas
+ 
+  This file is part of alexandria <https://github.com/instar-robotics/alexandria>.
+ 
+  alexandria is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+ 
+  alexandria is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #include "rosinput.h"
-#include <tf/tf.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Matrix3x3.h>
 #include <algorithm>
 #include <cmath>
 
@@ -121,7 +128,7 @@ void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 		throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
 	}
 
- 	Map<const MatrixXd> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
+ 	Map<const MATRIX> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
 
        	output = mEnc;
 }
@@ -492,10 +499,10 @@ void OdoEuler::prerun()
 
 void OdoEuler::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	tf2::Matrix3x3 m(q);
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 	auto mout = getMapVect(output);
@@ -538,10 +545,10 @@ void OdoEulerRoll::setparameters()
 
 void OdoEulerRoll::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        tf2::Matrix3x3 m(q);
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = roll;
@@ -580,10 +587,10 @@ void OdoEulerPitch::setparameters()
 
 void OdoEulerPitch::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        tf2::Matrix3x3 m(q);
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = pitch;
@@ -622,10 +629,10 @@ void OdoEulerYaw::setparameters()
 
 void OdoEulerYaw::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-	tf::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf::Matrix3x3 m(q);
-        double roll, pitch, yaw;
+        tf2::Matrix3x3 m(q);
+        SCALAR roll, pitch, yaw;
         m.getRPY(roll, pitch, yaw);
 
         output = yaw;
@@ -1157,14 +1164,14 @@ void Lidar1D::setparameters()
 void Lidar1D::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
 {
 	auto mout = getMapVect(output);
-        double RM = std::min(range_max()(),  (double)(msg->range_max) );
-        double offset =  M_PI - fabs(msg->angle_min);
+        SCALAR RM = std::min(range_max()(),  (SCALAR)(msg->range_max) );
+        SCALAR offset =  M_PI - fabs(msg->angle_min);
 
         for( unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
         {
                 unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( mout.size() / (2* M_PI)) ;
 
-                double value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
+                SCALAR value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
                 if( value < 0 ) value = 0;
 
 								if( j < mout.size() ) {
@@ -1222,15 +1229,15 @@ void Lidar2D::setparameters()
 //void Lidar2D::callback(const sensor_msgs::PointCloud2::ConstPtr &msg )
 void Lidar2D::callback(const PointCloud::ConstPtr &msg )
 {
-	output = MatrixXd::Constant(output.rows(),output.cols(),0);
+	output = MATRIX::Constant(output.rows(),output.cols(),0);
 
 	for( unsigned int i = 0 ; i <  msg->points.size() ; i++ )
 	{
 
 
-		 double theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
+		 SCALAR theta = (2 * atan( msg->points[i].y / ( msg->points[i].x + sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y   ))) + M_PI ) *  output.cols() / (2*M_PI);
 
-		 double value = sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z  );
+		 SCALAR value = sqrt( msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z  );
 
 		 std::cout <<  msg->points[i].z+10  << " " << theta << " "<< value << std::endl;
 		 if( ! std::isnan(theta) )  output( msg->points[i].z+10 , theta) = value;
@@ -1319,10 +1326,10 @@ void Compass3D::prerun()
 
 void Compass3D::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	tf2::Matrix3x3 m(q);
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 	auto mout = getMapVect(output);
@@ -1366,10 +1373,10 @@ void CompassX::setparameters()
 
 void CompassX::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	tf2::Matrix3x3 m(q);
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 
@@ -1410,10 +1417,10 @@ void CompassY::setparameters()
 
 void CompassY::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	tf2::Matrix3x3 m(q);
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 
@@ -1454,10 +1461,10 @@ void CompassZ::setparameters()
 
 void CompassZ::callback( const sensor_msgs::Imu::ConstPtr &msg)
 {
-	tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+	tf2::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
 
-	tf::Matrix3x3 m(q);
-	double roll, pitch, yaw;
+	tf2::Matrix3x3 m(q);
+	SCALAR roll, pitch, yaw;
 	m.getRPY(roll, pitch, yaw);
 
 
@@ -1653,7 +1660,7 @@ void Accelerometer3D::compute()
 
 void Accelerometer3D::setparameters()
 {
-  Kernel::iBind(topic_name,"topic_name", getUuid());
+  	Kernel::iBind(topic_name,"topic_name", getUuid());
  	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(sleep,"sleep", getUuid());
 }
