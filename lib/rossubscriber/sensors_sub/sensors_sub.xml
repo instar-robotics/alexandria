@@ -480,6 +480,7 @@
                         </inputs>
                         <icon></icon>
                         <desc>Read sensor_msgs/NavSatFix.altitude and load value into a Scalar.</desc>
+                </function>
         </functions>
 </description>
 
