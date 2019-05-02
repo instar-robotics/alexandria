@@ -20,17 +20,20 @@
 */
 
 
-#include "rosoutput.h"
+#include "geometry_pub.h"
 
-REGISTER_FUNCTION(CmdVelRawOutput);
-REGISTER_FUNCTION(CmdVelVectOutput);
-REGISTER_FUNCTION(CmdVel2DOutput);
+REGISTER_FUNCTION(TwistPub);
+REGISTER_FUNCTION(TwistVectPub);
+REGISTER_FUNCTION(Twist2DPub);
+REGISTER_FUNCTION(AccelPub);
+REGISTER_FUNCTION(AccelVectPub);
+REGISTER_FUNCTION(Accel2DPub);
 
 /*******************************************************************************************************/
-/*****************                         CmdVelRawOutput                           *******************/
+/********************                         TwistPub                             *********************/
 /*******************************************************************************************************/
 
-void CmdVelRawOutput::compute()
+void TwistPub::compute()
 {
 	auto mout = getMapVect(output);
 	mout[0] = linX()();
@@ -51,12 +54,11 @@ void CmdVelRawOutput::compute()
 	pub.publish(msg);
 }
 
-void CmdVelRawOutput::setparameters()
+void TwistPub::setparameters()
 {
-	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
+	if( output.size() != 6 ) throw std::invalid_argument("TwistPub : Output dimension should be 6 !");
+	FMatrixPub<geometry_msgs::Twist>::setparameters();
 
- 	Kernel::iBind(topic_name,"topic_name", getUuid());
- 	Kernel::iBind(size_queue,"size_queue", getUuid());
  	Kernel::iBind(linX,"lin.x", getUuid());
  	Kernel::iBind(linY,"lin.y", getUuid());
  	Kernel::iBind(linZ,"lin.z", getUuid());
@@ -65,18 +67,11 @@ void CmdVelRawOutput::setparameters()
  	Kernel::iBind(rotZ,"rot.z", getUuid());
 }
 
-void CmdVelRawOutput::prerun()
-{
-	ros::NodeHandle n;
-	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
-}
-
-
 /*******************************************************************************************************/
-/*****************                        CmdVelVectOutput                           *******************/
+/********************                         TwistVectPub                           *******************/
 /*******************************************************************************************************/
 
-void CmdVelVectOutput::compute()
+void TwistVectPub::compute()
 {
 	auto mout = getMapVect(output);
 	
@@ -104,30 +99,27 @@ void CmdVelVectOutput::compute()
 	pub.publish(msg);
 }
 
-void CmdVelVectOutput::setparameters()
+void TwistVectPub::setparameters()
 {
-	if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 6 !");
-
-        Kernel::iBind(topic_name,"topic_name", getUuid());
- 	Kernel::iBind(size_queue,"size_queue", getUuid());
+	if( output.size() != 6 ) throw std::invalid_argument("TwistVectPub : Output dimension should be 6 !");
+	FMatrixPub<geometry_msgs::Twist>::setparameters();
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
 
-void CmdVelVectOutput::prerun()
+void TwistVectPub::prerun()
 {
-	if( lin().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Linear Input dimension should be 3 !");
-	if( rot().iSize() != 3 )  throw std::invalid_argument("CmdVelRawOutput : Rotational Input dimension should be 3 !");
+	if( lin().iSize() != 3 )  throw std::invalid_argument("TwistVectPub : Linear Input dimension should be 3 !");
+	if( rot().iSize() != 3 )  throw std::invalid_argument("TwistVectPub : Rotational Input dimension should be 3 !");
 
-	ros::NodeHandle n;
-	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
+	FMatrixPub<geometry_msgs::Twist>::prerun();
 }
 
 /*******************************************************************************************************/
-/*****************                          CmdVel2DOutput                           *******************/
+/********************                          Twist2DPub                           ********************/
 /*******************************************************************************************************/
 
-void CmdVel2DOutput::compute()
+void Twist2DPub::compute()
 {
 	auto mout = getMapVect(output);
 
@@ -143,35 +135,21 @@ void CmdVel2DOutput::compute()
         msg.angular.z  = mout[1];
 
         pub.publish(msg);
-
 }
 
-void CmdVel2DOutput::setparameters()
+void Twist2DPub::setparameters()
 {
-	if( output.rows() * output.cols() != 2 ) throw std::invalid_argument("CmdVelRawOutput : Output dimension should be 2 !");
-
-        Kernel::iBind(topic_name,"topic_name", getUuid());
- 	Kernel::iBind(size_queue,"size_queue", getUuid());
+	if( output.size() != 2 ) throw std::invalid_argument("Twist2DPub : Output dimension should be 2 !");
+	FMatrixPub<geometry_msgs::Twist>::setparameters();
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
 
-void CmdVel2DOutput::prerun()
-{
-	ros::NodeHandle n;
-	pub = n.advertise<geometry_msgs::Twist>( topic_name , size_queue()());
-}
-
-
-REGISTER_FUNCTION(AccelRawOutput);
-REGISTER_FUNCTION(AccelVectOutput);
-REGISTER_FUNCTION(Accel2DOutput);
-
 /*******************************************************************************************************/
-/******************                         AccelRawOutput                           *******************/
+/*********************                         AccelPub                           **********************/
 /*******************************************************************************************************/
 
-void AccelRawOutput::compute()
+void AccelPub::compute()
 {
         auto mout = getMapVect(output);
         mout[0] = linX()();
@@ -192,12 +170,12 @@ void AccelRawOutput::compute()
         pub.publish(msg);
 }
 
-void AccelRawOutput::setparameters()
+void AccelPub::setparameters()
 {
-        if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("AccelRawOutput : Output dimension should be 6 !");
+        if(output.size() != 6) throw std::invalid_argument("AccelPub : Output dimension should be 6 !");
+	
+	FMatrixPub<geometry_msgs::Accel>::setparameters();
 
-        Kernel::iBind(topic_name,"topic_name", getUuid());
-        Kernel::iBind(size_queue,"size_queue", getUuid());
         Kernel::iBind(linX,"lin.x", getUuid());
         Kernel::iBind(linY,"lin.y", getUuid());
         Kernel::iBind(linZ,"lin.z", getUuid());
@@ -206,17 +184,11 @@ void AccelRawOutput::setparameters()
         Kernel::iBind(rotZ,"rot.z", getUuid());
 }
 
-void AccelRawOutput::prerun()
-{
-        ros::NodeHandle n;
-        pub = n.advertise<geometry_msgs::Accel>( topic_name , size_queue()());
-}
-
 /*******************************************************************************************************/
-/******************                        AccelVectOutput                           *******************/
+/********************                        AccelVectPub                            *******************/
 /*******************************************************************************************************/
 
-void AccelVectOutput::compute()
+void AccelVectPub::compute()
 {
         auto mout = getMapVect(output);
 
@@ -244,30 +216,28 @@ void AccelVectOutput::compute()
         pub.publish(msg);
 }
 
-void AccelVectOutput::setparameters()
+void AccelVectPub::setparameters()
 {
-        if( output.rows() * output.cols() != 6 ) throw std::invalid_argument("AccelRawOutput : Output dimension should be 6 !");
-
-        Kernel::iBind(topic_name,"topic_name", getUuid());
-        Kernel::iBind(size_queue,"size_queue", getUuid());
+        if( output.size() != 6 ) throw std::invalid_argument("AccelVectPub : Output dimension should be 6 !");
+	
+	FMatrixPub<geometry_msgs::Accel>::setparameters();
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
 
-void AccelVectOutput::prerun()
+void AccelVectPub::prerun()
 {
-        if( lin().iSize() != 3 )  throw std::invalid_argument("AccelRawOutput : Linear Input dimension should be 3 !");
-        if( rot().iSize() != 3 )  throw std::invalid_argument("AccelRawOutput : Rotational Input dimension should be 3 !");
-
-        ros::NodeHandle n;
-        pub = n.advertise<geometry_msgs::Accel>( topic_name , size_queue()());
+        if( lin().iSize() != 3 )  throw std::invalid_argument("AccelVectPub : Linear Input dimension should be 3 !");
+        if( rot().iSize() != 3 )  throw std::invalid_argument("AccelVectPub : Rotational Input dimension should be 3 !");
+	
+	FMatrixPub<geometry_msgs::Accel>::prerun();
 }
 
 /*******************************************************************************************************/
-/******************                          Accel2DOutput                           *******************/
+/********************                          Accel2DPub                            *******************/
 /*******************************************************************************************************/
 
-void Accel2DOutput::compute()
+void Accel2DPub::compute()
 {
         auto mout = getMapVect(output);
 
@@ -283,22 +253,13 @@ void Accel2DOutput::compute()
         msg.angular.z  = mout[1];
 
         pub.publish(msg);
-
 }
 
-void Accel2DOutput::setparameters()
+void Accel2DPub::setparameters()
 {
-        if( output.rows() * output.cols() != 2 ) throw std::invalid_argument("AccelRawOutput : Output dimension should be 2 !");
-
-        Kernel::iBind(topic_name,"topic_name", getUuid());
-        Kernel::iBind(size_queue,"size_queue", getUuid());
+        if( output.size() != 2 ) throw std::invalid_argument("Accel2DPub : Output dimension should be 2 !");
+	
+	FMatrixPub<geometry_msgs::Accel>::setparameters();
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
-
-void Accel2DOutput::prerun()
-{
-        ros::NodeHandle n;
-        pub = n.advertise<geometry_msgs::Accel>( topic_name , size_queue()());
-}
-

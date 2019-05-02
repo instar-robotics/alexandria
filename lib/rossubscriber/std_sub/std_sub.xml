@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-        <libname>stdinput</libname>
+        <libname>std_sub</libname>
         <functions>
                 <function>
-                        <name>MatrixInput</name>
+                        <name>MatrixSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -24,7 +24,7 @@
                         <desc>Read MultiArray topic and load values into a Matrix</desc>
                 </function>
                 <function>
-                        <name>ScalarInput</name>
+                        <name>ScalarSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>

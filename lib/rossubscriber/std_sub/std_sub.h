@@ -19,70 +19,57 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __STD_INPUT_HPP__
-#define __STD_INPUT_HPP__
+#ifndef __STD_MSGS_HPP__
+#define __STD_MSGS_HPP__
 
-#include "kheops/kernel/function.h"
-#include "kheops/kernel/kernel.h"
-#include "kheops/ros/rossubscriber.h"
+#include "kheops/ros/fsub.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float64.h"
+
+/* Note :
+ *      1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
+ *      - IString topic_name : for the topic Name
+ *      - ISInput size_queue : define the size of the queue
+ *      - ISInput sleep      : define the behavior of the Function [blocking Function if sleep < 0 or non-blocking Function and time to wait if sleep >= 0]
+ *
+ *      2- This 3 inputs MUST BE BIND to the kernel in the method setparameters.
+ *      If you extend setparameters to add other Inputs, don't forget to call FMatrixSub::setparameters or FScalarSub::setparameters ! 
+ *
+ *      3- And Most important : don't forget to add this Inputs in the XML description !
+ *      For now, we don't have mechanisms to load automatically the input in the XML description
+ *      Using XML ENTITY could be a good way to do this.
+ */
 
 /*******************************************************************************************************/
 /*****************             Kheops Basic Type Input (Scalar and Matrix)           *******************/
 /*******************************************************************************************************/
 
 /*
- * ScalarInput : ROS Input for SCALAR data
+ * ScalarSub : ROS subscriber for SCALAR data
  */
-class ScalarInput : public FScalar , public RosSubscriber<std_msgs::Float64>
+class ScalarSub : public FScalarSub<std_msgs::Float64>
 {
-        private :
-
-                IString topic_name;
-                ISInput size_queue;
-                ISInput sleep;
-
-
         public :
 
-                ScalarInput() :  RosSubscriber<std_msgs::Float64>(){}
-                virtual ~ScalarInput(){}
+                ScalarSub() : FScalarSub<std_msgs::Float64>(){}
+                virtual ~ScalarSub(){}
 
-                virtual void compute();
-                virtual void setparameters();
-
-                virtual void onQuit();
-                virtual void onRun();
-                virtual void onPause();
                 virtual void callback(const std_msgs::Float64::ConstPtr &msg);
 };
 
 /*
- * MatrixInput : ROS Input for MATRIX data
+ * MatrixSub : ROS subscriber for MATRIX data
  * Float64MultiArray should have the same dimension than the Output Matrix
  */
-class MatrixInput : public FMatrix , public RosSubscriber<std_msgs::Float64MultiArray>
+class MatrixSub : public FMatrixSub<std_msgs::Float64MultiArray>
 {
-        private :
-
-                IString topic_name;
-                ISInput size_queue;
-                ISInput sleep;
-
         public :
 
-                MatrixInput() :  RosSubscriber<std_msgs::Float64MultiArray>()  {}
-                virtual ~MatrixInput(){}
+                MatrixSub() : FMatrixSub<std_msgs::Float64MultiArray>()  {}
+                virtual ~MatrixSub(){}
 
-                virtual void compute();
-                virtual void setparameters();
-
-                virtual void onQuit();
-                virtual void onRun();
-                virtual void onPause();
                 virtual void callback( const std_msgs::Float64MultiArray::ConstPtr &msg );
 };
 
 
-#endif // __STD_INPUT_HPP__
+#endif // __STD_MSGS_HPP__

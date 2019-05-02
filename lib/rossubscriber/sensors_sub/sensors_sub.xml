@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-        <libname>sensors</libname>
+        <libname>sensors_sub</libname>
         <functions>
 		<function>
-                        <name>JoyAxes</name>
+                        <name>JoyAxesSub</name>
                         <output type="MATRIX"> 
                         </output>
                         <inputs>
@@ -24,7 +24,7 @@
                         <desc>Read sensor_msgs/Joy.axes and load value into a Matrix [Matrix dimension must be egal to the numbers of axes into the Joy message; the number of Axes depends on the joystick used]</desc>
                 </function>
                 <function>
-                        <name>JoyAxe</name>
+                        <name>JoyAxeSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -49,7 +49,7 @@
                         <desc>Read sensor_msgs/Joy.axes and load value associated to the axe define by "axe input" into a Scalar</desc>
                 </function>
                 <function>
-                        <name>JoyButtons</name>
+                        <name>JoyButtonsSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -70,7 +70,7 @@
                         <desc>Read sensor_msgs/Joy.buttons and load value into a Matrix [Matrix dimension must be egal to the numbers of buttons into the Joy message; the number of Axes depends on the joystick used]</desc>
                 </function>
                 <function>
-                        <name>JoyButton</name>
+                        <name>JoyButtonSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -96,7 +96,7 @@
                 </function>
 
 		<function>
-                        <name>LaserScan</name>
+                        <name>LaserScanSub</name>
                         <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
@@ -121,7 +121,32 @@
                         <desc>Read sensor_msgs/LaserScan.ranges and project values into a Matric [Output must be a VECTOR ROW=1 and Cols=N]</desc>
                 </function>
 		<function>
-			<name>Compass3D</name>
+                        <name>PointCloud2Sub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>range_max</name>
+                                        <desc>Max Range [in meters] : values are projected between 0 and range_max</desc>
+                                </input>
+                        </inputs>
+                        <icon>1d_lidar.svg</icon>
+                        <desc></desc>
+                </function>
+		<function>
+			<name>Compass3DSub</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -142,7 +167,7 @@
 			<desc>Read sensor_msgs/Imu.orientation and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 		</function>
 		 <function>
-			<name>CompassX</name>
+			<name>CompassXSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -163,7 +188,7 @@
 			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the X compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 		</function>
 		 <function>
-			<name>CompassY</name>
+			<name>CompassYSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -184,7 +209,7 @@
 			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Y compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 		</function>
 		<function>
-			<name>CompassZ</name>
+			<name>CompassZSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -205,7 +230,7 @@
 			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Z compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
 		</function>
 		<function>
-			<name>Gyroscope3D</name>
+			<name>Gyroscope3DSub</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -226,7 +251,7 @@
 			<desc>Read sensor_msgs/Imu.angular_velocity and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 		</function>
 		 <function>
-			<name>GyroscopeX</name>
+			<name>GyroscopeXSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -247,7 +272,7 @@
 			<desc>Read sensor_msgs/Imu.angular_velocity.x and load value into a Scalar.</desc>
 		</function>
 		 <function>
-			<name>GyroscopeY</name>
+			<name>GyroscopeYSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -268,7 +293,7 @@
 			<desc>Read sensor_msgs/Imu.angular_velocity.y and load value into a Scalar.</desc>
 		</function>
 		<function>
-			<name>GyroscopeZ</name>
+			<name>GyroscopeZSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -289,7 +314,7 @@
 			<desc>Read sensor_msgs/Imu.angular_velocity.z and load value into a Scalar.</desc>
 		</function>
 		<function>
-			<name>Accelerometer3D</name>
+			<name>Accelerometer3DSub</name>
 			<output type="MATRIX">
 			</output>
 			<inputs>
@@ -310,7 +335,7 @@
 			<desc>Read sensor_msgs/Imu.linear_acceleration and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
 		</function>
 		<function>
-			<name>AccelerometerX</name>
+			<name>AccelerometerXSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -331,7 +356,7 @@
 			<desc>Read sensor_msgs/Imu.linear_acceleration.x and load value into a Scalar.</desc>
 		</function>
 		<function>
-			<name>AccelerometerY</name>
+			<name>AccelerometerYSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -352,7 +377,7 @@
 			<desc>Read sensor_msgs/Imu.linear_acceleration.y and load value into a Scalar.</desc>
 		</function>
 		<function>
-			<name>AccelerometerZ</name>
+			<name>AccelerometerZSub</name>
 			<output type="SCALAR">
 			</output>
 			<inputs>
@@ -372,6 +397,89 @@
 			<icon>accelerometer.svg</icon>
 			<desc>Read sensor_msgs/Imu.linear_acceleration.z and load value into a Scalar.</desc>
 		</function>
+		<function>
+                        <name>NavSatFixSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read sensor_msgs/NavSatFix (latitude,longitude and altitude) and load value into a 3D Row or Col Vector.</desc>
+                </function>
+		<function>
+                        <name>NavSatFixLatSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read sensor_msgs/NavSatFix.latitude and load value into a Scalar.</desc>
+                </function>
+                <function>
+                        <name>NavSatFixLongSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read sensor_msgs/NavSatFix.longitude and load value into a Scalar.</desc>
+                </function>
+                <function>
+                        <name>NavSatFixAltSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read sensor_msgs/NavSatFix.altitude and load value into a Scalar.</desc>
         </functions>
 </description>
 

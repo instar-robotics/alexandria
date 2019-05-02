@@ -23,22 +23,33 @@
 #ifndef __ROS_OUTPUT_HPP__
 #define __ROS_OUTPUT_HPP__
 
-#include "kheops/kernel/function.h"
-#include "kheops/kernel/kernel.h"
+#include "kheops/ros/fpub.h"
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
 #include <ros/ros.h>
 
+/* Note :
+ *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:
+ *      - IString topic_name : for the topic Name
+ *      - ISInput size_queue : define the size of the queue
+ *
+ *      2- This 2 inputs MUST BE BIND to the kernel in the method setparameters.
+ *      If you extend setparameters to add other Inputs, don't forget to call FMatrixPub::setparameters or FScalarPub::setparameters !
+ *
+ *      3- And Most important : don't forget to add this Inputs in the XML description !
+ *      For now, we don't have mechanisms to load automatically the input in the XML description
+ *      Using XML ENTITY could be a good way to do this.
+ */
+
+
 /*
- * CmdVelRawOutput : Send command velocity in geometry_msgs/Twist message 
+ * TwistPub : Send command velocity in geometry_msgs/Twist message 
  * 6 Scalars input (lin.x, lin.y, lin.z and rot.x, rot.y, rot.z)
  */
-class CmdVelRawOutput : public FMatrix
+class TwistPub : public FMatrixPub<geometry_msgs::Twist>
 {
 	private :
 
-		IString topic_name;
-                ISInput size_queue;
 		ISInput linX;
 		ISInput linY;
 		ISInput linZ;
@@ -46,80 +57,66 @@ class CmdVelRawOutput : public FMatrix
 		ISInput rotY;
 		ISInput rotZ;
 
-		ros::Publisher pub;
-
 	public :
 		
-		CmdVelRawOutput(){}
-		virtual ~CmdVelRawOutput(){}
+		TwistPub() : FMatrixPub<geometry_msgs::Twist>() {}
+		virtual ~TwistPub(){}
 
-		virtual void prerun();
 		virtual void compute();
                 virtual void setparameters();
 };
 
 /*
- * CmdVelVectOutput : Send command velocity in geometry_msgs/Twist message
+ * TwistVectPub: Send command velocity in geometry_msgs/Twist message
  * 2 Vectors input (lin(x,y,z) and rot(x,y,z) where x = roll, y = pitch and z = yaw )
  */
-class CmdVelVectOutput : public FMatrix
+class TwistVectPub : public FMatrixPub<geometry_msgs::Twist>
 {
         private :
 
-                IString topic_name;
-                ISInput size_queue;
                 ISMInput lin;
                 ISMInput rot;
 
-		ros::Publisher pub;
-
         public :
 
-                CmdVelVectOutput(){}
-                virtual ~CmdVelVectOutput(){}
+                TwistVectPub() : FMatrixPub<geometry_msgs::Twist>() {}
+                virtual ~TwistVectPub(){}
 
-                virtual void prerun();
                 virtual void compute();
+		virtual void prerun();
                 virtual void setparameters();
 };
 
 /*
- * CmdVel2DOutput : Send command velocity in geometry_msgs/Twist message
+ * Twist2DPub : Send command velocity in geometry_msgs/Twist message
  * 2 Scalar input (lin(x) and rot(z) where z = yaw )
  * This is the Function to command 2D Mobile Base
  */
-class CmdVel2DOutput : public FMatrix
+class Twist2DPub : public FMatrixPub<geometry_msgs::Twist> 
 {
         private :
 
-                IString topic_name;
-                ISInput size_queue;
                 ISInput lin;
                 ISInput rot;
 		
-		ros::Publisher pub;
-
         public :
 
-                CmdVel2DOutput(){}
-                virtual ~CmdVel2DOutput(){}
+                Twist2DPub() : FMatrixPub<geometry_msgs::Twist>() {}
+                virtual ~Twist2DPub(){}
 
-                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
 
 
 /*
- * AccelRawOutput : Send acceleration parameters in geometry_msgs/Accel message 
+ * AccelPub : Send acceleration parameters in geometry_msgs/Accel message 
  * 6 Scalars input (lin.x, lin.y, lin.z and rot.x, rot.y, rot.z)
  */
-class AccelRawOutput : public FMatrix
+class AccelPub : public FMatrixPub<geometry_msgs::Accel>
 {
         private :
 
-                IString topic_name;
-                ISInput size_queue;
                 ISInput linX;
                 ISInput linY;
                 ISInput linZ;
@@ -127,38 +124,31 @@ class AccelRawOutput : public FMatrix
                 ISInput rotY;
                 ISInput rotZ;
 
-                ros::Publisher pub;
-
         public :
 
-                AccelRawOutput(){}
-                virtual ~AccelRawOutput(){}
+                AccelPub() : FMatrixPub<geometry_msgs::Accel>()  {}
+                virtual ~AccelPub(){}
 
-                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
 
 
 /*
- * AccelVectOutput : Send acceleration parameters in geometry_msgs/Accel message 
+ * AccelVectPub : Send acceleration parameters in geometry_msgs/Accel message 
  * 2 Vectors input (lin(x,y,z) and rot(x,y,z) where x = roll, y = pitch and z = yaw )
  */
-class AccelVectOutput : public FMatrix
+class AccelVectPub : public FMatrixPub<geometry_msgs::Accel>
 {
         private :
 
-                IString topic_name;
-                ISInput size_queue;
                 ISMInput lin;
                 ISMInput rot;
 
-                ros::Publisher pub;
-
         public :
 
-                AccelVectOutput(){}
-                virtual ~AccelVectOutput(){}
+                AccelVectPub() : FMatrixPub<geometry_msgs::Accel>() {}
+                virtual ~AccelVectPub(){}
 
                 virtual void prerun();
                 virtual void compute();
@@ -166,27 +156,22 @@ class AccelVectOutput : public FMatrix
 };
 
 /*
- * Accel2DOutput : Send acceleration parameters in geometry_msgs/Accel message
+ * Accel2DPub : Send acceleration parameters in geometry_msgs/Accel message
  * 2 Scalar input (lin(x) and rot(z) where z = yaw )
  * This is the Function to command 2D Mobile Base
  */
-class Accel2DOutput : public FMatrix
+class Accel2DPub : public FMatrixPub<geometry_msgs::Accel>
 {
         private :
 
-                IString topic_name;
-                ISInput size_queue;
                 ISInput lin;
                 ISInput rot;
 
-                ros::Publisher pub;
-
         public :
 
-                Accel2DOutput(){}
-                virtual ~Accel2DOutput(){}
+                Accel2DPub(){}
+                virtual ~Accel2DPub(){}
 
-                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };

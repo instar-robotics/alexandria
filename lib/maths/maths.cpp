@@ -20,15 +20,39 @@
 */
 
 
-#include "basicmaths.h"
+#include "maths.h"
 #include <cmath>
 #include <algorithm>
+
+REGISTER_FUNCTION(ArgMax1D);
+REGISTER_FUNCTION(ArgMax2D);
+REGISTER_FUNCTION(ArgMin1D);
+REGISTER_FUNCTION(ArgMin2D);
+REGISTER_FUNCTION(MaxCoeff);
+REGISTER_FUNCTION(MinCoeff);
+REGISTER_FUNCTION(SMin);
+REGISTER_FUNCTION(FMin);
+REGISTER_FUNCTION(SMax);
+REGISTER_FUNCTION(FMax);
+REGISTER_FUNCTION(MAbs);
+REGISTER_FUNCTION(SAbs);
+REGISTER_FUNCTION(MModulo);
+REGISTER_FUNCTION(MSModulo);
+REGISTER_FUNCTION(SModulo);
+REGISTER_FUNCTION(MDerivative);
+REGISTER_FUNCTION(SDerivative);
+REGISTER_FUNCTION(MZ_1);
+REGISTER_FUNCTION(SZ_1);
+REGISTER_FUNCTION(PolarToCart);
+REGISTER_FUNCTION(PolarToCartX);
+REGISTER_FUNCTION(PolarToCartY);
+REGISTER_FUNCTION(CartToPolar);
+REGISTER_FUNCTION(CartToPolarR);
+REGISTER_FUNCTION(CartToPolarTheta);
 
 /*******************************************************************************************************/
 /**********************************************  ArgMax  ***********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(ArgMax1D);
 
 void ArgMax1D::upreload()
 {
@@ -52,7 +76,6 @@ void ArgMax1D::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
-REGISTER_FUNCTION(ArgMax2D);
 
 void ArgMax2D::upreload()
 {
@@ -87,8 +110,6 @@ void ArgMax2D::setparameters()
 /**********************************************  ArgMin  ***********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(ArgMin1D);
-
 void ArgMin1D::upreload()
 {
 	if( inMatrix().i().rows() != 1 && inMatrix().i().cols() != 1 )
@@ -111,7 +132,6 @@ void ArgMin1D::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
-REGISTER_FUNCTION(ArgMin2D);
 
 void ArgMin2D::upreload()
 {
@@ -145,8 +165,6 @@ void ArgMin2D::setparameters()
 /*******************************************  MaxCoeff  ************************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MaxCoeff);
-
 void MaxCoeff::compute()
 {
 	output = inMatrix().i().maxCoeff() * inMatrix().w() ;
@@ -160,8 +178,6 @@ void MaxCoeff::setparameters()
 /*******************************************************************************************************/
 /*******************************************  MinCoeff   ***********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MinCoeff);
 
 void MinCoeff::compute()
 {
@@ -178,8 +194,6 @@ void MinCoeff::setparameters()
 /************************************************  Min   ***********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(SMin);
-
 void SMin::compute()
 {
 	output = inScalar()();
@@ -195,7 +209,6 @@ void SMin::setparameters()
         Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
-REGISTER_FUNCTION(FMin);
 
 void FMin::compute()
 {
@@ -216,7 +229,6 @@ void FMin::setparameters()
 /************************************************  Max   ***********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(SMax);
 
 void SMax::compute()
 {
@@ -233,7 +245,6 @@ void SMax::setparameters()
         Kernel::iBind(inScalar,"inScalar", getUuid());
 }
 
-REGISTER_FUNCTION(FMax);
 
 void FMax::compute()
 {
@@ -253,9 +264,6 @@ void FMax::setparameters()
 /*******************************************************************************************************/
 /************************************************  Abs   ***********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MAbs);
-REGISTER_FUNCTION(SAbs);
 
 void MAbs::compute()
 {
@@ -280,10 +288,6 @@ void SAbs::setparameters()
 /*******************************************************************************************************/
 /*********************************************   MODULO   **********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MModulo);
-REGISTER_FUNCTION(MSModulo);
-REGISTER_FUNCTION(SModulo);
 
 void MModulo::compute()
 {
@@ -321,11 +325,6 @@ void SModulo::setparameters()
 /*******************************************************************************************************/
 /******************************************   Derivative   *********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MDerivative);
-REGISTER_FUNCTION(SDerivative);
-REGISTER_FUNCTION(MZ_1);
-REGISTER_FUNCTION(SZ_1);
 
 void MDerivative::compute()
 {
@@ -373,5 +372,99 @@ void SZ_1::setparameters()
 {
         Kernel::iBind(inScalar,"inScalar", getUuid());
 	z_1 = 0;
+}
+
+/*******************************************************************************************************/
+/**************************************   Polar to cartesian   *****************************************/
+/*******************************************************************************************************/
+
+void PolarToCart::setparameters()
+{
+	if( output.size() != 2) throw std::invalid_argument("PolarToCart Function : output dimension must be 2 !");
+
+	Kernel::iBind(r,"r", getUuid());
+	Kernel::iBind(theta,"theta", getUuid());
+}
+
+void PolarToCart::compute()
+{
+	auto mout = getMapVect(output);
+
+	// X = r . cos theta
+	mout[0] = r()() * cos(theta()()); 
+	// Y = r . sin theta
+	mout[1] = r()() * sin(theta()()); 
+}
+
+void PolarToCartX::setparameters()
+{
+        Kernel::iBind(r,"r", getUuid());
+        Kernel::iBind(theta,"theta", getUuid());
+}
+
+void PolarToCartX::compute()
+{
+        // X = r . cos theta
+        output = r()() * cos(theta()());
+}
+
+
+void PolarToCartY::setparameters()
+{
+        Kernel::iBind(r,"r", getUuid());
+        Kernel::iBind(theta,"theta", getUuid());
+}
+
+void PolarToCartY::compute()
+{
+        // Y = r . sin theta
+        output = r()() * sin(theta()());
+}
+
+/*******************************************************************************************************/
+/**************************************   Cartesian to Polar   *****************************************/
+/*******************************************************************************************************/
+
+void CartToPolar::setparameters()
+{
+        if( output.size() != 2) throw std::invalid_argument("CartToPolar Function : output dimension must be 2 !");
+
+        Kernel::iBind(x,"x", getUuid());
+        Kernel::iBind(y,"y", getUuid());
+}
+
+void CartToPolar::compute()
+{
+	auto mout = getMapVect(output);
+
+	// R :
+	mout[0] = sqrt( x()() * x()() + y()() * y()() ); 
+	// theta : 
+	mout[1] = atan2(y()(), x()()); 
+}
+
+
+void CartToPolarR::setparameters()
+{
+        Kernel::iBind(x,"x", getUuid());
+        Kernel::iBind(y,"y", getUuid());
+}
+
+void CartToPolarR::compute()
+{
+        // R :
+        output = sqrt( x()() * x()() + y()() * y()() );
+}
+
+void CartToPolarTheta::setparameters()
+{
+        Kernel::iBind(x,"x", getUuid());
+        Kernel::iBind(y,"y", getUuid());
+}
+
+void CartToPolarTheta::compute()
+{
+        // theta :
+        output = atan2(y()(), x()());
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-	<libname>rosoutput</libname>
+	<libname>geometry_pub</libname>
 	<functions>
 		<function>
-			<name>CmdVelRawOutput</name>
+			<name>TwistPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
@@ -44,7 +44,7 @@
 			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message</desc>
                 </function>
 		<function>
-			<name>CmdVelVectOutput</name>
+			<name>TwistVectPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
@@ -70,7 +70,7 @@
 			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message</desc>
                 </function>
 		<function>
-			<name>CmdVel2DOutput</name>
+			<name>Twist2DPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
@@ -95,7 +95,7 @@
 			<desc>Publish 3D linear and rotational command velocity in geometry_msgs::Twist message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
                 </function>
 		<function>
-			<name>AccelRawOutput</name>
+			<name>AccelPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
@@ -136,7 +136,7 @@
 			<desc>Publish 3D linear and rotational acceleration in geometry_msgs::Accel message</desc>
                 </function>
 		<function>
-			<name>AccelVectOutput</name>
+			<name>AccelVectPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>
@@ -162,7 +162,7 @@
 			<desc>Publish 3D linear and rotational acceleration parameters in geometry_msgs::Accel message</desc>
                 </function>
 		<function>
-			<name>Accel2DOutput</name>
+			<name>Accel2DPub</name>
 			<output type="MATRIX">	
 			</output>	
 			<inputs>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-	<libname>basicmaths</libname>
+	<libname>maths</libname>
 	<functions>
 		<function>
 			<name>ArgMax1D</name>
@@ -261,5 +261,107 @@
 			<icon>scalar_Z-1.svg</icon>
 			<desc>Get the scalar value with a delay iteration</desc>
 		</function>
+		<function>
+                        <name>PolarToCart</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>r</name>
+                                        <desc>Input ray</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>theta</name>
+                                        <desc>Input theta</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert polar coordinates into cartesian coordinates. Output is a 2D Vector (Row or Col). Fisrt scalar is X coordiante and second scalar is Y coordinate.</desc>
+                </function>
+		<function>
+                        <name>PolarToCartX</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>r</name>
+                                        <desc>Input ray</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>theta</name>
+                                        <desc>Input theta</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert polar coordinates into cartesian coordinates. Output is a the X coordiante.</desc>
+                </function>
+		<function>
+                        <name>PolarToCartY</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>r</name>
+                                        <desc>Input ray</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>theta</name>
+                                        <desc>Input theta</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert polar coordinates into cartesian coordinates. Output is a the Y coordiante.</desc>
+                </function>
+		<function>
+                        <name>CartToPolar</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Input x</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>Input y</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert cartesian coordinates into polar coordinates. Output is a 2D Vector(Row or Col). First scalar is ray value and second scalar is theta value</desc>
+                </function>
+		<function>
+                        <name>CartToPolarR</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Input x</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>Input y</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert cartesian coordinates into polar coordinates. Output is the ray value.</desc>
+                </function>
+		<function>
+                        <name>CartToPolarTheta</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Input x</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>Input y</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>convert cartesian coordinates into polar coordinates. Output is the theta value.</desc>
+                </function>
 	</functions>
 </description>

@@ -19,87 +19,32 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdinput.h"
+#include "std_sub.h"
 
-REGISTER_FUNCTION(ScalarInput);
-REGISTER_FUNCTION(MatrixInput);
+REGISTER_FUNCTION(ScalarSub);
+REGISTER_FUNCTION(MatrixSub);
 
 /*******************************************************************************************************/
-/*****************                             ScalarInput                           *******************/
+/*****************                             ScalarSub                           *******************/
 /*******************************************************************************************************/
 
-void ScalarInput::compute()
-{
-        callOne(sleep()());
-}
-
-void ScalarInput::setparameters()
-{
-        Kernel::iBind(topic_name,"topic_name", getUuid());
-        Kernel::iBind(size_queue,"size_queue", getUuid());
-        Kernel::iBind(sleep,"sleep", getUuid());
-}
-
-void ScalarInput::callback(const std_msgs::Float64::ConstPtr &msg)
+void ScalarSub::callback(const std_msgs::Float64::ConstPtr &msg)
 {
         output = msg->data;
 }
 
-void ScalarInput::onQuit()
-{
-        disable();
-}
-
-void ScalarInput::onPause()
-{
-        disable();
-}
-
-void ScalarInput::onRun()
-{
-        enable(topic_name, (int)(size_queue()()) );
-}
-
-
 /*******************************************************************************************************/
-/*****************                             MatrixInput                           *******************/
+/*****************                             MatrixSub                           *******************/
 /*******************************************************************************************************/
 
-void MatrixInput::compute()
-{
-        callOne(sleep()());
-}
-
-void MatrixInput::setparameters()
-{
-        Kernel::iBind(topic_name,"topic_name", getUuid());
-        Kernel::iBind(size_queue,"size_queue", getUuid());
-        Kernel::iBind(sleep,"sleep", getUuid());
-}
-
-void MatrixInput::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
+void MatrixSub::callback( const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
         if( msg->layout.dim[0].size != output.rows() ||  msg->layout.dim[1].size !=  output.cols() )
         {
-                throw std::invalid_argument("MatrixInput : Output dimension is not egal to the Float64MultiArray dimensions !");
+                throw std::invalid_argument("MatrixSub : Output dimension is not egal to the Float64MultiArray dimensions !");
         }
 
         Map<const MATRIX> mEnc (msg->data.data() , msg->layout.dim[0].size , msg->layout.dim[1].size );
 
         output = mEnc;
 }
-void MatrixInput::onQuit()
-{
-        disable();
-}
-
-void MatrixInput::onPause()
-{
-        disable();
-}
-
-void MatrixInput::onRun()
-{
-        enable(topic_name, (int)(size_queue()()) );
-}
-

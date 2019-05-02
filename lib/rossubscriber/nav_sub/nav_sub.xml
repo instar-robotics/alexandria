@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <description>
-        <libname>nav</libname>
+        <libname>nav_sub</libname>
 	<functions>
 		<function>
-                        <name>OdoPos</name>
+                        <name>OdoPosSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -24,7 +24,7 @@
                         <desc>Read nav_msgs/Odometry.pose.position and load the 3 values into a Matrix [Dimension of the Matrix must be 3]</desc>
                 </function>
 		<function>
-                        <name>OdoPosX</name>
+                        <name>OdoPosXSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -45,7 +45,7 @@
                         <desc>Read nav_msgs/Odometry.pose.position.x and load the value into a Scalar</desc>
                 </function>
 		<function>
-                        <name>OdoPosY</name>
+                        <name>OdoPosYSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -66,7 +66,7 @@
                         <desc>Read nav_msgs/Odometry.pose.position.y and load the value into a Scalar</desc>
                 </function>
 		<function>
-                        <name>OdoPosZ</name>
+                        <name>OdoPosZSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -87,7 +87,7 @@
                         <desc>Read nav_msgs/Odometry.pose.position.z and load the value into a Scalar</desc>
                 </function>
 		<function>
-                        <name>OdoEuler</name>
+                        <name>OdoEulerSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -108,7 +108,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load the 3 values into a Matrix [Dimension of the Matrix must be 3]</desc>
                 </function>
                 <function>
-                        <name>OdoEulerRoll</name>
+                        <name>OdoEulerRollSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -129,7 +129,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load roll value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoEulerPitch</name>
+                        <name>OdoEulerPitchSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -150,7 +150,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load pitch value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoEulerYaw</name>
+                        <name>OdoEulerYawSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -171,7 +171,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load yaw value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoQuater</name>
+                        <name>OdoQuaterSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -192,7 +192,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the 4 values into a Matrix [Dimension of the Matrix must be 4]</desc>
                 </function>
                 <function>
-                        <name>OdoQuaterX</name>
+                        <name>OdoQuaterXSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -213,7 +213,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the X value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoQuaterY</name>
+                        <name>OdoQuaterYSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -234,7 +234,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the Y value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoQuaterZ</name>
+                        <name>OdoQuaterZSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -255,7 +255,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the Z value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoQuaterW</name>
+                        <name>OdoQuaterWSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -276,7 +276,7 @@
                         <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the W value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistLin</name>
+                        <name>OdoTwistLinSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -297,7 +297,7 @@
                         <desc>Read nav_msgs/Odometry.twist.linear and load the values into a Matrix [Dimension of the Matrix must be 3]</desc>
                 </function>
                 <function>
-                        <name>OdoTwistLinX</name>
+                        <name>OdoTwistLinXSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -318,7 +318,7 @@
                         <desc>Read nav_msgs/Odometry.twist.linear and load the X value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistLinY</name>
+                        <name>OdoTwistLinYSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -339,7 +339,7 @@
                         <desc>Read nav_msgs/Odometry.twist.linear and load the Y value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistLinZ</name>
+                        <name>OdoTwistLinZSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -360,7 +360,7 @@
                         <desc>Read nav_msgs/Odometry.twist.linear and load the Z value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistAng</name>
+                        <name>OdoTwistAngSub</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -381,7 +381,7 @@
                         <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the values into a Matrix [Dimension of the Matrix must be 3]</desc>
                 </function>
                 <function>
-                        <name>OdoTwistAngRoll</name>
+                        <name>OdoTwistAngRollSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -402,7 +402,7 @@
                         <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the roll value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistAngPitch</name>
+                        <name>OdoTwistAngPitchSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>
@@ -423,7 +423,7 @@
                         <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the pitch value into a Scalar</desc>
                 </function>
                 <function>
-                        <name>OdoTwistAngYaw</name>
+                        <name>OdoTwistAngYawSub</name>
                         <output type="SCALAR">
                         </output>
                         <inputs>

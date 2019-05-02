@@ -277,8 +277,8 @@ public:
   Shift_functor(const ArgType &input , const typename ArgType::Index& sx , const typename ArgType::Index& sy,  const typename ArgType::Index& max_x , const typename ArgType::Index& max_y, const typename ArgType::Index &inv) : input(input), sx(sx),sy(sy),max_x(max_x), max_y(max_y), inv(inv) {}
   
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
-	const typename ArgType::Index  sr = (row - (sy * inv) + max_y) % max_y ; 
-	const typename ArgType::Index  sc = (col - (sx * inv) + max_x) % max_x ; 
+	typename ArgType::Index  sr = ((row - (sy * inv) ) % max_y + max_y ) % max_y ; 
+	typename ArgType::Index  sc = ((col - (sx * inv) ) % max_x + max_x ) % max_x ; 
 
         return  input(sr,sc);
   }

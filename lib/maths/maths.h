@@ -20,8 +20,8 @@
 */
 
 
-#ifndef _BASIC_MATH_H_
-#define _BASIC_MATH_H_
+#ifndef _MATH_H_
+#define _MATH_H_
 
 #include "kheops/kernel/function.h"
 #include "kheops/kernel/kernel.h"
@@ -350,4 +350,88 @@ class SZ_1 : public FScalar
                 virtual void setparameters();
 };
 
-#endif // _BASIC_MATH_H_
+class PolarToCart : public FMatrix 
+{
+        private :
+
+		ISInput r;
+		ISInput theta;
+
+	public : 
+
+		virtual ~PolarToCart() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class PolarToCartX : public FScalar
+{
+        private :
+
+		ISInput r;
+		ISInput theta;
+
+	public : 
+
+		virtual ~PolarToCartX() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class PolarToCartY : public FScalar
+{
+        private :
+
+		ISInput r;
+		ISInput theta;
+
+	public : 
+
+		virtual ~PolarToCartY() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class CartToPolar : public FMatrix 
+{
+        private :
+
+		ISInput x;
+		ISInput y;
+
+	public : 
+
+		virtual ~CartToPolar() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class CartToPolarR : public FScalar
+{
+        private :
+
+		ISInput x;
+		ISInput y;
+
+	public : 
+
+		virtual ~CartToPolarR() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class CartToPolarTheta : public FScalar
+{
+        private :
+
+		ISInput x;
+		ISInput y;
+
+	public : 
+
+		virtual ~CartToPolarTheta() {}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+#endif // _MATH_H_

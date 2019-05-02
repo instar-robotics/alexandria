@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+        <libname>geometry_sub</libname>
+        <functions>
+		<function>
+                        <name>Vector3Sub</name>
+                        <output type="MATRIX"> 
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Read geometry/Vector3 message and load value into a Row/Col 3D Vector.</desc>
+                </function>
+		<function>
+                        <name>Vector3XSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Vector3.x message load value into a Scalar.</desc>
+                </function>
+		                <function>
+                        <name>Vector3YSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Vector3.y message load value into a Scalar.</desc>
+                </function>
+                <function>
+                        <name>Vector3ZSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Vector3.z message load value into a Scalar.</desc>
+                </function>
+		<function>
+                        <name>AccelSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Accel message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
+                </function>
+		<function>
+                        <name>AccelLinearSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Accel.linear message and load value into a 3D Row or Col Vector.</desc>
+                </function>
+		<function>
+                        <name>AccelAngularSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Accel.angular message and load value into a 3D Row or Col Vector.</desc>
+                </function>
+		<function>
+                        <name>TwistSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Twist message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
+                </function>
+		<function>
+                        <name>TwistLinearSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Twist.linear message and load value into a 3D Row or Col Vector.</desc>
+                </function>
+		<function>
+                        <name>TwistAngularSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/Twist.angular message and load value into a 3D Row or Col Vector.</desc>
+                </function>
+        </functions>
+</description>
+

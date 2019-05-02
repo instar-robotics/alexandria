@@ -236,5 +236,23 @@
 			<icon>scalar-tangent-hyperbolic.svg</icon>
 			<desc>Compute hyperbolic tangent of the input scalar</desc>
 		</function>
+		<function>
+                        <name>SAtan2</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Input x</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>Input y</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Compute Atan2 for input x,y</desc>
+                </function>
+
 	</functions>
 </description>
