@@ -1841,7 +1841,7 @@ void ObjDetect::callback( const detect_msgs::ObjDetect::ConstPtr &msg )
 		cloud_pos_y = i * msg->position.point_step + msg->position.fields[1].offset;
 		cloud_val_x = *(float*)(&(msg->position.data[cloud_pos_x]));
 		cloud_val_y = *(float*)(&(msg->position.data[cloud_pos_y]));
-		eigen_pos_x = round((size_x(0)()/2 - cloud_val_x) / size_x(0)() * output.cols()); // Remove when lidar reverted
+		eigen_pos_x = round((size_x(0)()/2 + cloud_val_x) / size_x(0)() * output.cols()); // Remove when lidar reverted
 		eigen_pos_y = round((size_y(0)()/2 - cloud_val_y) / size_y(0)() * output.rows());
 		eigen_pos_x = (eigen_pos_x > output.cols() - 1) ? output.cols() - 1 : eigen_pos_x;
 		eigen_pos_y = (eigen_pos_y > output.rows() - 1) ? output.rows() - 1 : eigen_pos_y;
