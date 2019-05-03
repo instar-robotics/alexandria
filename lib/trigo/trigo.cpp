@@ -41,6 +41,7 @@ REGISTER_FUNCTION(MSinh);
 REGISTER_FUNCTION(SSinh);
 REGISTER_FUNCTION(MTanh);
 REGISTER_FUNCTION(STanh);
+REGISTER_FUNCTION(SAtan2);
 
 /*******************************************************************************************************/
 /****************************************  SIN, COS, TAN   *********************************************/
