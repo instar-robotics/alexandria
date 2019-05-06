@@ -49,7 +49,7 @@ void Kohonen::compute()
 
 	// Update weight
 	MATRIX::Index maxRow, maxCol;
- 	SCALAR max = output.maxCoeff(&maxRow, &maxCol);
+ 	output.maxCoeff(&maxRow, &maxCol);
 
 	for( MATRIX::Index i = 0; i < output.rows(); i++)
 	{

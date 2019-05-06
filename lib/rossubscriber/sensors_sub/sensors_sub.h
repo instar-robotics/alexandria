@@ -166,7 +166,7 @@ class Compass3DSub : public FMatrixSub<sensor_msgs::Imu>
                 Compass3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
                 virtual ~Compass3DSub(){}
 
-                virtual void prerun();
+                virtual void setparameters();
                 virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
 };
 
@@ -219,7 +219,7 @@ class Gyroscope3DSub : public FMatrixSub<sensor_msgs::Imu>
                 Gyroscope3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
                 virtual ~Gyroscope3DSub(){}
 
-                virtual void prerun();
+                virtual void setparameters();
                 virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
 };
 
@@ -272,7 +272,7 @@ class Accelerometer3DSub : public FMatrixSub<sensor_msgs::Imu>
                 Accelerometer3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
                 virtual ~Accelerometer3DSub(){}
 
-                virtual void prerun();
+                virtual void setparameters();
                 virtual void callback( const sensor_msgs::Imu::ConstPtr &msg );
 };
 

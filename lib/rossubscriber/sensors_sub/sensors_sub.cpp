@@ -52,7 +52,7 @@ REGISTER_FUNCTION(NavSatFixAltSub);
 
 void JoyAxesSub::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
-        if( msg->axes.size() != output.rows() * output.cols() )
+        if( msg->axes.size() != output.size() )
         {
                 throw std::invalid_argument("JoyAxesSub : Output dimension is not egal to the numbers of Joystick axes !");
         }
@@ -90,7 +90,7 @@ void JoyAxeSub::callback( const sensor_msgs::Joy::ConstPtr &msg)
 
 void JoyButtonsSub::callback( const sensor_msgs::Joy::ConstPtr &msg)
 {
-        if( msg->buttons.size() != output.rows() * output.cols() )
+        if( msg->buttons.size() != output.size() )
         {
                 throw std::invalid_argument("JoyButtonsSub : Output dimension is not egal to the numbers of Joystick axes !");
         }
@@ -244,9 +244,11 @@ void PointCloud2Sub::callback(const sensor_msgs::PointCloud2::ConstPtr &msg )
 /*****************                   	     3D Compass                              *******************/
 /*******************************************************************************************************/
 
-void Compass3DSub::prerun()
+void Compass3DSub::setparameters()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Compass3D : Output dimension should be 3 !");
+	FMatrixSub<sensor_msgs::Imu>::setparameters();
+
+	if( output.size() != 3 ) throw std::invalid_argument("Compass3D : Output dimension should be 3 !");
 }
 
 void Compass3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
@@ -312,9 +314,10 @@ void CompassZSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
 /*****************                            3D Gyroscope                           *******************/
 /*******************************************************************************************************/
 
-void Gyroscope3DSub::prerun()
+void Gyroscope3DSub::setparameters()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Gyroscope3DSub : Output dimension should be 3 !");
+	FMatrixSub<sensor_msgs::Imu>::setparameters();
+	if( output.size() != 3 ) throw std::invalid_argument("Gyroscope3DSub : Output dimension should be 3 !");
 }
 
 void Gyroscope3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
@@ -356,9 +359,10 @@ void GyroscopeZSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
 /*****************                           3D Accelerometer                        *******************/
 /*******************************************************************************************************/
 
-void Accelerometer3DSub::prerun()
+void Accelerometer3DSub::setparameters()
 {
-	if( output.rows() * output.cols() != 3 ) throw std::invalid_argument("Accelerometer3D : Output dimension should be 3 !");
+	FMatrixSub<sensor_msgs::Imu>::setparameters();
+	if( output.size() != 3 ) throw std::invalid_argument("Accelerometer3D : Output dimension should be 3 !");
 }
 
 void Accelerometer3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
