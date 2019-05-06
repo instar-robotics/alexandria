@@ -53,10 +53,14 @@ catkin_package(
 ## Build ##
 ###########
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
+if( ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64" )
+	set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
+else()
+	set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -mtune=native -march=native")
+endif()
+
 add_definitions(-Wextra -Wall)
 file(GLOB_RECURSE sourcefiles lib/*.cpp)
-
 
 include_directories(
  ${catkin_INCLUDE_DIRS}

@@ -242,16 +242,16 @@
                         </output>
                         <inputs>
                                 <input  type="SCALAR_SCALAR">
-                                        <name>x</name>
-                                        <desc>Input x</desc>
-                                </input>
-                                <input  type="SCALAR_SCALAR">
                                         <name>y</name>
                                         <desc>Input y</desc>
                                 </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Input x</desc>
+                                </input>
                         </inputs>
-                        <icon></icon>
-                        <desc>Compute Atan2 for input x,y</desc>
+                        <icon>scalar-arc-tangent2.svg</icon>
+                        <desc>Compute atan2(x,y)</desc>
                 </function>
 
 	</functions>
