@@ -20,7 +20,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Vector3.svg</icon>
 			<desc>Read geometry/Vector3 message and load value into a Row/Col 3D Vector.</desc>
                 </function>
 		<function>
@@ -41,7 +41,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Vector3.svg</icon>
                         <desc>Read geometry/Vector3.x message load value into a Scalar.</desc>
                 </function>
 		                <function>
@@ -62,7 +62,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Vector3.svg</icon>
                         <desc>Read geometry/Vector3.y message load value into a Scalar.</desc>
                 </function>
                 <function>
@@ -83,7 +83,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Vector3.svg</icon>
                         <desc>Read geometry/Vector3.z message load value into a Scalar.</desc>
                 </function>
 		<function>
@@ -104,7 +104,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Accel.svg</icon>
                         <desc>Read geometry/Accel message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
                 </function>
 		<function>
@@ -125,7 +125,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Accel.svg</icon>
                         <desc>Read geometry/Accel.linear message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -146,7 +146,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Accel.svg</icon>
                         <desc>Read geometry/Accel.angular message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -167,7 +167,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Twist.svg</icon>
                         <desc>Read geometry/Twist message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
                 </function>
 		<function>
@@ -188,7 +188,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Twist.svg</icon>
                         <desc>Read geometry/Twist.linear message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -209,7 +209,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Twist.svg</icon>
                         <desc>Read geometry/Twist.angular message and load value into a 3D Row or Col Vector.</desc>
                 </function>
         </functions>
