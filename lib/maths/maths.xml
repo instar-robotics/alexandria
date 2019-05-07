@@ -275,7 +275,7 @@
                                         <desc>Input theta</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>PolarToCart.svg</icon>
                         <desc>convert polar coordinates into cartesian coordinates. Output is a 2D Vector (Row or Col). Fisrt scalar is X coordiante and second scalar is Y coordinate.</desc>
                 </function>
 		<function>
@@ -292,7 +292,7 @@
                                         <desc>Input theta</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>PolarToCart.svg</icon>
                         <desc>convert polar coordinates into cartesian coordinates. Output is a the X coordiante.</desc>
                 </function>
 		<function>
@@ -309,7 +309,7 @@
                                         <desc>Input theta</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>PolarToCart.svg</icon>
                         <desc>convert polar coordinates into cartesian coordinates. Output is a the Y coordiante.</desc>
                 </function>
 		<function>
@@ -326,7 +326,7 @@
                                         <desc>Input y</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>CartToPolar.svg</icon>
                         <desc>convert cartesian coordinates into polar coordinates. Output is a 2D Vector(Row or Col). First scalar is ray value and second scalar is theta value</desc>
                 </function>
 		<function>
@@ -343,7 +343,7 @@
                                         <desc>Input y</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>CartToPolar.svg</icon>
                         <desc>convert cartesian coordinates into polar coordinates. Output is the ray value.</desc>
                 </function>
 		<function>
@@ -360,7 +360,7 @@
                                         <desc>Input y</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>CartToPolar.svg</icon>
                         <desc>convert cartesian coordinates into polar coordinates. Output is the theta value.</desc>
                 </function>
 	</functions>

@@ -20,7 +20,7 @@
 					<desc>Input signals</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>kohonen.svg</icon>
 			<desc>Kohonen : Self organizing map</desc>
 		</function>	
 	</functions>

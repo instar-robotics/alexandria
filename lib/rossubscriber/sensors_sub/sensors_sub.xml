@@ -415,7 +415,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+			<icon>Sat.svg</icon>
                         <desc>Read sensor_msgs/NavSatFix (latitude,longitude and altitude) and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -436,7 +436,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Sat.svg</icon>
                         <desc>Read sensor_msgs/NavSatFix.latitude and load value into a Scalar.</desc>
                 </function>
                 <function>
@@ -457,7 +457,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Sat.svg</icon>
                         <desc>Read sensor_msgs/NavSatFix.longitude and load value into a Scalar.</desc>
                 </function>
                 <function>
@@ -478,7 +478,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Sat.svg</icon>
                         <desc>Read sensor_msgs/NavSatFix.altitude and load value into a Scalar.</desc>
                 </function>
         </functions>
