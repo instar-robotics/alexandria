@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="Twist.svg">
+   sodipodi:docname="TwistLinear.svg">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -90,10 +90,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.9999996"
-     inkscape:cx="4.9566016"
-     inkscape:cy="28.921663"
+     inkscape:cx="16.573245"
+     inkscape:cy="33.995144"
      inkscape:document-units="mm"
-     inkscape:current-layer="g884-9"
+     inkscape:current-layer="g970"
      showgrid="false"
      fit-margin-top="2"
      fit-margin-left="2"
@@ -189,68 +189,17 @@
                        id="path1272-0-2"
                        inkscape:connector-curvature="0"
                        sodipodi:nodetypes="cccc" />
-                    <g
-                       transform="translate(0.03260063,0.10389456)"
-                       id="g884"
-                       style="stroke:#ff0000">
-                      <path
-                         sodipodi:nodetypes="cccc"
-                         inkscape:connector-curvature="0"
-                         id="path1272-0-6-0"
-                         d="m 46.975699,83.799039 -0.213019,0.159299 0.339111,-0.07375 z"
-                         style="fill:#ff0000;stroke:#ff0000;stroke-width:0.02712951px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-                      <path
-                         style="fill:none;stroke:#ff0000;stroke-width:0.06155023;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                         d="m 46.27702,83.897433 c -0.469963,-0.160281 -0.118763,-0.431455 0.313437,-0.433012 0.505167,-0.0018 0.777041,0.279337 0.32181,0.431847"
-                         id="path880"
-                         inkscape:connector-curvature="0"
-                         sodipodi:nodetypes="csc" />
-                    </g>
-                    <g
-                       id="g884-9"
-                       transform="matrix(-0.44149843,0.87983802,-0.91503104,-0.44149841,142.34598,77.384788)"
-                       style="stroke:#ff0000">
-                      <path
-                         sodipodi:nodetypes="cccc"
-                         inkscape:connector-curvature="0"
-                         id="path1272-0-6-0-1"
-                         d="m 46.975699,83.799039 -0.213019,0.159299 0.339111,-0.07375 z"
-                         style="fill:#ff0000;stroke:#ff0000;stroke-width:0.02712951px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-                      <path
-                         style="fill:none;stroke:#ff0000;stroke-width:0.06155023;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                         d="m 46.27702,83.897433 c -0.469963,-0.160281 -0.118763,-0.431455 0.313437,-0.433012 0.505167,-0.0018 0.777041,0.279337 0.32181,0.431847"
-                         id="path880-7"
-                         inkscape:connector-curvature="0"
-                         sodipodi:nodetypes="csc" />
-                    </g>
-                    <g
-                       id="g884-9-7"
-                       transform="matrix(0.44149843,0.87983802,0.91503104,-0.44149841,-49.161849,77.422799)"
-                       style="stroke:#ff0000">
-                      <path
-                         sodipodi:nodetypes="cccc"
-                         inkscape:connector-curvature="0"
-                         id="path1272-0-6-0-1-1"
-                         d="m 46.975699,83.799039 -0.213019,0.159299 0.339111,-0.07375 z"
-                         style="fill:#ff0000;stroke:#ff0000;stroke-width:0.02712951px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-                      <path
-                         style="fill:none;stroke:#ff0000;stroke-width:0.06155023;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                         d="m 46.27702,83.897433 c -0.469963,-0.160281 -0.118763,-0.431455 0.313437,-0.433012 0.505167,-0.0018 0.777041,0.279337 0.32181,0.431847"
-                         id="path880-7-1"
-                         inkscape:connector-curvature="0"
-                         sodipodi:nodetypes="csc" />
-                    </g>
                   </g>
                   <text
                      transform="scale(-1)"
                      id="text1234-6"
-                     y="-82.397354"
-                     x="-51.850159"
+                     y="-82.357353"
+                     x="-51.854435"
                      style="font-style:normal;font-weight:normal;font-size:9.54798603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.23869964"
                      xml:space="preserve"><tspan
                        style="font-size:1.70510495px;fill:#333333;stroke-width:0.23869964"
-                       y="-82.397354"
-                       x="-51.850159"
+                       y="-82.357353"
+                       x="-51.854435"
                        id="tspan1232-18"
                        sodipodi:role="line">Twist</tspan></text>
                   <ellipse
@@ -312,6 +261,18 @@
                        inkscape:connector-curvature="0"
                        sodipodi:nodetypes="cc" />
                   </g>
+                  <text
+                     id="text1234-6-6"
+                     y="-82.333206"
+                     x="-45.352249"
+                     style="font-style:normal;font-weight:normal;font-size:9.54798603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.23869964"
+                     xml:space="preserve"
+                     transform="scale(-1)"><tspan
+                       style="font-size:1.70510495px;fill:#333333;stroke-width:0.23869964"
+                       y="-82.333206"
+                       x="-45.352249"
+                       id="tspan1232-18-0"
+                       sodipodi:role="line">Lin</tspan></text>
                 </g>
               </g>
             </g>

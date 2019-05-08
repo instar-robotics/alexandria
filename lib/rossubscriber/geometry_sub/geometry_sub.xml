@@ -41,7 +41,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Vector3.svg</icon>
+                        <icon>Vector3X.svg</icon>
                         <desc>Read geometry/Vector3.x message load value into a Scalar.</desc>
                 </function>
 		                <function>
@@ -62,7 +62,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Vector3.svg</icon>
+                        <icon>Vector3Y.svg</icon>
                         <desc>Read geometry/Vector3.y message load value into a Scalar.</desc>
                 </function>
                 <function>
@@ -83,7 +83,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Vector3.svg</icon>
+                        <icon>Vector3Z.svg</icon>
                         <desc>Read geometry/Vector3.z message load value into a Scalar.</desc>
                 </function>
 		<function>
@@ -125,7 +125,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Accel.svg</icon>
+                        <icon>AccelLinear.svg</icon>
                         <desc>Read geometry/Accel.linear message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -146,7 +146,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Accel.svg</icon>
+                        <icon>AccelAngular.svg</icon>
                         <desc>Read geometry/Accel.angular message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -188,7 +188,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Twist.svg</icon>
+                        <icon>TwistLinear.svg</icon>
                         <desc>Read geometry/Twist.linear message and load value into a 3D Row or Col Vector.</desc>
                 </function>
 		<function>
@@ -209,7 +209,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon>Twist.svg</icon>
+                        <icon>TwistAngular.svg</icon>
                         <desc>Read geometry/Twist.angular message and load value into a 3D Row or Col Vector.</desc>
                 </function>
         </functions>
