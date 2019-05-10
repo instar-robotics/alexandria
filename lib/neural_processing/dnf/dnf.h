@@ -34,12 +34,13 @@ class Amari_functor{
   const ArgType &I;
   const typename ArgType::Scalar &h;
   const typename ArgType::Scalar &tau;
-  const typename ArgType::Scalar &beta;
+  //const typename ArgType::Scalar &beta;
   bool circular;
 
   public :
 
- Amari_functor(const ArgType &U, const ArgType &mask, const ArgType &I, const typename ArgType::Scalar &h, const typename ArgType::Scalar &tau, const typename ArgType::Scalar &beta ,bool circular ) : U(U), mask(mask), I(I), h(h), tau(tau), beta(beta), circular(circular){}
+ //Amari_functor(const ArgType &U, const ArgType &mask, const ArgType &I, const typename ArgType::Scalar &h, const typename ArgType::Scalar &tau, const typename ArgType::Scalar &beta ,bool circular ) : U(U), mask(mask), I(I), h(h), tau(tau), beta(beta), circular(circular){}
+ Amari_functor(const ArgType &U, const ArgType &mask, const ArgType &I, const typename ArgType::Scalar &h, const typename ArgType::Scalar &tau ,bool circular ) : U(U), mask(mask), I(I), h(h), tau(tau), circular(circular){}
 
  const typename ArgType::Scalar operator() (Index urow, Index ucol) const{
 	 typename ArgType::Index mrows = mask.rows(); 
@@ -66,7 +67,13 @@ class Amari_functor{
 			if( zrow >= 0 && zrow < urows && zcol >= 0 && zcol < ucols)
 			{
 				// Sigmoid as activation function
-				neighbor +=  mask(i,j) * (1 / (1 + exp(-beta * U(zrow,zcol))))  ;
+				//neighbor +=  mask(i,j) * (1 / (1 + exp(-beta * U(zrow,zcol))))  ;
+
+				// classical ramp function
+				SCALAR val =  U(zrow,zcol);
+				if(  val > 1.0 ) val = 1.0;
+				else if( val < 0 ) val = 0.0;
+				neighbor +=  mask(i,j) * val;
 			}
 		 }
 	 }
@@ -80,7 +87,7 @@ class AmariDnf : public FMatrix
 	private : 
 	
 		ISInput circular;
-		ISInput beta;
+		//ISInput beta;
 		ISInput tau;
 		ISInput h;
 
