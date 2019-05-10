@@ -26,7 +26,7 @@ set(CATKIN_DEP
   tf
   nav_msgs
   sensor_msgs
-  pcl_ros
+  geometry_msgs
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})
@@ -53,10 +53,14 @@ catkin_package(
 ## Build ##
 ###########
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
+if( ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64" )
+	set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -msse2 -mtune=native -march=native")
+else()
+	set(CMAKE_CXX_FLAGS "-std=c++17 -O2 -mtune=native -march=native")
+endif()
+
 add_definitions(-Wextra -Wall)
 file(GLOB_RECURSE sourcefiles lib/*.cpp)
-
 
 include_directories(
  ${catkin_INCLUDE_DIRS}
@@ -71,6 +75,9 @@ set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descr
     GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
      
     ADD_LIBRARY(${basename} SHARED ${src}  )
+
+    add_dependencies(${basename} ${kheops_EXPORTED_TARGETS}   ${catkin_EXPORTED_TARGETS})
+
     target_link_libraries(${basename} Eigen3::Eigen ${catkin_LIBRARIES})
     
 

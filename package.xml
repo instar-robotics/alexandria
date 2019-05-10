@@ -20,6 +20,6 @@
   <depend>tf</depend>
   <depend>nav_msgs</depend>
   <depend>sensor_msgs</depend>
-  <depend>pcl_ros</depend>
+  <depend>geometry_msgs</depend>
 
 </package>

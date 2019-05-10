@@ -19,10 +19,12 @@
 					<name>h</name>
 					<desc></desc>
 				</input>
+				<!--
 				<input type="SCALAR_SCALAR"> 
 					<name>beta</name>
 					<desc></desc>
 				</input>
+				-->
 				<input type="SCALAR_MATRIX" checkSize="false">
 					<name>kernel</name>
 					<desc>Kernel mask</desc>
