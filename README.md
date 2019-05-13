@@ -33,7 +33,7 @@ or see [Kheops's standalone-install] tutorial for a Kheops standalone installati
   5. You have to give this path if you run Kheops in standalone mode :
   
 ```console
-foo@bar:~$ rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
+$> rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
 ```
 
   1. Alexandria copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
@@ -44,7 +44,7 @@ foo@bar:~$ rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/ale
   2. So, you could only run : 
 
 ```console
-foo@bar:~$ catkin_make
+$> catkin_make
 ```
 
   1. Libraries are copied in $CATKIN_DEVEL_PREFIX/lib/alexandria
@@ -52,7 +52,7 @@ foo@bar:~$ catkin_make
   3. If you want update XML Description without rebuild all lib, you can run : 
 
 ```console
-foo@bar:~$ catkin_make all_desc
+$> catkin_make all_desc
 ```
 
 ## Functions developper's guide ##
