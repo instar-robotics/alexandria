@@ -5,8 +5,8 @@
 ## I Description ##
 
 * Alexandria is a part of the Kheops/Papyrus software.  
-  1. Alexandria contains a collection of Functions for the [Neural Networks Simulator Kheops](https://github.com/instar-robotics/kheops)
-  2. Alexandria contains XML description files for the [Papyrus GUI](https://github.com/instar-robotics/papyrus)
+  1. Alexandria contains a collection of Functions for the neural networks simulator [Kheops](https://github.com/instar-robotics/kheops)
+  2. Alexandria contains XML description files for the [Papyrus](https://github.com/instar-robotics/papyrus) GUI
 
 ## II Installation ##
 
