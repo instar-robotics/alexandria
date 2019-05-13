@@ -26,24 +26,33 @@ Please see [Papyrus's how-to-install](https://github.com/instar-robotics/papyrus
 ### Libraries path ###
 
 * For **Papyrus users** : 
-  1. Alexandria builds a collection of libraries (.so) 
-  2. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
+  1. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
   3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
-  4. You can set CMAKE_INSTALL_PREFIX to every install dir before running **_catkin_make_ install**
-  5. The path $CMAKE_INSTALL_PREFIX/lib/alexandria should be communicate to kheops
+  4. You can set CMAKE_INSTALL_PREFIX before running **_catkin_make_ install**
+  5. You have to give this path if you run Kheops in standalone mode :
+  
+```console
+foo@bar:~$ rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
+```
 
-  1. Alexandria also copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
-  2. The path $CMAKE_INSTALL_PREFIX/share/alexandria/description should be communicate to papyrus
+  1. Alexandria copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
+  2. When you launch Payrus for the first time, Papyrus asks you to set this path.
 
 * For **Functions Developpers** : 
-  1. If you code ant test some news functions you probably doesn't want to install Alexandrai at each build time.
+  1. If you code ant test some news functions you probably doesn't want to install Alexandria at each build time.
   2. So, you could only run : 
-  
-**_catkin_make_**
+
+```console
+foo@bar:~$ catkin_make
+```
 
   1. Libraries are copied in $CATKIN_DEVEL_PREFIX/lib/alexandria
   2. XML desription files are copied in $CATKIN_DEVEL_PREFIX/share/alexandria/description
-  3. You have to communicate both path to kheops and papyrus
+  3. If you want update XML Description without rebuild all lib, you can run : 
+
+```console
+foo@bar:~$ catkin_make all_desc
+```
 
 
 ## Functions developper's guide ##
