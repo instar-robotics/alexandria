@@ -54,13 +54,12 @@ foo@bar:~$ catkin_make
 foo@bar:~$ catkin_make all_desc
 ```
 
-
 ## Functions developper's guide ##
 
 * Note : kheops uses Eigen library to manage Linear Algebra. 
 * We hardly recommand to read Eigen's doc and try the library before writing kheops's Function ! 
 
-### Develop it first Function : General description ###
+### Write a first Function : General description ###
 
 * Functions are defined by some objects : 
   1. .h file : contains the C++ header of the Function
@@ -68,7 +67,7 @@ foo@bar:~$ catkin_make all_desc
   3. .xml file : contains the description of the Function (For papyrus)
   4. icons directory : contains the SVG file for Function icon in payrus
 
-* First you have to create a directory and the 3 empties files in the lib directory of Alexandria
+* First you have to create a directory and the 3 empties files in the **lib** directory of Alexandria
 * For a Function **HelloFunct** you have to create the hellofunct directory then inside the files hellofunct.cpp , hellofunct.h and hellofunct.xml
 
 ### First class HelloFunct ###
@@ -699,12 +698,3 @@ typedef Input<iScalar> ISInput;
 [(0,0,1,2).(0,0,1,2)](c,n)*
 
 ```
- 
-
-
-## Create its own repository ##
-
-* TODO 
-* See demofct example in user_src
-  1. CMakeList.txt 
-
