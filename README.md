@@ -58,7 +58,7 @@ foo@bar:~$ catkin_make all_desc
 ## Functions developper's guide ##
 
 * Note : kheops uses Eigen library to manage Linear Algebra. 
-* We hardly recommand to read Eigen's doc and try the library before writing kheops's Function ! 
+* We hardly recommand to read Eigen's doc and try the library before writing Alexandria's Function ! 
 
 ### Write a first Function : General description ###
 
