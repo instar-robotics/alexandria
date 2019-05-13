@@ -5,18 +5,18 @@
 ## I Description ##
 
 * What is Alexandria : Alexandria is a collection of Functions for the Neural Networks Simulator Kheops.
-  1. Alexandria contains the code of Functions for [[https://github.com/instar-robotics/kheops][Kheops]]
-  2. Alexandria contains XML description files for [[https://github.com/instar-robotics/papyrus][Papyrus]]
+  1. Alexandria contains the code of Functions for [Kheops](https://github.com/instar-robotics/kheops)
+  2. Alexandria contains XML description files for [Papyrus](https://github.com/instar-robotics/papyrus)
 
 ## II Installation ##
 
 Alexandria is a part of the Kheops/Papyrus software. A standalone installation doesn't have sense. 
-Please see  [[https://github.com/instar-robotics/papyrus/blob/master/README.org#how-to-install][Papyrus's how-to-install] tutorial.
+Please see [Papyrus's how-to-install](https://github.com/instar-robotics/papyrus/blob/master/README.org#how-to-install) tutorial.
 
 ### Dependancy ###
 
 * Alexandria requiers  :
-   1. [[https://github.com/instar-robotics/kheops/blob/master/README.md][Kheops] and all its dependancies (included ROS)
+   1. [Kheops](https://github.com/instar-robotics/kheops/blob/master/README.md) and all its dependancies (included ROS)
    2. the ROS joy package (on ubuntu/debian : ros-melodic-joy)
    3. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2)
    4. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs)
