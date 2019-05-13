@@ -27,6 +27,7 @@ set(CATKIN_DEP
   nav_msgs
   sensor_msgs
   geometry_msgs
+  detect_msgs
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})
