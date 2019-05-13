@@ -21,19 +21,30 @@ or see [Kheops's standalone-install] tutorial for a Kheops standalone installati
    2. the ROS joy package (on ubuntu/debian : ros-melodic-joy)
    3. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2)
    4. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs)
-   5. the ROS sensor_msgs package (on ubuntu/debian : ros-melodic-sensor_msgs)
-   6. the ROS geometry_msgs package (on ubuntu/debian : ros-melodic-geometry_msgs)
    
 ### Libraries path ###
 
 * For **Papyrus users** : 
-  1. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
-  3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
-  4. You can set CMAKE_INSTALL_PREFIX before running **_catkin_make_ install**
+  1. By default, libraries are copied in __$CMAKE_INSTALL_PREFIX/lib/alexandria__
+  3. __CMAKE_INSTALL_PREFIX__ default value is the install directory in your catkin_workspace 
+  4. You can set __CMAKE_INSTALL_PREFIX__ before running **_catkin_make_ install**
   5. You have to give this path if you run Kheops in standalone mode :
   
 ```console
 $> rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
+```
+
+* if you want launch Kheops without __-l__ option, you can set __KHEOPS_LIB_PATH__ variable into your bashrc : 
+
+```console
+$> echo "export KHEOPS_LIB_PATH=\"$CMAKE_INSTALL_PREFIX/lib/alexandria/\"" >> ~/.bashrc
+$> source ~/.bashrc
+```
+
+* then just run 
+
+```console
+$> rosrun kheops kheops -s MyScript.xml 
 ```
 
   1. Alexandria copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
@@ -47,8 +58,8 @@ $> rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
 $> catkin_make
 ```
 
-  1. Libraries are copied in $CATKIN_DEVEL_PREFIX/lib/alexandria
-  2. XML desription files are copied in $CATKIN_DEVEL_PREFIX/share/alexandria/description
+  1. Libraries are copied in __$CATKIN_DEVEL_PREFIX/lib/alexandria__
+  2. XML desription files are copied in __$CATKIN_DEVEL_PREFIX/share/alexandria/description__
   3. If you want update XML Description without rebuild all lib, you can run : 
 
 ```console
