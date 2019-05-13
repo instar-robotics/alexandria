@@ -4,40 +4,28 @@
 
 ## I Description ##
 
-* What is Alexandria : Alexandria is a collection of functions for the Neural Networks Simulator Kheops.
-  1. Alexandria contains the code of functions for kheops
-  2. Alexandria contains XML description files for papyrus
+* What is Alexandria : Alexandria is a collection of Functions for the Neural Networks Simulator Kheops.
+  1. Alexandria contains the code of Functions for [[https://github.com/instar-robotics/kheops][Kheops]]
+  2. Alexandria contains XML description files for [[https://github.com/instar-robotics/papyrus][Papyrus]]
 
 ## II Installation ##
 
+Alexandria is a part of the Kheops/Papyrus software. A standalone installation doesn't have sense. 
+Please see  [[https://github.com/instar-robotics/papyrus/blob/master/README.org#how-to-install][Papyrus's how-to-install] tutorial.
+
 ### Dependancy ###
 
-* Alexandria requiers kheops and all its dependancies (included ROS)
-* You need to install kheops first.
 * Alexandria requiers  :
-   1. the ROS joy package (on ubuntu/debian : ros-melodic-joy or ros-lunar-joy for ROS Lunar)
-   2. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2 or ros-lunar-tf2 for ROS Lunar)
-   3. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs or ros-lunar-nav-msgs for ROS Lunar)
+   1. [[https://github.com/instar-robotics/kheops/blob/master/README.md][Kheops] and all its dependancies (included ROS)
+   2. the ROS joy package (on ubuntu/debian : ros-melodic-joy)
+   3. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2)
+   4. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs)
+   5. the ROS sensor_msgs package (on ubuntu/debian : ros-melodic-sensor_msgs)
+   6. the ROS geometry_msgs package (on ubuntu/debian : ros-melodic-geometry_msgs)
+   
+### Libraries path ###
 
-
-### Install Alexandria ###
-* Install ROS dependancy : 
-
-**_apt-get install ros-melodic-joy  ros-melodic-tf2 ros-melodic-nav-msgs_**  [or ros-lunar-* for ROS LUNAR version]   
-
-* clone the repository in your catkin workspace :
-
-**_cd /home/johndoe/catkin_workspace/src_**
-
-**_git clone https://github.com/instar-robotics/alexandria.git_**
-
-* go to your root catkin workspace :
-
-**_cd /home/johndoe/catkin_workspace_**
-
-* And run **_catkin_make_ install**
-
-* For **Neural Developpers** : 
+* For **Papyrus users** : 
   1. Alexandria builds a collection of libraries (.so) 
   2. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
   3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
@@ -61,7 +49,7 @@
 ## Functions developper's guide ##
 
 * Note : kheops uses Eigen library to manage Linear Algebra. 
-* We hardly recommand to read Eigen's doc and try the library beafor writing kheops's Function ! 
+* We hardly recommand to read Eigen's doc and try the library before writing kheops's Function ! 
 
 ### Develop it first Function : General description ###
 
