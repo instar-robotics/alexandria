@@ -4,66 +4,74 @@
 
 ## I Description ##
 
-* What is Alexandria : Alexandria is a collection of functions for the Neural Networks Simulator Kheops.
-  1. Alexandria contains the code of functions for kheops
-  2. Alexandria contains XML description files for papyrus
+* Alexandria is a part of the Kheops/Papyrus software.  
+  1. Alexandria contains a collection of Functions for the neural networks simulator [Kheops](https://github.com/instar-robotics/kheops)
+  2. Alexandria contains XML description files for the [Papyrus](https://github.com/instar-robotics/papyrus) GUI
 
 ## II Installation ##
 
+Please see [Papyrus's how-to-install](https://github.com/instar-robotics/papyrus/blob/master/README.org#how-to-install) tutorial for a Kheops/Papyrus full installation.
+
+or see [Kheops's standalone-install] tutorial for a Kheops standalone installation
+
 ### Dependancy ###
 
-* Alexandria requiers kheops and all its dependancies (included ROS)
-* You need to install kheops first.
 * Alexandria requiers  :
-   1. the ROS joy package (on ubuntu/debian : ros-melodic-joy or ros-lunar-joy for ROS Lunar)
-   2. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2 or ros-lunar-tf2 for ROS Lunar)
-   3. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs or ros-lunar-nav-msgs for ROS Lunar)
+   1. [Kheops](https://github.com/instar-robotics/kheops/blob/master/README.md) and all its dependancies (included ROS)
+   2. the ROS joy package (on ubuntu/debian : ros-melodic-joy)
+   3. the ROS tf2 package (on ubuntu/debian : ros-melodic-tf2)
+   4. the ROS nav_msgs package (on ubuntu/debian : ros-melodic-nav-msgs)
+   
+### Libraries path ###
 
+* For **Papyrus users** : 
+  1. By default, libraries are copied in __$CMAKE_INSTALL_PREFIX/lib/alexandria__
+  3. __CMAKE_INSTALL_PREFIX__ default value is the install directory in your catkin_workspace 
+  4. You can set __CMAKE_INSTALL_PREFIX__ before running **_catkin_make_ install**
+  5. You have to give this path if you run Kheops in standalone mode :
+  
+```console
+$> rosrun kheops kheops -s MyScript.xml -l $CMAKE_INSTALL_PREFIX/lib/alexandria
+```
 
-### Install Alexandria ###
-* Install ROS dependancy : 
+* if you want launch Kheops without __-l__ option, you can set __KHEOPS_LIB_PATH__ variable into your bashrc : 
 
-**_apt-get install ros-melodic-joy  ros-melodic-tf2 ros-melodic-nav-msgs_**  [or ros-lunar-* for ROS LUNAR version]   
+```console
+$> echo "export KHEOPS_LIB_PATH=\"$CMAKE_INSTALL_PREFIX/lib/alexandria/\"" >> ~/.bashrc
+$> source ~/.bashrc
+```
 
-* clone the repository in your catkin workspace :
+* then just run 
 
-**_cd /home/johndoe/catkin_workspace/src_**
+```console
+$> rosrun kheops kheops -s MyScript.xml 
+```
 
-**_git clone https://github.com/instar-robotics/alexandria.git_**
-
-* go to your root catkin workspace :
-
-**_cd /home/johndoe/catkin_workspace_**
-
-* And run **_catkin_make_ install**
-
-* For **Neural Developpers** : 
-  1. Alexandria builds a collection of libraries (.so) 
-  2. By default, libraries are copied in $CMAKE_INSTALL_PREFIX/lib/alexandria
-  3. CMAKE_INSTALL_PREFIX default value is the install directory in your catkin_workspace 
-  4. You can set CMAKE_INSTALL_PREFIX to every install dir before running **_catkin_make_ install**
-  5. The path $CMAKE_INSTALL_PREFIX/lib/alexandria should be communicate to kheops
-
-  1. Alexandria also copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
-  2. The path $CMAKE_INSTALL_PREFIX/share/alexandria/description should be communicate to papyrus
+  1. Alexandria copies XML description files in __$CMAKE_INSTALL_PREFIX/share/alexandria/description__
+  2. When you launch Payrus for the first time, Papyrus asks you to set this path.
 
 * For **Functions Developpers** : 
-  1. If you code ant test some news functions you probably doesn't want to install Alexandrai at each build time.
+  1. If you code ant test some news functions you probably doesn't want to install Alexandria at each build time.
   2. So, you could only run : 
-  
-**_catkin_make_**
 
-  1. Libraries are copied in $CATKIN_DEVEL_PREFIX/lib/alexandria
-  2. XML desription files are copied in $CATKIN_DEVEL_PREFIX/share/alexandria/description
-  3. You have to communicate both path to kheops and papyrus
+```console
+$> catkin_make
+```
 
+  1. Libraries are copied in __$CATKIN_DEVEL_PREFIX/lib/alexandria__
+  2. XML desription files are copied in __$CATKIN_DEVEL_PREFIX/share/alexandria/description__
+  3. If you want update XML Description without rebuild all lib, you can run : 
+
+```console
+$> catkin_make all_desc
+```
 
 ## Functions developper's guide ##
 
-* Note : kheops uses Eigen library to manage Linear Algebra. 
-* We hardly recommand to read Eigen's doc and try the library beafor writing kheops's Function ! 
+* Note : Kheops uses Eigen library to manage Linear Algebra. 
+* We hardly recommand to read Eigen's doc and try the library before writing Alexandria's Function ! (See http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
-### Develop it first Function : General description ###
+### Write a first Function : General description ###
 
 * Functions are defined by some objects : 
   1. .h file : contains the C++ header of the Function
@@ -71,8 +79,13 @@
   3. .xml file : contains the description of the Function (For papyrus)
   4. icons directory : contains the SVG file for Function icon in payrus
 
-* First you have to create a directory and the 3 empties files in the lib directory of Alexandria
+* First you have to create a directory and 3 empties files in the **lib** directory. 
 * For a Function **HelloFunct** you have to create the hellofunct directory then inside the files hellofunct.cpp , hellofunct.h and hellofunct.xml
+
+```console
+$> mkdir -p lib/hellofunct
+$> touch hellofunct.cpp hellofunct.h hellofunct.xml
+```
 
 ### First class HelloFunct ###
 
@@ -207,7 +220,7 @@ void HelloFunct::compute()
 * **output** is initialize automatically in the **setparameters** function (see below).
 * The output variable could be linked on another input Function using an iLink.
 
-### Add Inputs to the Function ###
+### Add Inputs to a Function ###
 
 * Kheops defines some **Inputs** which could be add to **Functions**.
 * In papyrus, Neural developpers can link the output of a Function with an input of another Function by adding an **iLink** between them.
@@ -702,12 +715,3 @@ typedef Input<iScalar> ISInput;
 [(0,0,1,2).(0,0,1,2)](c,n)*
 
 ```
- 
-
-
-## Create its own repository ##
-
-* TODO 
-* See demofct example in user_src
-  1. CMakeList.txt 
-

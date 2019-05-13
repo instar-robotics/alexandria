@@ -23,7 +23,7 @@ project(alexandria)
 set(CATKIN_DEP
   kheops
   joy
-  tf
+  tf2
   nav_msgs
   sensor_msgs
   geometry_msgs

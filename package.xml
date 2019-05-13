@@ -17,7 +17,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>kheops</depend>
   <depend>joy</depend>
-  <depend>tf</depend>
+  <depend>tf2</depend>
   <depend>nav_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>
