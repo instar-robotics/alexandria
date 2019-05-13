@@ -47,7 +47,7 @@ $> source ~/.bashrc
 $> rosrun kheops kheops -s MyScript.xml 
 ```
 
-  1. Alexandria copies XML description files in $CMAKE_INSTALL_PREFIX/share/alexandria/description
+  1. Alexandria copies XML description files in __$CMAKE_INSTALL_PREFIX/share/alexandria/description__
   2. When you launch Payrus for the first time, Papyrus asks you to set this path.
 
 * For **Functions Developpers** : 
@@ -68,8 +68,8 @@ $> catkin_make all_desc
 
 ## Functions developper's guide ##
 
-* Note : kheops uses Eigen library to manage Linear Algebra. 
-* We hardly recommand to read Eigen's doc and try the library before writing Alexandria's Function ! 
+* Note : Kheops uses Eigen library to manage Linear Algebra. 
+* We hardly recommand to read Eigen's doc and try the library before writing Alexandria's Function ! (See http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 ### Write a first Function : General description ###
 
@@ -79,8 +79,13 @@ $> catkin_make all_desc
   3. .xml file : contains the description of the Function (For papyrus)
   4. icons directory : contains the SVG file for Function icon in payrus
 
-* First you have to create a directory and the 3 empties files in the **lib** directory of Alexandria
+* First you have to create a directory and 3 empties files in the **lib** directory. 
 * For a Function **HelloFunct** you have to create the hellofunct directory then inside the files hellofunct.cpp , hellofunct.h and hellofunct.xml
+
+```console
+$> mkdir -p lib/hellofunct
+$> touch hellofunct.cpp hellofunct.h hellofunct.xml
+```
 
 ### First class HelloFunct ###
 
@@ -215,7 +220,7 @@ void HelloFunct::compute()
 * **output** is initialize automatically in the **setparameters** function (see below).
 * The output variable could be linked on another input Function using an iLink.
 
-### Add Inputs to the Function ###
+### Add Inputs to a Function ###
 
 * Kheops defines some **Inputs** which could be add to **Functions**.
 * In papyrus, Neural developpers can link the output of a Function with an input of another Function by adding an **iLink** between them.
