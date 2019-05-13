@@ -30,8 +30,6 @@
 #include <sensor_msgs/NavSatFix.h>
 #include <detect_msgs/ObjDetect.h>
 #include <vector>
-#include <pcl_ros/point_cloud.h>
-#include <pcl/point_types.h>
 
 /* Note :
  *      1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
