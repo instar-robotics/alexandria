@@ -23,10 +23,10 @@ project(alexandria)
 set(CATKIN_DEP
   kheops
   joy
-  tf
+  tf2
   nav_msgs
   sensor_msgs
-  pcl_ros
+  geometry_msgs
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_DEP})
@@ -75,6 +75,9 @@ set(SHARE_DESC "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/descr
     GET_FILENAME_COMPONENT(basedir ${relative_path} DIRECTORY)
      
     ADD_LIBRARY(${basename} SHARED ${src}  )
+
+    add_dependencies(${basename} ${kheops_EXPORTED_TARGETS}   ${catkin_EXPORTED_TARGETS})
+
     target_link_libraries(${basename} Eigen3::Eigen ${catkin_LIBRARIES})
     
 

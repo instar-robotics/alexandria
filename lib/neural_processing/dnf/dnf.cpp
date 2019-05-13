@@ -29,7 +29,8 @@ void AmariDnf::compute()
 	bool isCircular = false;
 	if( circular()() >= 0.5 ) isCircular = true;
 
-	output = MATRIX::NullaryExpr( output.rows(), output.cols() , Amari_functor<MATRIX>( output, kernel()(), input()(), h()() , tau()(), beta()() ,isCircular ));
+	//output = MATRIX::NullaryExpr( output.rows(), output.cols() , Amari_functor<MATRIX>( output, kernel()(), input()(), h()() , tau()(), beta()() ,isCircular ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols() , Amari_functor<MATRIX>( output, kernel()(), input()(), h()() , tau()() ,isCircular ));
 
 }
 
@@ -39,7 +40,7 @@ void AmariDnf::setparameters()
 
         Kernel::iBind(circular,"circular", getUuid());
         Kernel::iBind(tau,"tau", getUuid());
-        Kernel::iBind(beta,"beta", getUuid());
+        //Kernel::iBind(beta,"beta", getUuid());
         Kernel::iBind(h,"h", getUuid());
         Kernel::iBind(input,"input", getUuid());
         Kernel::iBind(kernel,"kernel", getUuid());
