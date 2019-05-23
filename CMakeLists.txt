@@ -21,6 +21,8 @@ cmake_minimum_required(VERSION 3.5.1)
 project(alexandria)
 
 set(CATKIN_DEP
+  roscpp
+  hieroglyph
   kheops
   joy
   tf2

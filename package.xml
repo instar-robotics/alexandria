@@ -15,6 +15,8 @@
   <author email="pierre.delarboulas@instar-robotics.com">Pierre Delarboulas</author>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>hieroglyph</depend>
   <depend>kheops</depend>
   <depend>joy</depend>
   <depend>tf2</depend>
