@@ -19,16 +19,32 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "arithmetic.h"
-
-/*******************************************************************************************************/
-/*********************************************   SUM   *************************************************/
-/*******************************************************************************************************/
 
 REGISTER_FUNCTION(MSum);
 REGISTER_FUNCTION(SSum);
 REGISTER_FUNCTION(MSSum);
+REGISTER_FUNCTION(MMSub);
+REGISTER_FUNCTION(MSSub);
+REGISTER_FUNCTION(SSSub);
+REGISTER_FUNCTION(MMul);
+REGISTER_FUNCTION(SMul);
+REGISTER_FUNCTION(MSMul);
+REGISTER_FUNCTION(MMDiv);
+REGISTER_FUNCTION(MSDiv);
+REGISTER_FUNCTION(SSDiv);
+REGISTER_FUNCTION(Norm);
+REGISTER_FUNCTION(SquaredNorm);
+REGISTER_FUNCTION(Normalize);
+REGISTER_FUNCTION(MTranspose);
+REGISTER_FUNCTION(MatrixProd);
+REGISTER_FUNCTION(DotProd);
+REGISTER_FUNCTION(CrossProd);
+REGISTER_FUNCTION(OuterProd);
+
+/*******************************************************************************************************/
+/*********************************************   SUM   *************************************************/
+/*******************************************************************************************************/
 
 void MSum::compute()
 {
@@ -96,10 +112,6 @@ void  MSSum::setparameters()
 /****************************************   Substraction   *********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MMSub);
-REGISTER_FUNCTION(MSSub);
-REGISTER_FUNCTION(SSSub);
-
 void MMSub::compute()
 {
 	output = diminuende()() - subtrahend()();
@@ -136,10 +148,6 @@ void SSSub::setparameters()
 /*******************************************************************************************************/
 /******************************************   Product   ************************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MMul);
-REGISTER_FUNCTION(SMul);
-REGISTER_FUNCTION(MSMul);
 
 void MMul::compute()
 {
@@ -205,10 +213,6 @@ void  MSMul::setparameters()
 /*****************************************   Division   ************************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MMDiv);
-REGISTER_FUNCTION(MSDiv);
-REGISTER_FUNCTION(SSDiv);
-
 void MMDiv::compute()
 {
 	output = numerator()().array() / denumerator()().array();
@@ -246,10 +250,6 @@ void  SSDiv::setparameters()
 /******************************************  Normalization   *******************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(Norm);
-REGISTER_FUNCTION(SquaredNorm);
-REGISTER_FUNCTION(Normalize);
-
 void Norm::compute()
 {
         output = inMatrix()().norm();
@@ -285,8 +285,6 @@ void Normalize::setparameters()
 /**********************************************  Transpose   *******************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MTranspose);
-
 void MTranspose::compute()
 {
 	output = inMatrix()().transpose();
@@ -309,11 +307,6 @@ void MTranspose::prerun()
 /*******************************************************************************************************/
 /************************************  Matrix/Dot/Cross/Outer Product  *********************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MatrixProd);
-REGISTER_FUNCTION(DotProd);
-REGISTER_FUNCTION(CrossProd);
-REGISTER_FUNCTION(OuterProd);
 
 void MatrixProd::compute()
 {
