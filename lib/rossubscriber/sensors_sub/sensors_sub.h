@@ -28,7 +28,6 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/NavSatFix.h>
-#include <detect_msgs/ObjDetect.h>
 #include <vector>
 
 /* Note :
@@ -367,25 +366,6 @@ class NavSatFixAltSub : public FScalarSub<sensor_msgs::NavSatFix>
 		virtual ~NavSatFixAltSub() {}
 
                 virtual void callback( const sensor_msgs::NavSatFix::ConstPtr &msg );
-};
-
-/*******************************************************************************************************/
-/*****************                         Object Detection                          *******************/
-/*******************************************************************************************************/
-
-
-class ObjDetect : public FMatrixSub<detect_msgs::ObjDetect>
-{
-        private :
-                ISInput size_x;
-                ISInput size_y;
-
-        public :
-                ObjDetect() : FMatrixSub<detect_msgs::ObjDetect>() {}
-                virtual ~ObjDetect() {}
-
-		virtual void setparameters();
-		virtual void callback( const detect_msgs::ObjDetect::ConstPtr &msg );
 };
 
 #endif // __SENSOR_MSGS_HPP__

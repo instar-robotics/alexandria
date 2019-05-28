@@ -25,6 +25,7 @@
 #include "hieroglyph/JointPos.h"
 #include "hieroglyph/JointVel.h"
 #include "kheops/ros/fsub.h"
+#include <detect_msgs/ObjDetect.h>
 
 /* Note :
  *	1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
@@ -72,6 +73,25 @@ class JointVelSub : public FMatrixSub<hieroglyph::JointVel>
 
                 virtual void setparameters();
                 virtual void callback(const hieroglyph::JointVel::ConstPtr &msg);
+};
+
+/*******************************************************************************************************/
+/*****************                         Object Detection                          *******************/
+/*******************************************************************************************************/
+
+
+class ObjDetectSub : public FMatrixSub<detect_msgs::ObjDetect>
+{
+        private :
+                ISInput size_x;
+                ISInput size_y;
+
+        public :
+                ObjDetectSub() : FMatrixSub<detect_msgs::ObjDetect>() {}
+                virtual ~ObjDetectSub() {}
+
+                virtual void setparameters();
+                virtual void callback( const detect_msgs::ObjDetect::ConstPtr &msg );
 };
 
 #endif //__CUSTOM_MSGS_HPP__

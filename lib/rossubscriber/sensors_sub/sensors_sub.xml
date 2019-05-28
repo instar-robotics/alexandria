@@ -481,35 +481,6 @@
                         <icon>Sat.svg</icon>
                         <desc>Read sensor_msgs/NavSatFix.altitude and load value into a Scalar.</desc>
 		</function>
-		<function>
-			<name>ObjDetect</name>
-			<output type="MATRIX">
-			</output>
-			<inputs>
-				<input  type="STRING">
-					<name>topic_name</name>
-					<desc>Name of the topic to which the function subscribes </desc>
-				</input>
-				<input  type="SCALAR_SCALAR">
-					<name>size_queue</name>
-					<desc>Size of the queue</desc>
-				</input>
-				<input  type="SCALAR_SCALAR">
-					<name>sleep</name>
-					<desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
-				</input>
-				<input  type="SCALAR_SCALAR">
-					<name>size_x</name>
-					<desc></desc>
-				</input>
-				<input  type="SCALAR_SCALAR">
-					<name>size_y</name>
-					<desc></desc>
-				</input>
-			</inputs>
-			<icon></icon>
-			<desc></desc>
-		</function>
         </functions>
 </description>
 

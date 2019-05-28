@@ -45,7 +45,6 @@ REGISTER_FUNCTION(NavSatFixSub);
 REGISTER_FUNCTION(NavSatFixLatSub);
 REGISTER_FUNCTION(NavSatFixLongSub);
 REGISTER_FUNCTION(NavSatFixAltSub);
-REGISTER_FUNCTION(ObjDetect);
 
 /*******************************************************************************************************/
 /*****************                            JoyAxesSub                             *******************/
@@ -444,41 +443,5 @@ void NavSatFixLongSub::callback( const sensor_msgs::NavSatFix::ConstPtr &msg)
 void NavSatFixAltSub::callback( const sensor_msgs::NavSatFix::ConstPtr &msg)
 {
 	output = msg->altitude;
-}
-
-/*******************************************************************************************************/
-/*****************                          Object Detection                         *******************/
-/*******************************************************************************************************/
-
-void ObjDetect::setparameters()
-{
-        FMatrixSub<detect_msgs::ObjDetect>::setparameters();
-        Kernel::iBind(size_x,"size_x", getUuid());
-        Kernel::iBind(size_y,"size_y", getUuid());
-}
-
-void ObjDetect::callback( const detect_msgs::ObjDetect::ConstPtr &msg )
-{
-        int cloud_pos_x, cloud_pos_y;
-        float cloud_val_x, cloud_val_y;
-        int eigen_pos_x, eigen_pos_y;
-
-        output = MatrixXd::Constant(output.rows(),output.cols(),0);
-
-        for (int i=0; i<msg->position.width; i++)
-        {
-                cloud_pos_x = i * msg->position.point_step + msg->position.fields[0].offset;
-                cloud_pos_y = i * msg->position.point_step + msg->position.fields[1].offset;
-                cloud_val_x = *(float*)(&(msg->position.data[cloud_pos_x]));
-                cloud_val_y = *(float*)(&(msg->position.data[cloud_pos_y]));
-                eigen_pos_x = round((size_x(0)()/2 + cloud_val_x) / size_x(0)() * output.cols()); // Remove when lidar reverted
-                eigen_pos_y = round((size_y(0)()/2 - cloud_val_y) / size_y(0)() * output.rows());
-                eigen_pos_x = (eigen_pos_x > output.cols() - 1) ? output.cols() - 1 : eigen_pos_x;
-                eigen_pos_y = (eigen_pos_y > output.rows() - 1) ? output.rows() - 1 : eigen_pos_y;
-                eigen_pos_x = (eigen_pos_x < 0) ? 0 : eigen_pos_x;
-                eigen_pos_y = (eigen_pos_y < 0) ? 0 : eigen_pos_y;
-                output(eigen_pos_x, eigen_pos_y) = msg->vote[i];
-        }
-
 }
 
