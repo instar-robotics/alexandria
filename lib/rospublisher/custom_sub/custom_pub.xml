@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+	<libname>custom_pub</libname>
+	<functions>
+		<function>
+			<name>JointVelPub</name>
+			<output type="MATRIX">	
+			</output>	
+			<inputs>
+				<input  type="STRING">
+					<name>topic_name</name>
+					<desc>Name of the topic to which the function publish</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>size_queue</name>
+					<desc>Size of the queue</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>accel</name>
+					<desc>Joint's acceleration</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>vel</name>
+					<desc>Joint's velocity</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Publish acceleration and velocity command for a joint in hieroglyph::JointVel message</desc>
+                </function>
+		<function>
+                        <name>JointPosPub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function publish</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>accel</name>
+                                        <desc>Joint's acceleration</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>vel</name>
+                                        <desc>Joint's velocity</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>pos</name>
+                                        <desc>Joint's position to reach</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish acceleration, velocity and position command for a joint in hieroglyph::JointPos message</desc>
+                </function>
+	</functions>
+</description>

@@ -20,8 +20,8 @@
 */
 
 
-#ifndef __ROS_OUTPUT_HPP__
-#define __ROS_OUTPUT_HPP__
+#ifndef __GEOMETRY_PUB_HPP__
+#define __GEOMETRY_PUB_HPP__
 
 #include "kheops/ros/fpub.h"
 #include <geometry_msgs/Accel.h>
