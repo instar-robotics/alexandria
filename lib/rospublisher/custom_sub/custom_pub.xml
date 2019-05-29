@@ -24,7 +24,7 @@
 					<desc>Joint's velocity</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>jointvel.svg</icon>
 			<desc>Publish acceleration and velocity command for a joint in hieroglyph::JointVel message</desc>
                 </function>
 		<function>
@@ -53,7 +53,7 @@
                                         <desc>Joint's position to reach</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>jointpos.svg</icon>
                         <desc>Publish acceleration, velocity and position command for a joint in hieroglyph::JointPos message</desc>
                 </function>
 	</functions>

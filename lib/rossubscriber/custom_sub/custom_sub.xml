@@ -20,7 +20,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>jointpos.svg</icon>
 			<desc>Read hieroglyph/JointPos message and load value into a Row/Col 3D Vector (accel, vel , pos).</desc>
                 </function>
 		<function>
@@ -41,7 +41,7 @@
                                         <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>jointvel.svg</icon>
                         <desc>Read hieroglyph/JointVel message and load value into a Row/Col 2D Vector (accel, vel).</desc>
                 </function>
         </functions>
