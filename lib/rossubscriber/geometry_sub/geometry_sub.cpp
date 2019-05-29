@@ -29,6 +29,8 @@ REGISTER_FUNCTION(AccelSub);
 REGISTER_FUNCTION(AccelLinearSub);
 REGISTER_FUNCTION(AccelAngularSub);
 REGISTER_FUNCTION(TwistSub);
+REGISTER_FUNCTION(TwistLinearSub);
+REGISTER_FUNCTION(TwistAngularSub);
 
 /*******************************************************************************************************/
 /*********************                           Vector3                            ********************/
