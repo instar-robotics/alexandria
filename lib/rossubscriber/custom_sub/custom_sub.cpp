@@ -69,12 +69,12 @@ void JointVelSub::callback(const hieroglyph::JointVel::ConstPtr &msg)
 
 void ObjDetectSub::setparameters()
 {
-        FMatrixSub<detect_msgs::ObjDetect>::setparameters();
+        FMatrixSub<hieroglyph::ObjDetect>::setparameters();
         Kernel::iBind(size_x,"size_x", getUuid());
         Kernel::iBind(size_y,"size_y", getUuid());
 }
 
-void ObjDetectSub::callback( const detect_msgs::ObjDetect::ConstPtr &msg )
+void ObjDetectSub::callback( const hieroglyph::ObjDetect::ConstPtr &msg )
 {
         int cloud_pos_x, cloud_pos_y;
         float cloud_val_x, cloud_val_y;
@@ -94,7 +94,7 @@ void ObjDetectSub::callback( const detect_msgs::ObjDetect::ConstPtr &msg )
                 eigen_pos_y = (eigen_pos_y > output.rows() - 1) ? output.rows() - 1 : eigen_pos_y;
                 eigen_pos_x = (eigen_pos_x < 0) ? 0 : eigen_pos_x;
                 eigen_pos_y = (eigen_pos_y < 0) ? 0 : eigen_pos_y;
-                output(eigen_pos_x, eigen_pos_y) = msg->vote[i];
+                output(eigen_pos_x, eigen_pos_y) = msg->confidence[i];
         }
 
 }
