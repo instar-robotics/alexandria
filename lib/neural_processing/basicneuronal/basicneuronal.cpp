@@ -93,7 +93,7 @@ void KeepMin::compute()
         for( MATRIX::Index mi = 0 ; mi < mout.size() ; mi++)
         {
                 mout(mi) = 0;
-                auto it = lin.begin();
+                auto it = lmin.begin();
                 for( ; it != lmin.end(); ++it )
                 {
                         if( it->first <= min(mi) ) break;
@@ -104,7 +104,7 @@ void KeepMin::compute()
 
                 if( lmin.size() > n )
                 {
-                        lmin.erase(lmax.begin());
+                        lmin.erase(lmin.begin());
                 }
         }
 
