@@ -63,15 +63,15 @@
                                 </input>
                                 <input  type="SCALAR_SCALAR">
                                         <name>size_x</name>
-                                        <desc></desc>
+					<desc>neighborhood is in [-size_x/2;size_x/2]</desc>
                                 </input>
                                 <input  type="SCALAR_SCALAR">
                                         <name>size_y</name>
-                                        <desc></desc>
+                                        <desc>neighborhood is in [0;size_y]</desc>
                                 </input>
                         </inputs>
                         <icon></icon>
-                        <desc></desc>
+			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
                 </function>
         </functions>
 </description>
