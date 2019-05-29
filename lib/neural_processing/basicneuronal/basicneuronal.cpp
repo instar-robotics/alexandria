@@ -67,7 +67,7 @@ void KeepMin::compute()
 void KeepMin::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
-        Kernel::iBind(nMin,"nMax", getUuid());
+        Kernel::iBind(nMin,"nMin", getUuid());
 }
 
 /*******************************************************************************************************/
