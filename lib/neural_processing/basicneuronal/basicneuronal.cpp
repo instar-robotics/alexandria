@@ -19,24 +19,54 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "basicneuronal.h"
+
+REGISTER_FUNCTION(KeepMax);
+REGISTER_FUNCTION(KeepMin);
+REGISTER_FUNCTION(ActToPop);
+REGISTER_FUNCTION(VActToPop);
+REGISTER_FUNCTION(PopToAct);
+REGISTER_FUNCTION(PopToVAct);
+REGISTER_FUNCTION(Convolution);
+REGISTER_FUNCTION(Shift);
+REGISTER_FUNCTION(ShiftInv);
+REGISTER_FUNCTION(Projection);
 
 /*******************************************************************************************************/
 /************************************************ KeepMax  *********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(KeepMax);
-
 void KeepMax::compute()
 {
-	output = MATRIX::Constant(output.rows(),output.cols(), 0);
-	for(unsigned int i = 0; i < nMax()(); i++)
-	{
-		MATRIX::Index maxRow, maxCol;
-  		SCALAR max = inMatrix().i().maxCoeff(&maxRow, &maxCol);
+	unsigned int n = 0;
+	if( nMax()() > 0 ) n = nMax()();
 	
-		output(maxRow,maxCol) = max * inMatrix().w();
+	std::list<std::pair<MATRIX::Scalar,MATRIX::Index>> lmax; 
+	
+	auto mout = getMapVect(output);
+	auto min =  getCMapVect(inMatrix()());
+
+	for( MATRIX::Index mi = 0 ; mi < mout.size() ; mi++)
+	{
+		mout(mi) = 0;
+		auto it = lmax.begin();
+		for( ; it != lmax.end(); ++it )
+		{
+			if( it->first >= min(mi) ) break;	
+		}	
+
+		std::pair<MATRIX::Scalar,MATRIX::Index> p( min(mi),mi);
+		lmax.insert(it, p);
+
+		if( lmax.size() > n )
+		{
+			lmax.erase(lmax.begin());
+		}
+	}
+	 
+	for(auto it = lmax.begin() ; it != lmax.end() ; ++it)
+	{
+		mout( it->second ) = it->first  ;
 	}
 }
 
@@ -50,31 +80,50 @@ void KeepMax::setparameters()
 /************************************************ KeepMin  *********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(KeepMin);
-
 void KeepMin::compute()
 {
-	output = MATRIX::Constant(output.rows(),output.cols(), 0);
-	for(unsigned int i = 0; i < nMin()(); i++)
-	{
-		MATRIX::Index minRow, minCol;
-  		SCALAR min = inMatrix().i().minCoeff(&minRow, &minCol);
-	
-		output(minRow,minCol) = min * inMatrix().w();
-	}
+	unsigned int n = 0;
+        if( nMin()() > 0 ) n = nMin()();
+
+	std::list<std::pair<MATRIX::Scalar,MATRIX::Index>> lmin;
+
+        auto mout = getMapVect(output);
+        auto min =  getCMapVect(inMatrix()());
+
+        for( MATRIX::Index mi = 0 ; mi < mout.size() ; mi++)
+        {
+                mout(mi) = 0;
+                auto it = lmin.begin();
+                for( ; it != lmin.end(); ++it )
+                {
+                        if( it->first <= min(mi) ) break;
+                }
+
+                std::pair<MATRIX::Scalar,MATRIX::Index> p( min(mi),mi);
+                lmin.insert(it, p);
+
+                if( lmin.size() > n )
+                {
+                        lmin.erase(lmin.begin());
+                }
+        }
+
+        for(auto it = lmin.begin() ; it != lmin.end() ; ++it)
+        {
+                mout( it->second ) = it->first  ;
+        }
+
 }
 
 void KeepMin::setparameters()
 {
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
-        Kernel::iBind(nMin,"nMax", getUuid());
+        Kernel::iBind(nMin,"nMin", getUuid());
 }
 
 /*******************************************************************************************************/
 /*********************************************  ActToPop   *********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(ActToPop);
 
 void ActToPop::compute()
 {
@@ -101,8 +150,6 @@ void ActToPop::setparameters()
 /*******************************************************************************************************/
 /********************************************  VActToPop   *********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(VActToPop);
 
 void VActToPop::compute()
 {
@@ -217,8 +264,6 @@ void VActToPop::prerun()
 /*********************************************  PopToAct   *********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(PopToAct);
-
 // Note : compute VALUE :
 // value = i / size + 1 / (2*size) 
 // 	or
@@ -253,8 +298,6 @@ void PopToAct::prerun()
 /*******************************************************************************************************/
 /**********************************************  PopToVAct   *******************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(PopToVAct);
 
 void PopToVAct::compute()
 {
@@ -331,8 +374,6 @@ void PopToVAct::prerun()
 /*******************************************  Convolution   ********************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(Convolution);
-
 void Convolution::compute()
 {
 	bool isCircular = false;
@@ -352,9 +393,6 @@ void Convolution::setparameters()
 /*******************************************************************************************************/
 /**********************************************  Shift   ***********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(Shift);
-REGISTER_FUNCTION(ShiftInv);
 
 void Shift::compute()
 {
@@ -387,8 +425,6 @@ void ShiftInv::setparameters()
 /*******************************************************************************************************/
 /********************************************* Projection **********************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(Projection);
 
 void Projection::compute()
 {

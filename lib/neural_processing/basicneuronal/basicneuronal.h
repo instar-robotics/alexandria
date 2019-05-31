@@ -28,24 +28,9 @@
 #include "kheops/kernel/kernel.h"
 
 /*
-
-// SPARSE_MATRIX -> Nouveau type de liens 
-neurons concatenation -> OK 
-extract neurons -> OK 
-
-projection (
-	neuron-to-vector -> SCALAR-SCALAR 
-	vector-to-neuron  -> SCALAR_MATRIX
-) (circularity option)
-
--> Concaténation + extraction : meme opération de projection : on fait une seule boite de projection qui prend en input une sparse matrice définissant les régles de projections 
-
-
-convolution operator (circularity option) -> OK simple 
-
+TODO : 
 N_MAX/N_MIN (reviens à un sort si N = taille entrée)  -> implémenter plus tard si besoin
 -> SORT ?? Est-ce que ce n'est pas plus malin de l'appeler SORT ? Avec N -> N premier (soit max soit min)
-
 */
 
 /*******************************************************************************************************/
