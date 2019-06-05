@@ -313,7 +313,7 @@ void MSModulo::setparameters()
 
 void SModulo::compute()
 {
-  output  =   inScalar()() - modulo()() * floor ( inScalar()() * modulo()() );
+  output  =   inScalar()() - modulo()() * floor ( inScalar()() / modulo()() );
 }
 
 void SModulo::setparameters()
