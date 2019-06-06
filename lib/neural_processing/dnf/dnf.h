@@ -55,8 +55,8 @@ class Amari_functor{
 	 {
 		 for( typename ArgType::Index j = 0; j < mcols; j++)
 		 {
-			typename ArgType::Index zrow = urow + i - mrows/2.0 ;
-			typename ArgType::Index zcol = ucol + j - mcols/2.0 ; 
+			typename ArgType::Index zrow = urow + i - (typename ArgType::Index)((mrows)/2.0) ;
+			typename ArgType::Index zcol = ucol + j - (typename ArgType::Index)((mcols)/2.0) ; 
 		
 			if( circular ) 
 			{
@@ -72,13 +72,13 @@ class Amari_functor{
 				// classical ramp function
 				SCALAR val =  U(zrow,zcol);
 				if(  val > 1.0 ) val = 1.0;
-				else if( val < 0 ) val = 0.0;
+				else if( val < 0.0 ) val = 0.0;
 				neighbor +=  mask(i,j) * val;
 			}
 		 }
 	 }
 
-	 return U(urow,ucol) + tau * ( -U(urow,ucol) + I(urow,ucol) + neighbor + h );
+	 return U(urow,ucol) + (tau) * ( -U(urow,ucol) + I(urow,ucol) + neighbor + h );
  }
 };
 

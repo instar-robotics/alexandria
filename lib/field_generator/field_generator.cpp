@@ -265,7 +265,7 @@ void GaussianField2D::compute()
 	if(sx == 0.0) sx = std::numeric_limits<SCALAR>::epsilon();
 	if(sy == 0.0) sy = std::numeric_limits<SCALAR>::epsilon();
 
-	output = MATRIX::NullaryExpr( output.rows(), output.cols()  ,Gauss2D_functor<MATRIX>(N()(), sx, mu_x()(), sy , mu_y()(), output.cols(), output.rows() ));
+	output = MATRIX::NullaryExpr( output.rows(), output.cols()  ,Gauss2D_functor<MATRIX>(N()(), sx, mu_x()(), sy , mu_y()(), MATRIX::Scalar(output.cols()),MATRIX::Scalar( output.rows()) ));
 }
 
 void GaussianField2D::setparameters()
@@ -317,8 +317,7 @@ void DoGField2D::compute()
         if( s2_x == 0 ) s2_x = std::numeric_limits<SCALAR>::epsilon();
         if( s2_y == 0 ) s2_y = std::numeric_limits<SCALAR>::epsilon();
 
-        output = MATRIX::NullaryExpr( output.rows(), output.cols() , DoG2D_functor<MATRIX>(N()(), s1_x, s1_y , s2_x, s2_y, output.cols(), output.rows()));
-
+        output = MATRIX::NullaryExpr( output.rows(), output.cols() , DoG2D_functor<MATRIX>(N()(), s1_x, s1_y , s2_x, s2_y, (output.cols()), (output.rows())));
 }
 
 void DoGField2D::setparameters()

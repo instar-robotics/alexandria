@@ -35,6 +35,12 @@ TODO :
 - Ondelette
 */
 
+template<class T>
+inline T coord(const T& ind,const T& max, const T& N)
+{
+      return (ind * 2.0 / (max-1) - 1) * N ;
+}
+
 /*******************************************************************************************************/
 /*******************************************  Dirac Field  *********************************************/
 /*******************************************************************************************************/
@@ -90,7 +96,8 @@ public:
   Heavi1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar& thx, const typename ArgType::Index& max) : N(N), thx(thx), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
 	 
-	typename ArgType::Scalar x =  typename ArgType::Scalar(ind) * 2.0* N / (max - 1) - (N);
+	auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+
 	return  (x >= thx) ? 1.0 : 0.0  ;
   }
 };
@@ -122,8 +129,9 @@ class Heavi2D_functor {
 public:
   Heavi2D_functor(const typename ArgType::Scalar &N , const typename ArgType::Scalar& thx, const typename ArgType::Scalar& thy,  const typename ArgType::Index& max_x , const typename ArgType::Index& max_y) : N(N), thx(thx),thy(thy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
-	typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - N;
-	typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - N;
+	auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+	auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
 	return  ( y >= thy && x >= thx) ? 1.0 : 0.0  ;
   }
 };
@@ -158,7 +166,7 @@ class Gate1D_functor {
 public:
   Gate1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &thx , const typename ArgType::Index& max ) : N(N), thx(thx), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - (N);
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     return  (x >= -thx && x <= thx) ? 1.0 : 0.0  ;
   }
 };
@@ -188,8 +196,9 @@ class Gate2D_functor {
 public:
   Gate2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& thx, const typename ArgType::Scalar &thy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), thx(thx),thy(thy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - N;
-    typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - N;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
     return  (y >= -thy && y <= thy  && x >= -thx && x <= thx) ? 1.0 : 0.0  ;
   }
 };
@@ -220,7 +229,7 @@ class Triangular1D_functor {
 public:
   Triangular1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &a  ,const typename ArgType::Index& max ) : N(N), a(a), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - N;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     return  std::max( 1 - fabs(a*x), 0.0) ;
   }
 };
@@ -249,8 +258,9 @@ class Triangular2D_functor {
 public:
   Triangular2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& ax, const typename ArgType::Scalar &ay, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), ax(ax),ay(ay), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - N;
-    typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - N;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
     return std::max( 1 - (fabs( ax *x ) + fabs( ay * y)), 0.0);
   }
 };
@@ -423,7 +433,7 @@ class Gauss1D_functor {
 public:
   Gauss1D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& sigma, const typename ArgType::Scalar& mu, const typename ArgType::Index& max) : N(N), sigma(sigma), mu(mu),max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-	typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - (N);
+        auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
 	return  (1.0/(sigma * sqrt(2*M_PI) )) * exp( -pow(x - mu, 2) / (2 * pow(sigma,2) ));
   }
 };
@@ -450,16 +460,18 @@ class Gauss2D_functor {
   const typename ArgType::Scalar &mux;
   const typename ArgType::Scalar &sigmay;
   const typename ArgType::Scalar &muy;
-  const typename ArgType::Index &max_x;
-  const typename ArgType::Index &max_y;
+  const typename ArgType::Scalar &max_x;
+  const typename ArgType::Scalar &max_y;
 
 public:
-  Gauss2D_functor( const typename ArgType::Scalar& N , const typename ArgType::Scalar& sigmax, const typename ArgType::Scalar& mux,const typename ArgType::Scalar& sigmay, const typename ArgType::Scalar& muy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y) : N(N), sigmax(sigmax), mux(mux),sigmay(sigmay),muy(muy),max_x(max_x), max_y(max_y) {}
+  Gauss2D_functor( const typename ArgType::Scalar& N , const typename ArgType::Scalar& sigmax, const typename ArgType::Scalar& mux,const typename ArgType::Scalar& sigmay, const typename ArgType::Scalar& muy, const typename ArgType::Scalar& max_x , const typename ArgType::Scalar& max_y) : N(N), sigmax(sigmax), mux(mux),sigmay(sigmay),muy(muy),max_x(max_x), max_y(max_y) {}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
 
-        typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - (N);
-        typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - (N);
-        return (1.0/(2.0*M_PI*sigmax*sigmay)) * exp(-(pow(x-mux,2)/(2.0*pow(sigmax,2))) - (pow(y-muy,2)/(2.0*pow(sigmay,2))));
+	auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+	auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
+	return (1.0/(sqrt(2.0*M_PI)*sigmax*sigmay)) * exp(-(pow(x-mux,2)/(2.0*pow(sigmax,2))) - (pow(y-muy,2)/(2.0*pow(sigmay,2))));
+
   }
 };
 
@@ -494,7 +506,7 @@ class DoG1D_functor {
 public:
   DoG1D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& sigma1, const typename ArgType::Scalar& sigma2, const typename ArgType::Index& max) : N(N), sigma1(sigma1), sigma2(sigma2), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-	typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - (N) ;
+        auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
 		
 	return (1.0/(sigma1 * sqrt(2*M_PI) )) *  exp( - pow(x, 2) / (2 * pow(sigma1,2) )) - (1.0/(sigma2 * sqrt(2*M_PI) )) *  exp( - pow(x, 2) / (2 * pow(sigma2,2) ));
   }
@@ -515,6 +527,7 @@ class DoGField1D : public FMatrix
 		virtual void setparameters();
 };
 
+
 template<class ArgType>
 class DoG2D_functor {
   const typename ArgType::Scalar &N;
@@ -529,10 +542,10 @@ public:
   DoG2D_functor(const typename ArgType::Scalar& N , const typename ArgType::Scalar& sigma1_x, const typename ArgType::Scalar& sigma1_y,const typename ArgType::Scalar& sigma2_x, const typename ArgType::Scalar& sigma2_y, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y) : N(N), sigma1_x(sigma1_x),sigma1_y(sigma1_y),sigma2_x(sigma2_x), sigma2_y(sigma2_y),max_x(max_x), max_y(max_y) {}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
 
-        typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - (N);
-        typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - (N);
-        
-	return (1.0/(2.0*M_PI*sigma1_x*sigma1_y)) * exp(-(pow(x,2)/(2.0*pow(sigma1_x,2))) - (pow(y,2)/(2.0*pow(sigma1_y,2)))) - (1.0/(2.0*M_PI*sigma2_x*sigma2_y)) * exp(-(pow(x,2)/(2.0*pow(sigma2_x,2))) - (pow(y,2)/(2.0*pow(sigma2_y,2))));
+	auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+	auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
+	return  (1.0/(sqrt(2.0*M_PI)*sigma1_x*sigma1_y)) * exp(-(pow(x,2)/(2.0*pow(sigma1_x,2))) - (pow(y,2)/(2.0*pow(sigma1_y,2)))) - (1.0/(sqrt(2.0*M_PI)*sigma2_x*sigma2_y)) * exp(-(pow(x,2)/(2.0*pow(sigma2_x,2))) - (pow(y,2)/(2.0*pow(sigma2_y,2))));
   }
 };
 
@@ -565,7 +578,8 @@ class Sinc1D_functor {
 public:
   Sinc1D_functor(const typename ArgType::Scalar & N,const typename ArgType::Scalar& freq, const typename ArgType::Index& max) : N(N), freq(freq), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - N ;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+
     if( x == 0.0 ) x = std::numeric_limits<typename ArgType::Scalar>::epsilon();
     return  sin(x  * freq ) / (x * freq ) ;
   }
@@ -595,8 +609,9 @@ class Sinc2D_functor {
 public:
   Sinc2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& freq, const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), freq(freq), max_x(max_x), max_y(max_y){}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
-	typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0 * N / (max_x-1) - N;
-	typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0 * N / (max_y-1) - N; 
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
     if( x == 0.0 ) x = std::numeric_limits<typename ArgType::Scalar>::epsilon();
     if( y == 0.0 ) y = std::numeric_limits<typename ArgType::Scalar>::epsilon();
   
@@ -632,7 +647,7 @@ class ChineseHat1D_functor {
 public:
   ChineseHat1D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max) : N(N), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(ind) * 2.0* N / (max-1) - N ;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     return (N - log( cosh(x))) / N ;
   }
 };
@@ -645,8 +660,9 @@ class ChineseHat2D_functor {
 public:
   ChineseHat2D_functor(const typename ArgType::Scalar & N,const typename ArgType::Index & max_x, const typename ArgType::Index & max_y) : N(N), max_x(max_x), max_y(max_y) {}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
-    typename ArgType::Scalar x = typename ArgType::Scalar(col) * 2.0* N / (max_x-1) - N ;
-    typename ArgType::Scalar y = typename ArgType::Scalar(row) * 2.0* N / (max_y-1) - N ;
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
     return (N - log( cosh( sqrt( x * x + y * y )))) / N ;
   }
 };
