@@ -374,12 +374,65 @@ void PopToVAct::prerun()
 /*******************************************  Convolution   ********************************************/
 /*******************************************************************************************************/
 
+#include <iostream>
 void Convolution::compute()
 {
 	bool isCircular = false;
         if( circular()() >= 0.5 ) isCircular = true;
 
-        output = MATRIX::NullaryExpr( output.rows(), output.cols() , Conv_functor<MATRIX>( inMatrix()(), mask()(), isCircular ));
+//        output = MATRIX::NullaryExpr( output.rows(), output.cols() , Conv_functor<MATRIX>( inMatrix()(), mask()(), isCircular ));
+
+	
+	const MATRIX& M = mask().i();
+        MATRIX::Scalar wmask = mask().w();
+
+	const MATRIX& I = inMatrix().i();
+        MATRIX::Scalar wi = inMatrix().w();
+
+	MATRIX::Index urows = output.rows();
+        MATRIX::Index ucols = output.cols();
+
+        MATRIX::Index mrows = M.rows();
+        MATRIX::Index mcols = M.cols();
+
+	//#pragma omp parallel for num_threads(NBTHREAD) collapse(2)
+	//#pragma omp parallel for collapse(2)
+	//#pragma omp parallel for num_threads(2) collapse(2)
+	//#pragma omp parallel for num_threads(4) collapse(2)
+
+	//omp_set_num_threads(2);
+
+	#pragma omp parallel for num_threads(2) collapse(2)
+        for( MATRIX::Index urow = 0; urow < urows ; urow++)
+        {
+//		std::cout <<  "THREAD : " << omp_get_thread_num()<< std::endl;
+
+                for( MATRIX::Index ucol = 0; ucol < ucols; ucol++)
+                {
+			MATRIX::Scalar value = 0.0;
+
+                        for( MATRIX::Index i = 0; i < mrows; i++)
+                        {
+                                for( MATRIX::Index j = 0; j < mcols; j++)
+                                {
+                                        MATRIX::Index zrow = urow + i - (MATRIX::Index)((mrows)/2.0);
+                                        MATRIX::Index zcol = ucol + j - (MATRIX::Index)((mcols)/2.0);
+
+                                        if( isCircular )
+                                        {
+                                                zrow = (int)(zrow + urows) % urows;
+                                                zcol = (int)(zcol + ucols) % ucols;
+                                        }
+
+                                        if( zrow >= 0 && zrow < urows && zcol >= 0 && zcol < ucols)
+                                        {
+						value += wmask *  M(i,j)* wi * I(zrow,zcol);
+                                        }
+                                 }
+                         }
+                         output(urow,ucol) = value;
+                }
+        }
 }
 
 void Convolution::setparameters()

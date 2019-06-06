@@ -212,8 +212,8 @@ class Conv_functor{
          	{
                  for( typename ArgType::Index j = 0; j < mcols; j++)
                  {
-			typename ArgType::Index zrow = irow + i - mrows/2.0 ;
-                        typename ArgType::Index zcol = icol + j - mcols/2.0 ;
+			typename ArgType::Index zrow = irow + i - (typename ArgType::Index)((mrows)/2.0);
+                        typename ArgType::Index zcol = icol + j - (typename ArgType::Index)((mcols)/2.0);
 
                         if( circular )
                         {
