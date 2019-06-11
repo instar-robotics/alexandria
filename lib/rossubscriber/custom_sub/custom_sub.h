@@ -24,6 +24,7 @@
 
 #include "hieroglyph/JointPos.h"
 #include "hieroglyph/JointVel.h"
+#include "hieroglyph/ObjDetect.h"
 #include "kheops/ros/fsub.h"
 
 /* Note :
@@ -72,6 +73,25 @@ class JointVelSub : public FMatrixSub<hieroglyph::JointVel>
 
                 virtual void setparameters();
                 virtual void callback(const hieroglyph::JointVel::ConstPtr &msg);
+};
+
+/*******************************************************************************************************/
+/*****************                         Object Detection                          *******************/
+/*******************************************************************************************************/
+
+
+class ObjDetectSub : public FMatrixSub<hieroglyph::ObjDetect>
+{
+        private :
+                ISInput size_x;
+                ISInput size_y;
+
+        public :
+                ObjDetectSub() : FMatrixSub<hieroglyph::ObjDetect>() {}
+                virtual ~ObjDetectSub() {}
+
+                virtual void setparameters();
+                virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
 };
 
 #endif //__CUSTOM_MSGS_HPP__

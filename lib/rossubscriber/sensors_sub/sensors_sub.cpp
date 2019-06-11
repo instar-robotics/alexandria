@@ -444,3 +444,4 @@ void NavSatFixAltSub::callback( const sensor_msgs::NavSatFix::ConstPtr &msg)
 {
 	output = msg->altitude;
 }
+

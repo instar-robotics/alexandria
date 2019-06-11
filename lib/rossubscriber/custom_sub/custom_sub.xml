@@ -43,6 +43,35 @@
                         </inputs>
                         <icon>jointvel.svg</icon>
                         <desc>Read hieroglyph/JointVel message and load value into a Row/Col 2D Vector (accel, vel).</desc>
+		</function>
+		<function>
+                        <name>ObjDetectSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_x</name>
+					<desc>neighborhood is in [-size_x/2;size_x/2]</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_y</name>
+                                        <desc>neighborhood is in [0;size_y]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
                 </function>
         </functions>
 </description>
