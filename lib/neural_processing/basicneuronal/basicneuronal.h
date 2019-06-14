@@ -298,6 +298,44 @@ class ShiftInv : public FMatrix
 };
 
 /*******************************************************************************************************/
+/************************************************  Copy  ***********************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class Copy_functor {
+  const ArgType &input;
+  const typename ArgType::Index &sx;
+  const typename ArgType::Index &sy;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+public:
+  Copy_functor(const ArgType &input , const typename ArgType::Index& sx , const typename ArgType::Index& sy,  const typename ArgType::Index& max_x , const typename ArgType::Index& max_y) : input(input), sx(sx),sy(sy),max_x(max_x), max_y(max_y) {}
+
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+        typename ArgType::Index  sr = ((row + sy ) % max_y + max_y ) % max_y ;
+        typename ArgType::Index  sc = ((col + sx ) % max_x + max_x ) % max_x ;
+
+        return  input(sr,sc);
+  }
+};
+
+
+class Copy : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+                ISMInput dirac;
+
+        public :
+
+                virtual ~Copy(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+/*******************************************************************************************************/
 /********************************************  Projection  *********************************************/
 /*******************************************************************************************************/
 

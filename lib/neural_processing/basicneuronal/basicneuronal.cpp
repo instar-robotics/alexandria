@@ -30,6 +30,7 @@ REGISTER_FUNCTION(PopToVAct);
 REGISTER_FUNCTION(Convolution);
 REGISTER_FUNCTION(Shift);
 REGISTER_FUNCTION(ShiftInv);
+REGISTER_FUNCTION(Copy);
 REGISTER_FUNCTION(Projection);
 
 /*******************************************************************************************************/
@@ -421,6 +422,30 @@ void ShiftInv::setparameters()
         Kernel::iBind(mask,"mask", getUuid());
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
+
+
+/*******************************************************************************************************/
+/************************************************ Copy ************************************************/
+/*******************************************************************************************************/
+
+void Copy::compute()
+{
+        MATRIX::Index mRow, mCol;
+        dirac().i().maxCoeff(&mRow, &mCol);
+
+	mRow = dirac().i().rows() / 2 - mRow;
+	mCol = dirac().i().cols() / 2 - mCol;
+
+        output = MATRIX::NullaryExpr( output.rows(), output.cols(), Copy_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows()));
+}
+
+void Copy::setparameters()
+{
+        dirac.setCheckSize(false);
+        Kernel::iBind(dirac,"dirac", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
 
 /*******************************************************************************************************/
 /********************************************* Projection **********************************************/

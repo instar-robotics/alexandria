@@ -145,6 +145,23 @@
                         <desc>Shift^-1 operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
                 </function>
 		 <function>
+                        <name>Copy</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to shift</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>dirac</name>
+                                        <desc>The dirac where copy the input.</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Copy operator : copy the activities of the input field on a position given by the position of the max coefficient in dirac field.</desc>
+                </function>
+		 <function>
                         <name>Projection</name>
                         <output type="MATRIX">
                         </output>
