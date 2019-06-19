@@ -203,11 +203,11 @@
                                         <name>size_queue</name>
                                         <desc>Size of the queue</desc>
                                 </input>
-                                <input  type="SCALAR_SCALAR">
+                                <input  type="SCALAR_MATRIX">
                                         <name>position</name>
 					<desc>a 3D Vector describing a position.</desc>
                                 </input>
-                                <input  type="SCALAR_SCALAR">
+                                <input  type="SCALAR_MATRIX">
                                         <name>orientation</name>
                                         <desc>a 3D Vector describing an orientation with Euler angle.</desc>
                                 </input>
