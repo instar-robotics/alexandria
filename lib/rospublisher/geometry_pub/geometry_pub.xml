@@ -159,7 +159,7 @@
 				</input>
 			</inputs>
 			<icon>motor_output_acc.svg</icon>
-			<desc>Publish 3D linear and rotational acceleration parameters in geometry_msgs::Accel message</desc>
+			<desc>Publish 3D linear and rotational acceleration values in geometry_msgs::Accel message</desc>
                 </function>
 		<function>
 			<name>Accel2DPub</name>
@@ -184,7 +184,36 @@
 				</input>
 			</inputs>
 			<icon>motor_output_acc.svg</icon>
-			<desc>Publish 3D linear and rotational acceleration parameters in geometry_msgs::Accel message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
+			<desc>Publish 3D linear and rotational acceleration values in geometry_msgs::Accel message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
+                </function>
+		<function>
+                        <name>PoseStampedPub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes</desc>
+                                </input>
+                                <input  type="STRING">
+                                        <name>frame_id</name>
+                                        <desc>Frame id of the message header</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>position</name>
+					<desc>a 3D Vector describing a position.</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>orientation</name>
+                                        <desc>a 3D Vector describing an orientation with Euler angle.</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish 3D position and orientation values in geometry_msgs::PoseStamped message. Orienation is given with Euler angle</desc>
                 </function>
 	</functions>
 </description>

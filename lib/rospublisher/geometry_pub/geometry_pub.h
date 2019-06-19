@@ -26,6 +26,7 @@
 #include "kheops/ros/fpub.h"
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/PoseStamped.h>
 #include <ros/ros.h>
 
 /* Note :
@@ -174,6 +175,32 @@ class Accel2DPub : public FMatrixPub<geometry_msgs::Accel>
 
                 virtual void compute();
                 virtual void setparameters();
+};
+
+/*
+ * PoseStamped : Send pose parameters in geometry_msgs/PoseStamped
+ * position : a 3D Vector
+ * orientation : a 3D Vector (Euler angle, will be convert to Quaternion)
+ * Output dimension should be 6 (3 Scalar for pos and 3 for orientation)
+ */
+class PoseStampedPub :  public FMatrixPub<geometry_msgs::PoseStamped>
+{
+	private :
+
+		IString frame_id;
+                ISMInput position;
+                ISMInput orientation;
+
+		geometry_msgs::PoseStamped msg;
+
+	public :
+
+                PoseStampedPub(){}
+                virtual ~PoseStampedPub(){}
+
+                virtual void compute();
+                virtual void setparameters();
+		virtual void prerun();
 };
 
 #endif // __ROS_OUTPUT_HPP__

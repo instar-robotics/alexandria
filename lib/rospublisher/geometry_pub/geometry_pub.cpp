@@ -21,6 +21,8 @@
 
 
 #include "geometry_pub.h"
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 REGISTER_FUNCTION(TwistPub);
 REGISTER_FUNCTION(TwistVectPub);
@@ -262,4 +264,57 @@ void Accel2DPub::setparameters()
 	FMatrixPub<geometry_msgs::Accel>::setparameters();
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
+}
+
+/*******************************************************************************************************/
+/********************                      PoseStampedPub                            *******************/
+/*******************************************************************************************************/
+
+void PoseStampedPub::compute()
+{
+        auto mout = getMapVect(output);
+
+        MATRIX tmpO = position()();
+
+        auto mtmp = getMapVect(tmpO);
+        mout[0] = mtmp[0];
+        mout[1] = mtmp[1];
+        mout[2] = mtmp[2];
+
+	msg.pose.position.x = mout[0];
+	msg.pose.position.y = mout[1];
+	msg.pose.position.z = mout[2];
+
+        tmpO = orientation()();
+        mtmp = getMapVect(tmpO);
+        mout[3] = mtmp[0];
+        mout[4] = mtmp[1];
+        mout[5] = mtmp[2];
+	
+	tf2::Quaternion quat;
+	quat.setRPY( mout[3], mout[4], mout[5] );
+
+	msg.pose.orientation = tf2::toMsg(quat);
+
+	pub.publish(msg);
+}
+
+void PoseStampedPub::setparameters()
+{
+        if( output.size() != 6 ) throw std::invalid_argument("PoseStampedPub : Output dimension should be 6 !");
+
+	FMatrixPub<geometry_msgs::PoseStamped>::setparameters();
+        Kernel::iBind(frame_id,"frame_id", getUuid());
+        Kernel::iBind(position,"position", getUuid());
+        Kernel::iBind(orientation,"orientation", getUuid());
+}
+
+void PoseStampedPub::prerun()
+{
+	if( position().iSize() != 3 )  throw std::invalid_argument("PoseStampedPub : position Input dimension should be 3 !");
+	if( orientation().iSize() != 3 )  throw std::invalid_argument("PoseStampedPub : orientation Input dimension should be 3 !");
+
+	msg.header.frame_id = frame_id;
+
+	FMatrixPub<geometry_msgs::PoseStamped>::prerun();
 }
