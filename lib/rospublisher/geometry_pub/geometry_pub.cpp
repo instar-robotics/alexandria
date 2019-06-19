@@ -105,6 +105,8 @@ void TwistVectPub::setparameters()
 {
 	if( output.size() != 6 ) throw std::invalid_argument("TwistVectPub : Output dimension should be 6 !");
 	FMatrixPub<geometry_msgs::Twist>::setparameters();
+	lin.setCheckSize(false);
+	rot.setCheckSize(false);
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
@@ -223,6 +225,8 @@ void AccelVectPub::setparameters()
         if( output.size() != 6 ) throw std::invalid_argument("AccelVectPub : Output dimension should be 6 !");
 	
 	FMatrixPub<geometry_msgs::Accel>::setparameters();
+	lin.setCheckSize(false);
+	rot.setCheckSize(false);
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
@@ -304,6 +308,8 @@ void PoseStampedPub::setparameters()
         if( output.size() != 6 ) throw std::invalid_argument("PoseStampedPub : Output dimension should be 6 !");
 
 	FMatrixPub<geometry_msgs::PoseStamped>::setparameters();
+	position.setCheckSize(false);
+	orientation.setCheckSize(false);
         Kernel::iBind(frame_id,"frame_id", getUuid());
         Kernel::iBind(position,"position", getUuid());
         Kernel::iBind(orientation,"orientation", getUuid());

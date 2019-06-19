@@ -56,12 +56,12 @@
 					<name>size_queue</name>
 					<desc>Size of the queue</desc>
 				</input>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>lin</name>
 					<desc>Linear velocity. Must be dimension 3 [(3,1) or (3,1)]</desc>
 
 				</input>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>rot</name>
 					<desc>Rotational velocity. Must be dimension 3 [(3,1) or (3,1)]</desc>
 				</input>
@@ -148,12 +148,12 @@
 					<name>size_queue</name>
 					<desc>Size of the queue</desc>
 				</input>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>lin</name>
 					<desc>Linear Acceleration. Must be dimension 3 [(3,1) or (3,1)]</desc>
 
 				</input>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>rot</name>
 					<desc>Rotational Accceleration. Must be dimension 3 [(3,1) or (3,1)]</desc>
 				</input>
@@ -203,11 +203,11 @@
                                         <name>size_queue</name>
                                         <desc>Size of the queue</desc>
                                 </input>
-                                <input  type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>position</name>
 					<desc>a 3D Vector describing a position.</desc>
                                 </input>
-                                <input  type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>orientation</name>
                                         <desc>a 3D Vector describing an orientation with Euler angle.</desc>
                                 </input>
