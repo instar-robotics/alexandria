@@ -28,5 +28,43 @@
 			<icon>cast_mtos.svg</icon>
 			<desc>Cast 1-1 Matrix to Scalar</desc>
 		</function>
+		<function>
+                        <name>Concat_STo2DV</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc></desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Concat 2 Scalars into a 2D Vector. Dimension of the output must be egal to 2.</desc>
+                </function>
+		<function>
+                        <name>Concat_STo3DV</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc></desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>z</name>
+                                        <desc></desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Concat 3 Scalars into a 3D Vector. Dimension of the output must be egal to 3.</desc>
+                </function>
         </functions>
 </description>

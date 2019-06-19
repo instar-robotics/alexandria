@@ -30,6 +30,7 @@ REGISTER_FUNCTION(Twist2DPub);
 REGISTER_FUNCTION(AccelPub);
 REGISTER_FUNCTION(AccelVectPub);
 REGISTER_FUNCTION(Accel2DPub);
+REGISTER_FUNCTION(PoseStampedPub);
 
 /*******************************************************************************************************/
 /********************                         TwistPub                             *********************/

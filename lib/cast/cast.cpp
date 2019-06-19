@@ -61,3 +61,44 @@ void Cast_MToS::prerun()
 	     if( !inMatrix().isPoint() ) throw std::invalid_argument("Cast_MToS : Matrix Input dimension should be 1 !");
 }
 
+/*******************************************************************************************************/
+/*****************                          Concat_STo3DV                            *******************/
+/*******************************************************************************************************/
+
+void Concat_STo3DV::compute()
+{
+	auto mout = getMapVect(output);
+        mout(0) = x()();
+        mout(1) = y()();
+        mout(2) = z()();
+}
+
+
+void Concat_STo3DV::setparameters()
+{
+	if( output.size() != 3 ) throw std::invalid_argument("Concat_STo3DV : Output dimension should be 3 !");
+
+        Kernel::iBind(x,"x", getUuid());
+        Kernel::iBind(y,"y", getUuid());
+        Kernel::iBind(z,"z", getUuid());
+}
+
+/*******************************************************************************************************/
+/*****************                          Concat_STo2DV                            *******************/
+/*******************************************************************************************************/
+
+void Concat_STo2DV::compute()
+{
+        auto mout = getMapVect(output);
+        mout(0) = x()();
+        mout(1) = y()();
+}
+
+
+void Concat_STo2DV::setparameters()
+{
+        if( output.size() != 2 ) throw std::invalid_argument("Concat_STo2DV : Output dimension should be 2 !");
+
+        Kernel::iBind(x,"x", getUuid());
+        Kernel::iBind(y,"y", getUuid());
+}

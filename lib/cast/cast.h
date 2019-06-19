@@ -63,4 +63,42 @@ class Cast_MToS : public FScalar
 		virtual void prerun();
 };
 
+
+/*
+ * Concat 3 Scalars to 3D Vector
+ */
+class Concat_STo3DV : public FMatrix
+{
+	private :
+                ISInput x;
+                ISInput y;
+                ISInput z;
+
+        public :
+
+                Concat_STo3DV() : FMatrix(VECTOR){}
+                virtual ~Concat_STo3DV(){}
+
+                virtual void setparameters();
+                virtual void compute();
+};
+
+/*
+ * Concat 2 Scalars to 2D Vector
+ */
+class Concat_STo2DV : public FMatrix
+{
+	private :
+                ISInput x;
+                ISInput y;
+
+        public :
+
+                Concat_STo2DV() : FMatrix(VECTOR){}
+                virtual ~Concat_STo2DV(){}
+
+                virtual void setparameters();
+                virtual void compute();
+};
+
 #endif // __CAST_HPP__
