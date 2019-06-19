@@ -24,6 +24,8 @@
 
 REGISTER_FUNCTION(Cast_MToS);
 REGISTER_FUNCTION(Cast_SToM);
+REGISTER_FUNCTION(Concat_STo2DV);
+REGISTER_FUNCTION(Concat_STo3DV);
 
 /*******************************************************************************************************/
 /*****************                             Cast_SToM                             *******************/
