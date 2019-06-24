@@ -212,7 +212,7 @@
                                         <desc>a 3D Vector describing an orientation with Euler angle.</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>posestampedpub.svg</icon>
                         <desc>Publish 3D position and orientation values in geometry_msgs::PoseStamped message. Orienation is given with Euler angle</desc>
                 </function>
 	</functions>

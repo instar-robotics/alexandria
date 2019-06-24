@@ -70,7 +70,7 @@
                                         <desc>neighborhood is in [0;size_y]</desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>objdetectsub.svg</icon>
 			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
                 </function>
         </functions>
