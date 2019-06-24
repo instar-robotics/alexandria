@@ -43,6 +43,7 @@ REGISTER_FUNCTION(MDerivative);
 REGISTER_FUNCTION(SDerivative);
 REGISTER_FUNCTION(MZ_1);
 REGISTER_FUNCTION(SZ_1);
+REGISTER_FUNCTION(SZ_N);
 REGISTER_FUNCTION(PolarToCart);
 REGISTER_FUNCTION(PolarToCartX);
 REGISTER_FUNCTION(PolarToCartY);
@@ -372,6 +373,43 @@ void SZ_1::setparameters()
 {
         Kernel::iBind(inScalar,"inScalar", getUuid());
 	z_1 = 0;
+}
+
+void SZ_N::compute()
+{
+	unsigned int tmpS; 
+	if( N()() < 0 ) tmpS = 0;
+	else tmpS = (unsigned int)(N()());
+
+	if( size != tmpS) 
+	{
+		size = tmpS;
+		z_n.resize(size,0);
+	}
+	
+	if( size > 0 )
+	{
+		unsigned int ir = (index + 1 ) % size;
+
+		output = z_n[ir]; ; 
+		z_n[index] = inScalar()();
+
+		index++;
+		index = index % size;
+	}
+	else
+	{
+		output = 0; 
+	}
+}
+
+void SZ_N::setparameters()
+{
+        Kernel::iBind(inScalar,"inScalar", getUuid());
+        Kernel::iBind(N,"N", getUuid());
+
+	size = 0;
+	index = 0 ; 
 }
 
 /*******************************************************************************************************/

@@ -262,6 +262,23 @@
 			<desc>Get the scalar value with a delay iteration</desc>
 		</function>
 		<function>
+			<name>SZ_N</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input  type="SCALAR_SCALAR">
+					<name>inScalar</name>
+					<desc>Input scalar</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>N</name>
+					<desc>number of delay's iteration</desc>
+				</input>
+			</inputs>
+			<icon></icon>
+			<desc>Get the scalar value with a delay of N iterations</desc>
+		</function>
+		<function>
                         <name>PolarToCart</name>
                         <output type="MATRIX">
                         </output>

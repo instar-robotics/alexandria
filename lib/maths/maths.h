@@ -350,6 +350,25 @@ class SZ_1 : public FScalar
                 virtual void setparameters();
 };
 
+class SZ_N : public FScalar
+{
+	private : 
+
+		ISInput inScalar;
+		ISInput N;
+
+		unsigned int index;
+		unsigned int size;
+		std::vector<SCALAR> z_n;
+        
+	public :
+
+                virtual ~SZ_N(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
 class PolarToCart : public FMatrix 
 {
         private :
