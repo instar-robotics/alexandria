@@ -357,9 +357,8 @@ class SZ_N : public FScalar
 		ISInput inScalar;
 		ISInput N;
 
-		unsigned int index;
-		unsigned int size;
-		std::vector<SCALAR> z_n;
+		std::list<SCALAR>::iterator index;
+		std::list<SCALAR> z_n;
         
 	public :
 
