@@ -26,6 +26,8 @@
 #include <geometry_msgs/Vector3.h>
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/PoseStamped.h>
+
 
 /* Note :
  *	1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
@@ -98,7 +100,7 @@ class Vector3ZSub: public FScalarSub<geometry_msgs::Vector3>
 };
 
 /*******************************************************************************************************/
-/******************                              AccelInput                          *******************/
+/******************                              AccelSub                            *******************/
 /*******************************************************************************************************/
 
 /*
@@ -143,7 +145,7 @@ class AccelAngularSub : public FMatrixSub<geometry_msgs::Accel>
 };
 
 /*******************************************************************************************************/
-/******************                             TwistInput                           *******************/
+/******************                             TwistSub                             *******************/
 /*******************************************************************************************************/
 
 /*
@@ -185,6 +187,26 @@ class TwistAngularSub : public FMatrixSub<geometry_msgs::Twist>
 
                 virtual void setparameters();
                 virtual void callback(const geometry_msgs::Twist::ConstPtr &msg);
+};
+
+
+/*******************************************************************************************************/
+/******************                           PoseStampedSub                         *******************/
+/*******************************************************************************************************/
+
+/*
+ * PoseStampedSub : read pose parameters in geometry_msgs/PoseStamped
+ * Output dimension should be 6 (3 Scalar for pos and 3 for orientation)
+ * orientation is a 3D Vector (Euler angle)
+ */
+class PoseStampedSub : public FMatrixSub<geometry_msgs::PoseStamped>
+{
+        public :
+                PoseStampedSub() : FMatrixSub<geometry_msgs::PoseStamped>(VECTOR) {}
+                virtual ~PoseStampedSub(){}
+
+                virtual void setparameters();
+                virtual void callback(const geometry_msgs::PoseStamped::ConstPtr &msg);
 };
 
 #endif //__GEOMETRY_MSGS_HPP__

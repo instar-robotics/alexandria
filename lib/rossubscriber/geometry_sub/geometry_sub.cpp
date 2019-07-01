@@ -20,6 +20,9 @@
 */
 
 #include "geometry_sub.h"
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+
 
 REGISTER_FUNCTION(Vector3Sub);
 REGISTER_FUNCTION(Vector3XSub);
@@ -31,6 +34,7 @@ REGISTER_FUNCTION(AccelAngularSub);
 REGISTER_FUNCTION(TwistSub);
 REGISTER_FUNCTION(TwistLinearSub);
 REGISTER_FUNCTION(TwistAngularSub);
+REGISTER_FUNCTION(PoseStampedSub);
 
 /*******************************************************************************************************/
 /*********************                           Vector3                            ********************/
@@ -169,5 +173,30 @@ void TwistAngularSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
         mout[0] =  msg->angular.x;
         mout[1] =  msg->angular.y;
         mout[2] =  msg->angular.z;
+}
+
+/*******************************************************************************************************/
+/*********************                          PoseStamped                         ********************/
+/*******************************************************************************************************/
+
+
+void PoseStampedSub::setparameters()
+{
+        FMatrixSub<geometry_msgs::PoseStamped>::setparameters();
+
+        if(output.size() != 6) throw std::invalid_argument("PoseStampedSub : Output must be a 6D Vector.");
+}
+
+void PoseStampedSub::callback(const geometry_msgs::PoseStamped::ConstPtr &msg)
+{
+        auto mout = getMapVect(output);
+        mout[0] =  msg->pose.position.x;
+        mout[1] =  msg->pose.position.y;
+        mout[2] =  msg->pose.position.x;
+
+	tf2::Quaternion quat_tf;
+	tf2::convert(msg->pose.orientation , quat_tf);
+	tf2::Matrix3x3 m(quat_tf);
+	m.getRPY(mout[3], mout[4], mout[5]);
 }
 
