@@ -4,7 +4,7 @@
         <functions>
 		<function>
                         <name>Vector3Sub</name>
-                        <output type="MATRIX"> 
+                        <output type="MATRIX" shape="VECT"> 
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -88,7 +88,7 @@
                 </function>
 		<function>
                         <name>AccelSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -105,11 +105,11 @@
                                 </input>
                         </inputs>
                         <icon>Accel.svg</icon>
-                        <desc>Read geometry/Accel message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
+                        <desc>Read geometry/Accel message and load value into a 6D Vector. Linear part is loaded first then Angular part.</desc>
                 </function>
 		<function>
                         <name>AccelLinearSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -130,7 +130,7 @@
                 </function>
 		<function>
                         <name>AccelAngularSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -151,7 +151,7 @@
                 </function>
 		<function>
                         <name>TwistSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -168,11 +168,11 @@
                                 </input>
                         </inputs>
                         <icon>Twist.svg</icon>
-                        <desc>Read geometry/Twist message and load value into a Matrix. Matrix dimension must be [3,2] or [2,3] or [1,6] or [6,1]. For [2,3] Matrix, Linear part is loaded in the first row and Angular part in the second row. For [3,2] Matrix, Linear part is loaded in the first col and Angular in the second col. For other shape, Linear part is loaded first then Angular part.</desc>
+                        <desc>Read geometry/Twist message and load value into a 6D Vector. Linear part is loaded first then Angular part.</desc>
                 </function>
 		<function>
                         <name>TwistLinearSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -193,7 +193,7 @@
                 </function>
 		<function>
                         <name>TwistAngularSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">

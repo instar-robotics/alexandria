@@ -51,7 +51,7 @@
 class Vector3Sub: public FMatrixSub<geometry_msgs::Vector3>
 {
         public :
-                Vector3Sub() : FMatrixSub<geometry_msgs::Vector3>() {}
+                Vector3Sub() : FMatrixSub<geometry_msgs::Vector3>(VECTOR) {}
                 virtual ~Vector3Sub(){}
 
                 virtual void setparameters();
@@ -107,7 +107,7 @@ class Vector3ZSub: public FScalarSub<geometry_msgs::Vector3>
 class AccelSub : public FMatrixSub<geometry_msgs::Accel>
 {
         public :
-                AccelSub() : FMatrixSub<geometry_msgs::Accel>() {}
+                AccelSub() : FMatrixSub<geometry_msgs::Accel>(VECTOR) {}
                 virtual ~AccelSub(){}
 
                 virtual void setparameters();
@@ -121,7 +121,7 @@ class AccelSub : public FMatrixSub<geometry_msgs::Accel>
 class AccelLinearSub : public FMatrixSub<geometry_msgs::Accel>
 {
         public :
-                AccelLinearSub() : FMatrixSub<geometry_msgs::Accel>() {}
+                AccelLinearSub() : FMatrixSub<geometry_msgs::Accel>(VECTOR) {}
                 virtual ~AccelLinearSub(){}
 
                 virtual void setparameters();
@@ -135,7 +135,7 @@ class AccelLinearSub : public FMatrixSub<geometry_msgs::Accel>
 class AccelAngularSub : public FMatrixSub<geometry_msgs::Accel>
 {
         public :
-                AccelAngularSub() : FMatrixSub<geometry_msgs::Accel>() {}
+                AccelAngularSub() : FMatrixSub<geometry_msgs::Accel>(VECTOR) {}
                 virtual ~AccelAngularSub(){}
 
                 virtual void setparameters();
@@ -152,7 +152,7 @@ class AccelAngularSub : public FMatrixSub<geometry_msgs::Accel>
 class TwistSub : public FMatrixSub<geometry_msgs::Twist>
 {
         public :
-                TwistSub() : FMatrixSub<geometry_msgs::Twist>() {}
+                TwistSub() : FMatrixSub<geometry_msgs::Twist>(VECTOR) {}
                 virtual ~TwistSub(){}
 
                 virtual void setparameters();
@@ -166,7 +166,7 @@ class TwistSub : public FMatrixSub<geometry_msgs::Twist>
 class TwistLinearSub : public FMatrixSub<geometry_msgs::Twist>
 {
         public :
-                TwistLinearSub() : FMatrixSub<geometry_msgs::Twist>() {}
+                TwistLinearSub() : FMatrixSub<geometry_msgs::Twist>(VECTOR) {}
                 virtual ~TwistLinearSub(){}
 
                 virtual void setparameters();
@@ -180,7 +180,7 @@ class TwistLinearSub : public FMatrixSub<geometry_msgs::Twist>
 class TwistAngularSub : public FMatrixSub<geometry_msgs::Twist>
 {
         public :
-                TwistAngularSub() : FMatrixSub<geometry_msgs::Twist>() {}
+                TwistAngularSub() : FMatrixSub<geometry_msgs::Twist>(VECTOR) {}
                 virtual ~TwistAngularSub(){}
 
                 virtual void setparameters();

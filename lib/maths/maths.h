@@ -38,13 +38,13 @@ class ArgMax1D : public FScalar
 {
         private :
 
-                ISMInput inMatrix;
+                ISMInput inVector;
 
         public :
 
                 virtual ~ArgMax1D(){}
 
-                virtual void upreload();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -59,7 +59,6 @@ class ArgMax2D : public FMatrix
 
                 virtual ~ArgMax2D(){}
 
-                virtual void upreload();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -73,13 +72,13 @@ class ArgMin1D : public FScalar
 {
         private :
 
-                ISMInput inMatrix;
+                ISMInput inVector;
 
         public :
 
                 virtual ~ArgMin1D(){}
 
-                virtual void upreload();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -94,7 +93,6 @@ class ArgMin2D : public FMatrix
 
                 virtual ~ArgMin2D(){}
 
-                virtual void upreload();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -292,7 +290,6 @@ class MDerivative : public FMatrix
                 ISMInput inMatrix;
 
 		MATRIX z_1;
-
 
         public :
 

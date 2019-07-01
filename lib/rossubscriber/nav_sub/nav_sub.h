@@ -51,7 +51,7 @@ class OdoPosSub :  public FMatrixSub<nav_msgs::Odometry>
 {
         public :
 
-                OdoPosSub() : FMatrixSub<nav_msgs::Odometry>() {}
+                OdoPosSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR) {}
                 virtual ~OdoPosSub(){}
 
                 virtual void setparameters();
@@ -109,7 +109,7 @@ class OdoEulerSub : public FMatrixSub<nav_msgs::Odometry>
 {
         public :
 
-                OdoEulerSub() : FMatrixSub<nav_msgs::Odometry>(){}
+                OdoEulerSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
                 virtual ~OdoEulerSub(){}
 
                 virtual void setparameters();
@@ -167,7 +167,7 @@ class OdoQuaterSub : public FMatrixSub<nav_msgs::Odometry>
 {
         public :
 
-                OdoQuaterSub() : FMatrixSub<nav_msgs::Odometry>(){}
+                OdoQuaterSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
                 virtual ~OdoQuaterSub(){}
 
                 virtual void setparameters();
@@ -241,7 +241,7 @@ class OdoTwistLinSub : public FMatrixSub<nav_msgs::Odometry>
 {
         public :
 
-                OdoTwistLinSub() : FMatrixSub<nav_msgs::Odometry>(){}
+                OdoTwistLinSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
                 virtual ~OdoTwistLinSub(){}
 
                 virtual void setparameters();
@@ -299,7 +299,7 @@ class OdoTwistAngSub : public FMatrixSub<nav_msgs::Odometry>
 {
         public :
 
-                OdoTwistAngSub() : FMatrixSub<nav_msgs::Odometry>(){}
+                OdoTwistAngSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
                 virtual ~OdoTwistAngSub(){}
 
                 virtual void setparameters();

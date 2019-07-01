@@ -43,7 +43,7 @@ void JointVelPub::compute()
 
 void JointVelPub::setparameters()
 {
-	if( output.size() != 2 ) throw std::invalid_argument("JointVelPub : Output dimension should be 2 !");
+	if( output.size() != 2 ) throw std::invalid_argument("JointVelPub : Output must be a 2D Vector.");
 	FMatrixPub<hieroglyph::JointVel>::setparameters();
 
  	Kernel::iBind(accel,"accel", getUuid());
@@ -71,7 +71,7 @@ void JointPosPub::compute()
 
 void JointPosPub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("JointPosPub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("JointPosPub : Output must be a 3D Vector.");
         FMatrixPub<hieroglyph::JointPos>::setparameters();
 
         Kernel::iBind(accel,"accel", getUuid());

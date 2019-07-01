@@ -4,7 +4,7 @@
         <functions>
 		<function>
                         <name>JointPosSub</name>
-                        <output type="MATRIX"> 
+                        <output type="MATRIX" shape="VECT"> 
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -25,7 +25,7 @@
                 </function>
 		<function>
                         <name>JointVelSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">

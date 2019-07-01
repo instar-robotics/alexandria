@@ -4,7 +4,7 @@
         <functions>
 		<function>
                         <name>JoyAxesSub</name>
-                        <output type="MATRIX"> 
+                        <output type="MATRIX" shape="VECT"> 
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -50,7 +50,7 @@
                 </function>
                 <function>
                         <name>JoyButtonsSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -147,7 +147,7 @@
                 </function>
 		<function>
 			<name>Compass3DSub</name>
-			<output type="MATRIX">
+			<output type="MATRIX" shape="VECT">
 			</output>
 			<inputs>
 				<input  type="STRING">
@@ -164,7 +164,7 @@
 				</input>
 			</inputs>
 			<icon>compass.svg</icon>
-			<desc>Read sensor_msgs/Imu.orientation and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+			<desc>Read sensor_msgs/Imu.orientation and load value into a 3D Vector.</desc>
 		</function>
 		 <function>
 			<name>CompassXSub</name>
@@ -185,7 +185,7 @@
 				</input>
 			</inputs>
 			<icon>compass.svg</icon>
-			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the X compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the X compass and load value into a Scalar.</desc>
 		</function>
 		 <function>
 			<name>CompassYSub</name>
@@ -206,7 +206,7 @@
 				</input>
 			</inputs>
 			<icon>compass.svg</icon>
-			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Y compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Y compass and load value into a Scalar.</desc>
 		</function>
 		<function>
 			<name>CompassZSub</name>
@@ -227,11 +227,11 @@
 				</input>
 			</inputs>
 			<icon>compass.svg</icon>
-			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Z compass and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 1 values).]</desc>
+			<desc>Read sensor_msgs/Imu.orientation quaternion, convert it into Euler, extract the Z compass and load value into a Scalar.</desc>
 		</function>
 		<function>
 			<name>Gyroscope3DSub</name>
-			<output type="MATRIX">
+			<output type="MATRIX" shape="VECT">
 			</output>
 			<inputs>
 				<input  type="STRING">
@@ -248,7 +248,7 @@
 				</input>
 			</inputs>
 			<icon>gyroscope.svg</icon>
-			<desc>Read sensor_msgs/Imu.angular_velocity and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+			<desc>Read sensor_msgs/Imu.angular_velocity and load value into a 3D Vector.</desc>
 		</function>
 		 <function>
 			<name>GyroscopeXSub</name>
@@ -315,7 +315,7 @@
 		</function>
 		<function>
 			<name>Accelerometer3DSub</name>
-			<output type="MATRIX">
+			<output type="MATRIX" shape="VECT">
 			</output>
 			<inputs>
 				<input  type="STRING">
@@ -332,7 +332,7 @@
 				</input>
 			</inputs>
 			<icon>accelerometer.svg</icon>
-			<desc>Read sensor_msgs/Imu.linear_acceleration and load value into a Matrix [Matrix dimension must be egal to the numbers of values into the Imu message (must be 3 values).]</desc>
+			<desc>Read sensor_msgs/Imu.linear_acceleration and load value into a 3D Vector.</desc>
 		</function>
 		<function>
 			<name>AccelerometerXSub</name>
@@ -399,7 +399,7 @@
 		</function>
 		<function>
                         <name>NavSatFixSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">

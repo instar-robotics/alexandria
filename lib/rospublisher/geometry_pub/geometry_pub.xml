@@ -3,8 +3,59 @@
 	<libname>geometry_pub</libname>
 	<functions>
 		<function>
+			<name>Vector3SPub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function publish</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>x</name>
+                                        <desc>Component X of the vector</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>y</name>
+                                        <desc>Component Y of the vector</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>z</name>
+                                        <desc>Component Z of the vector</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish 3D vector in geometry_msgs::Vector3 message</desc>
+                </function>
+		<function>
+                        <name>Vector3Pub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function publish</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR" shape="VECT">
+                                        <name>inVector</name>
+                                        <desc>a 3D Vector</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish 3D vector in geometry_msgs::Vector3 message</desc>
+                </function>
+
+		<function>
 			<name>TwistPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -45,7 +96,7 @@
                 </function>
 		<function>
 			<name>TwistVectPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -71,7 +122,7 @@
                 </function>
 		<function>
 			<name>Twist2DPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -96,7 +147,7 @@
                 </function>
 		<function>
 			<name>AccelPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -137,7 +188,7 @@
                 </function>
 		<function>
 			<name>AccelVectPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -163,7 +214,7 @@
                 </function>
 		<function>
 			<name>Accel2DPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -188,7 +239,7 @@
                 </function>
 		<function>
                         <name>PoseStampedPub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
