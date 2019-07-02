@@ -55,11 +55,11 @@ REGISTER_FUNCTION(CartToPolarTheta);
 /**********************************************  ArgMax  ***********************************************/
 /*******************************************************************************************************/
 
-void ArgMax1D::upreload()
+void ArgMax1D::prerun()
 {
-	if( inMatrix().i().rows() != 1 && inMatrix().i().cols() != 1 ) 
+	if( !inVector().isVect() ) 
 	{
-		throw std::invalid_argument("ArgMax1D Function : input have to be a vector (1D Matrix) !");
+		throw std::invalid_argument("ArgMax1D : input have to be a vector.");
 	}
 }
 
@@ -67,23 +67,14 @@ void ArgMax1D::compute()
 {
 	MATRIX::Index maxRow, maxCol;
 
-	inMatrix().i().maxCoeff(&maxRow, &maxCol);
+	inVector().i().maxCoeff(&maxRow, &maxCol);
 
         output = std::max(maxRow,maxCol) ;
 }
 
 void ArgMax1D::setparameters()
 {
-        Kernel::iBind(inMatrix,"inMatrix", getUuid());
-}
-
-
-void ArgMax2D::upreload()
-{
-	if( inMatrix().i().rows() <= 1 || inMatrix().i().cols() <= 1 ) 
-	{
-		throw std::invalid_argument("ArgMax2D Function : input have to be a matrix with dimension 2 !");
-	}
+        Kernel::iBind(inVector,"inVector", getUuid());
 }
 
 void ArgMax2D::compute()
@@ -98,11 +89,12 @@ void ArgMax2D::compute()
 
 void ArgMax2D::setparameters()
 {
+	inMatrix.setCheckSize(false);
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 	
 	if( output.size() != 2 ) 
 	{
-		throw std::invalid_argument("ArgMax2D Function : output must have only 2 neurons !");
+		throw std::invalid_argument("ArgMax2D : output must have only 2 neurons !");
 	}
 }
 
@@ -111,11 +103,11 @@ void ArgMax2D::setparameters()
 /**********************************************  ArgMin  ***********************************************/
 /*******************************************************************************************************/
 
-void ArgMin1D::upreload()
+void ArgMin1D::prerun()
 {
-	if( inMatrix().i().rows() != 1 && inMatrix().i().cols() != 1 )
+	if( !inVector().isVect() ) 
         {
-                throw std::invalid_argument("ArgMin1D Function : input have to be a vector (1D Matrix) !");
+                throw std::invalid_argument("ArgMin1D : input have to be a vector.");
         }
 }
 
@@ -123,24 +115,16 @@ void ArgMin1D::compute()
 {
 	MATRIX::Index minRow, minCol;
 
-        inMatrix().i().minCoeff(&minRow, &minCol);
+        inVector().i().minCoeff(&minRow, &minCol);
 
         output = std::max(minRow,minCol) ;
 }
 
 void ArgMin1D::setparameters()
 {
-        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(inVector,"inVector", getUuid());
 }
 
-
-void ArgMin2D::upreload()
-{
-	if( inMatrix().i().rows() <= 1 || inMatrix().i().cols() <= 1 )
-        {
-                throw std::invalid_argument("ArgMin2D Function : input have to be a 2D Matrix !");
-        }
-}
 
 void ArgMin2D::compute()
 {
@@ -154,6 +138,7 @@ void ArgMin2D::compute()
 
 void ArgMin2D::setparameters()
 {
+	inMatrix.setCheckSize(false);
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
         
 	if( output.size() != 2 )
@@ -381,21 +366,48 @@ void SZ_N::compute()
 	if( N()() < 0 ) tmpS = 0;
 	else tmpS = (unsigned int)(N()());
 
-	if( size != tmpS) 
+	if( z_n.size() != tmpS) 
 	{
-		size = tmpS;
-		z_n.resize(size,0);
+		if( tmpS == 0)
+		{
+			z_n.resize(0);
+			index = z_n.begin();	
+		}
+		else if( tmpS > z_n.size() )
+		{
+			std::vector<SCALAR> vect (tmpS - z_n.size(), output );
+			index = z_n.insert(index,vect.begin(),vect.end());
+		}
+		else
+		{
+			int nbDel = distance(index, z_n.end());
+
+			nbDel = std::min(nbDel, (int)(z_n.size() - tmpS));
+
+			auto it = index;
+
+			std::advance( it, nbDel);
+			nbDel = (z_n.size() - tmpS) - (nbDel) ;
+			index = z_n.erase(index , it);
+
+			if( nbDel > 0 )
+			{
+				it = z_n.begin();
+				std::advance( it, nbDel);
+				z_n.erase(z_n.begin(), it );
+			}
+
+			if( index == z_n.end() ) index = z_n.begin();
+		}
 	}
 	
-	if( size > 0 )
+	if( z_n.size() > 0 )
 	{
-		unsigned int ir = (index + 1 ) % size;
-
-		output = z_n[ir]; ; 
-		z_n[index] = inScalar()();
-
+		output = *index; 
+		*index = inScalar()();
+		
 		index++;
-		index = index % size;
+		if( index == z_n.end()) index = z_n.begin(); 
 	}
 	else
 	{
@@ -408,8 +420,7 @@ void SZ_N::setparameters()
         Kernel::iBind(inScalar,"inScalar", getUuid());
         Kernel::iBind(N,"N", getUuid());
 
-	size = 0;
-	index = 0 ; 
+	index = z_n.begin();
 }
 
 /*******************************************************************************************************/

@@ -4,7 +4,7 @@
 	<functions>
 		<function>
 			<name>JointVelPub</name>
-			<output type="MATRIX">	
+			<output type="MATRIX" shape="VECT">	
 			</output>	
 			<inputs>
 				<input  type="STRING">
@@ -29,7 +29,7 @@
                 </function>
 		<function>
                         <name>JointPosPub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">

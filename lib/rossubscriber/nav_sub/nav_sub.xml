@@ -4,7 +4,7 @@
 	<functions>
 		<function>
                         <name>OdoPosSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -21,7 +21,7 @@
                                 </input>
                         </inputs>
                         <icon>odometry.svg</icon>
-                        <desc>Read nav_msgs/Odometry.pose.position and load the 3 values into a Matrix [Dimension of the Matrix must be 3]</desc>
+                        <desc>Read nav_msgs/Odometry.pose.position and load the 3 values into a 3D Vector</desc>
                 </function>
 		<function>
                         <name>OdoPosXSub</name>
@@ -88,7 +88,7 @@
                 </function>
 		<function>
                         <name>OdoEulerSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -105,7 +105,7 @@
                                 </input>
                         </inputs>
                         <icon>odometry.svg</icon>
-                        <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load the 3 values into a Matrix [Dimension of the Matrix must be 3]</desc>
+                        <desc>Read nav_msgs/Odometry.pose.orientation quaternion, convert into Euler representation (Roll, pitch, yaw) and load the 3 values into a 3D Vector</desc>
                 </function>
                 <function>
                         <name>OdoEulerRollSub</name>
@@ -172,7 +172,7 @@
                 </function>
                 <function>
                         <name>OdoQuaterSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -189,7 +189,7 @@
                                 </input>
                         </inputs>
                         <icon>odometry.svg</icon>
-                        <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the 4 values into a Matrix [Dimension of the Matrix must be 4]</desc>
+                        <desc>Read nav_msgs/Odometry.pose.orientation quaternion and load the 4 values into a 4D Vector.</desc>
                 </function>
                 <function>
                         <name>OdoQuaterXSub</name>
@@ -277,7 +277,7 @@
                 </function>
                 <function>
                         <name>OdoTwistLinSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -294,7 +294,7 @@
                                 </input>
                         </inputs>
                         <icon>odometry.svg</icon>
-                        <desc>Read nav_msgs/Odometry.twist.linear and load the values into a Matrix [Dimension of the Matrix must be 3]</desc>
+                        <desc>Read nav_msgs/Odometry.twist.linear and load the values into a 3D Vector.</desc>
                 </function>
                 <function>
                         <name>OdoTwistLinXSub</name>
@@ -361,7 +361,7 @@
                 </function>
                 <function>
                         <name>OdoTwistAngSub</name>
-                        <output type="MATRIX">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
@@ -378,7 +378,7 @@
                                 </input>
                         </inputs>
                         <icon>odometry.svg</icon>
-                        <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the values into a Matrix [Dimension of the Matrix must be 3]</desc>
+                        <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the values into a 3D Vector.</desc>
                 </function>
                 <function>
                         <name>OdoTwistAngRollSub</name>

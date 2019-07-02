@@ -248,7 +248,7 @@ void Compass3DSub::setparameters()
 {
 	FMatrixSub<sensor_msgs::Imu>::setparameters();
 
-	if( output.size() != 3 ) throw std::invalid_argument("Compass3D : Output dimension should be 3 !");
+	if( output.size() != 3 ) throw std::invalid_argument("Compass3D : Output must be 3D Vector.");
 }
 
 void Compass3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
@@ -317,7 +317,7 @@ void CompassZSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
 void Gyroscope3DSub::setparameters()
 {
 	FMatrixSub<sensor_msgs::Imu>::setparameters();
-	if( output.size() != 3 ) throw std::invalid_argument("Gyroscope3DSub : Output dimension should be 3 !");
+	if( output.size() != 3 ) throw std::invalid_argument("Gyroscope3DSub : Output must be 3D Vector.");
 }
 
 void Gyroscope3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
@@ -362,7 +362,7 @@ void GyroscopeZSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
 void Accelerometer3DSub::setparameters()
 {
 	FMatrixSub<sensor_msgs::Imu>::setparameters();
-	if( output.size() != 3 ) throw std::invalid_argument("Accelerometer3D : Output dimension should be 3 !");
+	if( output.size() != 3 ) throw std::invalid_argument("Accelerometer3D : Output must be 3D Vector.");
 }
 
 void Accelerometer3DSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
@@ -406,7 +406,7 @@ void AccelerometerZSub::callback( const sensor_msgs::Imu::ConstPtr &msg)
 
 void NavSatFixSub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("NavSatFixSub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("NavSatFixSub : Output must be a 3D Vector.");
         FMatrixSub<sensor_msgs::NavSatFix>::setparameters();
 }
 

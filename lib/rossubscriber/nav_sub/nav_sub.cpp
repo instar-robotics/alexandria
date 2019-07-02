@@ -51,7 +51,7 @@ REGISTER_FUNCTION(OdoTwistAngYawSub);
 
 void OdoPosSub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("OdoPosSub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("OdoPosSub : Output must be a 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
 }
 
@@ -96,7 +96,7 @@ void OdoPosZSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 
 void OdoEulerSub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("OdoEulerSub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("OdoEulerSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
 }
 
@@ -165,7 +165,7 @@ void OdoEulerYawSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 
 void OdoQuaterSub::setparameters()
 {
-        if( output.size() != 4 ) throw std::invalid_argument("OdoQuaterSub : Output dimension should be 4 !");
+        if( output.size() != 4 ) throw std::invalid_argument("OdoQuaterSub : Output must be 4D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
 }
 
@@ -220,7 +220,7 @@ void OdoQuaterWSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 
 void OdoTwistLinSub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("OdoTwistLinSub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("OdoTwistLinSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
 }
 
@@ -265,7 +265,7 @@ void OdoTwistLinZSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 
 void OdoTwistAngSub::setparameters()
 {
-        if( output.size() != 3 ) throw std::invalid_argument("OdoTwistAngSub : Output dimension should be 3 !");
+        if( output.size() != 3 ) throw std::invalid_argument("OdoTwistAngSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
 }
 

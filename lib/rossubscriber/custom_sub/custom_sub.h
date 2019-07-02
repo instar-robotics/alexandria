@@ -51,7 +51,7 @@
 class JointPosSub: public FMatrixSub<hieroglyph::JointPos>
 {
         public :
-                JointPosSub() : FMatrixSub<hieroglyph::JointPos>() {}
+                JointPosSub() : FMatrixSub<hieroglyph::JointPos>(VECTOR) {}
                 virtual ~JointPosSub(){}
 
                 virtual void setparameters();
@@ -68,7 +68,7 @@ class JointPosSub: public FMatrixSub<hieroglyph::JointPos>
 class JointVelSub : public FMatrixSub<hieroglyph::JointVel>
 {
         public :
-                JointVelSub() : FMatrixSub<hieroglyph::JointVel>() {}
+                JointVelSub() : FMatrixSub<hieroglyph::JointVel>(VECTOR) {}
                 virtual ~JointVelSub(){}
 
                 virtual void setparameters();

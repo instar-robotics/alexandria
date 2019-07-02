@@ -33,7 +33,7 @@ void JointPosSub::setparameters()
 {
 	FMatrixSub<hieroglyph::JointPos>::setparameters();
 
-	if( output.size() != 3 )  throw std::invalid_argument("JointPosSub : Output dimension should be 3 !");
+	if( output.size() != 3 )  throw std::invalid_argument("JointPosSub : Output must be a 3D Vector.");
 }
 
 void JointPosSub::callback(const hieroglyph::JointPos::ConstPtr &msg)
@@ -53,7 +53,7 @@ void JointVelSub::setparameters()
 {
 	FMatrixSub<hieroglyph::JointVel>::setparameters();
 
-	if(output.size() != 2) throw std::invalid_argument("JointVelSub : Output dimension should be 2 !");
+	if( output.size() != 2 )  throw std::invalid_argument("JointVelSub : Output must be a 2D Vector.");
 }
 
 void JointVelSub::callback(const hieroglyph::JointVel::ConstPtr &msg)
