@@ -20,6 +20,7 @@
 */
 
 #include "basicneuronal.h"
+#include <ros/console.h>
 
 REGISTER_FUNCTION(KeepMax);
 REGISTER_FUNCTION(KeepMin);
@@ -68,7 +69,9 @@ void KeepMax::compute()
 	for(auto it = lmax.begin() ; it != lmax.end() ; ++it)
 	{
 		mout( it->second ) = it->first  ;
+		ROS_DEBUG_STREAM("MAX index : " << it->second << "Max value : " << it->first );
 	}
+
 }
 
 void KeepMax::setparameters()
