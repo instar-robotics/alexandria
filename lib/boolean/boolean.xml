@@ -172,7 +172,7 @@
 					<desc>Input scalar to reset state back to 0</desc>
 				</input>
 			</inputs>
-			<icon>flipflop.svg</icon>
+			<icon>flipflop-scalar.svg</icon>
 			<desc>FLIP-FLOP logic gate (latch gate). [If set=1 AND reset=0 : output set to 1; If set=X AND reset=1 : output set to 0; If set=0 AND reset=0 : output does not change (keep previous state);]</desc>
 		</function>
 		<function>
@@ -189,7 +189,7 @@
 					<desc>Input matrix to reset state back to 0</desc>
 				</input>
 			</inputs>
-			<icon>flipflop.svg</icon>
+			<icon>flipflop-matrix.svg</icon>
 			<desc>FLIP-FLOP logic gate (latch gate). [If set=1 AND reset=0 : output set to 1; If set=X AND reset=1 : output set to 0; If set=0 AND reset=0 : output does not change (keep previous state);]</desc>
 		</function>
 	</functions>
