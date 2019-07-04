@@ -220,4 +220,41 @@ class SNOT :  public FScalar
 };
 
 
+/******************************************************************************************************/
+/*********************************************  FLIP-FLOP  ********************************************/
+/******************************************************************************************************/
+
+class SFLIPFLOP :  public FScalar
+{
+        private :
+
+                ISInput set;
+								ISInput reset;
+
+        public :
+ 
+                virtual ~SFLIPFLOP(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+class MFLIPFLOP :  public FMatrix
+{
+        private :
+
+                ISMInput set;
+								ISMInput reset;
+
+								MATRIX mem;
+
+        public :
+
+                virtual ~MFLIPFLOP(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
 #endif // _BOOLEAN_H_

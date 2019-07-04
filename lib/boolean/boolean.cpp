@@ -326,3 +326,65 @@ void SNOT::setparameters()
         Kernel::instance().bind(inScalar,"inScalar", getUuid());
 }
 
+
+/*******************************************************************************************************/
+/***********************************************   FLIP-FLOP  ******************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(SFLIPFLOP);
+REGISTER_FUNCTION(MFLIPFLOP);
+
+void SFLIPFLOP::compute()
+{
+	for(unsigned int i=0; i < set.size(); i++)
+	{	
+	output = set(i)() < 0.5 ? output : 1.0;
+	}
+	
+	for(unsigned int i=0; i < reset.size(); i++)
+	{		
+	output = reset(i)() < 0.5 ? output : 0.0;
+	}
+}
+
+void SFLIPFLOP::setparameters()
+{
+        set.setMultiple(true);
+        Kernel::instance().bind(set,"set", getUuid());
+				reset.setMultiple(true);
+				Kernel::instance().bind(reset,"reset", getUuid());
+}
+
+
+void MFLIPFLOP::compute()
+{
+	for(unsigned int i=0; i < set.size(); i++)
+	{	
+		output = set(i)().binaryExpr(output, [](SCALAR elem, SCALAR mem)
+		{
+			return elem < 0.5 ? mem : 1.0; 
+		});
+	}
+
+	for(unsigned int i=0; i < reset.size(); i++)
+	{
+		output = reset(i)().binaryExpr(output, [](SCALAR elem, SCALAR mem)
+		{
+			return elem < 0.5 ? mem : 0.0; 
+		});
+	}
+	
+}
+
+void MFLIPFLOP::setparameters()
+{
+        set.setMultiple(true);
+        Kernel::instance().bind(set,"set", getUuid());
+				reset.setMultiple(true);
+        Kernel::instance().bind(reset,"reset", getUuid());
+
+				mem = MATRIX::Constant( output.rows(), output.cols(), 0  );
+}
+
+
+
