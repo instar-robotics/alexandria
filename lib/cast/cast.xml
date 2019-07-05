@@ -42,7 +42,7 @@
                                         <desc></desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Concat_STo2DV.svg</icon>
                         <desc>Concat 2 Scalars into a 2D Vector. Dimension of the output must be egal to 2.</desc>
                 </function>
 		<function>
@@ -63,7 +63,7 @@
                                         <desc></desc>
                                 </input>
                         </inputs>
-                        <icon></icon>
+                        <icon>Concat_STo3DV.svg</icon>
                         <desc>Concat 3 Scalars into a 3D Vector. Dimension of the output must be egal to 3.</desc>
                 </function>
         </functions>

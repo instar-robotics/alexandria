@@ -275,7 +275,7 @@
 					<desc>number of delay's iteration</desc>
 				</input>
 			</inputs>
-			<icon></icon>
+			<icon>scalar_Z-N.svg</icon>
 			<desc>Get the scalar value with a delay of N iterations</desc>
 		</function>
 		<function>
