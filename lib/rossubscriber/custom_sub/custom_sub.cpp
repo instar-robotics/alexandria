@@ -19,11 +19,15 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <math.h>
 #include "custom_sub.h"
+
+#define PI 3.14159265
 
 REGISTER_FUNCTION(JointPosSub);
 REGISTER_FUNCTION(JointVelSub);
 REGISTER_FUNCTION(ObjDetectSub);
+REGISTER_FUNCTION(ObjDetectPolarSub);
 
 /*******************************************************************************************************/
 /*********************                          JointPos                            ********************/
@@ -84,17 +88,60 @@ void ObjDetectSub::callback( const hieroglyph::ObjDetect::ConstPtr &msg )
 
         for (unsigned int i=0; i<msg->position.width; i++)
         {
+			/** Get point position from PointCloud2 message **/
                 cloud_pos_x = i * msg->position.point_step + msg->position.fields[0].offset;
                 cloud_pos_y = i * msg->position.point_step + msg->position.fields[1].offset;
                 cloud_val_x = *(float*)(&(msg->position.data[cloud_pos_x]));
                 cloud_val_y = *(float*)(&(msg->position.data[cloud_pos_y]));
-                eigen_pos_x = round((size_x(0)()/2 + cloud_val_x) / size_x(0)() * output.cols()); // Remove when lidar reverted
-                eigen_pos_y = round((size_y(0)()/2 - cloud_val_y) / size_y(0)() * output.rows());
-                eigen_pos_x = (eigen_pos_x > output.cols() - 1) ? output.cols() - 1 : eigen_pos_x;
-                eigen_pos_y = (eigen_pos_y > output.rows() - 1) ? output.rows() - 1 : eigen_pos_y;
-                eigen_pos_x = (eigen_pos_x < 0) ? 0 : eigen_pos_x;
-                eigen_pos_y = (eigen_pos_y < 0) ? 0 : eigen_pos_y;
-                output(eigen_pos_x, eigen_pos_y) = msg->confidence[i];
-        }
 
+			/** Compute position in matrix from position in cloud **/
+                eigen_pos_y = round(cloud_val_x / size_y(0)() * output.rows());
+                eigen_pos_x = round((size_x(0)()/2 + cloud_val_y) / size_x(0)() * output.cols()); // Change "+" sign when lidar reverted
+
+			/** Deal with out-of-frame points **/
+		if ((eigen_pos_x < output.cols()) && (eigen_pos_y < output.rows()) && (eigen_pos_x >= 0) && (eigen_pos_y >= 0))
+			/** Set activity at given position **/
+                	output(eigen_pos_y, eigen_pos_x) = msg->confidence[i];
+        }
+}
+
+/*******************************************************************************************************/
+/*****************                       Object Detection Polar                      *******************/
+/*******************************************************************************************************/
+
+void ObjDetectPolarSub::setparameters()
+{
+        FMatrixSub<hieroglyph::ObjDetect>::setparameters();
+        Kernel::iBind(size_rho,"size_rho", getUuid());
+        Kernel::iBind(size_theta,"size_theta", getUuid());
+}
+
+void ObjDetectPolarSub::callback( const hieroglyph::ObjDetect::ConstPtr &msg )
+{
+        int cloud_pos_x, cloud_pos_y;
+        float cloud_val_x, cloud_val_y;
+        float cloud_val_rho, cloud_val_theta;
+        int eigen_pos_x, eigen_pos_y;
+
+        output = MatrixXd::Constant(output.rows(),output.cols(),0);
+
+        for (unsigned int i=0; i<msg->position.width; i++)
+        {
+			/** Get point position from PointCloud2 message **/
+                cloud_pos_x = i * msg->position.point_step + msg->position.fields[0].offset;
+                cloud_pos_y = i * msg->position.point_step + msg->position.fields[1].offset;
+                cloud_val_x = *(float*)(&(msg->position.data[cloud_pos_x]));
+                cloud_val_y = *(float*)(&(msg->position.data[cloud_pos_y]));
+
+			/** Compute position in matrix from position in cloud **/
+                cloud_val_rho = std::sqrt(cloud_val_x*cloud_val_x + cloud_val_y*cloud_val_y);
+		cloud_val_theta = atan2(cloud_val_y, cloud_val_x) * 180 / PI; // Inverted x and y
+                eigen_pos_y = round(cloud_val_rho / size_rho(0)() * output.rows());
+                eigen_pos_x = round((cloud_val_theta + size_theta(0)()/2) / size_theta(0)() * output.cols());
+
+			/** Deal with out-of-frame points **/
+		if ((eigen_pos_x < output.cols()) && (eigen_pos_y < output.rows()) && (eigen_pos_x >= 0) && (eigen_pos_y >= 0))
+			/** Set activity at given position **/
+                	output(eigen_pos_y, eigen_pos_x) = msg->confidence[i];
+        }
 }

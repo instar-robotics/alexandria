@@ -94,4 +94,23 @@ class ObjDetectSub : public FMatrixSub<hieroglyph::ObjDetect>
                 virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
 };
 
+/*******************************************************************************************************/
+/*****************                      Object Detection Polar                       *******************/
+/*******************************************************************************************************/
+
+
+class ObjDetectPolarSub : public FMatrixSub<hieroglyph::ObjDetect>
+{
+        private :
+                ISInput size_rho;
+                ISInput size_theta;
+
+        public :
+                ObjDetectPolarSub() : FMatrixSub<hieroglyph::ObjDetect>() {}
+                virtual ~ObjDetectPolarSub() {}
+
+                virtual void setparameters();
+                virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
+};
+
 #endif //__CUSTOM_MSGS_HPP__

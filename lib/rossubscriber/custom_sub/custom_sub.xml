@@ -73,6 +73,35 @@
                         <icon></icon>
 			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
                 </function>
+		<function>
+                        <name>ObjDetectPolarSub</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_rho</name>
+					<desc>neighborhood is in [0;size_rho]</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_theta</name>
+					<desc>neighborhood is in [-size_theta/2;size_theta/2</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
+                </function>
         </functions>
 </description>
 
