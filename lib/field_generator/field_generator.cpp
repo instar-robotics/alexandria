@@ -21,6 +21,7 @@
 
 
 #include "field_generator.h"
+#include <fenv.h> 
 
 
 /*******************************************************************************************************/
@@ -33,6 +34,8 @@ REGISTER_FUNCTION(DiracField2D);
 void DiracField1D::compute()
 {
 	auto vout = getMapVect(output);
+
+	fesetround(FE_DOWNWARD); //Rounding to minus infinity (x <= 0.5 -> 0 else 1)
 
 	MATRIX::Index ix = nearbyint( (x()() + N()()) * vout.size() / (2.0 * N()()) );
 
@@ -55,6 +58,8 @@ void DiracField2D::compute()
 {
 	output = MATRIX::Constant(output.rows(),output.cols() , 0);
 	
+	fesetround(FE_DOWNWARD); //Rounding to minus infinity (x <= 0.5 -> 0 else 1)
+
 	MATRIX::Index ix = nearbyint( (x()() + N()()) * output.cols() / (2.0 * N()()) );
 	MATRIX::Index iy = nearbyint( (y()() + N()()) * output.rows() / (2.0 * N()()) );
 	
