@@ -28,6 +28,7 @@
 #include <limits>
 #include <algorithm>
 
+
 /*
 TODO : 
 - Wave : SquarWave and TriangleWave
@@ -277,6 +278,40 @@ class TriangularField2D : public FMatrix
                 virtual void compute();
                 virtual void setparameters();
 };
+
+
+/*******************************************************************************************************/
+/*************************************  Triangular Wave Field  *****************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class TriangularWave1D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &a;
+  const typename ArgType::Index &max;
+
+public:
+  TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &a  ,const typename ArgType::Index& max ) : N(N), a(a), max(max) {}
+  const typename ArgType::Scalar operator() (Index ind) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+    return  std::max((2/a)*fabs(fmod((0.5*x+max),1/a) - 2/a), 0.0) ;
+  }
+};
+
+class TriangularWaveField1D : public FMatrix
+{
+        private :
+                ISInput a;
+                ISInput N;
+
+        public :
+		TriangularWaveField1D() : FMatrix(VECTOR) {}
+                virtual ~TriangularWaveField1D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
 
 /*******************************************************************************************************/
 /*******************************************  Sinus Field  *********************************************/
@@ -694,5 +729,7 @@ class RandomField : public FMatrix
 		virtual void compute();
 		virtual void setparameters();
 };
+
+
 
 #endif // _FIELD_GENERATOR_H_

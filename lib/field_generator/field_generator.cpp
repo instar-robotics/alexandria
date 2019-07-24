@@ -175,6 +175,25 @@ void TriangularField2D::setparameters()
 	Kernel::iBind(N,"N", getUuid());
 }
 
+
+/*******************************************************************************************************/
+/**************************************  Triangular Wave Field  ****************************************/
+/*******************************************************************************************************/
+
+REGISTER_FUNCTION(TriangularWaveField1D);
+
+void TriangularWaveField1D::compute()
+{
+        auto vout = getMapVect(output);
+        vout = VectorXs::NullaryExpr( vout.size() , TriangularWave1D_functor<VectorXs>( N()() , a()(), vout.size()));
+}
+
+void TriangularWaveField1D::setparameters()
+{
+        Kernel::iBind(a,"a", getUuid());
+		Kernel::iBind(N,"N", getUuid());
+}
+
 /*******************************************************************************************************/
 /******************************************  Sinus Field  **********************************************/
 /*******************************************************************************************************/
@@ -405,5 +424,9 @@ void RandomField::setparameters()
 {
 
 }
+
+
+
+
 
 

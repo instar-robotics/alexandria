@@ -167,6 +167,26 @@
                         <desc>Generate a 2-D Triangular Gate Field.
                               Equation : f(x,y) = max(1 - (|a_x * x| + |a_y * y|), 0). </desc>
                 </function>
+                 <function>
+                        <name>TriangularWaveField1D</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>a</name>
+                                        <desc>Leading coefficient</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>trianglegategenerator.svg</icon>
+                        <desc>Generate a 1-D Triangular Wave Field.
+                              Equation : f(x) = max(1 - |a * x| , 0).
+                              MUST be [ROW or COL Vector].
+                        </desc>
+                </function>
                 <function>
                         <name>SinusField1D</name>
                         <output type="MATRIX" shape="VECT">
