@@ -287,21 +287,21 @@ class TriangularField2D : public FMatrix
 template<class ArgType>
 class TriangularWave1D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &a;
+  const typename ArgType::Scalar &p;
   const typename ArgType::Index &max;
 
 public:
-  TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &a  ,const typename ArgType::Index& max ) : N(N), a(a), max(max) {}
+  TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p  ,const typename ArgType::Index& max ) : N(N), p(p), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
-    return  std::max((2/a)*fabs(fmod((0.5*x+max),1/a) - 2/a), 0.0) ;
+    return  std::fabs(2*fmod(x+p*max,p)/p - 1);
   }
 };
 
 class TriangularWaveField1D : public FMatrix
 {
         private :
-                ISInput a;
+                ISInput p;
                 ISInput N;
 
         public :
@@ -312,6 +312,35 @@ class TriangularWaveField1D : public FMatrix
 };
 
 
+template<class ArgType>
+class TriangularWave2D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &px;
+  const typename ArgType::Scalar &py;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+
+public:
+  TriangularWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& px, const typename ArgType::Scalar &py, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),py(py), max_x(max_x), max_y(max_y) {}
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+	return  std::fabs(fmod(x+px*max_x,px)/px - 0.5) + fabs(fmod(y+py*max_y,py)/py - 0.5);
+  }
+};
+
+class TriangularWaveField2D : public FMatrix
+{
+        private :
+                ISInput px;
+                ISInput py;
+                ISInput N;
+
+        public :
+                virtual ~TriangularWaveField2D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
 
 /*******************************************************************************************************/
 /*******************************************  Sinus Field  *********************************************/

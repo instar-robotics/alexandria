@@ -181,16 +181,29 @@ void TriangularField2D::setparameters()
 /*******************************************************************************************************/
 
 REGISTER_FUNCTION(TriangularWaveField1D);
+REGISTER_FUNCTION(TriangularWaveField2D);
 
 void TriangularWaveField1D::compute()
 {
         auto vout = getMapVect(output);
-        vout = VectorXs::NullaryExpr( vout.size() , TriangularWave1D_functor<VectorXs>( N()() , a()(), vout.size()));
+        vout = VectorXs::NullaryExpr( vout.size() , TriangularWave1D_functor<VectorXs>( N()() , p()(), vout.size()));
 }
 
 void TriangularWaveField1D::setparameters()
 {
-        Kernel::iBind(a,"a", getUuid());
+        Kernel::iBind(p,"p", getUuid());
+		Kernel::iBind(N,"N", getUuid());
+}
+
+void TriangularWaveField2D::compute()
+{
+        output = MATRIX::NullaryExpr( output.rows(), output.cols() , TriangularWave2D_functor<MATRIX>( N()() , px()(), py()(), output.cols(), output.rows()));
+}
+
+void TriangularWaveField2D::setparameters()
+{
+		Kernel::iBind(px,"px", getUuid());
+		Kernel::iBind(py,"py", getUuid());
 		Kernel::iBind(N,"N", getUuid());
 }
 

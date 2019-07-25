@@ -173,19 +173,41 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>a</name>
-                                        <desc>Leading coefficient</desc>
+                                        <name>p</name>
+                                        <desc>Period of the triangle wave</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>N</name>
                                         <desc>Definition interval is [-N,N]</desc>
                                 </input>
                         </inputs>
-                        <icon>trianglegategenerator.svg</icon>
+                        <icon>trianglegenerator.svg</icon>
                         <desc>Generate a 1-D Triangular Wave Field.
-                              Equation : f(x) = max(1 - |a * x| , 0).
+                              Equation : f(x) = | 2/p * (x+p)%p - 1 |.
                               MUST be [ROW or COL Vector].
                         </desc>
+                </function>
+                 <function>
+                        <name>TriangularWaveField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>px</name>
+                                        <desc>Period on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>py</name>
+                                        <desc>Period on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>trianglegenerator2d.svg</icon>
+                        <desc>Generate a 2-D Triangular Wave Field.
+                              Equation : f(x,y) = | 1/px * (x+px)%px - 0.5 | + | 1/py * (y+py)%py - 0.5 | . </desc>
                 </function>
                 <function>
                         <name>SinusField1D</name>
