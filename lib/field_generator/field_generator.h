@@ -396,7 +396,7 @@ class Cos2D_functor {
 public:
   Cos2D_functor(const typename ArgType::Scalar & freq_x, const typename ArgType::Scalar& off_x, const typename ArgType::Scalar & freq_y , const typename ArgType::Scalar & off_y, const typename ArgType::Index & max_x, const typename ArgType::Index & max_y ) : freq_x(freq_x), off_x(off_x), freq_y(freq_y), off_y(off_y), max_x(max_x),max_y(max_y) {}
   const typename ArgType::Scalar operator() (Index row, Index col) const {
-    return  cos(  (typename ArgType::Scalar(col) * 2.0* M_PI / (max_x-1) - (M_PI))   * freq_x + off_x ) * sin(  (typename ArgType::Scalar(row) * 2.0* M_PI / (max_y-1) - (M_PI))  * freq_y + off_y );
+    return  cos(  (typename ArgType::Scalar(col) * 2.0* M_PI / (max_x-1) - (M_PI))   * freq_x + off_x ) * cos(  (typename ArgType::Scalar(row) * 2.0* M_PI / (max_y-1) - (M_PI))  * freq_y + off_y );
   }
 };
 
