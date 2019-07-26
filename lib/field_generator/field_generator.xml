@@ -131,8 +131,8 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>p</name>
-                                        <desc>Period of the Square Wave </desc>
+                                        <name>f</name>
+                                        <desc>Frequency of the Square Wave </desc>
                                 </input>
 				<input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -141,7 +141,7 @@
                         </inputs>
                         <icon>squarewavegenerator.svg</icon>
 			<desc>Generate a 1-D Square Wave Field. 
-			      Equation : f(x) = 1 if (x-p/2)%2*p >= -p &lt;= x &lt;= p; -1 otherwise.
+			      Equation : f(x) = 1 if cos(2*PI*x - PI*f) &gt; 0.  0 otherwise.
 			      MUST be [ROW or COL Vector]. 
 			</desc>
                 </function>
@@ -151,12 +151,12 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>px</name>
-                                        <desc>Period of the Square Wave on X axis [X = COL] </desc>
+                                        <name>fx</name>
+                                        <desc>Frequency of the Square Wave on X axis [X = COL] </desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
-                                        <name>py</name>
-                                        <desc>Period of the Square Wave on Y axis [Y = ROW] </desc>
+                                        <name>fy</name>
+                                        <desc>Frequency of the Square Wave on Y axis [Y = ROW] </desc>
                                 </input>
 				<input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -165,7 +165,7 @@
                         </inputs>
                         <icon>squarewavegenerator2d.svg</icon>
 			<desc>Generate a 2-D Square Wave Field. 
-			      Equation : f(x,y) = 1 if (x-px/2)%2*px >= -px &lt;= x &lt;= px and (y-py/2)%2*py >= -py &lt;= y &lt;= py ; -1 otherwise.	
+			      Equation : f(x,y) = 1 if cos(2*PI*x - PI*fx) * cos(2*PI*y - PI*fy) &gt; 0.  0 otherwise.
 			      MUST be [ROW or COL Vector]. 
 			</desc>
                 </function>
@@ -217,8 +217,8 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>p</name>
-                                        <desc>Period of the triangle wave</desc>
+                                        <name>f</name>
+                                        <desc>Frequency of the triangle wave</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -227,7 +227,7 @@
                         </inputs>
                         <icon>trianglegenerator.svg</icon>
                         <desc>Generate a 1-D Triangular Wave Field.
-                              Equation : f(x) = | 4/p * (x+p)%p - 2 | - 1.
+                              Equation : f(x) = | 2*f * (x+2/f)%(2/f) - 2 | - 1.
                               MUST be [ROW or COL Vector].
                         </desc>
                 </function>
@@ -237,12 +237,12 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>px</name>
-                                        <desc>Period on X axis [X = COL]</desc>
+                                        <name>fx</name>
+                                        <desc>Frequency on X axis [X = COL]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
-                                        <name>py</name>
-                                        <desc>Period on Y axis [Y = ROW]</desc>
+                                        <name>fy</name>
+                                        <desc>Frequency on Y axis [Y = ROW]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>N</name>
@@ -251,7 +251,7 @@
                         </inputs>
                         <icon>trianglegenerator2d.svg</icon>
                         <desc>Generate a 2-D Triangular Wave Field.
-                              Equation : f(x,y) = | 2/px * (x+px)%px - 1 | + | 2/py * (y+py)%py - 1 | - 1 . </desc>
+                              Equation : f(x,y) = | fx * (x+2/fx)%(2/fx) - 1 | + | fy * (y+2/fy)%(2/fy) - 1 | - 1 . </desc>
                 </function>
                  <function>
                         <name>SawtoothWaveField1D</name>
@@ -259,8 +259,8 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>p</name>
-                                        <desc>Period of the Sawtooth wave</desc>
+                                        <name>f</name>
+                                        <desc>Frequency of the Sawtooth wave</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>m</name>
@@ -273,7 +273,7 @@
                         </inputs>
                         <icon>sawtoothgenerator.svg</icon>
                         <desc>Generate a 1-D Sawtooth Wave Field.
-                              Equation : f(x) = 2 * | 1/p * (x+p)%p - m | - 1.
+                              Equation : f(x) = 2 * | p/2 * (x+2/p)%(2/p) - m | - 1.
                               MUST be [ROW or COL Vector].
                         </desc>
                 </function>
@@ -283,16 +283,16 @@
                         </output>
                         <inputs>
                                 <input type="SCALAR_SCALAR">
-                                        <name>px</name>
-                                        <desc>Period on X axis [X = COL]</desc>
+                                        <name>fx</name>
+                                        <desc>Frequency on X axis [X = COL]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>mx</name>
                                         <desc>Mirror the Sawtooth on X axis [X = COL]. If m&gt;=0.5: sawtooth is mirrored. Otherwise not. </desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
-                                        <name>py</name>
-                                        <desc>Period on Y axis [Y = ROW]</desc>
+                                        <name>fy</name>
+                                        <desc>Frequency on Y axis [Y = ROW]</desc>
                                 </input>
                                 <input type="SCALAR_SCALAR">
                                         <name>my</name>
@@ -305,7 +305,7 @@
                         </inputs>
                         <icon>sawtoothgenerator2d.svg</icon>
                         <desc>Generate a 2-D Sawtooth Wave Field.
-                              Equation : f(x,y) = | 1/px * (x+px)%px - mx | + | 1/py * (y+py)%py - m | - 1 . </desc>
+                              Equation : f(x,y) = | px/2 * (x+2/px)%(2/px) - mx | + | py/2 * (y+2/py)%(2/py) - my | - 1 . </desc>
                 </function>
                 <function>
                         <name>SinusField1D</name>

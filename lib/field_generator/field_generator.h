@@ -224,11 +224,11 @@ class GateField2D : public FMatrix
 template<class ArgType>
 class SquareWave1D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &p;
+  const typename ArgType::Scalar &f;
   const typename ArgType::Index &max;
 
 public:
-  SquareWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p , const typename ArgType::Index& max ) : N(N), p(p), max(max) {}
+  SquareWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &f , const typename ArgType::Index& max ) : N(N), f(f), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     
@@ -236,7 +236,7 @@ public:
     //return  (fmod(x-p/2,2*p) >= -p && fmod(x+p/2,2*p) <= p) ? 1.0 : -1.0  ;
 	
     //Sign of Cosinus Wave version:		
-    return  (cos( (typename ArgType::Scalar(ind) * 2.0* M_PI / (max-1) - (M_PI)) / p )) > 0 ? 1.0 : -1.0;
+    return  (cos( (typename ArgType::Scalar(ind) * 2.0* M_PI / (max-1) - (M_PI)) * f )) > 0 ? 1.0 : -1.0;
   }
 };
 
@@ -244,7 +244,7 @@ class SquareWaveField1D : public FMatrix
 {
         private :
 
-		ISInput p;
+		ISInput f;
 		ISInput N; 
 
         public :
@@ -257,13 +257,13 @@ class SquareWaveField1D : public FMatrix
 template<class ArgType>
 class SquareWave2D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &px;
-  const typename ArgType::Scalar &py;
+  const typename ArgType::Scalar &fx;
+  const typename ArgType::Scalar &fy;
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
 
 public:
-  SquareWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar &px, const typename ArgType::Scalar &py, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),py(py), max_x(max_x), max_y(max_y) {}
+  SquareWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar &fx, const typename ArgType::Scalar &fy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), fx(fx),fy(fy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
     auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
@@ -272,15 +272,15 @@ public:
     //return  (fmod(x-px/2,2*px) >= -px && fmod(x+px/2,2*px) <= px && fmod(y-py/2,2*py) >= -py && fmod(y+py/2,2*py) <= py) ? 1.0 : -1.0 ;  
 		
     //Sign of Cosinus Wave version:		
-    return (cos(  (typename ArgType::Scalar(col) * 2.0* M_PI / (max_x-1) - (M_PI)) / px ) * cos(  (typename ArgType::Scalar(row) * 2.0* M_PI / (max_y-1) - (M_PI)) / py )) > 0 ? 1.0 : -1.0;
+    return (cos(  (typename ArgType::Scalar(col) * 2.0* M_PI / (max_x-1) - (M_PI)) * fx ) * cos(  (typename ArgType::Scalar(row) * 2.0* M_PI / (max_y-1) - (M_PI)) * fy )) > 0 ? 1.0 : -1.0;
   }
 };
 
 class SquareWaveField2D : public FMatrix
 {
         private :
-		ISInput px;
-		ISInput py;
+		ISInput fx;
+		ISInput fy;
 		ISInput N; 
 
         public :
@@ -361,22 +361,22 @@ class TriangularField2D : public FMatrix
 template<class ArgType>
 class TriangularWave1D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &p;
+  const typename ArgType::Scalar &f;
   const typename ArgType::Index &max;
 
 public:
-  TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p  ,const typename ArgType::Index& max ) : N(N), p(p), max(max) {}
+  TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &f  ,const typename ArgType::Index& max ) : N(N), f(f), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     
-    return  std::fabs(4*fmod(x+p*max,p)/p - 2) - 1;	
+	return  std::fabs(2*f*fmod(x+2/f*max,2/f) - 2) - 1;
   }
 };
 
 class TriangularWaveField1D : public FMatrix
 {
         private :
-                ISInput p;
+                ISInput f;
                 ISInput N;
 
         public :
@@ -390,26 +390,26 @@ class TriangularWaveField1D : public FMatrix
 template<class ArgType>
 class TriangularWave2D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &px;
-  const typename ArgType::Scalar &py;
+  const typename ArgType::Scalar &fx;
+  const typename ArgType::Scalar &fy;
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
 
 public:
-  TriangularWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& px, const typename ArgType::Scalar &py, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),py(py), max_x(max_x), max_y(max_y) {}
+  TriangularWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& fx, const typename ArgType::Scalar &fy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), fx(fx),fy(fy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
     auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
 
-    return  std::fabs(2*fmod(x+px*max_x,px)/px - 1) + fabs(2*fmod(y+py*max_y,py)/py - 1) - 1;
+    return  std::fabs(fx*fmod(x+2/fx*max_x,2/fx) - 1) + fabs(fy*fmod(y+2/fy*max_y,2/fy) - 1) - 1;
   }
 };
 
 class TriangularWaveField2D : public FMatrix
 {
         private :
-                ISInput px;
-                ISInput py;
+                ISInput fx;
+                ISInput fy;
                 ISInput N;
 
         public :
@@ -425,23 +425,23 @@ class TriangularWaveField2D : public FMatrix
 template<class ArgType>
 class SawtoothWave1D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &p;
+  const typename ArgType::Scalar &f;
 	const typename ArgType::Scalar &m;
   const typename ArgType::Index &max;
 
 public:
-  SawtoothWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p, const typename ArgType::Scalar &m  ,const typename ArgType::Index& max ) : N(N), p(p), m(m), max(max) {}
+  SawtoothWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &f, const typename ArgType::Scalar &m  ,const typename ArgType::Index& max ) : N(N), f(f), m(m), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
   
-    return  std::fabs(fmod((x+p*max),p)/p - (m>=0.5 ? 1.0 : 0.0) )*2 - 1;		
+    return  std::fabs(fmod((x+2/f*max),2/f)/(2/f) - (m>=0.5 ? 1.0 : 0.0) )*2 - 1;		
   }
 };
 
 class SawtoothWaveField1D : public FMatrix
 {
         private :
-                ISInput p;
+                ISInput f;
 								ISInput m;
                 ISInput N;
 
@@ -456,29 +456,29 @@ class SawtoothWaveField1D : public FMatrix
 template<class ArgType>
 class SawtoothWave2D_functor {
   const typename ArgType::Scalar &N;
-  const typename ArgType::Scalar &px;
+  const typename ArgType::Scalar &fx;
 	const typename ArgType::Scalar &mx;
-  const typename ArgType::Scalar &py;
+  const typename ArgType::Scalar &fy;
 	const typename ArgType::Scalar &my;
   const typename ArgType::Index &max_x;
   const typename ArgType::Index &max_y;
 
 public:
-  SawtoothWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& px, const typename ArgType::Scalar& mx, const typename ArgType::Scalar &py, const typename ArgType::Scalar& my, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),mx(mx),py(py),my(my), max_x(max_x), max_y(max_y) {}
+  SawtoothWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& fx, const typename ArgType::Scalar& mx, const typename ArgType::Scalar &fy, const typename ArgType::Scalar& my, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), fx(fx),mx(mx),fy(fy),my(my), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
     auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
 	
-    return  std::fabs(fmod((x+px*max_x),px)/px - (mx>=0.5 ? 1.0 : 0.0)) + fabs(fmod((y+py*max_y),py)/py - (my>=0.5 ? 1.0 : 0.0)) - 1;
+    return  std::fabs(fmod((x+2/fx*max_x),2/fx)/(2/fx) - (mx>=0.5 ? 1.0 : 0.0)) + fabs(fmod((y+2/fy*max_y),2/fy)/(2/fy) - (my>=0.5 ? 1.0 : 0.0)) - 1;
   }
 };
 
 class SawtoothWaveField2D : public FMatrix
 {
         private :
-                ISInput px;
+                ISInput fx;
 								ISInput mx;
-                ISInput py;
+                ISInput fy;
 								ISInput my;
                 ISInput N;
 

@@ -154,24 +154,24 @@ REGISTER_FUNCTION(SquareWaveField2D);
 void SquareWaveField1D::compute()
 {
         auto vout = getMapVect(output);
-        vout = VectorXs::NullaryExpr( vout.size() , SquareWave1D_functor<VectorXs>( N()() , p()(), vout.size()));
+        vout = VectorXs::NullaryExpr( vout.size() , SquareWave1D_functor<VectorXs>( N()() , f()(), vout.size()));
 }
 
 void SquareWaveField1D::setparameters()
 {
-	Kernel::iBind(p,"p", getUuid());
+	Kernel::iBind(f,"f", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
 
 void SquareWaveField2D::compute()
 {
-        output = MATRIX::NullaryExpr(output.rows(), output.cols(), SquareWave2D_functor<MATRIX>( N()(), px()(),py()(), output.cols(), output.rows()));
+        output = MATRIX::NullaryExpr(output.rows(), output.cols(), SquareWave2D_functor<MATRIX>( N()(), fx()(),fy()(), output.cols(), output.rows()));
 }
 
 void SquareWaveField2D::setparameters()
 {
-	Kernel::iBind(px,"px", getUuid());
-	Kernel::iBind(py,"py", getUuid());
+	Kernel::iBind(fx,"fx", getUuid());
+	Kernel::iBind(fy,"fy", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
 
@@ -217,24 +217,24 @@ REGISTER_FUNCTION(TriangularWaveField2D);
 void TriangularWaveField1D::compute()
 {
         auto vout = getMapVect(output);
-        vout = VectorXs::NullaryExpr( vout.size() , TriangularWave1D_functor<VectorXs>( N()() , p()(), vout.size()));
+        vout = VectorXs::NullaryExpr( vout.size() , TriangularWave1D_functor<VectorXs>( N()() , f()(), vout.size()));
 }
 
 void TriangularWaveField1D::setparameters()
 {
-        Kernel::iBind(p,"p", getUuid());
+        Kernel::iBind(f,"f", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
 
 void TriangularWaveField2D::compute()
 {
-        output = MATRIX::NullaryExpr( output.rows(), output.cols() , TriangularWave2D_functor<MATRIX>( N()() , px()(), py()(), output.cols(), output.rows()));
+        output = MATRIX::NullaryExpr( output.rows(), output.cols() , TriangularWave2D_functor<MATRIX>( N()() , fx()(), fy()(), output.cols(), output.rows()));
 }
 
 void TriangularWaveField2D::setparameters()
 {
-	Kernel::iBind(px,"px", getUuid());
-	Kernel::iBind(py,"py", getUuid());
+	Kernel::iBind(fx,"fx", getUuid());
+	Kernel::iBind(fy,"fy", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
 
@@ -249,26 +249,26 @@ REGISTER_FUNCTION(SawtoothWaveField2D);
 void SawtoothWaveField1D::compute()
 {
         auto vout = getMapVect(output);
-        vout = VectorXs::NullaryExpr( vout.size() , SawtoothWave1D_functor<VectorXs>( N()() , p()(), m()(), vout.size()));
+        vout = VectorXs::NullaryExpr( vout.size() , SawtoothWave1D_functor<VectorXs>( N()() , f()(), m()(), vout.size()));
 }
 
 void SawtoothWaveField1D::setparameters()
 {
-        Kernel::iBind(p,"p", getUuid());
+        Kernel::iBind(f,"f", getUuid());
         Kernel::iBind(m,"m", getUuid());
 		Kernel::iBind(N,"N", getUuid());
 }
 
 void SawtoothWaveField2D::compute()
 {
-        output = MATRIX::NullaryExpr( output.rows(), output.cols() , SawtoothWave2D_functor<MATRIX>( N()() , px()(), mx()(), py()(), my()(), output.cols(), output.rows()));
+        output = MATRIX::NullaryExpr( output.rows(), output.cols() , SawtoothWave2D_functor<MATRIX>( N()() , fx()(), mx()(), fy()(), my()(), output.cols(), output.rows()));
 }
 
 void SawtoothWaveField2D::setparameters()
 {
-	Kernel::iBind(px,"px", getUuid());
+	Kernel::iBind(fx,"fx", getUuid());
 	Kernel::iBind(mx,"mx", getUuid());
-	Kernel::iBind(py,"py", getUuid());
+	Kernel::iBind(fy,"fy", getUuid());
 	Kernel::iBind(my,"my", getUuid());
 	Kernel::iBind(N,"N", getUuid());
 }
