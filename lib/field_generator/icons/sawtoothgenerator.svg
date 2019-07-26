@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="trianglegenerator.svg">
+   sodipodi:docname="sawtoothgenerator.svg">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -89,9 +89,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.9999998"
-     inkscape:cx="12.755924"
-     inkscape:cy="77.843539"
+     inkscape:zoom="5.656854"
+     inkscape:cx="24.784161"
+     inkscape:cy="63.308604"
      inkscape:document-units="mm"
      inkscape:current-layer="g1064"
      showgrid="false"
@@ -129,27 +129,33 @@
          transform="matrix(1.2646968,0,0,1.2646968,-16.50459,-22.814155)">
         <g
            id="g877"
-           transform="matrix(1.6246449,0,0,2.612598,-39.759848,-102.48473)"
+           transform="matrix(1.6246449,0,0,2.612598,-39.759848,-102.79865)"
            style="stroke-width:0.23099901;stroke-miterlimit:4;stroke-dasharray:none">
           <g
              id="g882"
              transform="translate(-0.06801246)">
             <path
-               style="fill:none;stroke:#1a1a1a;stroke-width:0.23099901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-               d="m 64.806782,72.426722 1.56937,-1.792653 1.071399,1.170757"
-               id="path881-3-3"
-               inkscape:connector-curvature="0"
-               sodipodi:nodetypes="ccc" />
-            <path
-               style="fill:none;stroke:#1a1a1a;stroke-width:0.23099901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-               d="m 59.232085,71.771614 0.996053,-1.137767 1.640619,1.792764"
+               style="fill:none;stroke:#1a1a1a;stroke-width:0.25457305;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 59.438113,72.677476 -0.01215,-1.868462 1.992565,1.792764"
                id="path881-3-6-6"
                inkscape:connector-curvature="0"
                sodipodi:nodetypes="ccc" />
             <path
-               style="fill:none;stroke:#1a1a1a;stroke-width:0.23099901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-               d="m 61.732775,72.426611 1.56937,-1.792653 1.640619,1.792764"
-               id="path881-7"
+               style="fill:none;stroke:#1a1a1a;stroke-width:0.25457305;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 61.418533,72.601778 -0.01215,-1.868462 1.992565,1.792764"
+               id="path881-3-6-6-3"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccc" />
+            <path
+               style="fill:none;stroke:#1a1a1a;stroke-width:0.25457305;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 63.398952,72.52608 -0.01215,-1.868462 1.992564,1.792764"
+               id="path881-3-6-6-6"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccc" />
+            <path
+               style="fill:none;stroke:#1a1a1a;stroke-width:0.25457305;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 65.37937,72.450382 -0.01215,-1.868462 1.992564,1.792764"
+               id="path881-3-6-6-7"
                inkscape:connector-curvature="0"
                sodipodi:nodetypes="ccc" />
           </g>
@@ -245,11 +251,6 @@
            cx="84.349335"
            id="path829-3-2-4-21-1-1"
            style="fill:#ff5555;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.19510651;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <polyline
-           id="polyline2100-8"
-           points="78.549,84.75 81.549,84.75 80.049,89.25 "
-           style="fill:#0071bc;fill-opacity:1"
-           transform="matrix(-0.289922,0,0,-0.289922,86.226002,110.82142)" />
       </g>
     </g>
   </g>

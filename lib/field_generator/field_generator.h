@@ -31,7 +31,6 @@
 
 /*
 TODO : 
-- Wave : SquarWave and TriangleWave
 - Gabor
 - Ondelette
 */
@@ -217,6 +216,80 @@ class GateField2D : public FMatrix
                 virtual void setparameters();
 };
 
+
+/*******************************************************************************************************/
+/****************************************  SquareWave Field  *******************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class SquareWave1D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &p;
+  const typename ArgType::Index &max;
+
+public:
+  SquareWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p , const typename ArgType::Index& max ) : N(N), p(p), max(max) {}
+  const typename ArgType::Scalar operator() (Index ind) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+    
+    //Gate Modulo version (not accurate for small field size):
+    //return  (fmod(x-p/2,2*p) >= -p && fmod(x+p/2,2*p) <= p) ? 1.0 : -1.0  ;
+	
+    //Sign of Cosinus Wave version:		
+    return  (cos( (typename ArgType::Scalar(ind) * 2.0* M_PI / (max-1) - (M_PI)) / p )) > 0 ? 1.0 : -1.0;
+  }
+};
+
+class SquareWaveField1D : public FMatrix
+{
+        private :
+
+		ISInput p;
+		ISInput N; 
+
+        public :
+		SquareWaveField1D() : FMatrix(VECTOR) {}
+                virtual ~SquareWaveField1D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+template<class ArgType>
+class SquareWave2D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &px;
+  const typename ArgType::Scalar &py;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+
+public:
+  SquareWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar &px, const typename ArgType::Scalar &py, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),py(py), max_x(max_x), max_y(max_y) {}
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+
+    //Gate Modulo version (not accurate for small field size):
+    //return  (fmod(x-px/2,2*px) >= -px && fmod(x+px/2,2*px) <= px && fmod(y-py/2,2*py) >= -py && fmod(y+py/2,2*py) <= py) ? 1.0 : -1.0 ;  
+		
+    //Sign of Cosinus Wave version:		
+    return (cos(  (typename ArgType::Scalar(col) * 2.0* M_PI / (max_x-1) - (M_PI)) / px ) * cos(  (typename ArgType::Scalar(row) * 2.0* M_PI / (max_y-1) - (M_PI)) / py )) > 0 ? 1.0 : -1.0;
+  }
+};
+
+class SquareWaveField2D : public FMatrix
+{
+        private :
+		ISInput px;
+		ISInput py;
+		ISInput N; 
+
+        public :
+                virtual ~SquareWaveField2D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
 /*******************************************************************************************************/
 /****************************************  Triangular Field  *******************************************/
 /*******************************************************************************************************/
@@ -231,6 +304,7 @@ public:
   Triangular1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &a  ,const typename ArgType::Index& max ) : N(N), a(a), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+    
     return  std::max( 1 - fabs(a*x), 0.0) ;
   }
 };
@@ -294,7 +368,8 @@ public:
   TriangularWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p  ,const typename ArgType::Index& max ) : N(N), p(p), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
-    return  std::fabs(2*fmod(x+p*max,p)/p - 1);
+    
+    return  std::fabs(4*fmod(x+p*max,p)/p - 2) - 1;	
   }
 };
 
@@ -325,7 +400,8 @@ public:
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
     auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
     auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
-	return  std::fabs(fmod(x+px*max_x,px)/px - 0.5) + fabs(fmod(y+py*max_y,py)/py - 0.5);
+
+    return  std::fabs(2*fmod(x+px*max_x,px)/px - 1) + fabs(2*fmod(y+py*max_y,py)/py - 1) - 1;
   }
 };
 
@@ -338,6 +414,76 @@ class TriangularWaveField2D : public FMatrix
 
         public :
                 virtual ~TriangularWaveField2D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/*************************************  Sawtooth Wave Field  *****************************************/
+/*******************************************************************************************************/
+
+template<class ArgType>
+class SawtoothWave1D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &p;
+	const typename ArgType::Scalar &m;
+  const typename ArgType::Index &max;
+
+public:
+  SawtoothWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &p, const typename ArgType::Scalar &m  ,const typename ArgType::Index& max ) : N(N), p(p), m(m), max(max) {}
+  const typename ArgType::Scalar operator() (Index ind) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+  
+    return  std::fabs(fmod((x+p*max),p)/p - (m>=0.5 ? 1.0 : 0.0) )*2 - 1;		
+  }
+};
+
+class SawtoothWaveField1D : public FMatrix
+{
+        private :
+                ISInput p;
+								ISInput m;
+                ISInput N;
+
+        public :
+		SawtoothWaveField1D() : FMatrix(VECTOR) {}
+                virtual ~SawtoothWaveField1D(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+template<class ArgType>
+class SawtoothWave2D_functor {
+  const typename ArgType::Scalar &N;
+  const typename ArgType::Scalar &px;
+	const typename ArgType::Scalar &mx;
+  const typename ArgType::Scalar &py;
+	const typename ArgType::Scalar &my;
+  const typename ArgType::Index &max_x;
+  const typename ArgType::Index &max_y;
+
+public:
+  SawtoothWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar& px, const typename ArgType::Scalar& mx, const typename ArgType::Scalar &py, const typename ArgType::Scalar& my, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), px(px),mx(mx),py(py),my(my), max_x(max_x), max_y(max_y) {}
+  const  typename ArgType::Scalar operator() (Index row, Index col) const {
+    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+	
+    return  std::fabs(fmod((x+px*max_x),px)/px - (mx>=0.5 ? 1.0 : 0.0)) + fabs(fmod((y+py*max_y),py)/py - (my>=0.5 ? 1.0 : 0.0)) - 1;
+  }
+};
+
+class SawtoothWaveField2D : public FMatrix
+{
+        private :
+                ISInput px;
+								ISInput mx;
+                ISInput py;
+								ISInput my;
+                ISInput N;
+
+        public :
+                virtual ~SawtoothWaveField2D(){}
                 virtual void compute();
                 virtual void setparameters();
 };

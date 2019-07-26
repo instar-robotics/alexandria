@@ -125,6 +125,50 @@
 			      MUST be [ROW or COL Vector]. 
 			</desc>
                 </function>
+		 <function>
+                        <name>SquareWaveField1D</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>p</name>
+                                        <desc>Period of the Square Wave </desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>squarewavegenerator.svg</icon>
+			<desc>Generate a 1-D Square Wave Field. 
+			      Equation : f(x) = 1 if (x-p/2)%2*p >= -p &lt;= x &lt;= p; -1 otherwise.
+			      MUST be [ROW or COL Vector]. 
+			</desc>
+                </function>
+                <function>
+                        <name>SquareWaveField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>px</name>
+                                        <desc>Period of the Square Wave on X axis [X = COL] </desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>py</name>
+                                        <desc>Period of the Square Wave on Y axis [Y = ROW] </desc>
+                                </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>squarewavegenerator2d.svg</icon>
+			<desc>Generate a 2-D Square Wave Field. 
+			      Equation : f(x,y) = 1 if (x-px/2)%2*px >= -px &lt;= x &lt;= px and (y-py/2)%2*py >= -py &lt;= y &lt;= py ; -1 otherwise.	
+			      MUST be [ROW or COL Vector]. 
+			</desc>
+                </function>
                  <function>
                         <name>TriangularField1D</name>
                         <output type="MATRIX" shape="VECT">
@@ -183,7 +227,7 @@
                         </inputs>
                         <icon>trianglegenerator.svg</icon>
                         <desc>Generate a 1-D Triangular Wave Field.
-                              Equation : f(x) = | 2/p * (x+p)%p - 1 |.
+                              Equation : f(x) = | 4/p * (x+p)%p - 2 | - 1.
                               MUST be [ROW or COL Vector].
                         </desc>
                 </function>
@@ -207,7 +251,61 @@
                         </inputs>
                         <icon>trianglegenerator2d.svg</icon>
                         <desc>Generate a 2-D Triangular Wave Field.
-                              Equation : f(x,y) = | 1/px * (x+px)%px - 0.5 | + | 1/py * (y+py)%py - 0.5 | . </desc>
+                              Equation : f(x,y) = | 2/px * (x+px)%px - 1 | + | 2/py * (y+py)%py - 1 | - 1 . </desc>
+                </function>
+                 <function>
+                        <name>SawtoothWaveField1D</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>p</name>
+                                        <desc>Period of the Sawtooth wave</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>m</name>
+                                        <desc>Mirror the Sawtooth wave. If m&gt;=0.5: sawtooth is mirrored. Otherwise not. </desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>sawtoothgenerator.svg</icon>
+                        <desc>Generate a 1-D Sawtooth Wave Field.
+                              Equation : f(x) = 2 * | 1/p * (x+p)%p - m | - 1.
+                              MUST be [ROW or COL Vector].
+                        </desc>
+                </function>
+                 <function>
+                        <name>SawtoothWaveField2D</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input type="SCALAR_SCALAR">
+                                        <name>px</name>
+                                        <desc>Period on X axis [X = COL]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>mx</name>
+                                        <desc>Mirror the Sawtooth on X axis [X = COL]. If m&gt;=0.5: sawtooth is mirrored. Otherwise not. </desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>py</name>
+                                        <desc>Period on Y axis [Y = ROW]</desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>my</name>
+                                        <desc>Mirror the Sawtooth on Y axis [Y = ROW]. If m&gt;=0.5: sawtooth is mirrored. Otherwise not. </desc>
+                                </input>
+                                <input type="SCALAR_SCALAR">
+                                        <name>N</name>
+                                        <desc>Definition interval is [-N,N]</desc>
+                                </input>
+                        </inputs>
+                        <icon>sawtoothgenerator2d.svg</icon>
+                        <desc>Generate a 2-D Sawtooth Wave Field.
+                              Equation : f(x,y) = | 1/px * (x+px)%px - mx | + | 1/py * (y+py)%py - m | - 1 . </desc>
                 </function>
                 <function>
                         <name>SinusField1D</name>
