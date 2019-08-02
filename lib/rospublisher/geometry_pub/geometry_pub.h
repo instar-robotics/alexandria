@@ -27,7 +27,6 @@
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/PoseStamped.h>
-#include <ros/ros.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:

@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CUSTOM_MSGS_HPP__
-#define __CUSTOM_MSGS_HPP__
+#ifndef __CUSTOM_SUB_HPP__
+#define __CUSTOM_SUB_HPP__
 
 #include "hieroglyph/JointPos.h"
 #include "hieroglyph/JointVel.h"
@@ -94,4 +94,4 @@ class ObjDetectSub : public FMatrixSub<hieroglyph::ObjDetect>
                 virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
 };
 
-#endif //__CUSTOM_MSGS_HPP__
+#endif //__CUSTOM_SUB_HPP__

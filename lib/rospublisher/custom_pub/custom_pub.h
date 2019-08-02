@@ -26,7 +26,6 @@
 #include "kheops/ros/fpub.h"
 #include <hieroglyph/JointVel.h>
 #include <hieroglyph/JointPos.h>
-#include <ros/ros.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:

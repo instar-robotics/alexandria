@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __STD_MSGS_HPP__
-#define __STD_MSGS_HPP__
+#ifndef __STD_SUB_HPP__
+#define __STD_SUB_HPP__
 
 #include "kheops/ros/fsub.h"
 #include "std_msgs/Float64MultiArray.h"
@@ -72,4 +72,4 @@ class MatrixSub : public FMatrixSub<std_msgs::Float64MultiArray>
 };
 
 
-#endif // __STD_MSGS_HPP__
+#endif // __STD_SUB_HPP__

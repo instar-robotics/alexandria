@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __GEOMETRY_MSGS_HPP__
-#define __GEOMETRY_MSGS_HPP__
+#ifndef __GEOMETRY_SUB_HPP__
+#define __GEOMETRY_SUB_HPP__
 
 #include "kheops/ros/fsub.h"
 #include <geometry_msgs/Vector3.h>
@@ -209,4 +209,4 @@ class PoseStampedSub : public FMatrixSub<geometry_msgs::PoseStamped>
                 virtual void callback(const geometry_msgs::PoseStamped::ConstPtr &msg);
 };
 
-#endif //__GEOMETRY_MSGS_HPP__
+#endif //__GEOMETRY_SUB_HPP__

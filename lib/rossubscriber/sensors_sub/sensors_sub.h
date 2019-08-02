@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __SENSOR_MSGS_HPP__
-#define __SENSOR_MSGS_HPP__
+#ifndef __SENSOR_SUB_HPP__
+#define __SENSOR_SUB_HPP__
 
 #include "kheops/ros/fsub.h"
 #include <sensor_msgs/Joy.h>
@@ -366,4 +366,4 @@ class NavSatFixAltSub : public FScalarSub<sensor_msgs::NavSatFix>
                 virtual void callback( const sensor_msgs::NavSatFix::ConstPtr &msg );
 };
 
-#endif // __SENSOR_MSGS_HPP__
+#endif // __SENSOR_SUB_HPP__
