@@ -77,6 +77,10 @@ void ImuPub::setparameters()
 
 	FMatrixPub<sensor_msgs::Imu>::setparameters();
 
+	orientation.setCheckSize(false);
+	angular_velocity.setCheckSize(false);
+	linear_acceleration.setCheckSize(false);
+
 	Kernel::iBind(orientation,"orientation",getUuid());
 	Kernel::iBind(angular_velocity,"angular_velocity",getUuid());
 	Kernel::iBind(linear_acceleration,"linear_acceleration",getUuid());

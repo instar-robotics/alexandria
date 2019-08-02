@@ -15,15 +15,15 @@
                                         <name>size_queue</name>
                                         <desc>Size of the queue</desc>
                                 </input>
-                                <input  type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>orientation</name>
 					<desc>orientation</desc>
                                 </input>
-                                <input  type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>angular_velocity</name>
                                         <desc>angular velocity</desc>
                                 </input>
-                                <input  type="SCALAR_MATRIX">
+                                <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>linear_acceleration</name>
                                         <desc>linear acceleration</desc>
                                 </input>
