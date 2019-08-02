@@ -23,6 +23,8 @@
 #include "maths.h"
 #include <cmath>
 #include <algorithm>
+#include <ctime>
+#include <cstdlib>
 
 REGISTER_FUNCTION(ArgMax1D);
 REGISTER_FUNCTION(ArgMax2D);
@@ -50,6 +52,7 @@ REGISTER_FUNCTION(PolarToCartY);
 REGISTER_FUNCTION(CartToPolar);
 REGISTER_FUNCTION(CartToPolarR);
 REGISTER_FUNCTION(CartToPolarTheta);
+REGISTER_FUNCTION(Random);
 
 /*******************************************************************************************************/
 /**********************************************  ArgMax  ***********************************************/
@@ -517,3 +520,17 @@ void CartToPolarTheta::compute()
         output = atan2(y()(), x()());
 }
 
+
+/*******************************************************************************************************/
+/**********************************************  Random   **********************************************/
+/*******************************************************************************************************/
+
+void Random::setparameters()
+{
+	srand(static_cast <unsigned> (time(0)));
+}
+
+void Random::compute()
+{
+	output = -1.0 + static_cast <SCALAR> (rand()) /( static_cast <SCALAR> (RAND_MAX/(2.0)));
+}

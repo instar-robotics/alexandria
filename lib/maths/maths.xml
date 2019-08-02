@@ -380,5 +380,12 @@
                         <icon>CartToPolar.svg</icon>
                         <desc>convert cartesian coordinates into polar coordinates. Output is the theta value.</desc>
                 </function>
+		<function>
+                        <name>Random</name>
+                        <output type="SCALAR">
+                        </output>
+                        <icon></icon>
+                        <desc>Generate a random number into [-1,1].</desc>
+                </function>
 	</functions>
 </description>

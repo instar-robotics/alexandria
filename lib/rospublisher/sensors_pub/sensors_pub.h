@@ -19,13 +19,11 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#ifndef __CUSTOM_PUB_HPP__
-#define __CUSTOM_PUB_HPP__
+#ifndef __SENSOR_PUB_HPP__
+#define __SENSOR_PUB_HPP__
 
 #include "kheops/ros/fpub.h"
-#include <hieroglyph/JointVel.h>
-#include <hieroglyph/JointPos.h>
+#include <sensor_msgs/Imu.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:
@@ -41,45 +39,25 @@
  */
 
 
-/*
- * JointVelPub : Send command velocity for a joint in hieroglyph/JointVel format 
- * 2 Scalars input (accel,vel)
- */
-class JointVelPub : public FMatrixPub<hieroglyph::JointVel>
+class ImuPub : public  FMatrixPub<sensor_msgs::Imu>
 {
-	private :
+	private : 
 
-		ISInput accel;
-		ISInput vel;
+		ISMInput orientation;
+		ISMInput angular_velocity;
+		ISMInput linear_acceleration;
 
-	public :
+		sensor_msgs::Imu msg;
+
+
+	public : 
 		
-		JointVelPub() : FMatrixPub<hieroglyph::JointVel>(VECTOR) {}
-		virtual ~JointVelPub(){}
-
-		virtual void compute();
-                virtual void setparameters();
-};
-
-/*
- * JointPosPub : Send command velocity for a joint in hieroglyph/JointPos format 
- * 3 Scalars input (accel,vel,pos)
- */
-class JointPosPub : public FMatrixPub<hieroglyph::JointPos>
-{
-        private :
-
-                ISInput accel;
-                ISInput vel;
-                ISInput pos;
-
-        public :
-
-                JointPosPub() : FMatrixPub<hieroglyph::JointPos>(VECTOR) {}
-                virtual ~JointPosPub(){}
+		ImuPub() :  FMatrixPub<sensor_msgs::Imu>(VECTOR) {}
+		virtual ~ImuPub(){}
 
                 virtual void compute();
+		virtual void prerun();
                 virtual void setparameters();
 };
 
-#endif // __CUSTOM_PUB_HPP__
+#endif //__SENSOR_PUB_HPP__

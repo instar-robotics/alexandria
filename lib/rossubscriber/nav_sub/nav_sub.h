@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __NAV_MSGS_HPP__
-#define __NAV_MSGS_HPP__
+#ifndef __NAV_SUB_HPP__
+#define __NAV_SUB_HPP__
 
 #include "kheops/ros/fsub.h"
 #include <nav_msgs/Odometry.h>
@@ -348,4 +348,4 @@ class OdoTwistAngYawSub : public FScalarSub<nav_msgs::Odometry>
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
-#endif // __NAV_MSGS_HPP__
+#endif // __NAV_SUB_HPP__
