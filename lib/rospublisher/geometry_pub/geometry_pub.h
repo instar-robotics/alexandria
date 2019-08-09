@@ -27,7 +27,6 @@
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/PoseStamped.h>
-#include <ros/ros.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:
@@ -42,6 +41,44 @@
  *      Using XML ENTITY could be a good way to do this.
  */
 
+
+/*
+ * Vector3SPub : ROS publisher takes 3 Scalar to publish a Vector3 message
+ */
+class Vector3SPub : public  FMatrixPub<geometry_msgs::Vector3>
+{
+	private : 
+
+		ISInput x;
+		ISInput y;
+		ISInput z;
+	public :
+
+                Vector3SPub() : FMatrixPub<geometry_msgs::Vector3>(VECTOR) {}
+                virtual ~Vector3SPub(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+/*
+ * Vector3Pub : ROS publisher publish a Vector3 message
+ */
+class Vector3Pub : public  FMatrixPub<geometry_msgs::Vector3>
+{
+	private : 
+
+		ISMInput inVector;
+
+	public :
+
+                Vector3Pub() : FMatrixPub<geometry_msgs::Vector3>(VECTOR) {}
+                virtual ~Vector3Pub(){}
+
+                virtual void compute();
+		virtual void prerun();
+                virtual void setparameters();
+};
 
 /*
  * TwistPub : Send command velocity in geometry_msgs/Twist message 
@@ -60,7 +97,7 @@ class TwistPub : public FMatrixPub<geometry_msgs::Twist>
 
 	public :
 		
-		TwistPub() : FMatrixPub<geometry_msgs::Twist>() {}
+		TwistPub() : FMatrixPub<geometry_msgs::Twist>(VECTOR) {}
 		virtual ~TwistPub(){}
 
 		virtual void compute();
@@ -80,7 +117,7 @@ class TwistVectPub : public FMatrixPub<geometry_msgs::Twist>
 
         public :
 
-                TwistVectPub() : FMatrixPub<geometry_msgs::Twist>() {}
+                TwistVectPub() : FMatrixPub<geometry_msgs::Twist>(VECTOR) {}
                 virtual ~TwistVectPub(){}
 
                 virtual void compute();
@@ -102,7 +139,7 @@ class Twist2DPub : public FMatrixPub<geometry_msgs::Twist>
 		
         public :
 
-                Twist2DPub() : FMatrixPub<geometry_msgs::Twist>() {}
+                Twist2DPub() : FMatrixPub<geometry_msgs::Twist>(VECTOR) {}
                 virtual ~Twist2DPub(){}
 
                 virtual void compute();
@@ -127,7 +164,7 @@ class AccelPub : public FMatrixPub<geometry_msgs::Accel>
 
         public :
 
-                AccelPub() : FMatrixPub<geometry_msgs::Accel>()  {}
+                AccelPub() : FMatrixPub<geometry_msgs::Accel>(VECTOR)  {}
                 virtual ~AccelPub(){}
 
                 virtual void compute();
@@ -148,7 +185,7 @@ class AccelVectPub : public FMatrixPub<geometry_msgs::Accel>
 
         public :
 
-                AccelVectPub() : FMatrixPub<geometry_msgs::Accel>() {}
+                AccelVectPub() : FMatrixPub<geometry_msgs::Accel>(VECTOR) {}
                 virtual ~AccelVectPub(){}
 
                 virtual void prerun();
@@ -170,7 +207,7 @@ class Accel2DPub : public FMatrixPub<geometry_msgs::Accel>
 
         public :
 
-                Accel2DPub(){}
+                Accel2DPub() : FMatrixPub<geometry_msgs::Accel>(VECTOR){}
                 virtual ~Accel2DPub(){}
 
                 virtual void compute();
@@ -195,7 +232,7 @@ class PoseStampedPub :  public FMatrixPub<geometry_msgs::PoseStamped>
 
 	public :
 
-                PoseStampedPub(){}
+                PoseStampedPub() : FMatrixPub<geometry_msgs::PoseStamped>(VECTOR) {}
                 virtual ~PoseStampedPub(){}
 
                 virtual void compute();

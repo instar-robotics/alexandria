@@ -347,6 +347,8 @@ void DotProd::compute()
 
 void DotProd::setparameters()
 {
+        inVector1.setCheckSize(false);
+        inVector2.setCheckSize(false);
         Kernel::iBind(inVector1,"inVector1", getUuid());
         Kernel::iBind(inVector2,"inVector2", getUuid());
 }
@@ -376,6 +378,8 @@ void CrossProd::compute()
 
 void CrossProd::setparameters()
 {
+        inVector1.setCheckSize(false);
+        inVector2.setCheckSize(false);
         Kernel::iBind(inVector1,"inVector1", getUuid());
         Kernel::iBind(inVector2,"inVector2", getUuid());
 }
@@ -407,6 +411,8 @@ void OuterProd::compute()
 
 void OuterProd::setparameters()
 {
+        inVector1.setCheckSize(false);
+        inVector2.setCheckSize(false);
         Kernel::iBind(inVector1,"inVector1", getUuid());
         Kernel::iBind(inVector2,"inVector2", getUuid());
 }

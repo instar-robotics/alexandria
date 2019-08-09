@@ -158,5 +158,39 @@
 			<icon>not-scalar.svg</icon>
 			<desc>Term-term NOT operator. [Input lower than 0.5 : 0 logic; Input greater than 0.5 : 1 logic]</desc>
 		</function>
+		<function>
+			<name>SFLIPFLOP</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input multiple="true" type="SCALAR_SCALAR">
+					<name>set</name>
+					<desc>Input scalar to set state to 1</desc>
+				</input>
+				<input multiple="true" type="SCALAR_SCALAR">
+					<name>reset</name>
+					<desc>Input scalar to reset state back to 0</desc>
+				</input>
+			</inputs>
+			<icon>flipflop-scalar.svg</icon>
+			<desc>FLIP-FLOP logic gate (latch gate). [If set=1 AND reset=0 : output set to 1; If set=X AND reset=1 : output set to 0; If set=0 AND reset=0 : output does not change (keep previous state);]</desc>
+		</function>
+		<function>
+			<name>MFLIPFLOP</name> 
+			<output type="MATRIX">
+			</output>
+			<inputs>
+				<input multiple="true" type="SCALAR_MATRIX">
+					<name>set</name>
+					<desc>Input matrix to set state to 1</desc>
+				</input>
+				<input multiple="true" type="SCALAR_MATRIX">
+					<name>reset</name>
+					<desc>Input matrix to reset state back to 0</desc>
+				</input>
+			</inputs>
+			<icon>flipflop-matrix.svg</icon>
+			<desc>FLIP-FLOP logic gate (latch gate). [If set=1 AND reset=0 : output set to 1; If set=X AND reset=1 : output set to 0; If set=0 AND reset=0 : output does not change (keep previous state);]</desc>
+		</function>
 	</functions>
 </description>

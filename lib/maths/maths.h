@@ -38,13 +38,13 @@ class ArgMax1D : public FScalar
 {
         private :
 
-                ISMInput inMatrix;
+                ISMInput inVector;
 
         public :
 
                 virtual ~ArgMax1D(){}
 
-                virtual void upreload();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -59,7 +59,6 @@ class ArgMax2D : public FMatrix
 
                 virtual ~ArgMax2D(){}
 
-                virtual void upreload();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -73,13 +72,13 @@ class ArgMin1D : public FScalar
 {
         private :
 
-                ISMInput inMatrix;
+                ISMInput inVector;
 
         public :
 
                 virtual ~ArgMin1D(){}
 
-                virtual void upreload();
+                virtual void prerun();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -94,7 +93,6 @@ class ArgMin2D : public FMatrix
 
                 virtual ~ArgMin2D(){}
 
-                virtual void upreload();
                 virtual void compute();
                 virtual void setparameters();
 };
@@ -293,7 +291,6 @@ class MDerivative : public FMatrix
 
 		MATRIX z_1;
 
-
         public :
 
                 virtual ~MDerivative(){}
@@ -349,6 +346,29 @@ class SZ_1 : public FScalar
                 virtual void compute();
                 virtual void setparameters();
 };
+
+class SZ_N : public FScalar
+{
+	private : 
+
+		ISInput inScalar;
+		ISInput N;
+
+		std::list<SCALAR>::iterator index;
+		std::list<SCALAR> z_n;
+        
+	public :
+
+                virtual ~SZ_N(){}
+
+                virtual void compute();
+                virtual void setparameters();
+};
+
+
+/*******************************************************************************************************/
+/******************************************  Cartesian/Polar   *****************************************/
+/*******************************************************************************************************/
 
 class PolarToCart : public FMatrix 
 {
@@ -432,6 +452,20 @@ class CartToPolarTheta : public FScalar
 		virtual ~CartToPolarTheta() {}
                 virtual void compute();
                 virtual void setparameters();
+};
+
+/*******************************************************************************************************/
+/**********************************************  Random   **********************************************/
+/*******************************************************************************************************/
+
+class Random : public FScalar
+{
+	public :
+
+		virtual ~Random(){}
+		virtual void compute();
+		virtual void setparameters();
+
 };
 
 #endif // _MATH_H_

@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __SENSOR_MSGS_HPP__
-#define __SENSOR_MSGS_HPP__
+#ifndef __SENSOR_SUB_HPP__
+#define __SENSOR_SUB_HPP__
 
 #include "kheops/ros/fsub.h"
 #include <sensor_msgs/Joy.h>
@@ -50,13 +50,12 @@
 
 /*
  * JoyAxesSub : ROS Subscriber for Joystick's axes values
- * Axes array must have the same dimension than the Output Matrix
- * But Matrix could be in any row/col form
+ * Axes array must have the same dimension than the Output Vector
  */
 class JoyAxesSub : public FMatrixSub<sensor_msgs::Joy>
 {
         public :
-                JoyAxesSub() : FMatrixSub<sensor_msgs::Joy>() {}
+                JoyAxesSub() : FMatrixSub<sensor_msgs::Joy>(VECTOR) {}
                 virtual ~JoyAxesSub(){}
 
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
@@ -84,13 +83,12 @@ class JoyAxeSub : public FScalarSub<sensor_msgs::Joy>
 
 /*
  * JoyButtonsSub : ROS Subscriber for Joystick's buttons values
- * Buttons array must have the same dimension than the Output Matrix
- * But Matrix could be in any row/col form
+ * Buttons array must have the same dimension than the Output Vector
  */
 class JoyButtonsSub : public FMatrixSub<sensor_msgs::Joy>
 {
         public :
-                JoyButtonsSub() : FMatrixSub<sensor_msgs::Joy>() {}
+                JoyButtonsSub() : FMatrixSub<sensor_msgs::Joy>(VECTOR) {}
                 virtual ~JoyButtonsSub(){}
 
                 virtual void callback( const sensor_msgs::Joy::ConstPtr &msg );
@@ -163,7 +161,7 @@ class PointCloud2Sub : public FMatrixSub<sensor_msgs::PointCloud2>
 class Compass3DSub : public FMatrixSub<sensor_msgs::Imu>
 {
         public :
-                Compass3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
+                Compass3DSub() : FMatrixSub<sensor_msgs::Imu>(VECTOR) {}
                 virtual ~Compass3DSub(){}
 
                 virtual void setparameters();
@@ -216,7 +214,7 @@ class CompassZSub : public FScalarSub<sensor_msgs::Imu>
 class Gyroscope3DSub : public FMatrixSub<sensor_msgs::Imu>
 {
         public :
-                Gyroscope3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
+                Gyroscope3DSub() : FMatrixSub<sensor_msgs::Imu>(VECTOR) {}
                 virtual ~Gyroscope3DSub(){}
 
                 virtual void setparameters();
@@ -269,7 +267,7 @@ class GyroscopeZSub : public FScalarSub<sensor_msgs::Imu>
 class Accelerometer3DSub : public FMatrixSub<sensor_msgs::Imu>
 {
         public :
-                Accelerometer3DSub() : FMatrixSub<sensor_msgs::Imu>() {}
+                Accelerometer3DSub() : FMatrixSub<sensor_msgs::Imu>(VECTOR) {}
                 virtual ~Accelerometer3DSub(){}
 
                 virtual void setparameters();
@@ -322,7 +320,7 @@ class AccelerometerZSub : public FScalarSub<sensor_msgs::Imu>
 class NavSatFixSub : public FMatrixSub<sensor_msgs::NavSatFix>
 {
 	public : 
-		NavSatFixSub() : FMatrixSub<sensor_msgs::NavSatFix>() {}
+		NavSatFixSub() : FMatrixSub<sensor_msgs::NavSatFix>(VECTOR) {}
 		virtual ~NavSatFixSub() {}
 
 		virtual void setparameters();
@@ -368,4 +366,4 @@ class NavSatFixAltSub : public FScalarSub<sensor_msgs::NavSatFix>
                 virtual void callback( const sensor_msgs::NavSatFix::ConstPtr &msg );
 };
 
-#endif // __SENSOR_MSGS_HPP__
+#endif // __SENSOR_SUB_HPP__

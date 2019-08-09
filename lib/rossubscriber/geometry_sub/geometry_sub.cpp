@@ -20,6 +20,9 @@
 */
 
 #include "geometry_sub.h"
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+
 
 REGISTER_FUNCTION(Vector3Sub);
 REGISTER_FUNCTION(Vector3XSub);
@@ -31,6 +34,7 @@ REGISTER_FUNCTION(AccelAngularSub);
 REGISTER_FUNCTION(TwistSub);
 REGISTER_FUNCTION(TwistLinearSub);
 REGISTER_FUNCTION(TwistAngularSub);
+REGISTER_FUNCTION(PoseStampedSub);
 
 /*******************************************************************************************************/
 /*********************                           Vector3                            ********************/
@@ -40,7 +44,7 @@ void Vector3Sub::setparameters()
 {
 	FMatrixSub<geometry_msgs::Vector3>::setparameters();
 
-	if( output.size() != 3 )  throw std::invalid_argument("Vector3Sub : Output dimension should be 3 !");
+	if( output.size() != 3 )  throw std::invalid_argument("Vector3Sub : Output must be 3D Vector.");
 }
 
 void Vector3Sub::callback(const geometry_msgs::Vector3::ConstPtr &msg)
@@ -74,37 +78,25 @@ void AccelSub::setparameters()
 {
 	FMatrixSub<geometry_msgs::Accel>::setparameters();
 
-	if(output.size() != 6) throw std::invalid_argument("AccelSub : Output dimension should be 6 !");
+	if(output.size() != 6) throw std::invalid_argument("AccelSub : Output must be a 6D Vector.");
 }
 
 void AccelSub::callback(const geometry_msgs::Accel::ConstPtr &msg)
 {
-	if( output.rows() == 2 && output.cols() == 3 )
-	{
-		output(0,0) =  msg->linear.x;
-		output(0,1) =  msg->linear.y;
-		output(0,2) =  msg->linear.z;
-		output(1,0) =  msg->angular.x;
-		output(1,1) =  msg->angular.y;
-		output(1,2) =  msg->angular.z;
-	}
-	else
-	{
-		auto mout = getMapVect(output);
-		mout[0] =  msg->linear.x;
-		mout[1] =  msg->linear.y;
-		mout[2] =  msg->linear.z;
-		mout[3] =  msg->angular.x;
-		mout[4] =  msg->angular.y;
-		mout[5] =  msg->angular.z;
-	}
+	auto mout = getMapVect(output);
+	mout[0] =  msg->linear.x;
+	mout[1] =  msg->linear.y;
+	mout[2] =  msg->linear.z;
+	mout[3] =  msg->angular.x;
+	mout[4] =  msg->angular.y;
+	mout[5] =  msg->angular.z;
 }
 
 void AccelLinearSub::setparameters()
 {
         FMatrixSub<geometry_msgs::Accel>::setparameters();
 
-        if(output.size() != 3) throw std::invalid_argument("AccelLinearSub : Output dimension should be 3 !");
+        if(output.size() != 3) throw std::invalid_argument("AccelLinearSub : Output must be 3D Vector.");
 }
 
 void AccelLinearSub::callback(const geometry_msgs::Accel::ConstPtr &msg)
@@ -120,7 +112,7 @@ void AccelAngularSub::setparameters()
 {
 	FMatrixSub<geometry_msgs::Accel>::setparameters();
 
-	if(output.size() != 3) throw std::invalid_argument("AccelAngularSub : Output dimension should be 3 !");
+	if(output.size() != 3) throw std::invalid_argument("AccelAngularSub : Output must be 3D Vector.");
 }
 
 void AccelAngularSub::callback(const geometry_msgs::Accel::ConstPtr &msg)
@@ -139,39 +131,25 @@ void TwistSub::setparameters()
 {
         FMatrixSub<geometry_msgs::Twist>::setparameters();
 
-        if(output.size() != 6) throw std::invalid_argument("TwistSub : Output dimension should be 6 !");
+        if(output.size() != 6) throw std::invalid_argument("TwistSub : Output must be a 6D Vector.");
 }
 
 void TwistSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
 {
-        if( output.rows() == 2 && output.cols() == 3 )
-        {
-                output(0,0) =  msg->linear.x;
-                output(0,1) =  msg->linear.y;
-                output(0,2) =  msg->linear.z;
-                output(1,0) =  msg->angular.x;
-                output(1,1) =  msg->angular.y;
-                output(1,2) =  msg->angular.z;
-        }
-        else
-        {
-                auto mout = getMapVect(output);
-                mout[0] =  msg->linear.x;
-                mout[1] =  msg->linear.y;
-                mout[2] =  msg->linear.z;
-                mout[3] =  msg->angular.x;
-                mout[4] =  msg->angular.y;
-                mout[5] =  msg->angular.z;
-        }
+	auto mout = getMapVect(output);
+	mout[0] =  msg->linear.x;
+	mout[1] =  msg->linear.y;
+	mout[2] =  msg->linear.z;
+	mout[3] =  msg->angular.x;
+	mout[4] =  msg->angular.y;
+	mout[5] =  msg->angular.z;
 }
-
-
 
 void TwistLinearSub::setparameters()
 {
         FMatrixSub<geometry_msgs::Twist>::setparameters();
 
-        if(output.size() != 3) throw std::invalid_argument("TwistLinearSub : Output dimension should be 3 !");
+        if(output.size() != 3) throw std::invalid_argument("TwistLinearSub : Output must be 3D Vector.");
 }
 
 void TwistLinearSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
@@ -186,7 +164,7 @@ void TwistAngularSub::setparameters()
 {
         FMatrixSub<geometry_msgs::Twist>::setparameters();
 
-        if(output.size() != 3) throw std::invalid_argument("TwistAngularSub : Output dimension should be 3 !");
+        if(output.size() != 3) throw std::invalid_argument("TwistAngularSub : Output must be 3D Vector.");
 }
 
 void TwistAngularSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
@@ -195,5 +173,30 @@ void TwistAngularSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
         mout[0] =  msg->angular.x;
         mout[1] =  msg->angular.y;
         mout[2] =  msg->angular.z;
+}
+
+/*******************************************************************************************************/
+/*********************                          PoseStamped                         ********************/
+/*******************************************************************************************************/
+
+
+void PoseStampedSub::setparameters()
+{
+        FMatrixSub<geometry_msgs::PoseStamped>::setparameters();
+
+        if(output.size() != 6) throw std::invalid_argument("PoseStampedSub : Output must be a 6D Vector.");
+}
+
+void PoseStampedSub::callback(const geometry_msgs::PoseStamped::ConstPtr &msg)
+{
+        auto mout = getMapVect(output);
+        mout[0] =  msg->pose.position.x;
+        mout[1] =  msg->pose.position.y;
+        mout[2] =  msg->pose.position.x;
+
+	tf2::Quaternion quat_tf;
+	tf2::convert(msg->pose.orientation , quat_tf);
+	tf2::Matrix3x3 m(quat_tf);
+	m.getRPY(mout[3], mout[4], mout[5]);
 }
 

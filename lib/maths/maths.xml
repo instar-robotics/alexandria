@@ -8,12 +8,12 @@
 			</output>
 			<inputs>
 				<input  type="SCALAR_MATRIX" shape="VECT">
-					<name>inMatrix</name>
-					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
+					<name>inVector</name>
+					<desc>Input Vector [Row or Col].</desc>
 				</input>
 			</inputs>
 			<icon>argmax1d.svg</icon>
-			<desc>Get the argmax of the input matrix</desc>
+			<desc>Get the argmax of the input vector</desc>
 		</function>
 		<function>
 			<name>ArgMin1D</name>
@@ -21,34 +21,34 @@
 			</output>
 			<inputs>
 				<input  type="SCALAR_MATRIX" shape="VECT">
-					<name>inMatrix</name>
-					<desc>Input matrix. Must be a Vector [Row or Col]</desc>
+					<name>inVector</name>
+					<desc>Input Vector [Row or Col].</desc>
 				</input>
 			</inputs>
 			<icon>argmin1d.svg</icon>
-			<desc>Get the argmin of the matrix input</desc>
+			<desc>Get the argmin of the input vector</desc>
 		</function>
 		<function>
 			<name>ArgMax2D</name>
 			<output type="Matrix">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>inMatrix</name>
-					<desc>Input matrix. Must be dimension 2 [(2,1) or (1,2)]</desc>
+					<desc>Input matrix.</desc>
 				</input>
 			</inputs>
 			<icon>argmax2d.svg</icon>
-			<desc>Get the argmax of the matrix input</desc>
+			<desc>Get the argmax of the input matrix</desc>
 		</function>
 		<function>
 			<name>ArgMin2D</name>
 			<output type="Matrix">
 			</output>
 			<inputs>
-				<input  type="SCALAR_MATRIX">
+				<input  type="SCALAR_MATRIX" checkSize="false">
 					<name>inMatrix</name>
-					<desc>Input matrix. Must be dimension 2 [(2,1) or (1,2)]</desc>
+					<desc>Input matrix.</desc>
 				</input>
 			</inputs>
 			<icon>argmin2d.svg</icon>
@@ -262,6 +262,23 @@
 			<desc>Get the scalar value with a delay iteration</desc>
 		</function>
 		<function>
+			<name>SZ_N</name>
+			<output type="SCALAR">
+			</output>
+			<inputs>
+				<input  type="SCALAR_SCALAR">
+					<name>inScalar</name>
+					<desc>Input scalar</desc>
+				</input>
+				<input  type="SCALAR_SCALAR">
+					<name>N</name>
+					<desc>number of delay's iteration</desc>
+				</input>
+			</inputs>
+			<icon>scalar_Z-N.svg</icon>
+			<desc>Get the scalar value with a delay of N iterations</desc>
+		</function>
+		<function>
                         <name>PolarToCart</name>
                         <output type="MATRIX">
                         </output>
@@ -362,6 +379,13 @@
                         </inputs>
                         <icon>CartToPolar.svg</icon>
                         <desc>convert cartesian coordinates into polar coordinates. Output is the theta value.</desc>
+                </function>
+		<function>
+                        <name>Random</name>
+                        <output type="SCALAR">
+                        </output>
+                        <icon></icon>
+                        <desc>Generate a random number into [-1,1].</desc>
                 </function>
 	</functions>
 </description>

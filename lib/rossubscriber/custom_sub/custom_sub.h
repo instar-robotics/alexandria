@@ -19,8 +19,8 @@
   along with dogtag. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CUSTOM_MSGS_HPP__
-#define __CUSTOM_MSGS_HPP__
+#ifndef __CUSTOM_SUB_HPP__
+#define __CUSTOM_SUB_HPP__
 
 #include "hieroglyph/JointPos.h"
 #include "hieroglyph/JointVel.h"
@@ -51,7 +51,7 @@
 class JointPosSub: public FMatrixSub<hieroglyph::JointPos>
 {
         public :
-                JointPosSub() : FMatrixSub<hieroglyph::JointPos>() {}
+                JointPosSub() : FMatrixSub<hieroglyph::JointPos>(VECTOR) {}
                 virtual ~JointPosSub(){}
 
                 virtual void setparameters();
@@ -68,7 +68,7 @@ class JointPosSub: public FMatrixSub<hieroglyph::JointPos>
 class JointVelSub : public FMatrixSub<hieroglyph::JointVel>
 {
         public :
-                JointVelSub() : FMatrixSub<hieroglyph::JointVel>() {}
+                JointVelSub() : FMatrixSub<hieroglyph::JointVel>(VECTOR) {}
                 virtual ~JointVelSub(){}
 
                 virtual void setparameters();
@@ -94,11 +94,6 @@ class ObjDetectSub : public FMatrixSub<hieroglyph::ObjDetect>
                 virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
 };
 
-/*******************************************************************************************************/
-/*****************                      Object Detection Polar                       *******************/
-/*******************************************************************************************************/
-
-
 class ObjDetectPolarSub : public FMatrixSub<hieroglyph::ObjDetect>
 {
         private :
@@ -113,4 +108,4 @@ class ObjDetectPolarSub : public FMatrixSub<hieroglyph::ObjDetect>
                 virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
 };
 
-#endif //__CUSTOM_MSGS_HPP__
+#endif //__CUSTOM_SUB_HPP__
