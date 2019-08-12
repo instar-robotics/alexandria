@@ -484,11 +484,20 @@ void Memory::compute()
 	if( record()() > 0.5 ) 
 	{
 		MATRIX m = inMatrix()();
-		memory.push_back(m);
 
-		output = m;
+		if( index()() <=0  || (unsigned int)index()() > memory.size() )
+		{	
+			memory.push_back(m);
+		}
+		else
+		{
+			memory[(unsigned int) index()() - 1] = m;	
+		}
+
 	}
-	else if( index()() <=0  || (unsigned int)index()() > memory.size() )
+	
+	
+	if( index()() <=0  || (unsigned int)index()() > memory.size() )
 	{
 		output = MATRIX::Constant( output.rows(), output.cols() , 0);
 	}	
