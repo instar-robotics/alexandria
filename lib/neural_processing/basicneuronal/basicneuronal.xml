@@ -174,5 +174,28 @@
                         <icon>projection.svg</icon>
                         <desc>Projection operator : use ONE_TO_ONE, ONE_TO_ALL or ONE_TO_NEI to perform concatenation,extraction and generic projection. See Alexandria documentation for explanation.</desc>
                 </function>
+		 <function>
+                        <name>Memory</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to store in memory</desc>
+                                </input>
+				 <input  type="SCALAR_SCALAR">
+                                        <name>record</name>
+                                        <desc>if True, record the current input in a new memory [>0.5 == TRUE]</desc>
+                                </input>
+				 <input  type="SCALAR_SCALAR">
+                                        <name>index</name>
+                                        <desc>index of the memory to recall</desc>
+                                </input>
+
+                        </inputs>
+                        <icon></icon>
+                        <desc>Memory store MATRIX input in a vector and can recall them when the right index is given.</desc>
+                </function>
+
 	</functions>
 </description>

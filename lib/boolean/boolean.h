@@ -229,7 +229,7 @@ class SFLIPFLOP :  public FScalar
         private :
 
                 ISInput set;
-								ISInput reset;
+		ISInput reset;
 
         public :
  
@@ -244,9 +244,9 @@ class MFLIPFLOP :  public FMatrix
         private :
 
                 ISMInput set;
-								ISMInput reset;
+		ISMInput reset;
 
-								MATRIX mem;
+		MATRIX mem;
 
         public :
 

@@ -350,4 +350,23 @@ class Projection : public FMatrix
                 virtual void setparameters();
 };
 
+/*******************************************************************************************************/
+/**********************************************  Memory  ***********************************************/
+/*******************************************************************************************************/
+
+class Memory : public FMatrix
+{
+        private :
+                ISMInput inMatrix;
+		ISInput index;
+		ISInput record;
+
+		std::vector<MATRIX> memory;
+
+        public :
+                virtual ~Memory(){}
+                virtual void compute();
+                virtual void setparameters();
+};
+
 #endif // _BASIC_NEURONAL_H_

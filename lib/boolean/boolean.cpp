@@ -27,13 +27,23 @@
 //  Input lower than 0.5 -> 0 logic
 //  Input greater than 0.5 -> 1 logic
 
-/*******************************************************************************************************/
-/************************************************  AND   ***********************************************/
-/*******************************************************************************************************/
-
 REGISTER_FUNCTION(MAND);
 REGISTER_FUNCTION(MSAND);
 REGISTER_FUNCTION(SAND);
+REGISTER_FUNCTION(MOR);
+REGISTER_FUNCTION(MSOR);
+REGISTER_FUNCTION(SOR);
+REGISTER_FUNCTION(MXOR);
+REGISTER_FUNCTION(MSXOR);
+REGISTER_FUNCTION(SXOR);
+REGISTER_FUNCTION(MNOT);
+REGISTER_FUNCTION(SNOT);
+REGISTER_FUNCTION(SFLIPFLOP);
+REGISTER_FUNCTION(MFLIPFLOP);
+
+/*******************************************************************************************************/
+/************************************************  AND   ***********************************************/
+/*******************************************************************************************************/
 
 void MAND::compute()
 {
@@ -123,10 +133,6 @@ void SAND::setparameters()
 /************************************************  OR  *************************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MOR);
-REGISTER_FUNCTION(MSOR);
-REGISTER_FUNCTION(SOR);
-
 void MOR::compute()
 {
 	output = inMatrix(0)().unaryExpr([](SCALAR elem)
@@ -203,10 +209,6 @@ void SOR::setparameters()
 /*******************************************************************************************************/
 /************************************************  XOR  ************************************************/
 /*******************************************************************************************************/
-
-REGISTER_FUNCTION(MXOR);
-REGISTER_FUNCTION(MSXOR);
-REGISTER_FUNCTION(SXOR);
 
 void MXOR::compute()
 {
@@ -298,10 +300,6 @@ void SXOR::setparameters()
 /***********************************************  NOT   ************************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(MNOT);
-REGISTER_FUNCTION(SNOT);
-
-
 void MNOT::compute()
 {
  	output = inMatrix()().unaryExpr([](SCALAR elem)
@@ -331,19 +329,16 @@ void SNOT::setparameters()
 /***********************************************   FLIP-FLOP  ******************************************/
 /*******************************************************************************************************/
 
-REGISTER_FUNCTION(SFLIPFLOP);
-REGISTER_FUNCTION(MFLIPFLOP);
-
 void SFLIPFLOP::compute()
 {
 	for(unsigned int i=0; i < set.size(); i++)
 	{	
-	output = set(i)() < 0.5 ? output : 1.0;
+		output = set(i)() < 0.5 ? output : 1.0;
 	}
 	
 	for(unsigned int i=0; i < reset.size(); i++)
 	{		
-	output = reset(i)() < 0.5 ? output : 0.0;
+		output = reset(i)() < 0.5 ? output : 0.0;
 	}
 }
 
@@ -351,8 +346,8 @@ void SFLIPFLOP::setparameters()
 {
         set.setMultiple(true);
         Kernel::instance().bind(set,"set", getUuid());
-				reset.setMultiple(true);
-				Kernel::instance().bind(reset,"reset", getUuid());
+	reset.setMultiple(true);
+	Kernel::instance().bind(reset,"reset", getUuid());
 }
 
 
@@ -380,10 +375,10 @@ void MFLIPFLOP::setparameters()
 {
         set.setMultiple(true);
         Kernel::instance().bind(set,"set", getUuid());
-				reset.setMultiple(true);
+	reset.setMultiple(true);
         Kernel::instance().bind(reset,"reset", getUuid());
 
-				mem = MATRIX::Constant( output.rows(), output.cols(), 0  );
+	mem = MATRIX::Constant( output.rows(), output.cols(), 0  );
 }
 
 

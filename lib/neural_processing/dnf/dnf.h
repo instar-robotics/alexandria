@@ -57,8 +57,8 @@ class Amari_functor{
 		 {
 			//typename ArgType::Index zrow = urow + i - (typename ArgType::Index)((mrows)/2.0) ;
 			//typename ArgType::Index zcol = ucol + j - (typename ArgType::Index)((mcols)/2.0) ; 
-			typename ArgType::Index zrow = irow + i+mrows%2 - (mrows+mrows%2)/2.0 ; // rule differs whether mrows is odd (mrows%2!=0) or even (mrows%2=0)
-                        typename ArgType::Index zcol = icol + j+mcols%2 - (mcols+mcols%2)/2.0 ; // same for mcols
+			typename ArgType::Index zrow = urow + i+mrows%2 - (mrows+mrows%2)/2.0 ; // rule differs whether mrows is odd (mrows%2!=0) or even (mrows%2=0)
+                        typename ArgType::Index zcol = ucol + j+mcols%2 - (mcols+mcols%2)/2.0 ; // same for mcols
 
 		
 			if( circular ) 

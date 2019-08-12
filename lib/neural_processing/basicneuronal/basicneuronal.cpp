@@ -33,6 +33,7 @@ REGISTER_FUNCTION(Shift);
 REGISTER_FUNCTION(ShiftInv);
 REGISTER_FUNCTION(Copy);
 REGISTER_FUNCTION(Projection);
+REGISTER_FUNCTION(Memory);
 
 /*******************************************************************************************************/
 /************************************************ KeepMax  *********************************************/
@@ -472,5 +473,35 @@ void Projection::setparameters()
 	inMatrix.setMultiple(true);
         inMatrix.setCheckSize(false);
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+/*******************************************************************************************************/
+/*********************************************** Memory ************************************************/
+/*******************************************************************************************************/
+
+void Memory::compute()
+{
+	if( record()() > 0.5 ) 
+	{
+		MATRIX m = inMatrix()();
+		memory.push_back(m);
+
+		output = m;
+	}
+	else if( index()() <=0  || (unsigned int)index()() > memory.size() )
+	{
+		output = MATRIX::Constant( output.rows(), output.cols() , 0);
+	}	
+	else
+	{
+		output = memory[(unsigned int) index()() - 1 ];	
+	}
+}
+
+void Memory::setparameters()
+{
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+        Kernel::iBind(index,"index", getUuid());
+        Kernel::iBind(record,"record", getUuid());
 }
 
