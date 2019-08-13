@@ -39,6 +39,8 @@
  *      Using XML ENTITY could be a good way to do this.
  */ 
 
+const IString ALL = "all";
+
 /*******************************************************************************************************/
 /*****************                              Odometry                             *******************/
 /*******************************************************************************************************/
@@ -49,6 +51,10 @@
  */
 class OdoPosSub :  public FMatrixSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
+
         public :
 
                 OdoPosSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR) {}
@@ -64,11 +70,15 @@ class OdoPosSub :  public FMatrixSub<nav_msgs::Odometry>
  */
 class OdoPosXSub :  public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoPosXSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoPosXSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -79,11 +89,15 @@ class OdoPosXSub :  public FScalarSub<nav_msgs::Odometry>
  */
 class OdoPosYSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoPosYSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoPosYSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -93,11 +107,15 @@ class OdoPosYSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoPosZSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoPosZSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoPosZSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -107,6 +125,9 @@ class OdoPosZSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoEulerSub : public FMatrixSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoEulerSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
@@ -122,11 +143,15 @@ class OdoEulerSub : public FMatrixSub<nav_msgs::Odometry>
  */
 class OdoEulerRollSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoEulerRollSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerRollSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -136,11 +161,15 @@ class OdoEulerRollSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoEulerPitchSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoEulerPitchSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerPitchSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -151,11 +180,15 @@ class OdoEulerPitchSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoEulerYawSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoEulerYawSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoEulerYawSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -165,6 +198,9 @@ class OdoEulerYawSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoQuaterSub : public FMatrixSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoQuaterSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
@@ -181,11 +217,15 @@ class OdoQuaterSub : public FMatrixSub<nav_msgs::Odometry>
  */
 class OdoQuaterXSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoQuaterXSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterXSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -196,11 +236,15 @@ class OdoQuaterXSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoQuaterYSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoQuaterYSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterYSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -210,11 +254,15 @@ class OdoQuaterYSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoQuaterZSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoQuaterZSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterZSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -224,11 +272,15 @@ class OdoQuaterZSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoQuaterWSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoQuaterWSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoQuaterWSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -239,6 +291,9 @@ class OdoQuaterWSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistLinSub : public FMatrixSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistLinSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
@@ -254,11 +309,15 @@ class OdoTwistLinSub : public FMatrixSub<nav_msgs::Odometry>
  */
 class OdoTwistLinXSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistLinXSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinXSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -269,11 +328,15 @@ class OdoTwistLinXSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistLinYSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistLinYSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinYSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -283,11 +346,15 @@ class OdoTwistLinYSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistLinZSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistLinZSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistLinZSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -297,6 +364,9 @@ class OdoTwistLinZSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistAngSub : public FMatrixSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistAngSub() : FMatrixSub<nav_msgs::Odometry>(VECTOR){}
@@ -312,11 +382,15 @@ class OdoTwistAngSub : public FMatrixSub<nav_msgs::Odometry>
  */
 class OdoTwistAngRollSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistAngRollSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngRollSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -326,11 +400,15 @@ class OdoTwistAngRollSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistAngPitchSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistAngPitchSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngPitchSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
@@ -340,11 +418,15 @@ class OdoTwistAngPitchSub : public FScalarSub<nav_msgs::Odometry>
  */
 class OdoTwistAngYawSub : public FScalarSub<nav_msgs::Odometry>
 {
+	private : 
+
+		IString frame_id;
         public :
 
                 OdoTwistAngYawSub() : FScalarSub<nav_msgs::Odometry>(){}
                 virtual ~OdoTwistAngYawSub(){}
 
+                virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
 
