@@ -53,41 +53,73 @@ void OdoPosSub::setparameters()
 {
         if( output.size() != 3 ) throw std::invalid_argument("OdoPosSub : Output must be a 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
+
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 }
 
 void OdoPosSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        auto mout = getMapVect(output);
-        mout[0] = msg->pose.pose.position.x;
-        mout[1] = msg->pose.pose.position.y;
-        mout[2] = msg->pose.pose.position.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+       	 auto mout = getMapVect(output);
+       	 mout[0] = msg->pose.pose.position.x;
+       	 mout[1] = msg->pose.pose.position.y;
+       	 mout[2] = msg->pose.pose.position.z;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                           OdoPosX                            ********************/
 /*******************************************************************************************************/
 
+void OdoPosXSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoPosXSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.position.x;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{ 
+		output = msg->pose.pose.position.x;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                           OdoPosY                            ********************/
 /*******************************************************************************************************/
 
+void OdoPosYSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoPosYSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.position.y;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+        	output = msg->pose.pose.position.y;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                           OdoPosZ                            ********************/
 /*******************************************************************************************************/
 
+void OdoPosZSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoPosZSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.position.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->pose.pose.position.z;
+	}
 }
 
 /*******************************************************************************************************/
@@ -98,65 +130,98 @@ void OdoEulerSub::setparameters()
 {
         if( output.size() != 3 ) throw std::invalid_argument("OdoEulerSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
+	
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 }
 
 void OdoEulerSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf2::Matrix3x3 m(q);
-        SCALAR roll, pitch, yaw;
-        m.getRPY(roll, pitch, yaw);
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        auto mout = getMapVect(output);
-        mout[0] = roll;
-        mout[1] = pitch;
-        mout[2] = yaw;
+		tf2::Matrix3x3 m(q);
+		SCALAR roll, pitch, yaw;
+		m.getRPY(roll, pitch, yaw);
+
+		auto mout = getMapVect(output);
+		mout[0] = roll;
+		mout[1] = pitch;
+		mout[2] = yaw;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                       OdoEulerRoll                           ********************/
 /*******************************************************************************************************/
 
+void OdoEulerRollSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoEulerRollSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf2::Matrix3x3 m(q);
-        SCALAR roll, pitch, yaw;
-        m.getRPY(roll, pitch, yaw);
+		tf2::Matrix3x3 m(q);
+		SCALAR roll, pitch, yaw;
+		m.getRPY(roll, pitch, yaw);
 
-        output = roll;
+		output = roll;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                      OdoEulerPitch                           ********************/
 /*******************************************************************************************************/
 
+void OdoEulerPitchSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoEulerPitchSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf2::Matrix3x3 m(q);
-        SCALAR roll, pitch, yaw;
-        m.getRPY(roll, pitch, yaw);
+		tf2::Matrix3x3 m(q);
+		SCALAR roll, pitch, yaw;
+		m.getRPY(roll, pitch, yaw);
 
-        output = pitch;
+		output = pitch;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                        OdoEulerYaw                           ********************/
 /*******************************************************************************************************/
 
+void OdoEulerYawSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoEulerYawSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		tf2::Quaternion q(msg->pose.pose.orientation.x,msg->pose.pose.orientation.y,msg->pose.pose.orientation.z,msg->pose.pose.orientation.w);
 
-        tf2::Matrix3x3 m(q);
-        SCALAR roll, pitch, yaw;
-        m.getRPY(roll, pitch, yaw);
+		tf2::Matrix3x3 m(q);
+		SCALAR roll, pitch, yaw;
+		m.getRPY(roll, pitch, yaw);
 
-        output = yaw;
+		output = yaw;
+	}
 }
 
 /*******************************************************************************************************/
@@ -167,51 +232,92 @@ void OdoQuaterSub::setparameters()
 {
         if( output.size() != 4 ) throw std::invalid_argument("OdoQuaterSub : Output must be 4D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
+	
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 }
 
 void OdoQuaterSub::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
-        auto mout = getMapVect(output);
-        mout[0] = msg->pose.pose.orientation.x;
-        mout[1] = msg->pose.pose.orientation.y;
-        mout[2] = msg->pose.pose.orientation.z;
-        mout[3] = msg->pose.pose.orientation.w;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		auto mout = getMapVect(output);
+		mout[0] = msg->pose.pose.orientation.x;
+		mout[1] = msg->pose.pose.orientation.y;
+		mout[2] = msg->pose.pose.orientation.z;
+		mout[3] = msg->pose.pose.orientation.w;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                         OdoQuaterX                           ********************/
 /*******************************************************************************************************/
 
+void OdoQuaterXSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoQuaterXSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.orientation.x;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->pose.pose.orientation.x;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                         OdoQuaterY                           ********************/
 /*******************************************************************************************************/
 
+void OdoQuaterYSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoQuaterYSub::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.orientation.y;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->pose.pose.orientation.y;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                         OdoQuaterZ                           ********************/
 /*******************************************************************************************************/
 
+void OdoQuaterZSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoQuaterZSub::callback( const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.orientation.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->pose.pose.orientation.z;
+	}
 }
 
 /*******************************************************************************************************/
 /*********************                         OdoQuaterW                           ********************/
 /*******************************************************************************************************/
 
+void OdoQuaterWSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoQuaterWSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->pose.pose.orientation.w;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+        	output = msg->pose.pose.orientation.w;
+	}
 }
 
 /*******************************************************************************************************/
@@ -222,41 +328,77 @@ void OdoTwistLinSub::setparameters()
 {
         if( output.size() != 3 ) throw std::invalid_argument("OdoTwistLinSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
+	
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 }
 
 void OdoTwistLinSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        auto mout = getMapVect(output);
-        mout[0] = msg->twist.twist.linear.x;
-        mout[1] = msg->twist.twist.linear.y;
-        mout[2] = msg->twist.twist.linear.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		auto mout = getMapVect(output);
+		mout[0] = msg->twist.twist.linear.x;
+		mout[1] = msg->twist.twist.linear.y;
+		mout[2] = msg->twist.twist.linear.z;
+	}
+	else output = MATRIX::Constant(output.rows(),output.cols(),0);
 }
 
 /*******************************************************************************************************/
 /*********************                      OdoTwistLinX                            ********************/
 /*******************************************************************************************************/
 
+void OdoTwistLinXSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistLinXSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.linear.x;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+        	output = msg->twist.twist.linear.x;
+	}
+	else output = 0;
 }
 
 /*******************************************************************************************************/
 /*********************                       OdoTwistLinY                           ********************/
 /*******************************************************************************************************/
 
+void OdoTwistLinYSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistLinYSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.linear.y;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->twist.twist.linear.y;
+	}
+	else output = 0;
 }
 
 /*******************************************************************************************************/
 /*********************                      OdoTwistLinZ                            ********************/
 /*******************************************************************************************************/
 
+void OdoTwistLinZSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistLinZSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.linear.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->twist.twist.linear.z;
+	}
+	else output = 0;
 }
 
 /*******************************************************************************************************/
@@ -267,39 +409,75 @@ void OdoTwistAngSub::setparameters()
 {
         if( output.size() != 3 ) throw std::invalid_argument("OdoTwistAngSub : Output must be 3D Vector.");
 	FMatrixSub<nav_msgs::Odometry>::setparameters();
+	
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 }
 
 void OdoTwistAngSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        auto mout = getMapVect(output);
-        mout[0] = msg->twist.twist.angular.x;
-        mout[1] = msg->twist.twist.angular.y;
-        mout[2] = msg->twist.twist.angular.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		auto mout = getMapVect(output);
+		mout[0] = msg->twist.twist.angular.x;
+		mout[1] = msg->twist.twist.angular.y;
+		mout[2] = msg->twist.twist.angular.z;
+	}
+	else output = MATRIX::Constant(output.rows(),output.cols(),0);
 }
 
 /*******************************************************************************************************/
 /*********************                     OdoTwistAngRoll                          ********************/
 /*******************************************************************************************************/
 
+void OdoTwistAngRollSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistAngRollSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.angular.x;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->twist.twist.angular.x;
+	}
+	else output = 0;
 }
 
 /*******************************************************************************************************/
 /***********************                   OdoTwistAngPitch                       **********************/
 /*******************************************************************************************************/
 
+void OdoTwistAngPitchSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistAngPitchSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.angular.y;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->twist.twist.angular.y;
+	}
+	else output = 0;
 }
 
 /*******************************************************************************************************/
 /*********************                       OdoTwistAngYaw                         ********************/
 /*******************************************************************************************************/
 
+void OdoTwistAngYawSub::setparameters()
+{
+	FScalarSub<nav_msgs::Odometry>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
 void OdoTwistAngYawSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 {
-        output = msg->twist.twist.angular.z;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+	{
+		output = msg->twist.twist.angular.z;
+	}
+	else output = 0;
 }
