@@ -26,6 +26,7 @@ set(CATKIN_DEP
   kheops
   joy
   tf2
+  tf2_ros
   nav_msgs
   sensor_msgs
   geometry_msgs
