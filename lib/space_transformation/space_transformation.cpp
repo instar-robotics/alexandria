@@ -45,7 +45,7 @@ void EulerToQuaternion::setparameters()
 {
 	if(output.size() != 4) throw std::invalid_argument("EulerToQuaternion : Output must be a 4D Vector.");
 
-	inEuleur.setCheckSize(false);
+	inEuler.setCheckSize(false);
 	Kernel::iBind(inEuler,"inEuler", getUuid());
 }
 

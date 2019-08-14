@@ -39,8 +39,6 @@ class TF2Listener : public FMatrix
 		IString source_frame;
 		ISInput time;
 		ISInput timeout;
-		
-		tf2_ros::Buffer tfBuffer;
 
 	public : 
 
@@ -64,8 +62,6 @@ class TF2ListenerTrans : public FMatrix
                 ISInput time;
                 ISInput timeout;
 
-                tf2_ros::Buffer tfBuffer;
-
         public :
 
                 TF2ListenerTrans() :  FMatrix(VECTOR) {}
@@ -88,8 +84,6 @@ class TF2ListenerEuler : public FMatrix
                 ISInput time;
                 ISInput timeout;
 
-                tf2_ros::Buffer tfBuffer;
-
         public :
 
                 TF2ListenerEuler() :  FMatrix(VECTOR) {}
@@ -108,8 +102,6 @@ class TF2ListenerEulerYaw : public FScalar
                 IString source_frame;
                 ISInput time;
                 ISInput timeout;
-
-                tf2_ros::Buffer tfBuffer;
 
         public :
 
@@ -134,8 +126,6 @@ class TF2ListenerQuater : public FMatrix
                 IString source_frame;
                 ISInput time;
                 ISInput timeout;
-
-                tf2_ros::Buffer tfBuffer;
 
         public :
 
