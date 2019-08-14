@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+        <libname>space_transformation</libname>
+        <functions>
+		<function>
+                        <name>EulerToQuaternion</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX" checkSize="false" shape="VECT">
+					<name>inEuler</name>
+                                        <desc>Euler Angle in roll,pitch,yaw mode [ROW or COL].</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Convert Euler angle in roll, pitch, yaw format to Quaternion.</desc>
+                </function>
+		<function>
+                        <name>QuaternionToEuler</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX" checkSize="false" shape="VECT">
+					<name>inQuater</name>
+                                        <desc>Quaternion angle[ROW or COL].</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Convert Quaternion to roll, pitch, yaw angle.</desc>
+                </function>
+	</functions>
+</description>

@@ -230,7 +230,7 @@ class SquareWave1D_functor {
 public:
   SquareWave1D_functor(const typename ArgType::Scalar & N, const typename ArgType::Scalar &f , const typename ArgType::Index& max ) : N(N), f(f), max(max) {}
   const typename ArgType::Scalar operator() (Index ind) const {
-    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
+    //auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(ind), typename ArgType::Scalar(max), typename ArgType::Scalar(N));
     
     //Gate Modulo version (not accurate for small field size):
     //return  (fmod(x-p/2,2*p) >= -p && fmod(x+p/2,2*p) <= p) ? 1.0 : -1.0  ;
@@ -265,8 +265,8 @@ class SquareWave2D_functor {
 public:
   SquareWave2D_functor(const typename ArgType::Scalar& N, const typename ArgType::Scalar &fx, const typename ArgType::Scalar &fy, const typename ArgType::Index& max_x , const typename ArgType::Index& max_y ) : N(N), fx(fx),fy(fy), max_x(max_x), max_y(max_y) {}
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
-    auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
-    auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
+    //auto x = coord<typename ArgType::Scalar>(typename ArgType::Scalar(col), typename ArgType::Scalar(max_x), typename ArgType::Scalar(N));
+    //auto y = coord<typename ArgType::Scalar>(typename ArgType::Scalar(row), typename ArgType::Scalar(max_y), typename ArgType::Scalar(N));
 
     //Gate Modulo version (not accurate for small field size):
     //return  (fmod(x-px/2,2*px) >= -px && fmod(x+px/2,2*px) <= px && fmod(y-py/2,2*py) >= -py && fmod(y+py/2,2*py) <= py) ? 1.0 : -1.0 ;  
