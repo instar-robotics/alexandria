@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<description>
+	<libname>memory</libname>
+	<functions>
+		 <function>
+                        <name>MStorage</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to store in memory</desc>
+                                </input>
+				 <input  type="SCALAR_SCALAR">
+                                        <name>record</name>
+                                        <desc>if True, record the current input in a new memory [>0.5 == TRUE]</desc>
+                                </input>
+				 <input  type="SCALAR_SCALAR">
+                                        <name>index</name>
+                                        <desc>index of the memory to recall</desc>
+                                </input>
+
+                        </inputs>
+                        <icon></icon>
+			<desc>Store MATRIX input in a std::vector and recall them when the right index is given.</desc>
+                </function>
+		 <function>
+                        <name>SStorage</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>inScalar</name>
+                                        <desc>The scalar input to store in memory</desc>
+                                </input>
+                                 <input  type="SCALAR_SCALAR">
+                                        <name>record</name>
+                                        <desc>if True, record the current input in a new memory [>0.5 == TRUE]</desc>
+                                </input>
+                                 <input  type="SCALAR_SCALAR">
+                                        <name>index</name>
+                                        <desc>index of the memory to recall</desc>
+                                </input>
+
+                        </inputs>
+                        <icon></icon>
+                        <desc>Store SCALAR input in a std::vector and recall them when the right index is given.</desc>
+                </function>
+	</functions>
+</description>
