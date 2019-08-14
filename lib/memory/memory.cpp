@@ -23,8 +23,8 @@
 
 REGISTER_FUNCTION(MStorage);
 REGISTER_FUNCTION(SStorage);
-REGISTER_FUNCTION(SMemory);
-REGISTER_FUNCTION(MMemory);
+//REGISTER_FUNCTION(SMemory);
+//REGISTER_FUNCTION(MMemory);
 
 /*******************************************************************************************************/
 /********************************************** Storage ************************************************/
