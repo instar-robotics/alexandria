@@ -36,25 +36,25 @@ void MStorage::compute()
 	{
 		MATRIX m = inMatrix()();
 
-		if( index()() <=0  || (unsigned int)index()() > memory.size() )
+		if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
 		{	
 			memory.push_back(m);
 		}
 		else
 		{
-			memory[(unsigned int) index()() - 1] = m;	
+			memory[(unsigned int)(index()()) - 1] = m;	
 		}
 
 	}
 	
 	
-	if( index()() <=0  || (unsigned int)index()() > memory.size() )
+	if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
 	{
 		output = MATRIX::Constant( output.rows(), output.cols() , 0);
 	}	
 	else
 	{
-		output = memory[(unsigned int) index()() - 1 ];	
+		output = memory[(unsigned int)(index()()) - 1 ];	
 	}
 }
 
@@ -71,25 +71,25 @@ void SStorage::compute()
         {
                 SCALAR s = inScalar()();
 
-                if( index()() <=0  || (unsigned int)index()() > memory.size() )
+                if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
                 {
                         memory.push_back(s);
                 }
                 else
                 {
-                        memory[(unsigned int) index()() - 1] = s;
+                        memory[(unsigned int)(index()()) - 1] = s;
                 }
 
         }
 
 
-        if( index()() <=0  || (unsigned int)index()() > memory.size() )
+        if( (unsigned int)(index()()) <= 0  || (unsigned int)(index()()) > memory.size() )
         {
                 output = 0;
         }
         else
         {
-                output = memory[(unsigned int) index()() - 1 ];
+                output = memory[(unsigned int)(index()()) - 1 ];
         }
 }
 
