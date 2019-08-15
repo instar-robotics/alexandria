@@ -36,7 +36,7 @@ void MStorage::compute()
 	{
 		MATRIX m = inMatrix()();
 
-		if( index()() <=0  || (unsigned int)(index()()) > memory.size() )
+		if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
 		{	
 			memory.push_back(m);
 		}
@@ -48,7 +48,7 @@ void MStorage::compute()
 	}
 	
 	
-	if( index()() <=0  || (unsigned int)(index()()) > memory.size() )
+	if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
 	{
 		output = MATRIX::Constant( output.rows(), output.cols() , 0);
 	}	
@@ -71,7 +71,7 @@ void SStorage::compute()
         {
                 SCALAR s = inScalar()();
 
-                if( index()() <=0  || (unsigned int)(index()()) > memory.size() )
+                if( (unsigned int)(index()()) <=0  || (unsigned int)(index()()) > memory.size() )
                 {
                         memory.push_back(s);
                 }
@@ -83,7 +83,7 @@ void SStorage::compute()
         }
 
 
-        if( index()() <= 0  || (unsigned int)(index()()) > memory.size() )
+        if( (unsigned int)(index()()) <= 0  || (unsigned int)(index()()) > memory.size() )
         {
                 output = 0;
         }
