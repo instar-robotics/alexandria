@@ -32,6 +32,7 @@ REGISTER_FUNCTION(Twist2DPub);
 REGISTER_FUNCTION(AccelPub);
 REGISTER_FUNCTION(AccelVectPub);
 REGISTER_FUNCTION(Accel2DPub);
+REGISTER_FUNCTION(PosePub);
 REGISTER_FUNCTION(PoseStampedPub);
 
 /*******************************************************************************************************/
@@ -331,6 +332,59 @@ void Accel2DPub::setparameters()
         Kernel::iBind(lin,"lin", getUuid());
         Kernel::iBind(rot,"rot", getUuid());
 }
+
+/*******************************************************************************************************/
+/********************                         PosePub                                *******************/
+/*******************************************************************************************************/
+
+void PosePub::compute()
+{
+        auto mout = getMapVect(output);
+
+        MATRIX tmpO = position()();
+
+        auto mtmp = getMapVect(tmpO);
+        mout[0] = mtmp[0];
+        mout[1] = mtmp[1];
+        mout[2] = mtmp[2];
+
+        msg.position.x = mout[0];
+        msg.position.y = mout[1];
+        msg.position.z = mout[2];
+
+        tmpO = orientation()();
+        mtmp = getMapVect(tmpO);
+        mout[3] = mtmp[0];
+        mout[4] = mtmp[1];
+        mout[5] = mtmp[2];
+
+        tf2::Quaternion quat;
+        quat.setRPY( mout[3], mout[4], mout[5] );
+
+        msg.orientation = tf2::toMsg(quat);
+
+        pub.publish(msg);
+}
+
+void PosePub::setparameters()
+{
+        if( output.size() != 6 ) throw std::invalid_argument("PosePub : Output must be a 6D vector");
+
+        FMatrixPub<geometry_msgs::Pose>::setparameters();
+        position.setCheckSize(false);
+        orientation.setCheckSize(false);
+        Kernel::iBind(position,"position", getUuid());
+        Kernel::iBind(orientation,"orientation", getUuid());
+}
+
+void PosePub::prerun()
+{
+        if( position().iSize() != 3 || !position().isVect()) throw std::invalid_argument("PosePub : position must be a 3D Vector.");
+        if( orientation().iSize() != 3 || !orientation().isVect()) throw std::invalid_argument("PosePub : orientation must be a 3D Vector.");
+
+        FMatrixPub<geometry_msgs::Pose>::prerun();
+}
+
 
 /*******************************************************************************************************/
 /********************                      PoseStampedPub                            *******************/

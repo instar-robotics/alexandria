@@ -527,6 +527,31 @@
                         <icon>odometry.svg</icon>
                         <desc>Read nav_msgs/Odometry.twist.angular (in Euler representation) and load the yaw value into a Scalar</desc>
                 </function>
+		<function>
+                        <name>PathSub</name>
+                        <output type="SCALAR">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>frame_id</name>
+                                        <desc>The name of the frame to extract ["all" to take all frame]  </desc>
+                                </input>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read nav_msgs/Path message and load only the first point into a 6D Vector</desc>
+                </function>
         </functions>
 </description>
 

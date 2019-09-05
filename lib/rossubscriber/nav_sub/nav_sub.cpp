@@ -22,6 +22,7 @@
 #include "nav_sub.h"
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2/LinearMath/Matrix3x3.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 REGISTER_FUNCTION(OdoPosSub);
 REGISTER_FUNCTION(OdoPosXSub);
@@ -44,6 +45,7 @@ REGISTER_FUNCTION(OdoTwistAngSub);
 REGISTER_FUNCTION(OdoTwistAngRollSub);
 REGISTER_FUNCTION(OdoTwistAngPitchSub);
 REGISTER_FUNCTION(OdoTwistAngYawSub);
+REGISTER_FUNCTION(PathSub);
 
 /*******************************************************************************************************/
 /*********************                            OdoPos                            ********************/
@@ -481,3 +483,32 @@ void OdoTwistAngYawSub::callback(const nav_msgs::Odometry::ConstPtr &msg )
 	}
 	else output = 0;
 }
+
+/*******************************************************************************************************/
+/*********************                            Path                              ********************/
+/*******************************************************************************************************/
+
+void PathSub::setparameters()
+{
+        FMatrixSub<nav_msgs::Path>::setparameters();
+        Kernel::iBind(frame_id,"frame_id", getUuid());
+}
+
+void PathSub::callback(const nav_msgs::Path::ConstPtr &msg )
+{
+        if( (msg->header.frame_id == frame_id  || msg->header.frame_id == ALL) && msg->poses.size() > 0)
+        {
+//                output = msg->twist.twist.angular.z;
+		auto mout = getMapVect(output);
+                mout[0] =  msg->poses[0].pose.position.x;
+                mout[1] =  msg->poses[0].pose.position.y;
+                mout[2] =  msg->poses[0].pose.position.x;
+
+                tf2::Quaternion quat_tf;
+                tf2::convert(msg->poses[0].pose.orientation , quat_tf);
+                tf2::Matrix3x3 m(quat_tf);
+                m.getRPY(mout[3], mout[4], mout[5]);
+        }
+	else output = MATRIX::Constant(output.rows(),output.cols(),0);
+}
+

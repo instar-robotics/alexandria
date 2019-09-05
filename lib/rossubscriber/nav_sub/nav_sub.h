@@ -24,6 +24,7 @@
 
 #include "kheops/ros/fsub.h"
 #include <nav_msgs/Odometry.h>
+#include <nav_msgs/Path.h>
 
 /* Note :
  *      1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
@@ -429,5 +430,31 @@ class OdoTwistAngYawSub : public FScalarSub<nav_msgs::Odometry>
                 virtual void setparameters();
                 virtual void callback( const nav_msgs::Odometry::ConstPtr &msg );
 };
+
+
+/*******************************************************************************************************/
+/******************                             PathSub                              *******************/
+/*******************************************************************************************************/
+
+/*
+ * PathSub : read path parameters in nav_msgs/Path
+ * Output dimension should be 6 (3 Scalar for pos and 3 for orientation)
+ * orientation is a 3D Vector (Euler angle)
+ */
+
+class PathSub : public FMatrixSub<nav_msgs::Path>
+{
+	private : 
+
+		IString frame_id;
+
+        public :
+                PathSub() : FMatrixSub<nav_msgs::Path>(VECTOR) {}
+                virtual ~PathSub(){}
+
+                virtual void setparameters();
+                virtual void callback(const nav_msgs::Path::ConstPtr &msg);
+};
+
 
 #endif // __NAV_SUB_HPP__

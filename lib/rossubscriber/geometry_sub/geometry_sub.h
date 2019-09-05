@@ -26,6 +26,7 @@
 #include <geometry_msgs/Vector3.h>
 #include <geometry_msgs/Accel.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose.h>
 #include <geometry_msgs/PoseStamped.h>
 
 
@@ -42,6 +43,8 @@
  *	For now, we don't have mechanisms to load automatically the input in the XML description
  *	Using XML ENTITY could be a good way to do this.
  */
+
+const IString ALL = "all";
 
 /*******************************************************************************************************/
 /*****************                             Vector3Sub                          *******************/
@@ -189,6 +192,24 @@ class TwistAngularSub : public FMatrixSub<geometry_msgs::Twist>
                 virtual void callback(const geometry_msgs::Twist::ConstPtr &msg);
 };
 
+/*******************************************************************************************************/
+/******************                           PoseStampedSub                         *******************/
+/*******************************************************************************************************/
+
+/*
+ * PoseSub : read pose parameters in geometry_msgs/Pose
+ * Output dimension should be 6 (3 Scalar for pos and 3 for orientation)
+ * orientation is a 3D Vector (Euler angle)
+ */
+class PoseSub : public FMatrixSub<geometry_msgs::Pose>
+{
+        public :
+                PoseSub() : FMatrixSub<geometry_msgs::Pose>(VECTOR) {}
+                virtual ~PoseSub(){}
+
+                virtual void setparameters();
+                virtual void callback(const geometry_msgs::Pose::ConstPtr &msg);
+};
 
 /*******************************************************************************************************/
 /******************                           PoseStampedSub                         *******************/
@@ -201,6 +222,10 @@ class TwistAngularSub : public FMatrixSub<geometry_msgs::Twist>
  */
 class PoseStampedSub : public FMatrixSub<geometry_msgs::PoseStamped>
 {
+	private :
+
+                IString frame_id;
+
         public :
                 PoseStampedSub() : FMatrixSub<geometry_msgs::PoseStamped>(VECTOR) {}
                 virtual ~PoseStampedSub(){}

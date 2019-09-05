@@ -238,6 +238,31 @@
 			<desc>Publish 3D linear and rotational acceleration values in geometry_msgs::Accel message. Set only lin.x and rot.z, other component is set to 0. Useful to command simple mobile base</desc>
                 </function>
 		<function>
+                        <name>PosePub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>position</name>
+                                        <desc>a 3D Vector describing a position.</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>orientation</name>
+                                        <desc>a 3D Vector describing an orientation with Euler angle.</desc>
+                                </input>
+                        </inputs>
+                        <icon>posestampedpub.svg</icon>
+                        <desc>Publish 3D position and orientation values in geometry_msgs::Pose message. Orienation is given with Euler angle</desc>
+                </function>
+		<function>
                         <name>PoseStampedPub</name>
                         <output type="MATRIX" shape="VECT">
                         </output>

@@ -34,6 +34,7 @@ REGISTER_FUNCTION(AccelAngularSub);
 REGISTER_FUNCTION(TwistSub);
 REGISTER_FUNCTION(TwistLinearSub);
 REGISTER_FUNCTION(TwistAngularSub);
+REGISTER_FUNCTION(PoseSub);
 REGISTER_FUNCTION(PoseStampedSub);
 
 /*******************************************************************************************************/
@@ -176,27 +177,56 @@ void TwistAngularSub::callback(const geometry_msgs::Twist::ConstPtr &msg)
 }
 
 /*******************************************************************************************************/
-/*********************                          PoseStamped                         ********************/
+/*********************                             Pose                             ********************/
 /*******************************************************************************************************/
 
+
+void PoseSub::setparameters()
+{
+        FMatrixSub<geometry_msgs::Pose>::setparameters();
+
+        if(output.size() != 6) throw std::invalid_argument("PoseSub : Output must be a 6D Vector.");
+}
+
+void PoseSub::callback(const geometry_msgs::Pose::ConstPtr &msg)
+{
+        auto mout = getMapVect(output);
+        mout[0] =  msg->position.x;
+        mout[1] =  msg->position.y;
+        mout[2] =  msg->position.x;
+
+	tf2::Quaternion quat_tf;
+	tf2::convert(msg->orientation , quat_tf);
+	tf2::Matrix3x3 m(quat_tf);
+	m.getRPY(mout[3], mout[4], mout[5]);
+}
+
+/*******************************************************************************************************/
+/*********************                          PoseStamped                         ********************/
+/*******************************************************************************************************/
 
 void PoseStampedSub::setparameters()
 {
         FMatrixSub<geometry_msgs::PoseStamped>::setparameters();
+	Kernel::iBind(frame_id,"frame_id", getUuid());
 
         if(output.size() != 6) throw std::invalid_argument("PoseStampedSub : Output must be a 6D Vector.");
 }
 
 void PoseStampedSub::callback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 {
-        auto mout = getMapVect(output);
-        mout[0] =  msg->pose.position.x;
-        mout[1] =  msg->pose.position.y;
-        mout[2] =  msg->pose.position.x;
+	if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+        {
+		auto mout = getMapVect(output);
+		mout[0] =  msg->pose.position.x;
+		mout[1] =  msg->pose.position.y;
+		mout[2] =  msg->pose.position.x;
 
-	tf2::Quaternion quat_tf;
-	tf2::convert(msg->pose.orientation , quat_tf);
-	tf2::Matrix3x3 m(quat_tf);
-	m.getRPY(mout[3], mout[4], mout[5]);
+		tf2::Quaternion quat_tf;
+		tf2::convert(msg->pose.orientation , quat_tf);
+		tf2::Matrix3x3 m(quat_tf);
+		m.getRPY(mout[3], mout[4], mout[5]);
+	}
+	else output = MATRIX::Constant(output.rows(),output.cols(),0);
 }
 
