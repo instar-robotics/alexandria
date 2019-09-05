@@ -212,6 +212,27 @@
                         <icon>Twist_angular.svg</icon>
                         <desc>Read geometry/Twist.angular message and load value into a 3D Row or Col Vector.</desc>
                 </function>
+		<function>
+                        <name>PoseStampedSub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read geometry/PoseStamped message and load value into a 6D Row or Col Vector.</desc>
+                </function>
         </functions>
 </description>
 
