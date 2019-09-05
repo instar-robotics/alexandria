@@ -529,7 +529,7 @@
                 </function>
 		<function>
                         <name>PathSub</name>
-                        <output type="SCALAR">
+                        <output type="MATRIX" shape="VECT">
                         </output>
                         <inputs>
                                 <input  type="STRING">
