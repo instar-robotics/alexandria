@@ -25,6 +25,7 @@
 #include "hieroglyph/JointPos.h"
 #include "hieroglyph/JointVel.h"
 #include "hieroglyph/ObjDetect.h"
+#include "hieroglyph/Attractor.h"
 #include "kheops/ros/fsub.h"
 
 /* Note :
@@ -106,6 +107,16 @@ class ObjDetectPolarSub : public FMatrixSub<hieroglyph::ObjDetect>
 
                 virtual void setparameters();
                 virtual void callback( const hieroglyph::ObjDetect::ConstPtr &msg );
+};
+
+class AttractorSub : public FMatrixSub<hieroglyph::Attractor>
+{
+	public : 
+                AttractorSub() : FMatrixSub<hieroglyph::Attractor>(VECTOR) {}
+                virtual ~AttractorSub() {}
+
+                virtual void setparameters();
+                virtual void callback( const hieroglyph::Attractor::ConstPtr &msg );
 };
 
 #endif //__CUSTOM_SUB_HPP__

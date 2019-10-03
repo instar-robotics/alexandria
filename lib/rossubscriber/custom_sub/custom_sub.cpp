@@ -22,12 +22,11 @@
 #include <math.h>
 #include "custom_sub.h"
 
-#define PI 3.14159265
-
 REGISTER_FUNCTION(JointPosSub);
 REGISTER_FUNCTION(JointVelSub);
 REGISTER_FUNCTION(ObjDetectSub);
 REGISTER_FUNCTION(ObjDetectPolarSub);
+REGISTER_FUNCTION(AttractorSub);
 
 /*******************************************************************************************************/
 /*********************                          JointPos                            ********************/
@@ -135,7 +134,7 @@ void ObjDetectPolarSub::callback( const hieroglyph::ObjDetect::ConstPtr &msg )
 
 			/** Compute position in matrix from position in cloud **/
                 cloud_val_rho = std::sqrt(cloud_val_x*cloud_val_x + cloud_val_y*cloud_val_y);
-		cloud_val_theta = atan2(cloud_val_y, cloud_val_x) * 180 / PI; // Inverted x and y
+		cloud_val_theta = atan2(cloud_val_y, cloud_val_x) * 180 / M_PI; // Inverted x and y
                 eigen_pos_y = round(cloud_val_rho / size_rho(0)() * output.rows());
                 eigen_pos_x = round((cloud_val_theta + size_theta(0)()/2) / size_theta(0)() * output.cols());
 
@@ -144,4 +143,26 @@ void ObjDetectPolarSub::callback( const hieroglyph::ObjDetect::ConstPtr &msg )
 			/** Set activity at given position **/
                 	output(eigen_pos_y, eigen_pos_x) = msg->confidence[i];
         }
+}
+
+/*******************************************************************************************************/
+/********************                        Attractor Sub                         *********************/
+/*******************************************************************************************************/
+
+
+void AttractorSub::setparameters()
+{
+	FMatrixSub<hieroglyph::Attractor>::setparameters();
+
+	if( output.size() != 4 )  throw std::invalid_argument("AttractorSub : Output must be a 4D Vector.");
+}
+
+void AttractorSub::callback( const hieroglyph::Attractor::ConstPtr &msg )
+{
+	auto mout = getMapVect(output);
+
+	mout[0] = msg->norm;
+	mout[1] = msg->theta;
+	mout[2] = msg->pose_theta;
+	mout[3] = msg->force;
 }

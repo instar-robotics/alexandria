@@ -26,6 +26,7 @@
 #include "kheops/ros/fpub.h"
 #include <hieroglyph/JointVel.h>
 #include <hieroglyph/JointPos.h>
+#include <hieroglyph/Attractor.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:
@@ -80,6 +81,30 @@ class JointPosPub : public FMatrixPub<hieroglyph::JointPos>
 
                 virtual void compute();
                 virtual void setparameters();
+};
+
+/*
+ * AttractorPub : Send an hieroglyph/Attractor message
+ * Matrix input (norm,theta,pose_theta,force)
+ */
+class AttractorPub : public FMatrixPub<hieroglyph::Attractor>
+{
+        private :
+
+		IString frame_id;
+		IString pose_frame_id;
+                ISMInput attractor;
+		hieroglyph::Attractor msg;
+
+
+        public :
+
+                AttractorPub() : FMatrixPub<hieroglyph::Attractor>(VECTOR) {}
+                virtual ~AttractorPub(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
 };
 
 #endif // __CUSTOM_PUB_HPP__

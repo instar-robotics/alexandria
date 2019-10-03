@@ -102,6 +102,27 @@
                         <icon></icon>
 			<desc>Read hieroglyph/ObjDetect message, keep points in the neighborhood, place them in the output matrix and set neuron value as the confidence</desc>
                 </function>
+		<function>
+                        <name>AttractorSub</name>
+                        <output type="MATRIX" shape="VECT"> 
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes </desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>sleep</name>
+                                        <desc>sleep duration [-1 : block until receive data ; 0 non-blocking call; N > 0 : sleep during N milliseconds]</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Read hieroglyph/Attractor message and load it into a 4D Vector, first neuron is "norm", second is "theta", third is "pose_theta" and last neuron is the "force" of the attractor</desc>
+                </function>
         </functions>
 </description>
 

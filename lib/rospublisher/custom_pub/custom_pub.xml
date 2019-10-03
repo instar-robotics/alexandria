@@ -56,5 +56,35 @@
                         <icon>jointpos.svg</icon>
                         <desc>Publish acceleration, velocity and position command for a joint in hieroglyph::JointPos message</desc>
                 </function>
+		<function>
+                        <name>AttractorPub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function publish</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="STRING">
+                                        <name>frame_id</name>
+                                        <desc>frame_id of the attractor</desc>
+                                </input>
+                                <input  type="STRING">
+                                        <name>pose_frame_id</name>
+                                        <desc>frame_id of the final pose orientation</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>attractor</name>
+                                        <desc>4D Vector containing the attractor</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish attractor in hieroglyph::Attractor message</desc>
+                </function>
+
 	</functions>
 </description>

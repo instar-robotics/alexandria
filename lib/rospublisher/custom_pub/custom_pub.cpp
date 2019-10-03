@@ -23,6 +23,7 @@
 
 REGISTER_FUNCTION(JointVelPub);
 REGISTER_FUNCTION(JointPosPub);
+REGISTER_FUNCTION(AttractorPub);
 
 /*******************************************************************************************************/
 /********************                        JointVelPub                           *********************/
@@ -77,4 +78,41 @@ void JointPosPub::setparameters()
         Kernel::iBind(accel,"accel", getUuid());
         Kernel::iBind(vel,"vel", getUuid());
         Kernel::iBind(pos,"pos", getUuid());
+}
+
+/*******************************************************************************************************/
+/********************                        AttractorPub                           ********************/
+/*******************************************************************************************************/
+
+void AttractorPub::compute()
+{
+	output = attractor()();
+        auto mout = getMapVect(output);
+
+	msg.norm = mout[0];
+	msg.theta = mout[1];
+	msg.pose_theta = mout[2];
+	msg.force = mout[3];
+
+	pub.publish(msg);
+}
+
+void AttractorPub::setparameters()
+{
+        if( output.size() != 4 ) throw std::invalid_argument("AttractorPub : Output must be a 4D Vector.");
+        FMatrixPub<hieroglyph::Attractor>::setparameters();
+
+        Kernel::iBind(attractor,"attractor", getUuid());
+        Kernel::iBind(frame_id,"frame_id", getUuid());
+        Kernel::iBind(pose_frame_id,"pose_frame_id", getUuid());
+}
+
+void AttractorPub::prerun()
+{
+        if( attractor().iSize() != 4 || !attractor().isVect()) throw std::invalid_argument("AttractorPub : attractor must be a 4D Vector.");
+
+	FMatrixPub<hieroglyph::Attractor>::prerun();
+
+	msg.header.frame_id = frame_id;
+	msg.pose_frame_id = pose_frame_id;
 }
