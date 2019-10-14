@@ -29,7 +29,8 @@ REGISTER_FUNCTION(VActToPop);
 REGISTER_FUNCTION(PopToAct);
 REGISTER_FUNCTION(PopToVAct);
 REGISTER_FUNCTION(Convolution);
-REGISTER_FUNCTION(Shift);
+REGISTER_FUNCTION(MShift);
+REGISTER_FUNCTION(SShift);
 REGISTER_FUNCTION(ShiftInv);
 REGISTER_FUNCTION(Copy);
 REGISTER_FUNCTION(Projection);
@@ -395,17 +396,17 @@ void Convolution::setparameters()
 }
 
 /*******************************************************************************************************/
-/**********************************************  Shift   ***********************************************/
+/**********************************************  MShift   ***********************************************/
 /*******************************************************************************************************/
 
-void Shift::compute()
+void MShift::compute()
 {
 	MATRIX::Index mRow, mCol;
 	mask().i().maxCoeff(&mRow, &mCol);
 	output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), 1 ));
 }
 
-void Shift::setparameters()
+void MShift::setparameters()
 {
 	mask.setCheckSize(false); 
         Kernel::iBind(mask,"mask", getUuid());
@@ -426,9 +427,31 @@ void ShiftInv::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+/*******************************************************************************************************/
+/**********************************************  SShift   ***********************************************/
+/*******************************************************************************************************/
+
+void SShift::compute()
+{
+	MATRIX::Index mRow, mCol;
+	mRow = Yoffset()();
+	mCol = Xoffset()();
+	output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), 1 ));
+}
+
+void SShift::setparameters()
+{
+	Xoffset.setCheckSize(false);
+	Yoffset.setCheckSize(false);
+	Kernel::iBind(Xoffset,"Xoffset", getUuid());
+	Kernel::iBind(Yoffset,"Yoffset", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+
 
 /*******************************************************************************************************/
-/************************************************ Copy ************************************************/
+/********************************************** Dirac Copy *********************************************/
 /*******************************************************************************************************/
 
 void Copy::compute()

@@ -269,7 +269,7 @@ public:
   }
 };
 
-class Shift : public FMatrix
+class MShift : public FMatrix
 {
 	private :
 
@@ -278,7 +278,22 @@ class Shift : public FMatrix
 
 	public : 
 
-		virtual ~Shift(){}
+		virtual ~MShift(){}
+		virtual void compute();
+                virtual void setparameters();
+};
+
+class SShift : public FMatrix
+{
+	private :
+
+		ISMInput inMatrix;
+		ISInput Xoffset;
+		ISInput Yoffset;
+
+	public : 
+
+		virtual ~SShift(){}
 		virtual void compute();
                 virtual void setparameters();
 };

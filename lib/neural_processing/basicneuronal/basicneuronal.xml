@@ -111,7 +111,7 @@
                         <desc>Convolution operator.</desc>
 		</function>
 		 <function>
-                        <name>Shift</name>
+                        <name>MShift</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -122,6 +122,27 @@
                                 <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>mask</name>
                                         <desc>The mask defining the shift.</desc>
+                                </input>
+                        </inputs>
+                        <icon>shift.svg</icon>
+                        <desc>Shift operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                </function>
+		<function>
+                        <name>SShift</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to shift</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Xoffset</name>
+                                        <desc>The offset defining shift in X direction (Col).</desc>
+                                </input>
+				<input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Yoffset</name>
+                                        <desc>The offset defining shift in Y direction (Col).</desc>
                                 </input>
                         </inputs>
                         <icon>shift.svg</icon>
