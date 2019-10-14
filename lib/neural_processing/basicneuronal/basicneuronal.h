@@ -298,7 +298,7 @@ class SShift : public FMatrix
                 virtual void setparameters();
 };
 
-class ShiftInv : public FMatrix
+class MShiftInv : public FMatrix
 {
 	private :
 
@@ -307,7 +307,22 @@ class ShiftInv : public FMatrix
 
 	public : 
 
-		virtual ~ShiftInv(){}
+		virtual ~MShiftInv(){}
+		virtual void compute();
+                virtual void setparameters();
+};
+
+class SShiftInv : public FMatrix
+{
+	private :
+
+		ISMInput inMatrix;
+		ISInput Xoffset;
+		ISInput Yoffset;
+
+	public : 
+
+		virtual ~SShiftInv(){}
 		virtual void compute();
                 virtual void setparameters();
 };
@@ -329,13 +344,13 @@ public:
   const  typename ArgType::Scalar operator() (Index row, Index col) const {
         typename ArgType::Index  sr = ((row + sy ) % max_y + max_y ) % max_y ;
         typename ArgType::Index  sc = ((col + sx ) % max_x + max_x ) % max_x ;
-
+	
         return  input(sr,sc);
   }
 };
 
 
-class Copy : public FMatrix
+class MCopy : public FMatrix
 {
         private :
 
@@ -344,11 +359,25 @@ class Copy : public FMatrix
 
         public :
 
-                virtual ~Copy(){}
+                virtual ~MCopy(){}
                 virtual void compute();
                 virtual void setparameters();
 };
 
+class SCopy : public FMatrix
+{
+        private :
+
+                ISMInput inMatrix;
+                ISInput X;
+		ISInput Y;
+
+        public :
+
+                virtual ~SCopy(){}
+                virtual void compute();
+                virtual void setparameters();
+};
 
 /*******************************************************************************************************/
 /********************************************  Projection  *********************************************/

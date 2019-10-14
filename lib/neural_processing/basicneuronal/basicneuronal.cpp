@@ -31,8 +31,10 @@ REGISTER_FUNCTION(PopToVAct);
 REGISTER_FUNCTION(Convolution);
 REGISTER_FUNCTION(MShift);
 REGISTER_FUNCTION(SShift);
-REGISTER_FUNCTION(ShiftInv);
-REGISTER_FUNCTION(Copy);
+REGISTER_FUNCTION(MShiftInv);
+REGISTER_FUNCTION(SShiftInv);
+REGISTER_FUNCTION(MCopy);
+REGISTER_FUNCTION(SCopy);
 REGISTER_FUNCTION(Projection);
 
 /*******************************************************************************************************/
@@ -396,7 +398,7 @@ void Convolution::setparameters()
 }
 
 /*******************************************************************************************************/
-/**********************************************  MShift   ***********************************************/
+/*******************************************  Matrix Shift   *******************************************/
 /*******************************************************************************************************/
 
 void MShift::compute()
@@ -413,14 +415,14 @@ void MShift::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
-void ShiftInv::compute()
+void MShiftInv::compute()
 {
         MATRIX::Index mRow, mCol;
         mask().i().maxCoeff(&mRow, &mCol);
         output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), -1 ));
 }
 
-void ShiftInv::setparameters()
+void MShiftInv::setparameters()
 {
         mask.setCheckSize(false);
         Kernel::iBind(mask,"mask", getUuid());
@@ -428,7 +430,7 @@ void ShiftInv::setparameters()
 }
 
 /*******************************************************************************************************/
-/**********************************************  SShift   ***********************************************/
+/*****************************************  Scalar Shift   *********************************************/
 /*******************************************************************************************************/
 
 void SShift::compute()
@@ -448,13 +450,28 @@ void SShift::setparameters()
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
+void SShiftInv::compute()
+{
+        MATRIX::Index mRow, mCol;
+        mRow = Yoffset()();
+	mCol = Xoffset()();
+        output = MATRIX::NullaryExpr( output.rows(), output.cols(), Shift_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows(), -1 ));
+}
 
+void SShiftInv::setparameters()
+{
+        Xoffset.setCheckSize(false);
+	Yoffset.setCheckSize(false);
+	Kernel::iBind(Xoffset,"Xoffset", getUuid());
+	Kernel::iBind(Yoffset,"Yoffset", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
 
 /*******************************************************************************************************/
-/********************************************** Dirac Copy *********************************************/
+/********************************************** Matrix Copy ********************************************/
 /*******************************************************************************************************/
 
-void Copy::compute()
+void MCopy::compute()
 {
         MATRIX::Index mRow, mCol;
         dirac().i().maxCoeff(&mRow, &mCol);
@@ -465,10 +482,35 @@ void Copy::compute()
         output = MATRIX::NullaryExpr( output.rows(), output.cols(), Copy_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows()));
 }
 
-void Copy::setparameters()
+void MCopy::setparameters()
 {
         dirac.setCheckSize(false);
         Kernel::iBind(dirac,"dirac", getUuid());
+        Kernel::iBind(inMatrix,"inMatrix", getUuid());
+}
+
+/*******************************************************************************************************/
+/********************************************** Scalar Copy ********************************************/
+/*******************************************************************************************************/
+
+void SCopy::compute()
+{
+        MATRIX::Index mRow, mCol;
+        mRow = Y()();
+	mCol = X()();
+
+	mRow = output.rows() / 2 - mRow;
+	mCol = output.cols() / 2 - mCol;
+
+        output = MATRIX::NullaryExpr( output.rows(), output.cols(), Copy_functor<MATRIX>( inMatrix()(),  mCol, mRow , output.cols(), output.rows()));
+}
+
+void SCopy::setparameters()
+{
+        X.setCheckSize(false);
+	Y.setCheckSize(false);
+	Kernel::iBind(X,"X", getUuid());
+	Kernel::iBind(Y,"Y", getUuid());
         Kernel::iBind(inMatrix,"inMatrix", getUuid());
 }
 
