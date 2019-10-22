@@ -111,7 +111,7 @@
                         <desc>Convolution operator.</desc>
 		</function>
 		 <function>
-                        <name>Shift</name>
+                        <name>MShift</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -125,10 +125,31 @@
                                 </input>
                         </inputs>
                         <icon>shift.svg</icon>
-                        <desc>Shift operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                        <desc>Matrix Shift operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                </function>
+		<function>
+                        <name>SShift</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to shift</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Xoffset</name>
+                                        <desc>The offset defining shift in X direction (Col).</desc>
+                                </input>
+				<input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Yoffset</name>
+                                        <desc>The offset defining shift in Y direction (Col).</desc>
+                                </input>
+                        </inputs>
+                        <icon>shift.svg</icon>
+                        <desc>Scalar Shift operator : move the activities of the input field with an offset given by both Xoffset and Yoffset scalars.</desc>
                 </function>
 		 <function>
-                        <name>ShiftInv</name>
+                        <name>MShiftInv</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -142,10 +163,10 @@
                                 </input>
                         </inputs>
                         <icon>shift-inv.svg</icon>
-                        <desc>Shift^-1 operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
+                        <desc>Matrix Shift^-1 operator : move the activities of the input field with an offset given by the position of the max coefficient in mask field.</desc>
                 </function>
-		 <function>
-                        <name>Copy</name>
+		<function>
+                        <name>SShiftInv</name>
                         <output type="MATRIX">
                         </output>
                         <inputs>
@@ -153,13 +174,55 @@
                                         <name>inMatrix</name>
                                         <desc>The input field to shift</desc>
                                 </input>
+                                <input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Xoffset</name>
+                                        <desc>The offset defining shift in X direction (Col).</desc>
+                                </input>
+				<input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Yoffset</name>
+                                        <desc>The offset defining shift in Y direction (Raw).</desc>
+                                </input>
+                        </inputs>
+                        <icon>shift-inv.svg</icon>
+                        <desc>Scalar Shift^-1 operator : move the activities of the input field with an offset given by both Xoffset and Yoffset scalars.</desc>
+                </function>
+		 <function>
+                        <name>MCopy</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to copy</desc>
+                                </input>
                                 <input  type="SCALAR_MATRIX" checkSize="false">
                                         <name>dirac</name>
-                                        <desc>The dirac where copy the input.</desc>
+                                        <desc>Dirac where to copy the input.</desc>
                                 </input>
                         </inputs>
                         <icon>copy.svg</icon>
-                        <desc>Copy operator : copy the activities of the input field on a position given by the position of the max coefficient in dirac field.</desc>
+                        <desc>Matrix Copy operator : copy the activities of the input field on a position given by the position of the max coefficient in dirac field.</desc>
+                </function>
+		<function>
+                        <name>SCopy</name>
+                        <output type="MATRIX">
+                        </output>
+                        <inputs>
+                                <input  type="SCALAR_MATRIX">
+                                        <name>inMatrix</name>
+                                        <desc>The input field to copy</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>X</name>
+                                        <desc>X coordinate where to copy the input (Col).</desc>
+                                </input>
+				<input  type="SCALAR_SCALAR" checkSize="false">
+                                        <name>Y</name>
+                                        <desc>Y coordinate where to copy the input (Row).</desc>
+                                </input>
+                        </inputs>
+                        <icon>copy.svg</icon>
+                        <desc>Scalar Copy operator : copy the activities of the input field on a position given by X and Y scalar coordinate.</desc>
                 </function>
 		 <function>
                         <name>Projection</name>
