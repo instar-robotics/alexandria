@@ -24,6 +24,10 @@
                                         <name>timeout</name>
                                         <desc>How long to block before failing</desc>
                                 </input>
+				<input type="SCALAR_SCALAR">
+                                        <name>static_mode</name>
+                                        <desc>1 for a static TF (listen only one time). 0 for a dynamic TF.</desc>
+                                </input>
                         </inputs>
                         <icon></icon>
                         <desc>TF2Listener : Get the transform between two frames by frame ID and load it into a 7D Vector</desc>

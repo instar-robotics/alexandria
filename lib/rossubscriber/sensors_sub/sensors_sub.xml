@@ -104,6 +104,10 @@
                                         <name>topic_name</name>
                                         <desc>Name of the topic to which the function subscribes </desc>
                                 </input>
+				<input  type="SCALAR_SCALAR">
+					<name>roll</name>
+					<desc>Roll angle to apply to data (up if roll>0.5. Else down).</desc>
+				</input>
                                 <input  type="SCALAR_SCALAR">
                                         <name>size_queue</name>
                                         <desc>Size of the queue</desc>

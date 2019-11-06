@@ -42,6 +42,8 @@ void TF2Listener::setparameters()
 	Kernel::iBind(source_frame,"source_frame", getUuid());
 	Kernel::iBind(time,"time", getUuid());
 	Kernel::iBind(timeout,"timeout", getUuid());
+	Kernel::iBind(static_mode,"static_mode", getUuid());
+	fetch_done = false;
 }
 
 void TF2Listener::compute()
@@ -49,20 +51,25 @@ void TF2Listener::compute()
 	tf2_ros::Buffer tfBuffer;
 	tf2_ros::TransformListener tfListener(tfBuffer);	
 	auto mout = getMapVect(output);
-
 	geometry_msgs::TransformStamped transformStamped;
 
 	try
 	{
-		transformStamped = tfBuffer.lookupTransform( target_frame , source_frame, ros::Time(time()()), ros::Duration(timeout()()) );
-
-		mout[0] = transformStamped.transform.translation.x;
-		mout[1] = transformStamped.transform.translation.y;
-		mout[2] = transformStamped.transform.translation.z;
-		mout[3] = transformStamped.transform.rotation.x;
-		mout[4] = transformStamped.transform.rotation.y;
-		mout[5] = transformStamped.transform.rotation.z;
-		mout[6] = transformStamped.transform.rotation.w;
+		if(fetch_done == true) { return;
+		}		
+		else
+		{
+		    transformStamped = tfBuffer.lookupTransform( target_frame , source_frame, ros::Time(time()()), ros::Duration(timeout()()) );
+		    if (static_mode()() > 0.5) {fetch_done = true;}
+				
+		    mout[0] = transformStamped.transform.translation.x;
+		    mout[1] = transformStamped.transform.translation.y;
+		    mout[2] = transformStamped.transform.translation.z;
+		    mout[3] = transformStamped.transform.rotation.x;
+		    mout[4] = transformStamped.transform.rotation.y;
+		    mout[5] = transformStamped.transform.rotation.z;
+		    mout[6] = transformStamped.transform.rotation.w;
+		}
 	}
 	catch (tf2::TransformException &ex) 
 	{
