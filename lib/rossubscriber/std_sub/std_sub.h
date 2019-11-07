@@ -25,6 +25,7 @@
 #include "kheops/ros/fsub.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float64.h"
+#include "std_msgs/Int8.h"
 
 /* Note :
  *      1- Each FMatrixSub or FScalarSub object has 3 default Kheops Input:
@@ -43,6 +44,16 @@
 /*******************************************************************************************************/
 /*****************             Kheops Basic Type Input (Scalar and Matrix)           *******************/
 /*******************************************************************************************************/
+
+
+class Int8Sub : public FScalarSub<std_msgs::Int8>
+{
+        public :
+                Int8Sub() : FScalarSub<std_msgs::Int8>(){}
+                virtual ~Int8Sub(){}
+
+                virtual void callback(const std_msgs::Int8::ConstPtr &msg);
+};
 
 /*
  * ScalarSub : ROS subscriber for SCALAR data

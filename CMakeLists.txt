@@ -27,6 +27,7 @@ set(CATKIN_DEP
   joy
   tf2
   tf2_ros
+  tf2_geometry_msgs
   nav_msgs
   sensor_msgs
   geometry_msgs
