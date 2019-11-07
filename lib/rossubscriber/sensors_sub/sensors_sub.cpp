@@ -132,6 +132,9 @@ void LaserScanSub::setparameters()
         Kernel::iBind(range_max,"range_max", getUuid());
         
 	moy.assign(output.size(), 0);
+	
+        Kernel::iBind(roll,"roll", getUuid());
+	
 }
 
 void LaserScanSub::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
@@ -139,10 +142,18 @@ void LaserScanSub::callback(const sensor_msgs::LaserScan::ConstPtr &msg )
         auto mout = getMapVect(output);
         SCALAR RM = std::min(range_max()(),  (SCALAR)(msg->range_max) );
         SCALAR offset =  M_PI - fabs(msg->angle_min);
+	unsigned int j;
 
-        for( unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
+        for(unsigned int i = 0 ; i <  msg->ranges.size() ; i++)
         {
-                unsigned int j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( mout.size() / (2* M_PI)) ;
+                if(roll()() < 0.5)
+		{
+		    j = ( i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset ) * ( mout.size() / (2* M_PI)) ;
+		}
+		else
+		{
+		    j = ( msg->angle_max - i * (msg->angle_max - msg->angle_min) /  msg->ranges.size() + offset + msg->angle_max) * ( mout.size() / (2* M_PI)) ;
+		}
 
                 SCALAR value = 1 - (msg->ranges[i] - msg->range_min) / (RM - msg->range_min) ;
                 if( value < 0 ) value = 0;

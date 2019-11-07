@@ -121,7 +121,8 @@ class LaserScanSub : public FMatrixSub<sensor_msgs::LaserScan>
 {
         private :
 
-                ISInput range_max;
+                ISInput range_max;		
+		ISInput roll;
 
                 std::vector<unsigned int> moy;
 

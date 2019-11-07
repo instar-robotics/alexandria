@@ -39,6 +39,8 @@ class TF2Listener : public FMatrix
 		IString source_frame;
 		ISInput time;
 		ISInput timeout;
+		ISInput static_mode;
+		bool fetch_done;
 
 	public : 
 
