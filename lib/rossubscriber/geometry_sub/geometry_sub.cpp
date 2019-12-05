@@ -36,6 +36,7 @@ REGISTER_FUNCTION(TwistLinearSub);
 REGISTER_FUNCTION(TwistAngularSub);
 REGISTER_FUNCTION(PoseSub);
 REGISTER_FUNCTION(PoseStampedSub);
+REGISTER_FUNCTION(PointStampedSub);
 
 /*******************************************************************************************************/
 /*********************                           Vector3                            ********************/
@@ -193,7 +194,7 @@ void PoseSub::callback(const geometry_msgs::Pose::ConstPtr &msg)
         auto mout = getMapVect(output);
         mout[0] =  msg->position.x;
         mout[1] =  msg->position.y;
-        mout[2] =  msg->position.x;
+        mout[2] =  msg->position.z;
 
 	tf2::Quaternion quat_tf;
 	tf2::convert(msg->orientation , quat_tf);
@@ -220,7 +221,7 @@ void PoseStampedSub::callback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 		auto mout = getMapVect(output);
 		mout[0] =  msg->pose.position.x;
 		mout[1] =  msg->pose.position.y;
-		mout[2] =  msg->pose.position.x;
+		mout[2] =  msg->pose.position.z;
 
 		tf2::Quaternion quat_tf;
 		tf2::convert(msg->pose.orientation , quat_tf);
@@ -228,5 +229,29 @@ void PoseStampedSub::callback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 		m.getRPY(mout[3], mout[4], mout[5]);
 	}
 	else output = MATRIX::Constant(output.rows(),output.cols(),0);
+}
+
+/*******************************************************************************************************/
+/*********************                         PointStamped                         ********************/
+/*******************************************************************************************************/
+
+void PointStampedSub::setparameters()
+{
+        FMatrixSub<geometry_msgs::PointStamped>::setparameters();
+        Kernel::iBind(frame_id,"frame_id", getUuid());
+
+        if(output.size() != 3) throw std::invalid_argument("PointStampedSub : Output must be a 3D Vector.");
+}
+
+void PointStampedSub::callback(const geometry_msgs::PointStamped::ConstPtr &msg)
+{
+        if( msg->header.frame_id == frame_id  || msg->header.frame_id == ALL )
+        {
+                auto mout = getMapVect(output);
+                mout[0] =  msg->point.x;
+                mout[1] =  msg->point.y;
+                mout[2] =  msg->point.z;
+        }
+        else output = MATRIX::Constant(output.rows(),output.cols(),0);
 }
 

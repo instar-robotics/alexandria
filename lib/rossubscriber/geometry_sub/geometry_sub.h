@@ -28,6 +28,7 @@
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/PointStamped.h>
 
 
 /* Note :
@@ -193,7 +194,7 @@ class TwistAngularSub : public FMatrixSub<geometry_msgs::Twist>
 };
 
 /*******************************************************************************************************/
-/******************                           PoseStampedSub                         *******************/
+/*******************                               PoseSub                         *********************/
 /*******************************************************************************************************/
 
 /*
@@ -233,5 +234,29 @@ class PoseStampedSub : public FMatrixSub<geometry_msgs::PoseStamped>
                 virtual void setparameters();
                 virtual void callback(const geometry_msgs::PoseStamped::ConstPtr &msg);
 };
+
+
+/*******************************************************************************************************/
+/******************                            PointStamped                          *******************/
+/*******************************************************************************************************/
+
+/*
+ * PointStampedSub : read pose parameters in geometry_msgs/PointStamped
+ * Output dimension should be 3 (3 Scalar for pos)
+ */
+class PointStampedSub : public FMatrixSub<geometry_msgs::PointStamped>
+{
+        private :
+
+                IString frame_id;
+
+        public :
+                PointStampedSub() : FMatrixSub<geometry_msgs::PointStamped>(VECTOR) {}
+                virtual ~PointStampedSub(){}
+
+                virtual void setparameters();
+                virtual void callback(const geometry_msgs::PointStamped::ConstPtr &msg);
+};
+
 
 #endif //__GEOMETRY_SUB_HPP__

@@ -289,7 +289,32 @@
                                 </input>
                         </inputs>
                         <icon>posestampedpub.svg</icon>
-                        <desc>Publish 3D position and orientation values in geometry_msgs::PoseStamped message. Orienation is given with Euler angle</desc>
+                        <desc>Publish 3D position and orientation values in geometry_msgs::PoseStamped message. Orientation is given with Euler angle</desc>
+                </function>
+		<function>
+                        <name>PointStampedPub</name>
+                        <output type="MATRIX" shape="VECT">
+                        </output>
+                        <inputs>
+                                <input  type="STRING">
+                                        <name>topic_name</name>
+                                        <desc>Name of the topic to which the function subscribes</desc>
+                                </input>
+                                <input  type="STRING">
+                                        <name>frame_id</name>
+                                        <desc>Frame id of the message header</desc>
+                                </input>
+                                <input  type="SCALAR_SCALAR">
+                                        <name>size_queue</name>
+                                        <desc>Size of the queue</desc>
+                                </input>
+                                <input  type="SCALAR_MATRIX" checkSize="false">
+                                        <name>point</name>
+                                        <desc>a 3D Vector describing a point.</desc>
+                                </input>
+                        </inputs>
+                        <icon></icon>
+                        <desc>Publish 3D point in geometry_msgs::PointStamped message.</desc>
                 </function>
 	</functions>
 </description>

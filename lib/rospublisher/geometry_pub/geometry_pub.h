@@ -28,6 +28,7 @@
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/PointStamped.h>
 
 /* Note :
  *      1- Each FMatrixPub or FScalarPub object has 2 default Kheops Input:
@@ -266,5 +267,30 @@ class PoseStampedPub :  public FMatrixPub<geometry_msgs::PoseStamped>
                 virtual void setparameters();
 		virtual void prerun();
 };
+
+/*
+ * PointStamped : Send pose parameters in geometry_msgs/PointStamped
+ * position : a 3D Vector
+ * Output dimension should be 2 (3 Scalar for point)
+ */
+class PointStampedPub :  public FMatrixPub<geometry_msgs::PointStamped>
+{
+        private :
+
+                IString frame_id;
+                ISMInput point;
+
+                geometry_msgs::PointStamped msg;
+
+        public :
+
+                PointStampedPub() : FMatrixPub<geometry_msgs::PointStamped>(VECTOR) {}
+                virtual ~PointStampedPub(){}
+
+                virtual void compute();
+                virtual void setparameters();
+                virtual void prerun();
+};
+
 
 #endif // __ROS_OUTPUT_HPP__

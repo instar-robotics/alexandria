@@ -34,6 +34,7 @@ REGISTER_FUNCTION(AccelVectPub);
 REGISTER_FUNCTION(Accel2DPub);
 REGISTER_FUNCTION(PosePub);
 REGISTER_FUNCTION(PoseStampedPub);
+REGISTER_FUNCTION(PointStampedPub);
 
 /*******************************************************************************************************/
 /********************                       Vector3SPub                            *********************/
@@ -440,3 +441,48 @@ void PoseStampedPub::prerun()
 
 	FMatrixPub<geometry_msgs::PoseStamped>::prerun();
 }
+
+
+
+/*******************************************************************************************************/
+/********************                     PointStampedPub                            *******************/
+/*******************************************************************************************************/
+
+void PointStampedPub::compute()
+{
+        auto mout = getMapVect(output);
+
+        MATRIX tmpO = point()();
+
+        auto mtmp = getMapVect(tmpO);
+        mout[0] = mtmp[0];
+        mout[1] = mtmp[1];
+        mout[2] = mtmp[2];
+
+        msg.point.x = mout[0];
+        msg.point.y = mout[1];
+        msg.point.z = mout[2];
+
+        pub.publish(msg);
+}
+
+
+void PointStampedPub::setparameters()
+{
+        if( output.size() != 3 ) throw std::invalid_argument("PointStampedPub : Output must be a 3D vector");
+
+        FMatrixPub<geometry_msgs::PointStamped>::setparameters();
+        point.setCheckSize(false);
+        Kernel::iBind(frame_id,"frame_id", getUuid());
+        Kernel::iBind(point,"point", getUuid());
+}
+
+void PointStampedPub::prerun()
+{
+        if( point().iSize() != 3 || !point().isVect()) throw std::invalid_argument("PointStampedPub : position must be a 3D Vector.");
+
+        msg.header.frame_id = frame_id;
+
+        FMatrixPub<geometry_msgs::PointStamped>::prerun();
+}
+
