@@ -104,7 +104,6 @@ void AttractorPub::setparameters()
 
         Kernel::iBind(attractor,"attractor", getUuid());
         Kernel::iBind(frame_id,"frame_id", getUuid());
-        Kernel::iBind(pose_frame_id,"pose_frame_id", getUuid());
 }
 
 void AttractorPub::prerun()
@@ -114,5 +113,4 @@ void AttractorPub::prerun()
 	FMatrixPub<hieroglyph::Attractor>::prerun();
 
 	msg.header.frame_id = frame_id;
-	msg.pose_frame_id = pose_frame_id;
 }

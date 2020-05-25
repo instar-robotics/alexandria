@@ -73,10 +73,6 @@
                                         <name>frame_id</name>
                                         <desc>frame_id of the attractor</desc>
                                 </input>
-                                <input  type="STRING">
-                                        <name>pose_frame_id</name>
-                                        <desc>frame_id of the final pose orientation</desc>
-                                </input>
                                 <input  type="SCALAR_MATRIX">
                                         <name>attractor</name>
                                         <desc>4D Vector containing the attractor</desc>

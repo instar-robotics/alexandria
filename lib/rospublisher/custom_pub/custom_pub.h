@@ -92,7 +92,6 @@ class AttractorPub : public FMatrixPub<hieroglyph::Attractor>
         private :
 
 		IString frame_id;
-		IString pose_frame_id;
                 ISMInput attractor;
 		hieroglyph::Attractor msg;
 
